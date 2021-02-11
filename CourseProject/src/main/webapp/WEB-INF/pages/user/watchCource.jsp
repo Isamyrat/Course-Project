@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Посмотреть все курсы</title>
+    <title>Посмотреть </title>
 </head>
 
 <html>
@@ -13,61 +13,31 @@
 
 <div class="container">
     <table>
-        <form:form modelAttribute="allCourses">
-            <thead>
-            <tr>
-                <th>Watch all course</th>
-            </tr>
-            </thead>
-            <c:if test="${allCourses.size()>0}">
-                <thead>
-                <tr>
-                    <th>Language</th>
-                    <th>Level</th>
-                    <th>Date of start</th>
-                    <th>Duration od this course</th>
-                    <th>On this days were courses</th>
-                    <th>On this times were courses</th>
-                    <th>Price</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${allCourses} " var="cours">
-                    <tr>
-                        <td>${cours.time}</td>
-                        <td>${cours.language}</td>
-                        <td>${cours.level}</td>
-                        <td>${cours.start_date}</td>
-                        <td>${cours.duration}</td>
-                        <td>${cours.days}</td>
-                        <td>${cours.price}</td>
-                        <td>
-                            <div class="svg">
-                                <a class="button" href="/topic">
-                                    <svg>
-                                        <rect height="40" width="130" fill="transparent"/>
-                                    </svg>
-                                    <span style="font-size: 10pt">топик данного курса</span>
-                                </a>
-                            </div>
-                            <div class="svg">
-                                <a class="button" href="/addToCourse">
-                                    <svg>
-                                        <rect height="40" width="130" fill="transparent"/>
-                                    </svg>
-                                    <span style="font-size: 10pt">Записаться в эти курсы</span>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </c:if>
-            <c:if test="${allCourses.size()<1}">
-                <td>Empty</td>
-            </c:if>
-        </form:form>
+        <thead>
+        <tr>
+            <th>В данном курсе вы проходите обучение</th>
+        </tr>
+        <thead>
+        <tr>
+            <th>Language</th>
+            <th>Level</th>
+            <th>Price</th>
+            <th>Date of start</th>
+            <th>Duraction</th>
+        </tr>
+        </thead>
+
+
+        <tbody>
+        <tr>
+            <td>English</td>
+            <td>start</td>
+            <td>900</td>
+            <td>02.09</td>
+            <td>2</td>
+        </tr>
+
+        </tbody>
     </table>
     <div class="svg">
         <a class="button" href="/personalInformationUser">
@@ -77,13 +47,12 @@
             <span style="font-size: 10pt">Back</span>
         </a>
     </div>
-
 </div>
 
 </body>
 
 <style>
     <%@include file ="../css/button.css"%>
-    <%@include file ="../css/data.css"%>
+    <%@include file ="../css/dop.css"%>
 </style>
 </html>

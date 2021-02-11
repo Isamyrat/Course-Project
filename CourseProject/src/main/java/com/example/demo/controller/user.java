@@ -84,4 +84,10 @@ public class user {
         return "user/registration";
     }
 
+    @GetMapping("/watchGroupUser")
+    public String watchGroupUser() {
+        return "user/watchCource";
+    }
+
+
 }

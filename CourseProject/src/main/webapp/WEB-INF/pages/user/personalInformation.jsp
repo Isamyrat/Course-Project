@@ -15,25 +15,24 @@
 
 <sec:authorize access="hasRole('ROLE_USER')">
 
-
-    <table class="container">
+<div class="container">
+    <table>
         <form:form modelAttribute="userId">
             <thead>
             <tr>
-                <th><h1>Персональный аккаунт</h1></th>
+                <th>Персональный аккаунт</th>
             </tr>
             </thead>
             <thead>
             <tr>
-                <td>Логин</td>
-                <td>Пароль</td>
-                <td>Имя</td>
-                <td>Фамилия</td>
-                <td>Watch Person Info</td>
-                <td>Watch Address</td>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Watch Person Info</th>
+                <th>Watch Address</th>
             </tr>
             </thead>
             <tbody>
+
             <c:url var="watchPersonInfo" value="/personalInformationUsers">
                 <c:param name="personalId" value="${userId.id}"/>
             </c:url>
@@ -47,19 +46,19 @@
             </c:url>
             <c:if test="${userId.id.longValue()!=null}">
                 <tr>
-                    <td>${userId.username}</td>
-                    <td>${userId.password}</td>
                     <td>${userId.name}</td>
                     <td>${userId.surname}</td>
                     <td>
                         <form>
-                            <a href="${addPerson}" type="submit" style="background-color: #576a91; color: white; border: 1px #f5f4f4 solid; font-size: 10pt">Добавить
+                            <a href="${addPerson}" type="submit"
+                               style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 10pt">Добавить
                                 личные данные</a>
                         </form>
                         <span></span>
                         <p>
                         <form>
-                            <a href="${watchPersonInfo}" type="submit" style="background-color: #576a91; color: white; border: 1px #f5f4f4 solid; font-size: 15pt">Personal
+                            <a href="${watchPersonInfo}" type="submit"
+                               style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid; font-size: 15pt">Personal
                                 Info</a>
                         </form>
                         </p>
@@ -67,13 +66,15 @@
                     </td>
                     <td>
                         <form>
-                            <a href="${addAddress}" type="submit" style="background-color: #576a91; color: white;  border: 1px #f5f4f4 solid; font-size: 10pt">Добавить
+                            <a href="${addAddress}" type="submit"
+                               style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid; font-size: 10pt">Добавить
                                 адрессные данные</a>
                         </form>
                         <span></span>
                         <p>
                         <form>
-                            <a href="${watchAddress}" type="submit" style="background-color: #576a91; color: white;  border: 1px #f5f4f4 solid; font-size: 10pt">Посмотреть
+                            <a href="${watchAddress}" type="submit"
+                               style="background-color: rgba(255, 255, 255, 0.2);  color: #000000;  border: 1px #6e5d5d solid; font-size: 10pt">Посмотреть
                                 адрессные данные</a>
                         </form>
                         </p>
@@ -84,38 +85,6 @@
             </tbody>
         </form:form>
     </table>
-
-    <span></span>
-    <span></span>
-    <span></span>
-
-
-    <table class="container">
-        <thead>
-        <tr>
-            <th><h1>В данном курсе вы проходите обучение</h1></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Language</td>
-            <td>Level</td>
-            <td>Price</td>
-            <td>Date of start</td>
-            <td>Duraction</td>
-        </tr>
-        <tr>
-            <td>English</td>
-            <td>start</td>
-            <td>900</td>
-            <td>02.09</td>
-            <td>2</td>
-        </tr>
-
-        </tbody>
-    </table>
-
-
     <div class="svg">
         <a class="button" href="/watchAllCoursesManager">
             <svg>
@@ -128,7 +97,13 @@
             <svg>
                 <rect height="40" width="130" fill="transparent"/>
             </svg>
-            <span style="font-size: 10pt; width: 235px;">Изменить личные данные</span>
+            <span style="font-size: 7pt;">Изменить личные данные</span>
+        </a>
+        <a class="button" href="/watchGroupUser">
+            <svg>
+                <rect height="40" width="130" fill="transparent"/>
+            </svg>
+            <span style="font-size: 7pt;">Посмотреть в какой группе учусь</span>
         </a>
         <a class="button" href="/">
             <svg>
@@ -137,6 +112,10 @@
             <span style="font-size: 10pt">Back</span>
         </a>
     </div>
+</div>
+
+
+
 
 </sec:authorize>
 
@@ -223,80 +202,109 @@
 
 
 <sec:authorize access="hasRole('ROLE_MANAGER')">
+    <div class="container">
+        <table>
+            <form:form modelAttribute="userId">
+                <thead>
+                <tr>
+                    <th>Персональный аккаунт</th>
+                </tr>
+                </thead>
+                <thead>
+                <tr>
+                    <th style="width: 50px; height: 50px">Имя</th>
+                    <th style="width: 50px; height: 50px">Фамилия</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>${userId.name}</td>
+                    <td>${userId.surname}</td>
+                </tr>
+                </tbody>
+            </form:form>
+        </table>
 
-
-    <table class="container">
-        <form:form modelAttribute="userId">
-            <thead>
-            <tr>
-                <th><h1>Персональный аккаунт</h1></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Логин</td>
-                <td>Пароль</td>
-                <td>Имя</td>
-                <td>Фамилия</td>
-            </tr>
-            <tr>
-                <td>${userId.username}</td>
-                <td>${userId.password}</td>
-                <td>${userId.name}</td>
-                <td>${userId.surname}</td>
-            </tr>
-            </tbody>
-        </form:form>
-    </table>
-
-    <div class="svg">
-        <a class="button" href="/editUser">
-            <svg>
-                <rect height="40" width="130" fill="transparent"/>
-            </svg>
-            <span style="font-size: 10pt; width: 235px;">Изменить личные данные</span>
-        </a>
-        <a class="button" href="/menuManager">
-            <svg>
-                <rect height="40" width="130" fill="transparent"/>
-            </svg>
-            <span style="font-size: 10pt">Главное меню</span>
-        </a>
-        <a class="button" href="/">
-            <svg>
-                <rect height="40" width="130" fill="transparent"/>
-            </svg>
-            <span style="font-size: 10pt">Back</span>
-        </a>
+        <div class="svg">
+            <a class="button" href="/editUser">
+                <svg>
+                    <rect height="40" width="130" fill="transparent"/>
+                </svg>
+                <span style="font-size: 7pt;">Изменить личные данные</span>
+            </a>
+            <a class="button" href="/menuManager">
+                <svg>
+                    <rect height="40" width="130" fill="transparent"/>
+                </svg>
+                <span style="font-size: 10pt">Главное меню</span>
+            </a>
+            <a class="button" href="/">
+                <svg>
+                    <rect height="40" width="130" fill="transparent"/>
+                </svg>
+                <span style="font-size: 10pt">Back</span>
+            </a>
+        </div>
     </div>
 </sec:authorize>
 
 <sec:authorize access="hasRole('ROLE_ADMIN')">
 
 
-    <table class="container">
-        <form:form modelAttribute="userId">
-            <thead>
-            <tr>
-                <th><h1>Персональный аккаунт</h1></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Логин</td>
-                <td>Пароль</td>
-                <td>Имя</td>
-                <td>Фамилия</td>
-            </tr>
-            <tr>
-                <td>${userId.username}</td>
-                <td>${userId.password}</td>
-                <td>${userId.name}</td>
-                <td>${userId.surname}</td>
-            </tr>
-            </tbody>
-        </form:form>
-    </table>
+    <div class="limiter">
+        <div class="container-table100">
+            <div class="wrap-table100">
+                <table class="table">
+                    <form:form modelAttribute="userId">
+                        <thead>
+                        <tr>
+                            <h1>Персональный аккаунт</h1>
+                        </tr>
+                        </thead>
+                        <thead class="row header">
+                        <tr>
+                            <td class="cell">Логин</td>
+                            <td class="cell">Пароль</td>
+                            <td class="cell">Имя</td>
+                            <td class="cell">Фамилия</td>
+                        </tr>
+                        </thead>
+                        <tbody class="row">
+
+                        <tr>
+                            <td class="cell">${userId.username}</td>
+                            <td class="cell">${userId.password}</td>
+                            <td class="cell">${userId.name}</td>
+                            <td class="cell">${userId.surname}</td>
+                        </tr>
+                        </tbody>
+                    </form:form>
+                </table>
+
+                <div class="svg">
+                    <a class="button" href="/editUser">
+                        <svg>
+                            <rect height="40" width="130" fill="transparent"/>
+                        </svg>
+                        <span style="font-size: 10pt; width: 235px;">Изменить личные данные</span>
+                    </a>
+                    <a class="button" href="/menuManager">
+                        <svg>
+                            <rect height="40" width="130" fill="transparent"/>
+                        </svg>
+                        <span style="font-size: 10pt">Главное меню</span>
+                    </a>
+                    <a class="button" href="/">
+                        <svg>
+                            <rect height="40" width="130" fill="transparent"/>
+                        </svg>
+                        <span style="font-size: 10pt">Back</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="svg">
         <a class="button" href="/editUser">
@@ -322,7 +330,8 @@
 
 </body>
 <style>
-    <%@include file ="../css/personalInformation.css"%>
+    <%@include file ="../css/data.css"%>
+    <%@include file ="../css/dop.css"%>
     <%@include file ="../css/button.css"%>
 </style>
 </html>
