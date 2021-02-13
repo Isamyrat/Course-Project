@@ -22,6 +22,6 @@ public interface GroupRepository extends JpaRepository<Group, Long> {
     Group findByCourse(Long id);
 
     @Query("select g from  Group g where  g.user_teacher.id = :id")
-    Group findByTeacher(Long id);
+    List<Group> findByTeacher(Long id);
 
 }

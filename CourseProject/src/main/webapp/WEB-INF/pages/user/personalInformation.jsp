@@ -51,14 +51,14 @@
                         <td>
                             <form>
                                 <a href="${addPerson}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 10pt">Добавить
+                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; ">Добавить
                                     личные данные</a>
                             </form>
                             <span></span>
                             <p>
                             <form>
                                 <a href="${watchPersonInfo}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid; font-size: 15pt">Personal
+                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;">Personal
                                     Info</a>
                             </form>
                             </p>
@@ -67,14 +67,14 @@
                         <td>
                             <form>
                                 <a href="${addAddress}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid; font-size: 10pt">Добавить
+                                   style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid;">Добавить
                                     адрессные данные</a>
                             </form>
                             <span></span>
                             <p>
                             <form>
                                 <a href="${watchAddress}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2);  color: #000000;  border: 1px #6e5d5d solid; font-size: 10pt">Посмотреть
+                                   style="background-color: rgba(255, 255, 255, 0.2);  color: #000000;  border: 1px #f5f4f4 solid;">Посмотреть
                                     адрессные данные</a>
                             </form>
                             </p>

@@ -42,7 +42,7 @@
             </c:url>
 
         <tr>
-            <th>${groups.number_group}</th>
+            <td>${groups.number_group}</td>
             <td>${groups.user_teacher.surname}</td>
             <td>${groups.course_group.level}</td>
             <td>${groups.course_group.language}</td>
@@ -50,11 +50,15 @@
             <td>${groups.status}</td>
             <td>
                 <form>
-                    <a href="${watchUsers}"  type="submit" style="color: white;font-size: 10pt" >
+                    <a href="${watchUsers}"  type="submit"
+                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; ">
                         Students of this group</a>
                 </form>
+                <span></span>
+                <br>
                 <form>
-                    <a href="${editGroup}"  type="submit" style="color: white;font-size: 10pt" >
+                    <a href="${editGroup}"  type="submit"
+                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; " >
                         Edit this group</a>
                 </form>
 

@@ -31,7 +31,7 @@
                         <th>On this days were courses</th>
                         <th>On this times were courses</th>
                         <th>Price</th>
-                        <th></th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -50,15 +50,16 @@
                             <td>${courses.days}</td>
                             <td>${courses.price}</td>
                             <td>
-                                <form style="background-color: #576a91; border: 1px #f5f4f4 solid;">
-                                    <a href="${watchTopic}"  type="submit" style="color: white;font-size: 10pt" >
+                                <form >
+                                    <a href="${watchTopic}"  type="submit"
+                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; ">
                                         топик
                                         данного курса</a>
                                 </form>
                                     <p>
                                 <form action="${pageContext.request.contextPath}/addToCourse" method="post">
                                     <input type="hidden" name="course" value="${courses.id}"/>
-                                    <button  type="submit" style="background-color: #576a91; color: white; border: 1px #f5f4f4 solid; font-size: 10pt">Add to this course</button>
+                                    <button  type="submit" style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; ">Add to this course</button>
                                 </form>
                                 </p>
                             </td>
@@ -113,7 +114,7 @@
                         <th>On this days were courses</th>
                         <th>On this times were courses</th>
                         <th>Price</th>
-                        <th></th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -135,14 +136,16 @@
                             <td>${courses.days}</td>
                             <td>${courses.price}</td>
                             <td>
-                                <form style="background-color: #576a91; border: 1px #f5f4f4 solid;">
-                                    <a href="${watchTopic}" type="submit" style="color: white;font-size: 10pt" >топик
+                                <form>
+                                    <a href="${watchTopic}" type="submit"
+                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; ">топик
                                         данного курса</a>
                                 </form>
                                 <p>
-                                <form style="background-color: #576a91; border: 1px #f5f4f4 solid;">
+                                <form >
 
-                                <a href="${updateLink}" type="submit" style="color: white;font-size: 10pt">
+                                <a href="${updateLink}" type="submit"
+                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; ">
                                 Edit this course</a>
                                 </form>
                                 </p>
@@ -150,7 +153,7 @@
                                 <form action="${pageContext.request.contextPath}/deleteCourseManager" method="post">
                                     <input type="hidden" name="idCourse" value="${courses.id}"/>
                                     <input type="hidden" name="action" value="delete"/>
-                                    <button type="submit" style="background-color: #576a91; color: white; border: 1px #f5f4f4 solid; font-size: 10pt">Delete</button>
+                                    <button type="submit" style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; ">Delete</button>
                                 </form>
                             </td>
                         </tr>
@@ -180,69 +183,3 @@
     <%@include file ="../css/dop.css"%>
 </style>
 </html>
-
-<%--
-
-<div class="container">
-    <table>
-        <thead>
-        <tr>
-            <th>Watch all course</th>
-        </tr>
-        </thead>
-
-        <c:if test="${allCoursesUser.size()>0}">
-            <thead>
-            <tr>
-                <th>Language</th>
-                <th>Level</th>
-                <th>Date of start</th>
-                <th>Duration od this course</th>
-                <th>On this days were courses</th>
-                <th>On this times were courses</th>
-                <th>Price</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-
-            <c:forEach items="${allCoursesUser} " var="manager">
-                <c:url var="updateLink" value="/editCourseManager">
-                    <c:param name="course" value="${manager}"/>
-                </c:url>
-                <tr>
-                    <td>${allCoursesUser.time}</td>
-                    <td>${allCoursesUser.language}</td>
-                    <td>${allCoursesUser.level}</td>
-                    <td>${allCoursesUser.start_date}</td>
-                    <td>${allCoursesUser.duration}</td>
-                    <td>${allCoursesUser.days}</td>
-                    <td>${allCoursesUser.price}</td>
-                    <td>
-                        <form>
-                            <button type="submit">Edit this course</button>
-                        </form>
-                        <form action="${pageContext.request.contextPath}/deleteCourseManager" method="post">
-                            <input type="hidden" name="idCourse" value="${manager.id}"/>
-                            <input type="hidden" name="action" value="delete"/>
-                            <button type="submit">Delete</button>
-                        </form>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </c:if>
-        <c:if test="${allCoursesUser.size()<1}">
-            <td>Empty</td>
-        </c:if>
-    </table>
-    <div class="svg">
-        <a class="button" href="/menuManager">
-            <svg>
-                <rect height="40" width="130" fill="transparent"/>
-            </svg>
-            <span style="font-size: 10pt">Меню</span>
-        </a>
-    </div>
-
-</div>
---%>

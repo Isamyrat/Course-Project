@@ -122,7 +122,7 @@ public class GroupService {
         return groupUser;
     }
 
-    public Group findByTeacher(Long id) {
+    public List<Group> findByTeacher(Long id) {
         return groupRepository.findByTeacher(id);
     }
 

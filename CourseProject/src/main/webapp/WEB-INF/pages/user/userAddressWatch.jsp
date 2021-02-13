@@ -50,7 +50,7 @@
                     <td>
                         <form>
                             <a href="${editAddress}" type="submit"
-                               style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid; font-size: 10pt">Edit
+                               style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid; ">Edit
                                 address date</a>
                         </form>
                     </td>

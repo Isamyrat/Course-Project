@@ -25,6 +25,7 @@
                 <th>Age</th>
                 <th>Gender</th>
                 <th>Number of your phone</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -40,7 +41,7 @@
                 <td>
                     <form>
                         <a href="${editPerson}" type="submit"
-                           style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid; font-size: 10pt">Edit
+                           style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid;">Edit
                             data</a>
                     </form>
                 </td>

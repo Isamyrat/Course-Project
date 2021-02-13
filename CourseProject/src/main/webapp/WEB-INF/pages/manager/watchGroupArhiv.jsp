@@ -45,7 +45,7 @@
             </c:url>--%>
 
         <tr>
-            <th>${groups.number_group}</th>
+            <td>${groups.number_group}</td>
             <td>${groups.user_teacher.surname}</td>
             <td>${groups.course_group.level}</td>
             <td>${groups.course_group.language}</td>

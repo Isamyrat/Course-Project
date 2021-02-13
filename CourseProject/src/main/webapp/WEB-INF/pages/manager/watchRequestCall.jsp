@@ -33,8 +33,9 @@
                 <td>${manager.courseCallBack.level}</td>
                 <td>${manager.courseCallBack.language}</td>
                 <td>
-                    <form style="background-color: #576a91; border: 1px #f5f4f4 solid;">
-                    <a href="${updateLink}"  type="submit" style="color: white;font-size: 10pt" > Изменить статус пользователю
+                    <form>
+                    <a href="${updateLink}"  type="submit"
+                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; " > Изменить статус пользователю
                      </a>
                     </form>
                 </td>

@@ -30,22 +30,25 @@
             </thead>
 
             <tbody>
-            <c:url var="watchUsers" value="/watchGroupUsers">
-                <c:param name="idGroup" value="${userGroup.id}"/>
-            </c:url>
+
+            <c:forEach items="${userGroup}" var="teacher">
+                <c:url var="watchUsers" value="/watchGroupUsers">
+                    <c:param name="idGroup" value="${teacher.id}"/>
+                </c:url>
             <tr>
-                <td>${userGroup.number_group}</td>
-                <td>${userGroup.course_group.language}</td>
-                <td>${userGroup.course_group.level}</td>
-                <td>${userGroup.course_group.start_date}</td>
+                <td>${teacher.number_group}</td>
+                <td>${teacher.course_group.language}</td>
+                <td>${teacher.course_group.level}</td>
+                <td>${teacher.course_group.start_date}</td>
                 <td>
                     <form>
-                        <a href="${watchUsers}" type="submit" style="color: white;font-size: 10pt">
+                        <a href="${watchUsers}" type="submit"
+                           style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; ">
                             Students of this group</a>
                     </form>
                 </td>
             </tr>
-
+            </c:forEach>
             </tbody>
         </form:form>
     </table>

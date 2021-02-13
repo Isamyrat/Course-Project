@@ -27,12 +27,6 @@
         <th></th>
         </thead>
         <c:forEach items="${allTeachers}" var="user">
-            <%--<c:url var="updateLink" value="/editTeacher">
-                <c:param name="idUser" value="${user.id}"/>
-            </c:url>
-            <c:url var="deleteLink" value="/deleteTeacher">
-                <c:param name="idUser" value="${user.id}"/>
-            </c:url>--%>
             <c:forEach items="${user.roles}" var="role">
                 <c:if test="${role.name=='ROLE_TEACHER'}">
                     <tr>
@@ -45,11 +39,11 @@
                             <form action="${pageContext.request.contextPath}/deleteTeacher" method="post">
                                 <input type="hidden" name="userId" value="${user.id}"/>
                                 <input type="hidden" name="action" value="delete"/>
-                                <button type="submit">Delete</button>
+                                <button type="submit"  style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; ">Delete</button>
                             </form>
                             <form action="${pageContext.request.contextPath}/editTeacher" method="get">
                                 <input type="hidden" name="userId" value="${user.id}"/>
-                                <button type="submit">Change</button>
+                                <button type="submit"  style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; ">Change</button>
                             </form>
 
                         </td>

@@ -86,7 +86,7 @@ public class GroupController {
 
         User u = userService.getUser(userDetails.getUsername());
 
-        Group group = groupService.findByTeacher(u.getId());
+        List<Group> group = groupService.findByTeacher(u.getId());
 
         model.addAttribute("userGroup",group);
         return "teacher/watchGroup";

@@ -15,7 +15,7 @@ body {
     transform: translate(-50%, -50%);
 }
 table {
-    width: 800px;
+    width: 1500px;
     border-collapse: collapse;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -30,6 +30,8 @@ th {
     text-align: left;
 }
 thead th {
+    font-size: 25px;
+    font-weight: bold;
     background-color: #55608f;
     color: white;
 }
@@ -37,6 +39,8 @@ tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.3);
 }
 tbody td {
+    font-size: 35px;
+    font-weight: bold;
     position: relative;
 }
 tbody td:hover:before {
