@@ -1,10 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 
 <!DOCTYPE html>
 <html>
-<title>Language Line</title>
+<title><spring:message code="main.title"/></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -28,6 +29,7 @@
     }
 </style>
 <body>
+<spring:message code="enterN" var="lName"/>
 
 <!-- Sidebar with image -->
 <nav class="w3-sidebar w3-hide-medium w3-hide-small" style="width:40%">
@@ -43,35 +45,18 @@
     </a>
     <div class="w3-bar-block w3-center">
         <sec:authorize access="!isAuthenticated()">
-            <h4><a href="/login" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Войти</a></h4>
-            <h4><a href="/registration" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Зарегистрироваться</a></h4>
+            <h4><a href="/login" class="w3-bar-item w3-button w3-text-grey w3-hover-black"><spring:message code="eT"/></a></h4>
+            <h4><a href="/registration" class="w3-bar-item w3-button w3-text-grey w3-hover-black"><spring:message code="registrationT"/></a></h4>
         </sec:authorize>
-<%--
-        <sec:authorize access="hasRole('ROLE_ADMIN')">
-            <p align="center"><a href="/personalInformationAdmin" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Кабинет администратора</a></p>
-        </sec:authorize>
-
-        <sec:authorize access="hasRole('ROLE_USER')">
-            <p align="center"><a href="/personalInformationUser" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Personal accaunt</a></p>
-        </sec:authorize>
-        <sec:authorize access="hasRole('ROLE_MANAGER')">
-            <p align="center"><a href="/personalInformationManager" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Menu manager</a></p>
-        </sec:authorize>
-        <sec:authorize access="hasRole('ROLE_TEACHER')">
-            <p align="center"><a href="/personalInformationTeacher" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Personal accaunt</a></p>
-        </sec:authorize>--%>
-
         <sec:authorize access="isAuthenticated()">
-            <p align="center"><a href="/personalInformationUser" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Personal accaunt</a></p>
-            <h4><a href="/logout" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Выйти</a></h4>
+            <p align="center"><a href="/personalInformationUser" class="w3-bar-item w3-button w3-text-grey w3-hover-black"><spring:message code="pA"/></a></p>
+            <h4><a href="/logout" class="w3-bar-item w3-button w3-text-grey w3-hover-black"><spring:message code="lO"/></a></h4>
         </sec:authorize>
 
-       <%-- <a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">Sing in</a>
-        <a href="#portfolio" class="w3-bar-item w3-button w3-text-grey w3-hover-black"
-           onclick="closeNav()">Registration</a>
-        <a href="#about" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">About</a>
-        <a href="#contact" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">Contact</a>--%>
-    </div>
+        <span><spring:message code="app.title"/>:</span>
+        <h4><a href="?lang=en" class="w3-bar-item w3-button w3-text-grey w3-hover-black"><spring:message code="app.en"/></a></h4>
+        <h4><a href="?lang=ru" class="w3-bar-item w3-button w3-text-grey w3-hover-black"><spring:message code="app.ru"/></a></h4>
+  </div>
 </nav>
 
 <!-- Page Content -->
@@ -84,16 +69,12 @@
     <!-- Header -->
     <header class="w3-container w3-center" style="padding:128px 16px" id="home">
         <h1 class="w3-jumbo"><b>Language Line</b></h1>
-        <p>Courses of languages</p>
-       <%-- <img src="/w3images/profile_girl.jpg" class="w3-image w3-hide-large w3-hide-small w3-round"
-             style="display:block;width:60%;margin:auto;">
-        <img src="/w3images/profile_girl.jpg" class="w3-image w3-hide-large w3-hide-medium w3-round" width="1000"
-             height="1333">--%>
+        <p><spring:message code="underTitle"/></p>
     </header>
 
     <!-- Portfolio Section -->
     <div class="w3-padding-32 w3-content" id="portfolio">
-        <h2 class="w3-text-grey">Photoes of groups</h2>
+        <h2 class="w3-text-grey"><spring:message code="photosOfGroup"/></h2>
         <hr class="w3-opacity">
         <!-- Grid for photos -->
         <div class="w3-row-padding" style="margin:0 -16px">
@@ -117,22 +98,19 @@
 
     <!-- About Section -->
     <div class="w3-content w3-justify w3-text-grey w3-padding-32" id="about">
-        <h2>About us </h2>
+        <h2><spring:message code="aboutUs"/></h2>
         <hr class="w3-opacity">
-        <p>Our  English for Academic Purposes  programs provides direct pathways into the QUT foundation, diploma,
-            or QUT degree programs for students who have already met the academic entry requirements for these academic programs.
-            EAP also suits students who want to improve their language skills for professional or personal purposes.
-        </p>
-        <h3 class="w3-padding-16">The most studied languages</h3>
-        <p class="w3-wide">English</p>
+        <p><spring:message code="textAboutUs"/></p>
+        <h3 class="w3-padding-16"><spring:message code="mostStudiedLang"/></h3>
+        <p class="w3-wide"><spring:message code="englishT"/></p>
         <div class="w3-light-grey">
             <div class="w3-container w3-center w3-padding-small w3-dark-grey" style="width:70%">70%</div>
         </div>
-        <p class="w3-wide">Turkish</p>
+        <p class="w3-wide"><spring:message code="russianT"/></p>
         <div class="w3-light-grey">
             <div class="w3-container w3-center w3-padding-small w3-dark-grey" style="width:20%">20%</div>
         </div>
-        <p class="w3-wide">French</p>
+        <p class="w3-wide"><spring:message code="frenchT"/></p>
         <div class="w3-light-grey">
             <div class="w3-container w3-center w3-padding-small w3-dark-grey" style="width:10%">10%</div>
         </div>
@@ -141,67 +119,52 @@
         <div class="w3-row w3-center w3-dark-grey w3-padding-16 w3-section">
             <div class="w3-quarter w3-section">
                 <span class="w3-xlarge">14+</span><br>
-                Partners
+                <spring:message code="partnerT"/>
             </div>
             <div class="w3-quarter w3-section">
                 <span class="w3-xlarge">10+</span><br>
-                Courses
+                <spring:message code="coursesT"/>
             </div>
             <div class="w3-quarter w3-section">
                 <span class="w3-xlarge">1000+</span><br>
-                Happy Clients
+                <spring:message code="happyClienT"/>
             </div>
             <div class="w3-quarter w3-section">
                 <span class="w3-xlarge">150+</span><br>
-                Teachers
+                <spring:message code="teacherT"/>
             </div>
         </div>
 
-        <h3 class="w3-padding-24">Reviews</h3>
-<%--
-        <img src="/w3images/avatar_smoke.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:80px">
---%>
-        <p><span class="w3-large w3-text-black w3-margin-right">Jake Jonson.</span> Business man.</p>
-        <p>Language Line is just awesome. I am so happy to have met this course!</p><br>
+        <h3 class="w3-padding-24"><spring:message code="reviewsT"/></h3>
 
-<%--
-        <img src="/w3images/bandmember.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:80px">
---%>
-        <p><span class="w3-large w3-text-black w3-margin-right">Chris Fox.</span> Student.</p>
-        <p>We learned a lot in these courses.</p><br>
+        <p><span class="w3-large w3-text-black w3-margin-right"><spring:message code="jakeJ"/></span><spring:message code="businessM"/></p>
+        <p><spring:message code="jj"/></p><br>
+
+
+        <p><span class="w3-large w3-text-black w3-margin-right"><spring:message code="chriF"/></span><spring:message code="studentT"/></p>
+        <p><spring:message code="cf"/></p><br>
 
 
         <div class="subscribe-box">
-            <h2>Find some courses</h2>
+            <h2><spring:message code="findS"/></h2>
             <form class="subscribe" action="/watchAllCourcesUser">
-                <input type="text" placeholder="Enter name of language:" />
-                <button type="submit"> <span>Find</span></button>
+                <input type="text" placeholder="${lName}" />
+                <button type="submit"> <span><spring:message code="f"/></span></button>
             </form>
         </div>
-        <%--
-        <h3 class="w3-padding-16">Find some courses</h3>
-        <div class="w3-row-padding" style="margin:0 -16px">
-            <form action="/watchAllCourcesUser">
-                <input type="text" style="height: 20px" name="course" placeholder="Enter name of language:">
-                <span></span>
-                <br>
-                <button type="submit" name="submit" value="submit"></button>
-            </form>
 
-        </div>
---%>
     </div>
 
     <!-- Contact Section -->
     <div class="w3-padding-32 w3-content w3-text-grey" id="contact" style="margin-bottom:64px">
-        <h2>Contact us</h2>
+        <h2><spring:message code="cU"/></h2>
         <hr class="w3-opacity">
 
         <div class="w3-section">
-            <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Minsk, Belarus</p>
-            <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: (+375-25-985-14-54)
+            <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i><spring:message code="mB"/></p>
+            <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> <spring:message code="pH"/>: (+375-25-985-14-54)
                 (+375-25-765-16-51) </p>
-            <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: languageline@mail.com</p>
+            <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> <spring:message code="eM"/>: languageline@mail.com</p>
         </div>
 
 
@@ -209,19 +172,12 @@
 
     <!-- Footer -->
     <footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-opacity w3-xlarge" style="margin:-24px">
-        <!--        <i class="fa fa-facebook-official w3-hover-opacity"></i>
-                <i class="fa fa-instagram w3-hover-opacity"></i>
-                <i class="fa fa-snapchat w3-hover-opacity"></i>
-                <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-                <i class="fa fa-twitter w3-hover-opacity"></i>
-                <i class="fa fa-linkedin w3-hover-opacity"></i>-->
         <p class="w3-medium">Powered by <label>Language Line</label></p>
         <!-- End footer -->
     </footer>
 
     <!-- END PAGE CONTENT -->
 </div>
-
 <script>
     // Open and close sidebar
     function openNav() {

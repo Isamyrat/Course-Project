@@ -13,10 +13,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import javax.validation.Valid;
 
@@ -29,13 +27,14 @@ public class AddressController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/userAddressWatch")
-    public String userAddressWatch(@RequestParam("addressId") Long addressId,
+    @GetMapping("/userAddressWatch{addressId}")
+    public String userAddressWatch(@PathVariable(value = "addressId") Long addressId,
                                    Model model){
 
         List<Address> address = addressService.addressFind(addressId);
 
-        model.addAttribute("address", address);
+        model.addAttribute("address", address)
+            .addAttribute("addressId", addressId);
 
         return "user/userAddressWatch";
     }

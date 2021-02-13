@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
@@ -13,16 +14,23 @@
 <body>
 <div class="container">
 
+
+    <span><spring:message code="app.title"/>:</span>
+
+    <a href="/userAddressWatch${addressId}?lang=en"><spring:message code="app.en"/></a>
+    <a href="/userAddressWatch${addressId}?lang=ru"><spring:message code="app.en"/></a>
+
     <table>
         <form:form modelAttribute="address">
             <thead>
             <tr>
-                <th><h1>Адресные данные</h1></th>
+                <th><h1><spring:message code="addresUser"/></h1></th>
+
             </tr>
             </thead>
             <thead>
             <tr>
-                <th>Страна</th>
+                <th><spring:message code="countryAddress"/></th>
                 <th>Город</th>
                 <th>Район</th>
                 <th>Улицы</th>
@@ -34,6 +42,9 @@
             <tbody>
             <c:forEach items="${address}" var="add">
 
+                <c:url var="watchAddress" value="/userAddressWatch">
+                    <c:param name="addressId" value="${addresId}"/>
+                </c:url>
 
                 <c:url var="editAddress" value="/editAddressUser">
                     <c:param name="addressId" value="${add.id}"/>

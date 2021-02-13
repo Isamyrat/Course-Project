@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html>
@@ -10,8 +11,13 @@
 </head>
 
 <html>
+<header>
+    <div style="float: right">
+        <h4><a href="?lang=en" style="color: white; font-size: 10px"><spring:message code="app.en"/></a></h4>
+        <h4><a href="?lang=ru" style="color: white"><spring:message code="app.ru"/></a></h4>
+    </div>
+</header>
 <body>
-
 
 <sec:authorize access="hasRole('ROLE_USER')">
 
@@ -20,15 +26,15 @@
             <form:form modelAttribute="userId">
                 <thead>
                 <tr>
-                    <th>Персональный аккаунт</th>
+                    <th><spring:message code="caption"/></th>
                 </tr>
                 </thead>
                 <thead>
                 <tr>
-                    <th>Имя</th>
-                    <th>Фамилия</th>
-                    <th>Watch Person Info</th>
-                    <th>Watch Address</th>
+                    <th><spring:message code="nMU"/></th>
+                    <th><spring:message code="sNUS"/></th>
+                    <th><spring:message code="wpI"/></th>
+                    <th><spring:message code="wAddr"/></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -39,9 +45,6 @@
                 <c:url var="addPerson" value="/addPersonalInformationUser">
                 </c:url>
 
-                <c:url var="watchAddress" value="/userAddressWatch">
-                    <c:param name="addressId" value="${userId.id}"/>
-                </c:url>
                 <c:url var="addAddress" value="/addAddressUser">
                 </c:url>
                 <c:if test="${userId.id.longValue()!=null}">
@@ -51,15 +54,13 @@
                         <td>
                             <form>
                                 <a href="${addPerson}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; ">Добавить
-                                    личные данные</a>
+                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; "><spring:message code="adPI"/>е</a>
                             </form>
                             <span></span>
                             <p>
                             <form>
                                 <a href="${watchPersonInfo}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;">Personal
-                                    Info</a>
+                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;"><spring:message code="pI"/></a>
                             </form>
                             </p>
 
@@ -67,15 +68,13 @@
                         <td>
                             <form>
                                 <a href="${addAddress}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid;">Добавить
-                                    адрессные данные</a>
+                                   style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid;"><spring:message code="adAddress"/></a>
                             </form>
                             <span></span>
                             <p>
                             <form>
-                                <a href="${watchAddress}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2);  color: #000000;  border: 1px #f5f4f4 solid;">Посмотреть
-                                    адрессные данные</a>
+                                <a href="/userAddressWatch${userId.id}" type="submit"
+                                   style="background-color: rgba(255, 255, 255, 0.2);  color: #000000;  border: 1px #f5f4f4 solid;"><spring:message code="wAI"/></a>
                             </form>
                             </p>
                         </td>
@@ -90,26 +89,26 @@
                 <svg>
                     <rect height="40" width="130" fill="transparent"/>
                 </svg>
-                <span style="font-size: 10pt">Посмотреть все курсы</span>
+                <span style="font-size: 10pt"><spring:message code="wAC"/></span>
             </a>
 
             <a class="button" href="/editUser">
                 <svg>
                     <rect height="40" width="130" fill="transparent"/>
                 </svg>
-                <span style="font-size: 7pt;">Изменить личные данные</span>
+                <span style="font-size: 7pt;"><spring:message code="cPI"/></span>
             </a>
             <a class="button" href="/watchGroupUser">
                 <svg>
                     <rect height="40" width="130" fill="transparent"/>
                 </svg>
-                <span style="font-size: 7pt;">Посмотреть в какой группе учусь</span>
+                <span style="font-size: 7pt;"><spring:message code="wWG"/></span>
             </a>
             <a class="button" href="/">
                 <svg>
                     <rect height="40" width="130" fill="transparent"/>
                 </svg>
-                <span style="font-size: 10pt">Back</span>
+                <span style="font-size: 10pt"><spring:message code="bK"/></span>
             </a>
         </div>
     </div>
@@ -125,14 +124,18 @@
             <form:form modelAttribute="userId">
                 <thead>
                 <tr>
-                    <th><h1>Персональный аккаунт</h1></th>
+                    <th><spring:message code="caption"/></th>
                 </tr>
                 </thead>
+               <thead>
+               <tr>
+                   <th><spring:message code="nMU"/></th>
+                   <th><spring:message code="sNUS"/></th>
+               </tr>
+               </thead>
+
                 <tbody>
-                <tr>
-                    <td>Имя</td>
-                    <td>Фамилия</td>
-                </tr>
+
                 <tr>
                     <td>${userId.name}</td>
                     <td>${userId.surname}</td>
@@ -147,25 +150,25 @@
                 <svg>
                     <rect height="40" width="130" fill="transparent"/>
                 </svg>
-                <span style="font-size: 10pt; width: 235px;">Изменить личные данные</span>
+                <span style="font-size: 10pt; width: 235px;"><spring:message code="cPI"/></span>
             </a>
             <a class="button" href="/watchJournal">
                 <svg>
                     <rect height="40" width="130" fill="transparent"/>
                 </svg>
-                <span style="font-size: 10pt">Посмотреть журнал</span>
+                <span style="font-size: 10pt"><spring:message code="wJ"/></span>
             </a>
             <a class="button" href="/watchGroupTeacher">
                 <svg>
                     <rect height="40" width="130" fill="transparent"/>
                 </svg>
-                <span style="font-size: 10pt">Посмотреть группу</span>
+                <span style="font-size: 10pt"><spring:message code="wG"/></span>
             </a>
             <a class="button" href="/">
                 <svg>
                     <rect height="40" width="130" fill="transparent"/>
                 </svg>
-                <span style="font-size: 10pt">Back</span>
+                <span style="font-size: 10pt"><spring:message code="bK"/></span>
             </a>
         </div>
     </div>
@@ -178,13 +181,13 @@
             <form:form modelAttribute="userId">
                 <thead>
                 <tr>
-                    <th>Персональный аккаунт</th>
+                    <th><spring:message code="caption"/></th>
                 </tr>
                 </thead>
                 <thead>
                 <tr>
-                    <th style="width: 50px; height: 50px">Имя</th>
-                    <th style="width: 50px; height: 50px">Фамилия</th>
+                    <<th><spring:message code="nMU"/></th>
+                    <th><spring:message code="sNUS"/></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -201,19 +204,19 @@
                 <svg>
                     <rect height="40" width="130" fill="transparent"/>
                 </svg>
-                <span style="font-size: 7pt;">Изменить личные данные</span>
+                <span style="font-size: 7pt;"><spring:message code="cPI"/></span>
             </a>
             <a class="button" href="/menuManager">
                 <svg>
                     <rect height="40" width="130" fill="transparent"/>
                 </svg>
-                <span style="font-size: 10pt">Главное меню</span>
+                <span style="font-size: 10pt"><spring:message code="mM"/></span>
             </a>
             <a class="button" href="/">
                 <svg>
                     <rect height="40" width="130" fill="transparent"/>
                 </svg>
-                <span style="font-size: 10pt">Back</span>
+                <span style="font-size: 10pt"><spring:message code="bK"/></span>
             </a>
         </div>
     </div>
@@ -227,14 +230,17 @@
             <form:form modelAttribute="userId">
                 <thead>
                 <tr>
-                    <th><h1>Персональный аккаунт</h1></th>
+                    <th><spring:message code="caption"/></th>
+                </tr>
+                </thead>
+                <thead>
+
+                <tr>
+                    <th><spring:message code="nMU"/></th>
+                    <th><spring:message code="sNUS"/></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Имя</td>
-                    <td>Фамилия</td>
-                </tr>
                 <tr>
                     <td>${userId.name}</td>
                     <td>${userId.surname}</td>
@@ -249,19 +255,19 @@
                 <svg>
                     <rect height="40" width="130" fill="transparent"/>
                 </svg>
-                <span style="font-size: 10pt; width: 235px;">Изменить личные данные</span>
+                <span style="font-size: 10pt; width: 235px;"><spring:message code="cPI"/></span>
             </a>
             <a class="button" href="/menuAdmin">
                 <svg>
                     <rect height="40" width="130" fill="transparent"/>
                 </svg>
-                <span style="font-size: 10pt">Главное меню</span>
+                <span style="font-size: 10pt"><spring:message code="mM"/></span>
             </a>
             <a class="button" href="/">
                 <svg>
                     <rect height="40" width="130" fill="transparent"/>
                 </svg>
-                <span style="font-size: 10pt">Back</span>
+                <span style="font-size: 10pt"><spring:message code="bK"/></span>
             </a>
         </div>
     </div>
