@@ -1,11 +1,9 @@
 package com.example.demo.controller;
 
 
-import com.example.demo.model.CallBack;
-import com.example.demo.model.Course;
-import com.example.demo.model.Topic;
-import com.example.demo.model.User;
+import com.example.demo.model.*;
 import com.example.demo.service.CallBackService;
+import com.example.demo.service.GroupService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -19,7 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.*;
+
 @Controller
 public class CallBackController {
 
@@ -29,15 +28,18 @@ public class CallBackController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private GroupService groupService;
+
     @GetMapping("/watchRequestCallUser")
     public String watchRequestCallUser(Model model) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
-        User u = userService.getUser(userDetails.getUsername());
+        User user = userService.getUser(userDetails.getUsername());
 
-        List<CallBack> callBacks = callBackService.callBackFind(u.getId());
+        List<CallBack> callBacks = callBackService.callBackFind(user.getId());
 
         model.addAttribute("callBack",callBacks);
 
@@ -48,6 +50,7 @@ public class CallBackController {
     public String watchRequestCall(Model model) {
 
         String status = "В ожидании";
+
         List<CallBack> callBack  = callBackService.findByStatus(status);
 
         model.addAttribute("callBackManager", callBack);
@@ -96,11 +99,29 @@ public class CallBackController {
 
     @PostMapping("/saveApprove")
     public String saveApprove(@ModelAttribute("editCallBack") CallBack editCallBack) {
+
+
+        User user = userService.findUserById(editCallBack.getUserCallBack().getId());
+        Course course = callBackService.findCourse(editCallBack.getCourseCallBack().getId());
+        Group group = groupService.findByCourseS(course.getId());
+
+        System.out.println(user.toString()  + "  " + course.toString());
+        Set<User> users = new HashSet<>();
+        users.add(user);
+        group.setUserGroup(users);
+        group.setCourse_group(course);
+        System.out.println(group.getCourse_group()  + " " + group.getUserGroup());
+
+
+
         if (editCallBack.getStatus().equals("Approve")) {
             editCallBack.setStatus("Одобрено");
+            groupService.saveUser(group);
         }else if (editCallBack.getStatus().equals("NotApprove")) {
             editCallBack.setStatus("Отказано");
         }
+
+
         editCallBack.setCallBackDate(String.valueOf(LocalDate.now()));
         callBackService.editCallBack(editCallBack);
         return "redirect:/";

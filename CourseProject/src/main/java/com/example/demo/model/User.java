@@ -22,34 +22,14 @@ public class User implements UserDetails {
     private String name;
     private String surname;
 
-
-     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
-
-    @OneToOne(mappedBy = "user_requestCall")
-    private RequestCall requestCall;
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user_address", cascade = CascadeType.ALL)
-    private Set<Address> address;
-
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "userCallBack", cascade = CascadeType.ALL)
-    private Set<CallBack> callBack;
-
-
- /*   @ManyToOne(fetch = FetchType.EAGER)
-    @JoinTable(name = "GroupCourse")
-    @JoinColumn(name = "ID_HUMAN", referencedColumnName = "id")
-    private Group groupUser;*/
-
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(table = "GroupCourse", name = "id_human")
-    private Group groupUser;*/
-
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "user_information", cascade = CascadeType.ALL)
-    private PersonalInformation personalInformation;
-
-    public User() {
+    public RequestCall getRequestCall() {
+        return requestCall;
     }
+
+    public void setRequestCall(RequestCall requestCall) {
+        this.requestCall = requestCall;
+    }
+
     public Set<Address> getAddress() {
         return address;
     }
@@ -67,6 +47,38 @@ public class User implements UserDetails {
         this.personalInformation = personalInformation;
     }
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Role> roles;
+
+    @OneToOne(mappedBy = "user_requestCall")
+    private RequestCall requestCall;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user_address", cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<Address> address;
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "userCallBack", cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<CallBack> callBack;
+
+    @OneToOne(fetch = FetchType.EAGER,mappedBy = "user_teacher",cascade = CascadeType.ALL)
+    private Group group;
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "userGroup",cascade = CascadeType.ALL)
+    private Set<Group> groups;
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "user_information", cascade = CascadeType.ALL, orphanRemoval = true)
+    private PersonalInformation personalInformation;
+
+    public User() {
+    }
+
     public Set<CallBack> getCallBack() {
         return callBack;
     }
@@ -74,12 +86,13 @@ public class User implements UserDetails {
     public void setCallBack(Set<CallBack> callBack) {
         this.callBack = callBack;
     }
-    public RequestCall getRequestCall() {
-        return requestCall;
+
+    public Set<Group> getGroups() {
+        return groups;
     }
 
-    public void setRequestCall(RequestCall requestCall) {
-        this.requestCall = requestCall;
+    public void setGroups(Set<Group> groups) {
+        this.groups = groups;
     }
 
     public String getName() {
@@ -131,7 +144,7 @@ public class User implements UserDetails {
         return true;
     }
 
-    
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -158,4 +171,21 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", roles=" + roles +
+                ", requestCall=" + requestCall +
+                ", address=" + address +
+                ", callBack=" + callBack +
+                ", group=" + group +
+                ", groups=" + groups +
+                ", personalInformation=" + personalInformation +
+                '}';
+    }
 }

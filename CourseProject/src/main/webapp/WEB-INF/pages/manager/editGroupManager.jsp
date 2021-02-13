@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html>
@@ -10,28 +11,30 @@
 <html>
 <body>
 
-<div class="login-box" >
+<div class="login-box">
     <h2>Изменить данные группы: </h2>
-    <form >
+    <form:form modelAttribute="groupEdit" method="POST" action="/saveGroupMan">
+        <label>Номер группы</label>
+        <form:hidden path="id"/>
         <div class="user-box">
-            <input type="text" name="" required="">
-            <label>Номер группы</label>
+            <form:input type="text" path="number_group"/>
         </div>
+
+        <label>Status </label>
         <div class="user-box">
-            <input type="text" name="" required="">
-            <label>Уровень</label>
+            <form:input type="text" path="status"/>
         </div>
-        <div class="user-box">
-            <input type="text" name="" required="">
-            <label>Язык </label>
-        </div>
-        <a href="/saveGroupMan">
+        <form:hidden path="userGroup"/>
+        <form:hidden path="course_group"/>
+        <form:hidden path="user_teacher"/>
+
+        <button style="background-color: #141e30">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
-            Сохранить данные группы
-        </a>
+            Сохранить данные
+        </button>
         <a href="/menuManager">
             <span></span>
             <span></span>
@@ -39,8 +42,7 @@
             <span></span>
             Меню
         </a>
-
-    </form>
+    </form:form>
 </div>
 </body>
 <style>

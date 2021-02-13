@@ -41,7 +41,8 @@ public class Course {
     private List<CallBack> callBack;
 
 
-    @OneToMany(mappedBy = "course_group")
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "course_group",cascade = CascadeType.ALL)
     private Set<Group> group;
 
     public Course() {
@@ -135,4 +136,20 @@ public class Course {
         this.duration = duration;
     }
 
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", language='" + language + '\'' +
+                ", start_date='" + start_date + '\'' +
+                ", price=" + price +
+                ", level='" + level + '\'' +
+                ", days='" + days + '\'' +
+                ", time='" + time + '\'' +
+                ", duration='" + duration + '\'' +
+                ", topic=" + topic +
+                ", callBack=" + callBack +
+                ", group=" + group +
+                '}';
+    }
 }

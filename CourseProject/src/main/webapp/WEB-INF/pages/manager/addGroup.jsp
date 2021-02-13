@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html>
@@ -11,42 +12,60 @@
 <body>
 
 
-
 <div class="main">
     <div class="container">
         <div class="signup-content">
             <div class="signup-form">
-                <form method="GET" class="register-form" id="register-form" action="/saveGroupManager">
+                <form:form method="Post" class="register-form" id="register-form" action="/saveGroupManager"
+                           modelAttribute="group">
                     <h2>Add new group</h2>
+                    <form:hidden path="id"/>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="name">Number of group :</label>
-                            <input type="text" name="name" id="name" required/>
+                            <label>Number of group :</label>
+                            <form:input type="text" path="number_group"/>
                         </div>
-                        <div class="form-group">
-                            <label for="name">Number of id student :</label>
-                            <input type="text" name="name" id="student" required/>
-                        </div>
-
                     </div>
+                    <form:hidden path="userGroup"/>
+                    <form:hidden path="status"/>
+
+
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="state">Please select teacher of gruop :</label>
+                            <label>Please select teacher of group :</label>
                             <div class="form-select">
-                                <select name="state" id="state">
-                                    <option value=""></option>
-                                    <option value="uk">Anna-Maria</option>
-                                    <option value="uk">Anton Pavlov</option>
-                                </select>
+                                <form:select path="user_teacher">
+                                    <c:forEach items="${users}" var="user">
+                                        <option value=""></option>
+                                        <option value="${user.id}">${user.surname}</option>
+                                    </c:forEach>
+                                </form:select>
                                 <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                             </div>
                         </div>
                     </div>
-                    <div class="form-submit">
-                        <input type="submit" value="Submit Form" class="submit" name="submit" id="submit" />
+
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Please select teacher of gruop :</label>
+                            <div class="form-select">
+                                <form:select path="course_group">
+                                    <c:forEach items="${courses}" var="course">
+                                        <option value=""></option>
+                                        <option value="${course.id}">${course.level} - ${course.language}</option>
+                                    </c:forEach>
+                                </form:select>
+                                <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                            </div>
+                        </div>
                     </div>
 
-                </form>
+                    <div class="form-submit">
+                        <input type="submit" value="Submit Form" class="submit" name="submit" id="submit"/>
+                    </div>
+
+                </form:form>
                 <div class="form-submit">
                     <form action="/menuManager">
                         <input type="submit" value="Back" class="submit" style="background-color: #ff6801"/>

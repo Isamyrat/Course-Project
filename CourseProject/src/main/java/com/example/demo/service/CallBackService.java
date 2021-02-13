@@ -23,20 +23,20 @@ public class CallBackService {
     @Autowired
     private CourseRepository courseRepository;
 
-    public CallBack findById(Long userId){
+    public CallBack findById(Long userId) {
         Optional<CallBack> callBack = callBackRepository.findById(userId);
         return callBack.orElse(new CallBack());
     }
 
-    public List<CallBack> findAll(String status1,String status2){
-        return callBackRepository.findByStatuss(status1,status2);
+    public List<CallBack> findAll(String status1, String status2) {
+        return callBackRepository.findByStatuss(status1, status2);
     }
 
-    public List<CallBack> findByStatus(String status){
+    public List<CallBack> findByStatus(String status) {
         return callBackRepository.findByStatus(status);
     }
 
-    public Boolean saveCallBack(CallBack callBack ){
+    public Boolean saveCallBack(CallBack callBack) {
         User user = userRepository.findByUser(callBack.getUserCallBack().getId());
         Course course = courseRepository.findByCourseId(callBack.getCourseCallBack().getId());
         callBack.setStatus("В ожидании");
@@ -47,21 +47,16 @@ public class CallBackService {
         return true;
     }
 
-    public List<CallBack>  callBackFind(Long userID){
+    public List<CallBack> callBackFind(Long userID) {
         return callBackRepository.findByUser(userID);
     }
 
-   /* public User findUser(Long user){
-        return userRepository.findByUser(user);
+
+    public Course findCourse(Long course) {
+        return courseRepository.findByCourseId(course);
     }
 
-
-
-*/
-   public Course findCourse(Long course){
-       return courseRepository.findByCourseId(course);
-   }
-    public CallBack editCallBack(CallBack callBack){
+    public CallBack editCallBack(CallBack callBack) {
         return callBackRepository.save(callBack);
     }
 

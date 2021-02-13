@@ -82,11 +82,6 @@ public class manager {
     }
 
 
-    @GetMapping("/addGroup")
-    public String addGroup() {
-        return "manager/addGroup";
-    }
-
 
     @GetMapping("/watchJournalManager")
     public String watchJournalManager() {
@@ -99,20 +94,9 @@ public class manager {
     }
 
 
-    @GetMapping("/watchGroup")
-    public String watchGroup() {
-        return "manager/watchGroup";
-    }
-
-
     @GetMapping("/saveJournalManager")
     public String saveJournalManager() {
         return "manager/watchJournalManager";
-    }
-
-    @GetMapping("/saveGroupManager")
-    public String saveGroupManager() {
-        return "manager/watchGroup";
     }
 
 
@@ -131,15 +115,6 @@ public class manager {
         return "manager/watchJournalManager";
     }
 
-    @GetMapping("/editGroupManager")
-    public String editGroupManager() {
-        return "manager/editGroupManager";
-    }
-
-    @GetMapping("/saveGroupMan")
-    public String saveGroupMan() {
-        return "manager/watchGroup";
-    }
 
 
 }

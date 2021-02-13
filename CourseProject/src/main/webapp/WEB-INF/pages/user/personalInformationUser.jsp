@@ -11,57 +11,60 @@
 
 <html>
 <body>
+<div class="container">
 
-<table class="container">
-    <form:form modelAttribute="person">
-        <thead>
-        <tr>
-            <th><h1>Личные данные</h1></th>
-        </tr>
-        </thead>
-        <thead>
-        <tr>
-            <th>Age</th>
-            <th>Gender</th>
-            <th>Number of your phone</th>
-        </tr>
-        </thead>
-        <tbody>
+    <table>
+        <form:form modelAttribute="person">
+            <thead>
+            <tr>
+                <th><h1>Личные данные</h1></th>
+            </tr>
+            </thead>
+            <thead>
+            <tr>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Number of your phone</th>
+            </tr>
+            </thead>
+            <tbody>
 
-        <c:url var="editPerson" value="/editPersonalInformationUser">
-            <c:param name="personId" value="${person.id}"/>
-        </c:url>
+            <c:url var="editPerson" value="/editPersonalInformationUser">
+                <c:param name="personId" value="${person.id}"/>
+            </c:url>
 
-        <tr>
-            <td>${person.age}</td>
-            <td>${person.gender}</td>
-            <td>${person.number}</td>
-            <td>
-                <form>
-                    <a href="${editPerson}"  type="submit" style="background-color: #576a91; color: white; border: 1px #f5f4f4 solid; font-size: 10pt">Edit data</a>
-                </form>
-            </td>
+            <tr>
+                <td>${person.age}</td>
+                <td>${person.gender}</td>
+                <td>${person.number}</td>
+                <td>
+                    <form>
+                        <a href="${editPerson}" type="submit"
+                           style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid; font-size: 10pt">Edit
+                            data</a>
+                    </form>
+                </td>
 
-        </tr>
-        </tbody>
-    </form:form>
-</table>
+            </tr>
+            </tbody>
+        </form:form>
+    </table>
 
-<div class="svg">
+    <div class="svg">
 
-    <a class="button" href="/personalInformationUser">
-        <svg>
-            <rect height="40" width="130" fill="transparent"/>
-        </svg>
-        <span style="font-size: 10pt">Back</span>
-    </a>
+        <a class="button" href="/personalInformationUser">
+            <svg>
+                <rect height="40" width="130" fill="transparent"/>
+            </svg>
+            <span style="font-size: 10pt">Back</span>
+        </a>
+    </div>
 </div>
-
 </body>
 
 
 <style>
-    <%@include file ="../css/personalInformation.css"%>
+    <%@include file ="../css/dop.css"%>
     <%@include file ="../css/button.css"%>
 </style>
 </html>

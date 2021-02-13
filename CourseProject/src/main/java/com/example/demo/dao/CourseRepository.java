@@ -21,4 +21,5 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
 
     @Query("select c from Course  c where c.id = :id")
     public Course findByCourseId(Long id);
+
 }

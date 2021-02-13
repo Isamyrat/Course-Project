@@ -13,13 +13,13 @@
 
 <div class="container">
     <table>
-        <form:form modelAttribute="watchGroups">
+        <form:form modelAttribute="watchUsersArhiv">
         <thead>
         <tr>
             <th>Watch all groups</th>
         </tr>
         </thead>
-            <c:if test="${watchGroups.size()>0}">
+            <c:if test="${watchUsersArhiv.size()>0}">
         <thead>
         <tr>
             <th>Number of group</th>
@@ -28,18 +28,21 @@
             <th>Language of course</th>
             <th>Date of start course</th>
             <th>Status of course</th>
+<%--
             <th>Action</th>
+--%>
 
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${watchGroups}" var="groups">
-            <c:url var="watchUsers" value="/watchGroupUsers">
+        <c:forEach items="${watchUsersArhiv}" var="groups">
+
+           <%-- <c:url var="watchUsers" value="/watchGroupUsers">
                 <c:param name="idGroup" value="${groups.id}"/>
             </c:url>
             <c:url var="editGroup" value="/editGroupManager">
                 <c:param name="idGroup" value="${groups.id}"/>
-            </c:url>
+            </c:url>--%>
 
         <tr>
             <th>${groups.number_group}</th>
@@ -48,7 +51,7 @@
             <td>${groups.course_group.language}</td>
             <td>${groups.course_group.start_date}</td>
             <td>${groups.status}</td>
-            <td>
+           <%-- <td>
                 <form>
                     <a href="${watchUsers}"  type="submit" style="color: white;font-size: 10pt" >
                         Students of this group</a>
@@ -58,7 +61,7 @@
                         Edit this group</a>
                 </form>
 
-            </td>
+            </td>--%>
         </tr>
         </c:forEach>
         </tbody>
@@ -67,13 +70,7 @@
     </table>
 
     <div class="svg">
-        <a class="button" href="/watchGroupArhiv">
-            <svg>
-                <rect height="40" width="130" fill="transparent" />
-            </svg>
-            <span style="font-size: 8pt">Посмотреть архив группы</span>
-        </a>
-        <a class="button" href="/editGroupManager">
+      <%--  <a class="button" href="/editGroupManager">
             <svg>
                 <rect height="40" width="130" fill="transparent" />
             </svg>
@@ -84,7 +81,7 @@
                 <rect height="40" width="130" fill="transparent" />
             </svg>
             <span style="font-size: 8pt">Удалить данные групп</span>
-        </a>
+        </a>--%>
         <a class="button" href="/menuManager">
             <svg>
                 <rect height="40" width="130" fill="transparent" />
