@@ -12,10 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @Controller
@@ -41,16 +38,18 @@ public class GroupController {
         return "manager/watchGroup";
     }
 
-    @GetMapping("/watchGroupUsers")
-    public String watchGroupUsers(@RequestParam("idGroup") Long idGroup,
+    @GetMapping("/watchGroupUsers{idGroup}")
+    public String watchGroupUsers(@PathVariable("idGroup") Long idGroup,
                                   Model model) {
 
         Group group = groupService.findById(idGroup);
 
-        model.addAttribute("watchUsers", group);
+        model.addAttribute("watchUsers", group)
+            .addAttribute("idGroup", idGroup);
 
         return "manager/watchGroupUsers";
     }
+
 
 
     @GetMapping("/watchGroupArhiv")
@@ -76,7 +75,7 @@ public class GroupController {
         Group group = groupService.findByUser(u.getId());
 
         model.addAttribute("userGroup",group);
-        return "user/watchCource";
+        return "manager/watchGroup";
     }
     @GetMapping("/watchGroupTeacher")
     public String watchGroupTeacher(Model model) {
@@ -89,7 +88,7 @@ public class GroupController {
         List<Group> group = groupService.findByTeacher(u.getId());
 
         model.addAttribute("userGroup",group);
-        return "teacher/watchGroup";
+        return "manager/watchGroup";
     }
 
 

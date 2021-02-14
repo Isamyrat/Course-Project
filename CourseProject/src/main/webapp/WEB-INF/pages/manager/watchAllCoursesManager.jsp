@@ -1,16 +1,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Посмотреть курсы</title>
+    <title><spring:message code="wCourse"/></title>
 </head>
 
 <html>
 <body>
+<header>
+    <div style="float: right">
+        <h4><a href="?lang=en" style="color: white; font-size: 10px"><spring:message code="app.en"/></a></h4>
+        <h4><a href="?lang=ru" style="color: white"><spring:message code="app.ru"/></a></h4>
+    </div>
+</header>
+
 <sec:authorize access="hasRole('ROLE_USER')">
 
     <div class="container">
@@ -18,27 +26,25 @@
             <form:form modelAttribute="allCoursesUser">
                 <thead>
                 <tr>
-                    <th>Watch all course</th>
+                    <th><spring:message code="aC"/></th>
                 </tr>
                 </thead>
                 <c:if test="${allCoursesUser.size()>0}">
                     <thead>
                     <tr>
-                        <th>Language</th>
-                        <th>Level</th>
-                        <th>Date of start</th>
-                        <th>Duration od this course</th>
-                        <th>On this days were courses</th>
-                        <th>On this times were courses</th>
-                        <th>Price</th>
-                        <th>Action</th>
+                        <th><spring:message code="oTGW"/></th>
+                        <th><spring:message code="laOG"/></th>
+                        <th><spring:message code="lOG"/></th>
+                        <th><spring:message code="dOC"/></th>
+                        <th><spring:message code="dOTC"/></th>
+                        <th><spring:message code="oTDW"/></th>
+                        <th><spring:message code="p"/></th>
+                        <th><spring:message code="aG"/></th>
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach items="${allCoursesUser}" var="courses">
-                        <c:url var="watchTopic" value="/watchTopics">
-                            <c:param name="topicId" value="${courses.id}"/>
-                        </c:url>
+
 
 
                         <tr>
@@ -50,16 +56,14 @@
                             <td>${courses.days}</td>
                             <td>${courses.price}</td>
                             <td>
-                                <form >
-                                    <a href="${watchTopic}"  type="submit"
-                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; ">
-                                        топик
-                                        данного курса</a>
+                                <form>
+                                    <a href="/watchTopics${courses.id}" type="submit"
+                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; "> <spring:message code="tTG"/></a>
                                 </form>
                                     <p>
                                 <form action="${pageContext.request.contextPath}/addToCourse" method="post">
                                     <input type="hidden" name="course" value="${courses.id}"/>
-                                    <button  type="submit" style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; ">Add to this course</button>
+                                    <button  type="submit" style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; "><spring:message code="aTG"/></button>
                                 </form>
                                 </p>
                             </td>
@@ -68,7 +72,7 @@
                     </tbody>
                 </c:if>
                 <c:if test="${allCoursesUser.size()<1}">
-                    <td>Empty</td>
+                    <td><spring:message code="eC"/></td>
                 </c:if>
             </form:form>
         </table>
@@ -77,13 +81,13 @@
                 <svg>
                     <rect height="40" width="130" fill="transparent"/>
                 </svg>
-                <span style="font-size: 10pt">Меню</span>
+                <span style="font-size: 10pt"><spring:message code="bK"/></span>
             </a>
             <a class="button" href="/watchRequestCallUser">
                 <svg>
                     <rect height="40" width="130" fill="transparent"/>
                 </svg>
-                <span style="font-size: 10pt">Посмотреть на какие курсы я отправил заявку</span>
+                <span style="font-size: 10pt"><spring:message code="wWGR"/></span>
             </a>
         </div>
 
@@ -101,20 +105,20 @@
             <form:form modelAttribute="allCoursesUser">
                 <thead>
                 <tr>
-                    <th>Watch all course</th>
+                    <th><spring:message code="aC"/></th>
                 </tr>
                 </thead>
                 <c:if test="${allCoursesUser.size()>0}">
                     <thead>
                     <tr>
-                        <th>Language</th>
-                        <th>Level</th>
-                        <th>Date of start</th>
-                        <th>Duration od this course</th>
-                        <th>On this days were courses</th>
-                        <th>On this times were courses</th>
-                        <th>Price</th>
-                        <th>Action</th>
+                        <th><spring:message code="oTGW"/></th>
+                        <th><spring:message code="laOG"/></th>
+                        <th><spring:message code="lOG"/></th>
+                        <th><spring:message code="dOC"/></th>
+                        <th><spring:message code="dOTC"/></th>
+                        <th><spring:message code="oTDW"/></th>
+                        <th><spring:message code="p"/></th>
+                        <th><spring:message code="aG"/></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -124,9 +128,6 @@
                             <c:param name="course" value="${courses.id}"/>
                         </c:url>
 
-                        <c:url var="watchTopic" value="/watchTopics">
-                            <c:param name="topicId" value="${courses.id}"/>
-                        </c:url>
                         <tr>
                             <td>${courses.time}</td>
                             <td>${courses.language}</td>
@@ -137,23 +138,22 @@
                             <td>${courses.price}</td>
                             <td>
                                 <form>
-                                    <a href="${watchTopic}" type="submit"
-                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; ">топик
-                                        данного курса</a>
+                                    <a href="/watchTopics${courses.id}" type="submit"
+                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; "> <spring:message code="tTG"/></a>
                                 </form>
                                 <p>
                                 <form >
 
                                 <a href="${updateLink}" type="submit"
                                    style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; ">
-                                Edit this course</a>
+                                    <spring:message code="eCM"/></a>
                                 </form>
                                 </p>
 
                                 <form action="${pageContext.request.contextPath}/deleteCourseManager" method="post">
                                     <input type="hidden" name="idCourse" value="${courses.id}"/>
                                     <input type="hidden" name="action" value="delete"/>
-                                    <button type="submit" style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; ">Delete</button>
+                                    <button type="submit" style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; "> <spring:message code="dC"/></button>
                                 </form>
                             </td>
                         </tr>
@@ -161,7 +161,7 @@
                     </tbody>
                 </c:if>
                 <c:if test="${allCoursesUser.size()<1}">
-                    <td>Empty</td>
+                    <td><spring:message code="eC"/></td>
                 </c:if>
             </form:form>
         </table>
@@ -170,7 +170,7 @@
                 <svg>
                     <rect height="40" width="130" fill="transparent"/>
                 </svg>
-                <span style="font-size: 10pt">Меню</span>
+                <span style="font-size: 10pt"> <spring:message code="mAM"/></span>
             </a>
         </div>
 

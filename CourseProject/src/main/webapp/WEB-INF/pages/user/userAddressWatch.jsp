@@ -7,44 +7,40 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Личные данные</title>
+    <title> <spring:message code="addData"/></title>
 </head>
 
 <html>
+<header>
+    <div style="float: right">
+        <a href="/userAddressWatch${addressId}?lang=en"><spring:message code="app.en"/></a>
+        <a href="/userAddressWatch${addressId}?lang=ru"><spring:message code="app.en"/></a>
+    </div>
+</header>
+
 <body>
 <div class="container">
-
-
-    <span><spring:message code="app.title"/>:</span>
-
-    <a href="/userAddressWatch${addressId}?lang=en"><spring:message code="app.en"/></a>
-    <a href="/userAddressWatch${addressId}?lang=ru"><spring:message code="app.en"/></a>
 
     <table>
         <form:form modelAttribute="address">
             <thead>
             <tr>
                 <th><h1><spring:message code="addresUser"/></h1></th>
-
             </tr>
             </thead>
             <thead>
             <tr>
                 <th><spring:message code="countryAddress"/></th>
-                <th>Город</th>
-                <th>Район</th>
-                <th>Улицы</th>
-                <th>Дом</th>
-                <th>Квартира</th>
-                <th>Action</th>
+                <th> <spring:message code="cityAddress"/></th>
+                <th> <spring:message code="districtAddre"/></th>
+                <th> <spring:message code="streetAddtess"/></th>
+                <th> <spring:message code="houAddress"/></th>
+                <th> <spring:message code="apartmentAddress"/></th>
+                <th> <spring:message code="aG"/></th>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${address}" var="add">
-
-                <c:url var="watchAddress" value="/userAddressWatch">
-                    <c:param name="addressId" value="${addresId}"/>
-                </c:url>
 
                 <c:url var="editAddress" value="/editAddressUser">
                     <c:param name="addressId" value="${add.id}"/>
@@ -61,13 +57,11 @@
                     <td>
                         <form>
                             <a href="${editAddress}" type="submit"
-                               style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid; ">Edit
-                                address date</a>
+                               style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid; "> <spring:message code="editAddress"/></a>
                         </form>
                     </td>
 
                 </tr>
-
 
             </c:forEach>
             </tbody>
@@ -80,7 +74,7 @@
             <svg>
                 <rect height="40" width="130" fill="transparent"/>
             </svg>
-            <span style="font-size: 10pt">Back</span>
+            <span style="font-size: 10pt"> <spring:message code="bK"/></span>
         </a>
     </div>
 </div>

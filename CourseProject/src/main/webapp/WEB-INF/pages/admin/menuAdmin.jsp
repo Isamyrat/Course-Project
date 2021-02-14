@@ -21,12 +21,11 @@
 
 <a href="/admin" class="fancy-btn"><spring:message code="wUser"/></a>
 <br>
-<a href="/personalInformationUser" class="fancy-btn"><spring:message code="bK"/></a>
-<br>
 <a href="/addManager" class="fancy-btn"><spring:message code="aManager"/></a>
 <br>
 <a href="/watchManagersAdmin" class="fancy-btn"><spring:message code="wMan"/></a>
-
+<br>
+<a href="/personalInformationUser" class="fancy-btn"><spring:message code="bK"/></a>
 
 </body>
 

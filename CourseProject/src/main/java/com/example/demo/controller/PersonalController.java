@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.CallBack;
 import com.example.demo.model.PersonalInformation;
 import com.example.demo.model.User;
 import com.example.demo.service.PersonalInformationService;
@@ -11,13 +10,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class PersonalController {
@@ -30,15 +25,16 @@ public class PersonalController {
     private UserService userService;
 
 
-    @GetMapping("/personalInformationUsers")
-    public String personalInformationUsers(@RequestParam("personalId") Long personId,
+    @GetMapping("/personalInformationUsers{personId}")
+    public String personalInformationUsers(@PathVariable("personId") Long personId,
                                            Model model) {
 
         PersonalInformation person = personalInformationService.findPerson(personId);
 
-        model.addAttribute("person", person);
+        model.addAttribute("person", person)
+             .addAttribute("personId",personId);
 
-        return "user/personalInformationUser";
+        return "user/personalInformationUsers";
     }
 
     @GetMapping("/addPersonalInformationUser")

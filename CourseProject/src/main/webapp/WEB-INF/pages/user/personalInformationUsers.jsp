@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
@@ -6,10 +7,18 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Личные данные</title>
+    <title> <spring:message code="peronalInfo"/></title>
 </head>
 
 <html>
+
+<header>
+    <div style="float: right">
+        <a href="/personalInformationUsers${personId}?lang=en"><spring:message code="app.en"/></a>
+        <a href="/personalInformationUsers${personId}?lang=ru"><spring:message code="app.en"/></a>
+    </div>
+</header>
+
 <body>
 <div class="container">
 
@@ -17,15 +26,15 @@
         <form:form modelAttribute="person">
             <thead>
             <tr>
-                <th><h1>Личные данные</h1></th>
+                <th><h1> <spring:message code="peronalInfo"/></h1></th>
             </tr>
             </thead>
             <thead>
             <tr>
-                <th>Age</th>
-                <th>Gender</th>
-                <th>Number of your phone</th>
-                <th>Action</th>
+                <th> <spring:message code="ageU"/></th>
+                <th> <spring:message code="gPerson"/></th>
+                <th> <spring:message code="numberPhone"/></th>
+                <th> <spring:message code="aG"/></th>
             </tr>
             </thead>
             <tbody>
@@ -41,8 +50,9 @@
                 <td>
                     <form>
                         <a href="${editPerson}" type="submit"
-                           style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid;">Edit
-                            data</a>
+                           style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid;">
+                            <spring:message code="editPersonalInfo"/>
+                        </a>
                     </form>
                 </td>
 
@@ -57,7 +67,7 @@
             <svg>
                 <rect height="40" width="130" fill="transparent"/>
             </svg>
-            <span style="font-size: 10pt">Back</span>
+            <span style="font-size: 10pt"> <spring:message code="bK"/></span>
         </a>
     </div>
 </div>

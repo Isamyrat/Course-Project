@@ -43,7 +43,7 @@ public class CallBackController {
 
         model.addAttribute("callBack",callBacks);
 
-        return "user/watchRequestCallUser";
+        return "manager/watchRequestCall";
     }
 
     @GetMapping("/watchRequestCall")

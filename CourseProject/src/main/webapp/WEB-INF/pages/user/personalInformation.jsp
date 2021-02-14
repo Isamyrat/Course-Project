@@ -39,9 +39,10 @@
                 </thead>
                 <tbody>
 
-                <c:url var="watchPersonInfo" value="/personalInformationUsers">
+              <%--  <c:url var="watchPersonInfo" value="/personalInformationUsers">
                     <c:param name="personalId" value="${userId.id}"/>
-                </c:url>
+                </c:url>--%>
+
                 <c:url var="addPerson" value="/addPersonalInformationUser">
                 </c:url>
 
@@ -59,7 +60,7 @@
                             <span></span>
                             <p>
                             <form>
-                                <a href="${watchPersonInfo}" type="submit"
+                                <a href="/personalInformationUsers${userId.id}" type="submit"
                                    style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;"><spring:message code="pI"/></a>
                             </form>
                             </p>
@@ -152,7 +153,7 @@
                 </svg>
                 <span style="font-size: 10pt; width: 235px;"><spring:message code="cPI"/></span>
             </a>
-            <a class="button" href="/watchJournal">
+            <a class="button" href="/watchJournalManager">
                 <svg>
                     <rect height="40" width="130" fill="transparent"/>
                 </svg>

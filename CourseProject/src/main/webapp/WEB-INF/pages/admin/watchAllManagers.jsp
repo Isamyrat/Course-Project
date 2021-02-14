@@ -1,30 +1,42 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Log in with your account</title>
+    <title><spring:message code="aM"/></title>
   <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/style.css">
 </head>
+
+<header>
+  <div style="float: right">
+    <h4><a href="?lang=en" style="color: white; font-size: 10px"><spring:message code="app.en"/></a></h4>
+    <h4><a href="?lang=ru" style="color: white"><spring:message code="app.ru"/></a></h4>
+  </div>
+</header>
 
 <body>
 <div class="container">
   <table>
     <thead>
-    <th>ID</th>
-    <th>Login</th>
-    <th>Password</th>
-    <th>Name</th>
-    <th>Surname</th>
-    <th>Roles</th>
-    <th></th>
+    <tr>
+      <th><spring:message code="aUM"/></th>
+    </tr>
+    </thead>
+    <thead>
+    <tr>
+      <th><spring:message code="idT"/></th>
+      <th><spring:message code="lN"/></th>
+      <th><spring:message code="pW"/></th>
+      <th><spring:message code="nMU"/></th>
+      <th><spring:message code="sNUS"/></th>
+      <th><spring:message code="rU"/></th>
+      <th><spring:message code="aG"/></th>
+    </tr>
     </thead>
     <c:forEach  items="${allUsers}" var="user">
-     <%-- <c:url var="updateLink" value="/editManager">
-        <c:param name="idUser" value="${user.id}"/>
-      </c:url>--%>
       <c:forEach items="${user.roles}" var="role">
       <c:if test="${role.name=='ROLE_MANAGER'}">
       <tr>
@@ -40,14 +52,9 @@
           <form action="${pageContext.request.contextPath}/admin" method="post">
             <input type="hidden" name="userId" value="${user.id}"/>
             <input type="hidden" name="action" value="delete"/>
-            <button type="submit">Delete</button>
+            <button type="submit"><spring:message code="dM"/></button>
           </form>
-         <%-- <a class="button" href="${updateLink}">
-            <svg>
-              <rect height="40" width="130" fill="transparent" />
-            </svg>
-            <span style="font-size: 8pt"> Изменить пользователей</span>
-          </a>--%>
+
         </td>
 
       </tr>
@@ -56,17 +63,11 @@
     </c:forEach>
   </table>
   <div class="svg">
-   <%-- <a class="button" href="/editManager">
-      <svg>
-        <rect height="40" width="130" fill="transparent" />
-      </svg>
-      <span style="font-size: 8pt"> Изменить пользователей</span>
-    </a>--%>
     <a class="button" href="/menuAdmin">
       <svg>
         <rect height="40" width="130" fill="transparent" />
       </svg>
-      <span style="font-size: 8pt">Меню</span>
+      <span style="font-size: 8pt"><spring:message code="mA"/></span>
     </a>
   </div>
 
