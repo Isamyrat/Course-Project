@@ -7,11 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class teacher {
 
-    @GetMapping("/personalInformationTeachers")
-    public String personal() {
-        return "user/personalInformation";
-    }
-
     @GetMapping("/watchJournal")
     public String watchJournal() {
         return "teacher/watchJournal";

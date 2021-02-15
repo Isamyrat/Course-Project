@@ -79,11 +79,5 @@ public class user {
         return "redirect:/logout";
     }
 
-    @GetMapping("/registrationUser")
-    public String registration() {
-        return "user/registration";
-    }
-
-
 
 }

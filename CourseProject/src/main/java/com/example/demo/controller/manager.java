@@ -16,11 +16,6 @@ public class manager {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/personalInformationManager")
-    public String personal() {
-        return "user/personalInformation";
-    }
-
 
     @GetMapping("/menuManager")
     public String menuManager() {
@@ -97,11 +92,6 @@ public class manager {
         return "manager/watchJournalManager";
     }
 
-
-    @GetMapping("/delete")
-    public String delete() {
-        return "manager/delete";
-    }
 
     @GetMapping("/editJournalManager")
     public String editJournalManager() {

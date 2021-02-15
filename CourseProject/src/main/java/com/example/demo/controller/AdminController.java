@@ -63,30 +63,10 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-   /* @GetMapping("/admin/gt/{userId}")
-    public String  gtUser(@PathVariable("userId") Long userId, Model model) {
-        model.addAttribute("allUsers", userService.usergtList(userId));
-        return "login/admin";
-    }*/
-
-    @GetMapping("/personalInformationAdmin")
-    public String personal() {
-        return "user/personalInformation";
-    }
-
     @GetMapping("/menuAdmin")
     public String menuAdmin() {
         return "admin/menuAdmin";
     }
 
-    @GetMapping("/watchUsers")
-    public String watchUsers() {
-        return "login/admin";
-    }
 
-
-    @GetMapping("/deleteAdmin")
-    public String delete() {
-        return "admin/delete";
-    }
 }

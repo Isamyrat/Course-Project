@@ -61,9 +61,7 @@ public class AddressController {
         address.setUser_address(user);
 
         if (!addressService.saveAddress(address)) {
-/*
-            model.addAttribute("addressError", "Пользователь с личными данными уже существует");
-*/
+
             return "user/addAddressUser";
         }
 
