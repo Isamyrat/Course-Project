@@ -42,9 +42,9 @@
             <tbody>
             <c:forEach items="${address}" var="add">
 
-                <c:url var="editAddress" value="/editAddressUser">
+              <%--  <c:url var="editAddress" value="/editAddressUser">
                     <c:param name="addressId" value="${add.id}"/>
-                </c:url>
+                </c:url>--%>
 
                 <tr>
                     <td>${add.country}</td>
@@ -56,7 +56,7 @@
 
                     <td>
                         <form>
-                            <a href="${editAddress}" type="submit"
+                            <a href="/editAddressUser${add.id}" type="submit"
                                style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid; "> <spring:message code="editAddress"/></a>
                         </form>
                     </td>

@@ -70,14 +70,15 @@ public class AddressController {
         return "redirect:/personalInformationUser";
     }
 
-    @GetMapping("/editAddressUser")
-    public String editAddressUser(@RequestParam("addressId") Long addressId,
+    @GetMapping("/editAddressUser{addressId}")
+    public String editAddressUser(@PathVariable("addressId") Long addressId,
                                   Model model) {
 
         Address address = addressService.findById(addressId);
 
 
-        model.addAttribute("addressEdit", address);
+        model.addAttribute("addressEdit", address)
+            .addAttribute("addressId",addressId);
 
 
         return "user/editAddressUser";

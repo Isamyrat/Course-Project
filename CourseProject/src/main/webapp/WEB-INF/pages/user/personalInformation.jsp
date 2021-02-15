@@ -39,10 +39,6 @@
                 </thead>
                 <tbody>
 
-              <%--  <c:url var="watchPersonInfo" value="/personalInformationUsers">
-                    <c:param name="personalId" value="${userId.id}"/>
-                </c:url>--%>
-
                 <c:url var="addPerson" value="/addPersonalInformationUser">
                 </c:url>
 
@@ -55,13 +51,13 @@
                         <td>
                             <form>
                                 <a href="${addPerson}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; "><spring:message code="adPI"/>е</a>
+                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px"><spring:message code="adPI"/>е</a>
                             </form>
                             <span></span>
                             <p>
                             <form>
                                 <a href="/personalInformationUsers${userId.id}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;"><spring:message code="pI"/></a>
+                                   style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid; font-size: 25px"><spring:message code="pI"/></a>
                             </form>
                             </p>
 
@@ -69,13 +65,13 @@
                         <td>
                             <form>
                                 <a href="${addAddress}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid;"><spring:message code="adAddress"/></a>
+                                   style="background-color: rgba(255, 255, 255, 0.2);   color: #000000; border: 1px #f5f4f4 solid; font-size: 25px"><spring:message code="adAddress"/></a>
                             </form>
                             <span></span>
                             <p>
                             <form>
                                 <a href="/userAddressWatch${userId.id}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2);  color: #000000;  border: 1px #f5f4f4 solid;"><spring:message code="wAI"/></a>
+                                   style="background-color: rgba(255, 255, 255, 0.2);   color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px"><spring:message code="wAI"/></a>
                             </form>
                             </p>
                         </td>

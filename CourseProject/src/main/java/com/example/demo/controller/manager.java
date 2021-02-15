@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -55,11 +52,12 @@ public class manager {
         }
         return "manager/watchTeacher";
     }
-    @GetMapping("/editTeacher")
-    public String editTeacher(@RequestParam(required = true, defaultValue = "" ) Long userId,
+    @GetMapping("/editTeacher{userId}")
+    public String editTeacher(@PathVariable(value = "userId") Long userId,
                               Model model){
         User user = userService.findUserById(userId);
-        model.addAttribute("userTeacher", user);
+        model.addAttribute("userTeacher", user)
+            .addAttribute("userId", userId);
 
         return "manager/editTeacher";
     }

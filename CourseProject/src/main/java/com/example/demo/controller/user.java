@@ -49,7 +49,7 @@ public class user {
         User user = userService.findUserById(u.getId());
         model.addAttribute("userEdit",user);
 
-        return "user/addpersonalInformation";
+        return "user/editPersonalInformation";
     }
 
     @PostMapping("/saveTeacherses")

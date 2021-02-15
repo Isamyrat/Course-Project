@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.Optional;
 import javax.validation.Valid;
 
@@ -47,12 +45,13 @@ public class CourseController {
         return "redirect:/watchAllCoursesManager";
     }
 
-    @GetMapping("/editCourseManager")
-    public String editCourseManager(@RequestParam("course") Long course,
+    @GetMapping("/editCourseManager{course}")
+    public String editCourseManager(@PathVariable("course") Long course,
                                     Model model) {
 
         Course course1= courseService.courseById(course);
-        model.addAttribute("editCourse", course1);
+        model.addAttribute("editCourse", course1)
+            .addAttribute("course", course);
 
         return "manager/editCourseManager";
     }

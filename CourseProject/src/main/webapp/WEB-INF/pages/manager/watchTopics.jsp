@@ -37,16 +37,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:url var="editTopic" value="/editTopics">
+              <%--  <c:url var="editTopic" value="/editTopics">
                     <c:param name="topicId" value="${allTopics.id}"/>
-                </c:url>
+                </c:url>--%>
 
                 <tr>
                     <th>${allTopics.text}</th>
                     <th>${allTopics.rules}</th>
                     <th>
                         <form>
-                            <a href="${editTopic}"  type="submit"
+                            <a href="/editTopics${allTopics.id}"  type="submit"
                                style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; "> <spring:message code="editT"/></a>
                         </form>
                         <form action="${pageContext.request.contextPath}/deleteTopic" method="post">

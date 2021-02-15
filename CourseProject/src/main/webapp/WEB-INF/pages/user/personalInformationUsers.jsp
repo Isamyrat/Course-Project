@@ -39,9 +39,9 @@
             </thead>
             <tbody>
 
-            <c:url var="editPerson" value="/editPersonalInformationUser">
+          <%--  <c:url var="editPerson" value="/editPersonalInformationUser">
                 <c:param name="personId" value="${person.id}"/>
-            </c:url>
+            </c:url>--%>
 
             <tr>
                 <td>${person.age}</td>
@@ -49,7 +49,7 @@
                 <td>${person.number}</td>
                 <td>
                     <form>
-                        <a href="${editPerson}" type="submit"
+                        <a href="/editPersonalInformationUser${person.id}" type="submit"
                            style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid;">
                             <spring:message code="editPersonalInfo"/>
                         </a>

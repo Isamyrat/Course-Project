@@ -40,11 +40,12 @@
                         <th><spring:message code="oTDW"/></th>
                         <th><spring:message code="p"/></th>
                         <th><spring:message code="aG"/></th>
+                        <th><spring:message code="addToCourses"/></th>
+
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach items="${allCoursesUser}" var="courses">
-
 
 
                         <tr>
@@ -58,14 +59,17 @@
                             <td>
                                 <form>
                                     <a href="/watchTopics${courses.id}" type="submit"
-                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; "> <spring:message code="tTG"/></a>
+                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
+                                        <spring:message code="tTG"/></a>
                                 </form>
-                                    <p>
+                            </td>
+                            <td>
                                 <form action="${pageContext.request.contextPath}/addToCourse" method="post">
                                     <input type="hidden" name="course" value="${courses.id}"/>
-                                    <button  type="submit" style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; "><spring:message code="aTG"/></button>
+                                    <button type="submit"
+                                            style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
+                                        <spring:message code="aTG"/></button>
                                 </form>
-                                </p>
                             </td>
                         </tr>
                     </c:forEach>
@@ -119,14 +123,13 @@
                         <th><spring:message code="oTDW"/></th>
                         <th><spring:message code="p"/></th>
                         <th><spring:message code="aG"/></th>
+                        <th><spring:message code="topCours"/></th>
+                        <th><spring:message code="delCourse"/></th>
+
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach items="${allCoursesUser}" var="courses">
-
-                        <c:url var="updateLink" value="/editCourseManager">
-                            <c:param name="course" value="${courses.id}"/>
-                        </c:url>
 
                         <tr>
                             <td>${courses.time}</td>
@@ -138,22 +141,25 @@
                             <td>${courses.price}</td>
                             <td>
                                 <form>
+                                    <a href="/editCourseManager${courses.id}" type="submit"
+                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
+                                        <spring:message code="eCM"/></a>
+                                </form>
+                            </td>
+                            <td>
+                                <form>
                                     <a href="/watchTopics${courses.id}" type="submit"
-                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; "> <spring:message code="tTG"/></a>
+                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
+                                        <spring:message code="tTG"/></a>
                                 </form>
-                                <p>
-                                <form >
-
-                                <a href="${updateLink}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; ">
-                                    <spring:message code="eCM"/></a>
-                                </form>
-                                </p>
-
+                            </td>
+                            <td>
                                 <form action="${pageContext.request.contextPath}/deleteCourseManager" method="post">
                                     <input type="hidden" name="idCourse" value="${courses.id}"/>
                                     <input type="hidden" name="action" value="delete"/>
-                                    <button type="submit" style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; "> <spring:message code="dC"/></button>
+                                    <button type="submit"
+                                            style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 25px ">
+                                        <spring:message code="dC"/></button>
                                 </form>
                             </td>
                         </tr>
@@ -166,12 +172,22 @@
             </form:form>
         </table>
         <div class="svg">
-            <a class="button" href="/menuManager">
+            <form action="${pageContext.request.contextPath}/menuManager" method="get">
+                <button type="submit"
+                        style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 25px ">
+                    <spring:message code="mAM"/></button>
+            </form>
+            <form action="${pageContext.request.contextPath}/menuManager" method="get">
+                <button type="submit"
+                        style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 25px ">
+                    <spring:message code="mAM"/></button>
+            </form>
+          <%--  <a class="button" href="/menuManager">
                 <svg>
                     <rect height="40" width="130" fill="transparent"/>
                 </svg>
                 <span style="font-size: 10pt"> <spring:message code="mAM"/></span>
-            </a>
+            </a>--%>
         </div>
 
     </div>

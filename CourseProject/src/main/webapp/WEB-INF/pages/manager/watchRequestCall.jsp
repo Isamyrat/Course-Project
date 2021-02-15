@@ -39,9 +39,10 @@
             </tr>
             </thead>
             <c:forEach items="${callBackManager}" var="manager">
-                <c:url var="updateLink" value="/editCallBack">
+
+               <%-- <c:url var="updateLink" value="/editCallBack">
                     <c:param name="callBackId" value="${manager.id}"/>
-                </c:url>
+                </c:url>--%>
                 <tr>
                     <td>${manager.id}</td>
                     <td>${manager.status}</td>
@@ -52,8 +53,8 @@
                     <td>${manager.courseCallBack.language}</td>
                     <td>
                         <form>
-                            <a href="${updateLink}" type="submit"
-                               style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; ">
+                            <a href="/editCallBack${manager.id}" type="submit"
+                               style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
                                 <spring:message code="editStatus"/>
                             </a>
                         </form>
@@ -61,14 +62,32 @@
                 </tr>
             </c:forEach>
         </table>
-        <div class="svg">
+        <div>
+            <form action="${pageContext.request.contextPath}/menuManager" method="get">
+                <button type="submit"
+                        style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 25px ">
+                    <spring:message code="mAM"/></button>
+            </form>
+            <form action="${pageContext.request.contextPath}/menuManager" method="get">
+                <button type="submit"
+                        style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 25px ">
+                    <spring:message code="mAM"/></button>
+            </form>
+            <form action="${pageContext.request.contextPath}/menuManager" method="get">
+                <button type="submit"
+                        style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 25px ">
+                    <spring:message code="mAM"/></button>
+            </form>
+
+        </div>
+       <%-- <div class="svg">
             <a class="button" href="/menuManager">
                 <svg>
                     <rect height="40" width="130" fill="transparent"/>
                 </svg>
                 <span style="font-size: 8pt"> <spring:message code="bK"/></span>
             </a>
-        </div>
+        </div>--%>
     </div>
 </sec:authorize>
 <sec:authorize access="hasRole('ROLE_USER')">

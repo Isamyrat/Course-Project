@@ -45,9 +45,9 @@
                     <tbody>
                     <c:forEach items="${watchGroups}" var="groups">
 
-                        <c:url var="editGroup" value="/editGroupManager">
+                        <%--<c:url var="editGroup" value="/editGroupManager">
                             <c:param name="idGroup" value="${groups.id}"/>
-                        </c:url>
+                        </c:url>--%>
 
                         <tr>
                             <td>${groups.number_group}</td>
@@ -59,14 +59,13 @@
                             <td>
                                 <form>
                                     <a href="/watchGroupUsers${groups.id}" type="submit"
-                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; ">
+                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
                                         <spring:message code="titleStud"/></a>
                                 </form>
-                                <span></span>
                                 <br>
                                 <form>
-                                    <a href="${editGroup}" type="submit"
-                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; ">
+                                    <a href="/editGroupManager${groups.number_group}" type="submit"
+                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 25px ">
                                         <spring:message code="eG"/></a>
                                 </form>
 
@@ -170,7 +169,7 @@
                         <td>
                             <form>
                                 <a href="/watchGroupUsers${teacher.id}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; ">
+                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px ">
                                     <spring:message code="titleStud"/></a>
                             </form>
                         </td>

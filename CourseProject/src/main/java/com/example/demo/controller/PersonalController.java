@@ -68,13 +68,14 @@ public class PersonalController {
         return "redirect:/personalInformationUser";
     }
 
-    @GetMapping("/editPersonalInformationUser")
-    public String editPersonalInformationUser(@RequestParam("personId") Long personId,
+    @GetMapping("/editPersonalInformationUser{personId}")
+    public String editPersonalInformationUser(@PathVariable("personId") Long personId,
                                              Model model) {
 
         PersonalInformation person = personalInformationService.findById(personId);
 
-        model.addAttribute("personEdit", person);
+        model.addAttribute("personEdit", person)
+            .addAttribute("personId", personId);
 
 
         return "user/editpersonalInformationUser";

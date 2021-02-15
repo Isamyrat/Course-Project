@@ -19,7 +19,7 @@
 <body>
 
 <div class="heading-wrapper">
-    <div><span class="heading"><spring:message code="mMM"/></span></div>
+    <div><span class="heading"><spring:message code="mAM"/></span></div>
 </div>
 
 <div class="button-wrapper" style="padding: 20px;">

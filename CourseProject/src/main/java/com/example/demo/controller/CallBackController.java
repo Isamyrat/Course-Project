@@ -11,10 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -89,11 +86,12 @@ public class CallBackController {
         return "redirect:/";
     }
 
-    @GetMapping("/editCallBack")
-    public String editTopics(@RequestParam("callBackId") Long callBackId,
+    @GetMapping("/editCallBack{callBackId}")
+    public String editTopics(@PathVariable("callBackId") Long callBackId,
                              Model model) {
         CallBack callBack = callBackService.findById(callBackId);
-        model.addAttribute("editCallBack",callBack);
+        model.addAttribute("editCallBack",callBack)
+            .addAttribute("callBackId", callBackId);
         return "user/editCallBack";
     }
 

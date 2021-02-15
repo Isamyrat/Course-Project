@@ -1,37 +1,44 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Добавить менеджера</title>
+    <title><spring:message code="aManager"/></title>
 </head>
 
 <html>
+<header>
+    <div style="float: right">
+        <h4><a href="?lang=en" style="color: white; font-size: 10px"><spring:message code="app.en"/></a></h4>
+        <h4><a href="?lang=ru" style="color: white"><spring:message code="app.ru"/></a></h4>
+    </div>
+</header>
 
 <body>
 
 <div class="login-box">
-    <h2>Добавить менеджера: </h2>
+    <h2><spring:message code="aManager"/> </h2>
     <form:form  method="POST" action="/saveUser" modelAttribute="userManager">
 
         <form:hidden path="id"/>
-        <label style="color: #8e8e92">Имя менеджера</label>
+        <label style="color: #8e8e92"><spring:message code="nM"/></label>
         <div class="user-box">
             <form:input path="name"/>
         </div>
 
-        <label style="color: #8e8e92">Фамилия менеджера</label>
+        <label style="color: #8e8e92"><spring:message code="sN"/></label>
 
         <div class=" user-box">
             <form:input path="surname"/>
         </div>
-        <label style="color: #8e8e92">Логин менеджеру</label>
+        <label style="color: #8e8e92"><spring:message code="eL"/></label>
         <div class="user-box">
             <form:input path="username"/>
         </div>
-        <label style="color: #8e8e92">Пароль менеджеру</label>
+        <label style="color: #8e8e92"><spring:message code="eP"/></label>
         <div class="user-box">
             <form:input path="password"/>
         </div>
@@ -40,15 +47,17 @@
             <span></span>
             <span></span>
             <span></span>
-            Сохранить данные
+            <spring:message code="save"/>
         </button>
+        <p>
         <a href="/menuAdmin">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
-            Меню
+            <spring:message code="bK"/>
         </a>
+        </p>
     </form:form>
 </div>
 

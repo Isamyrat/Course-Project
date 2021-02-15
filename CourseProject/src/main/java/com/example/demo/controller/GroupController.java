@@ -120,11 +120,14 @@ public class GroupController {
         return "redirect:/watchGroup";
     }
 
-    @GetMapping("/editGroupManager")
-    public String editGroupManager(@RequestParam("editGroup") Long editGroup,
+    @GetMapping("/editGroupManager{groupId}")
+    public String editGroupManager(@PathVariable("groupId") Long groupId,
                                    Model model) {
-        Group group = groupService.findByNumberOfGroup(editGroup);
-        model.addAttribute("groupEdit",group);
+
+        Group group = groupService.findByNumberOfGroup(groupId);
+
+        model.addAttribute("group",group)
+            .addAttribute("groupId", groupId);
         return "manager/editGroupManager";
     }
 

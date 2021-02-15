@@ -47,11 +47,12 @@ public class TopicController {
         return "manager/watchTopics";
     }
 
-    @GetMapping("/editTopics")
-    public String editTopics(@RequestParam("topicId") Long topicId,
+    @GetMapping("/editTopics{topicId}")
+    public String editTopics(@PathVariable("topicId") Long topicId,
                              Model model) {
         Topic topic1 = topicService.topicById(topicId);
-        model.addAttribute("editTopic",topic1);
+        model.addAttribute("editTopic",topic1)
+            .addAttribute("topicId",topicId);
         return "manager/editTopics";
     }
 

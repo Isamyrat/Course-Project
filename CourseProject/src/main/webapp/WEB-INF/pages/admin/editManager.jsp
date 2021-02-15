@@ -40,7 +40,7 @@
             <span></span>
             <span></span>
             Сохранить данные
-        </button>
+        </button><p>
         <a href="/menuAdmin">
             <span></span>
             <span></span>
@@ -48,6 +48,7 @@
             <span></span>
             Меню
         </a>
+        </p>
     </form:form>
 </div>
 
