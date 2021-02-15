@@ -11,13 +11,14 @@
 </head>
 
 <html>
-
 <header>
-    <div style="float: right">
-        <h4><a href="?lang=en" style="color: white; font-size: 10px"><spring:message code="app.en"/></a></h4>
-        <h4><a href="?lang=ru" style="color: white"><spring:message code="app.ru"/></a></h4>
+    <div class="localize">
+        <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
+        <h4><a href="?lang=en" class="big-button"><spring:message code="app.en"/></a></h4>
+        <h4><a href="?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
     </div>
 </header>
+
 <body>
 <sec:authorize access="hasRole('ROLE_MANAGER')">
 
@@ -43,54 +44,47 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${watchGroups}" var="groups">
+                    <c:if test="${watchGroups.size()>0}">
 
-                        <%--<c:url var="editGroup" value="/editGroupManager">
-                            <c:param name="idGroup" value="${groups.id}"/>
-                        </c:url>--%>
+                        <c:forEach items="${watchGroups}" var="groups">
 
-                        <tr>
-                            <td>${groups.number_group}</td>
-                            <td>${groups.user_teacher.surname}</td>
-                            <td>${groups.course_group.level}</td>
-                            <td>${groups.course_group.language}</td>
-                            <td>${groups.course_group.start_date}</td>
-                            <td>${groups.status}</td>
-                            <td>
-                                <form>
-                                    <a href="/watchGroupUsers${groups.id}" type="submit"
-                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
-                                        <spring:message code="titleStud"/></a>
-                                </form>
-                                <br>
-                                <form>
-                                    <a href="/editGroupManager${groups.number_group}" type="submit"
-                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 25px ">
-                                        <spring:message code="eG"/></a>
-                                </form>
+                            <%--<c:url var="editGroup" value="/editGroupManager">
+                                <c:param name="idGroup" value="${groups.id}"/>
+                            </c:url>--%>
 
-                            </td>
-                        </tr>
-                    </c:forEach>
+                            <tr>
+                                <td>${groups.number_group}</td>
+                                <td>${groups.user_teacher.surname}</td>
+                                <td>${groups.course_group.level}</td>
+                                <td>${groups.course_group.language}</td>
+                                <td>${groups.course_group.start_date}</td>
+                                <td>${groups.status}</td>
+                                <td>
+                                    <form>
+                                        <a href="/watchGroupUsers${groups.id}" type="submit"
+                                           style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
+                                            <spring:message code="titleStud"/></a>
+                                    </form>
+                                    <br>
+                                    <form>
+                                        <a href="/editGroupManager${groups.number_group}" type="submit"
+                                           style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 25px ">
+                                            <spring:message code="eG"/></a>
+                                    </form>
+
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${watchGroups.size()<1}">
+                        <td><spring:message code="eC"/></td>
+                    </c:if>
                     </tbody>
                 </c:if>
             </form:form>
         </table>
-
-        <div class="svg">
-            <a class="button" href="/watchGroupArhiv">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 8pt"><spring:message code="wAG"/></span>
-            </a>
-            <a class="button" href="/menuManager">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 8pt"><spring:message code="mAM"/></span>
-            </a>
-        </div>
+        <a href="/watchGroupArhiv" class="big-button"><spring:message code="wAG"/></a>
+        <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
     </div>
 </sec:authorize>
 
@@ -125,14 +119,7 @@
                 </tbody>
             </form:form>
         </table>
-        <div class="svg">
-            <a class="button" href="/personalInformationUser">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 10pt"><spring:message code="bK"/></span>
-            </a>
-        </div>
+        <a href="/personalInformationUser" class="big-button"><spring:message code="bK"/></a>
     </div>
 
 </sec:authorize>
@@ -156,42 +143,42 @@
                 </thead>
 
                 <tbody>
+                <c:if test="${userGroup != null}">
 
-                <c:forEach items="${userGroup}" var="teacher">
-                   <%-- <c:url var="watchUsers" value="/watchGroupUsers">
-                        <c:param name="idGroup" value="${teacher.id}"/>
-                    </c:url>--%>
-                    <tr>
-                        <td>${teacher.number_group}</td>
-                        <td>${teacher.course_group.language}</td>
-                        <td>${teacher.course_group.level}</td>
-                        <td>${teacher.course_group.start_date}</td>
-                        <td>
-                            <form>
-                                <a href="/watchGroupUsers${teacher.id}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px ">
-                                    <spring:message code="titleStud"/></a>
-                            </form>
-                        </td>
-                    </tr>
-                </c:forEach>
+                    <c:forEach items="${userGroup}" var="teacher">
+                        <%-- <c:url var="watchUsers" value="/watchGroupUsers">
+                             <c:param name="idGroup" value="${teacher.id}"/>
+                         </c:url>--%>
+                        <tr>
+                            <td>${teacher.number_group}</td>
+                            <td>${teacher.course_group.language}</td>
+                            <td>${teacher.course_group.level}</td>
+                            <td>${teacher.course_group.start_date}</td>
+                            <td>
+                                <form>
+                                    <a href="/watchGroupUsers${teacher.id}" type="submit"
+                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px ">
+                                        <spring:message code="titleStud"/></a>
+                                </form>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </c:if>
+
+                <c:if test="${userGroup == null}">
+                    <td><spring:message code="eC"/></td>
+                </c:if>
                 </tbody>
             </form:form>
         </table>
-        <div class="svg">
-            <a class="button" href="/personalInformationUser">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 10pt"><spring:message code="bK"/></span>
-            </a>
-        </div>
+        <a href="/personalInformationUser" class="big-button"><spring:message code="bK"/></a>
     </div>
 </sec:authorize>
 
 </body>
 
 <style>
+    <%@include file ="../css/internationalize.css"%>
     <%@include file ="../css/button.css"%>
     <%@include file ="../css/dop.css"%>
 </style>

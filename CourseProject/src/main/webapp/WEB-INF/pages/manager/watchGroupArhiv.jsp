@@ -11,12 +11,12 @@
 
 <html>
 <header>
-    <div style="float: right">
-        <h4><a href="?lang=en" style="color: white; font-size: 10px"><spring:message code="app.en"/></a></h4>
-        <h4><a href="?lang=ru" style="color: white"><spring:message code="app.ru"/></a></h4>
+    <div class="localize">
+        <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
+        <h4><a href="?lang=en" class="big-button"><spring:message code="app.en"/></a></h4>
+        <h4><a href="?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
     </div>
 </header>
-
 <body>
 
 <div class="container">
@@ -54,21 +54,13 @@
             </c:if>
         </form:form>
     </table>
-
-    <div class="svg">
-
-        <a class="button" href="/menuManager">
-            <svg>
-                <rect height="40" width="130" fill="transparent" />
-            </svg>
-            <span style="font-size: 8pt"><spring:message code="bK"/></span>
-        </a>
-    </div>
+    <a href="/menuManager" class="big-button"><spring:message code="bK"/></a>
 </div>
 
 </body>
 
 <style>
+    <%@include file ="../css/internationalize.css"%>
     <%@include file ="../css/button.css"%>
     <%@include file ="../css/dop.css"%>
 </style>

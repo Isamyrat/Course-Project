@@ -8,10 +8,12 @@
     <meta charset="utf-8">
     <title><spring:message code="wJM"/></title>
 </head>
+
 <header>
-    <div style="float: right">
-        <h4><a href="?lang=en" style="color: white; font-size: 10px"><spring:message code="app.en"/></a></h4>
-        <h4><a href="?lang=ru" style="color: white"><spring:message code="app.ru"/></a></h4>
+    <div class="localize">
+        <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
+        <h4><a href="?lang=en" class="big-button"><spring:message code="app.en"/></a></h4>
+        <h4><a href="?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
     </div>
 </header>
 <html>
@@ -43,21 +45,9 @@
             </tr>
             </tbody>
         </table>
+        <a href="/editJournalManager" class="big-button"><spring:message code="eJM"/></a>
+        <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
 
-        <div class="svg">
-            <a class="button" href="/editJournalManager">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 8pt"><spring:message code="eJM"/></span>
-            </a>
-            <a class="button" href="/menuManager">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 8pt"><spring:message code="mAM"/></span>
-            </a>
-        </div>
     </div>
 </sec:authorize>
 <sec:authorize access="hasRole('ROLE_TEACHER')">
@@ -86,21 +76,9 @@
             </tr>
             </tbody>
         </table>
+        <a href="/editJournal" class="big-button"><spring:message code="eJM"/></a>
+        <a href="/personalInformationUser" class="big-button"><spring:message code="bK"/></a>
 
-        <div class="svg">
-            <a class="button" href="/editJournal">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 8pt"><spring:message code="eJM"/></span>
-            </a>
-            <a class="button" href="/personalInformationUser">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 10pt"><spring:message code="bK"/></span>
-            </a>
-        </div>
     </div>
 
 </sec:authorize>
@@ -108,6 +86,7 @@
 </body>
 
 <style>
+    <%@include file ="../css/internationalize.css"%>
     <%@include file ="../css/button.css"%>
     <%@include file ="../css/dop.css"%>
 </style>

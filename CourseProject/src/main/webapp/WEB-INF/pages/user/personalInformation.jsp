@@ -12,9 +12,10 @@
 
 <html>
 <header>
-    <div style="float: right">
-        <h4><a href="?lang=en" style="color: white; font-size: 10px"><spring:message code="app.en"/></a></h4>
-        <h4><a href="?lang=ru" style="color: white"><spring:message code="app.ru"/></a></h4>
+    <div class="localize">
+        <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
+        <h4><a href="?lang=en" class="big-button"><spring:message code="app.en"/></a></h4>
+        <h4><a href="?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
     </div>
 </header>
 <body>
@@ -37,27 +38,30 @@
                     <th><spring:message code="wAddr"/></th>
                 </tr>
                 </thead>
-                <tbody>
+                <c:if test="${userId != null}">
+                    <tbody>
 
-                <c:url var="addPerson" value="/addPersonalInformationUser">
-                </c:url>
+                    <c:url var="addPerson" value="/addPersonalInformationUser">
+                    </c:url>
 
-                <c:url var="addAddress" value="/addAddressUser">
-                </c:url>
-                <c:if test="${userId.id.longValue()!=null}">
+                    <c:url var="addAddress" value="/addAddressUser">
+                    </c:url>
+
                     <tr>
                         <td>${userId.name}</td>
                         <td>${userId.surname}</td>
                         <td>
                             <form>
                                 <a href="${addPerson}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px"><spring:message code="adPI"/>е</a>
+                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px"><spring:message
+                                        code="adPI"/>е</a>
                             </form>
                             <span></span>
                             <p>
                             <form>
                                 <a href="/personalInformationUsers${userId.id}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid; font-size: 25px"><spring:message code="pI"/></a>
+                                   style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid; font-size: 25px"><spring:message
+                                        code="pI"/></a>
                             </form>
                             </p>
 
@@ -65,49 +69,31 @@
                         <td>
                             <form>
                                 <a href="${addAddress}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2);   color: #000000; border: 1px #f5f4f4 solid; font-size: 25px"><spring:message code="adAddress"/></a>
+                                   style="background-color: rgba(255, 255, 255, 0.2);   color: #000000; border: 1px #f5f4f4 solid; font-size: 25px"><spring:message
+                                        code="adAddress"/></a>
                             </form>
                             <span></span>
                             <p>
                             <form>
                                 <a href="/userAddressWatch${userId.id}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2);   color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px"><spring:message code="wAI"/></a>
+                                   style="background-color: rgba(255, 255, 255, 0.2);   color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px"><spring:message
+                                        code="wAI"/></a>
                             </form>
                             </p>
                         </td>
                     </tr>
-
+                    </tbody>
                 </c:if>
-                </tbody>
+                <c:if test="${userId == null}">
+                    <td><spring:message code="eC"/></td>
+                </c:if>
+
             </form:form>
         </table>
-        <div class="svg">
-            <a class="button" href="/watchAllCoursesManager">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 10pt"><spring:message code="wAC"/></span>
-            </a>
-
-            <a class="button" href="/editUser">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 7pt;"><spring:message code="cPI"/></span>
-            </a>
-            <a class="button" href="/watchGroupUser">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 7pt;"><spring:message code="wWG"/></span>
-            </a>
-            <a class="button" href="/">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 10pt"><spring:message code="bK"/></span>
-            </a>
-        </div>
+        <a href="/watchAllCoursesManager" class="big-button"><spring:message code="wAC"/></a>
+        <a href="/editUser" class="big-button"><spring:message code="cPI"/></a>
+        <a href="/watchGroupUser" class="big-button"><spring:message code="wWG"/></a>
+        <a href="/" class="big-button"><spring:message code="bK"/></a>
     </div>
 
 
@@ -124,50 +110,31 @@
                     <th><spring:message code="caption"/></th>
                 </tr>
                 </thead>
-               <thead>
-               <tr>
-                   <th><spring:message code="nMU"/></th>
-                   <th><spring:message code="sNUS"/></th>
-               </tr>
-               </thead>
-
-                <tbody>
-
+                <thead>
                 <tr>
-                    <td>${userId.name}</td>
-                    <td>${userId.surname}</td>
+                    <th><spring:message code="nMU"/></th>
+                    <th><spring:message code="sNUS"/></th>
                 </tr>
-                </tbody>
+                </thead>
+                <c:if test="${userId != null}">
+                    <tbody>
+
+                    <tr>
+                        <td>${userId.name}</td>
+                        <td>${userId.surname}</td>
+                    </tr>
+                    </tbody>
+                </c:if>
+                <c:if test="${userId == null}">
+                    <td><spring:message code="eC"/></td>
+                </c:if>
             </form:form>
         </table>
 
-
-        <div class="svg">
-            <a class="button" href="/editUser">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 10pt; width: 235px;"><spring:message code="cPI"/></span>
-            </a>
-            <a class="button" href="/watchJournalManager">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 10pt"><spring:message code="wJ"/></span>
-            </a>
-            <a class="button" href="/watchGroupTeacher">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 10pt"><spring:message code="wG"/></span>
-            </a>
-            <a class="button" href="/">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 10pt"><spring:message code="bK"/></span>
-            </a>
-        </div>
+        <a href="/editUser" class="big-button"><spring:message code="cPI"/></a>
+        <a href="/watchJournalManager" class="big-button"><spring:message code="wJ"/></a>
+        <a href="/watchGroupTeacher" class="big-button"><spring:message code="wG"/></a>
+        <a href="/" class="big-button"><spring:message code="bK"/></a>
     </div>
 </sec:authorize>
 
@@ -183,39 +150,27 @@
                 </thead>
                 <thead>
                 <tr>
-                    <<th><spring:message code="nMU"/></th>
+                    <th><spring:message code="nMU"/></th>
                     <th><spring:message code="sNUS"/></th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>${userId.name}</td>
-                    <td>${userId.surname}</td>
-                </tr>
-                </tbody>
+                <c:if test="${userId != null}">
+
+                    <tbody>
+                    <tr>
+                        <td>${userId.name}</td>
+                        <td>${userId.surname}</td>
+                    </tr>
+                    </tbody>
+                </c:if>
+                <c:if test="${userId == null}">
+                    <td><spring:message code="eC"/></td>
+                </c:if>
             </form:form>
         </table>
-
-        <div class="svg">
-            <a class="button" href="/editUser">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 7pt;"><spring:message code="cPI"/></span>
-            </a>
-            <a class="button" href="/menuManager">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 10pt"><spring:message code="mM"/></span>
-            </a>
-            <a class="button" href="/">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 10pt"><spring:message code="bK"/></span>
-            </a>
-        </div>
+        <a href="/editUser" class="big-button"><spring:message code="cPI"/></a>
+        <a href="/menuManager" class="big-button"><spring:message code="mM"/></a>
+        <a href="/" class="big-button"><spring:message code="bK"/></a>
     </div>
 </sec:authorize>
 
@@ -237,42 +192,31 @@
                     <th><spring:message code="sNUS"/></th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>${userId.name}</td>
-                    <td>${userId.surname}</td>
-                </tr>
-                </tbody>
+                <c:if test="${userId != null}">
+
+                    <tbody>
+                    <tr>
+                        <td>${userId.name}</td>
+                        <td>${userId.surname}</td>
+                    </tr>
+                    </tbody>
+                </c:if>
+                <c:if test="${userId == null}">
+                    <td><spring:message code="eC"/></td>
+                </c:if>
             </form:form>
         </table>
 
-
-        <div class="svg">
-            <a class="button" href="/editUser">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 10pt; width: 235px;"><spring:message code="cPI"/></span>
-            </a>
-            <a class="button" href="/menuAdmin">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 10pt"><spring:message code="mM"/></span>
-            </a>
-            <a class="button" href="/">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 10pt"><spring:message code="bK"/></span>
-            </a>
-        </div>
+        <a href="/editUser" class="big-button"><spring:message code="cPI"/></a>
+        <a href="/menuAdmin" class="big-button"><spring:message code="mM"/></a>
+        <a href="/" class="big-button"><spring:message code="bK"/></a>
     </div>
 
 </sec:authorize>
 
 </body>
 <style>
+    <%@include file ="../css/internationalize.css"%>
     <%@include file ="../css/dop.css"%>
     <%@include file ="../css/button.css"%>
 </style>

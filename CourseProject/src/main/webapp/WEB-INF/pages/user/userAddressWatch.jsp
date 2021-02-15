@@ -7,14 +7,16 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title> <spring:message code="addData"/></title>
+    <title><spring:message code="addData"/></title>
 </head>
 
 <html>
+
 <header>
-    <div style="float: right">
-        <a href="/userAddressWatch${addressId}?lang=en"><spring:message code="app.en"/></a>
-        <a href="/userAddressWatch${addressId}?lang=ru"><spring:message code="app.en"/></a>
+    <div class="localize">
+        <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
+        <a href="/userAddressWatch${addressId}?lang=en" class="big-button"><spring:message code="app.en"/></a>
+        <a href="/userAddressWatch${addressId}?lang=ru" class="big-button"><spring:message code="app.en"/></a>
     </div>
 </header>
 
@@ -31,58 +33,54 @@
             <thead>
             <tr>
                 <th><spring:message code="countryAddress"/></th>
-                <th> <spring:message code="cityAddress"/></th>
-                <th> <spring:message code="districtAddre"/></th>
-                <th> <spring:message code="streetAddtess"/></th>
-                <th> <spring:message code="houAddress"/></th>
-                <th> <spring:message code="apartmentAddress"/></th>
-                <th> <spring:message code="aG"/></th>
+                <th><spring:message code="cityAddress"/></th>
+                <th><spring:message code="districtAddre"/></th>
+                <th><spring:message code="streetAddtess"/></th>
+                <th><spring:message code="houAddress"/></th>
+                <th><spring:message code="apartmentAddress"/></th>
+                <th><spring:message code="aG"/></th>
             </tr>
             </thead>
-            <tbody>
-            <c:forEach items="${address}" var="add">
+            <c:if test="${address.size()>0}">
 
-              <%--  <c:url var="editAddress" value="/editAddressUser">
-                    <c:param name="addressId" value="${add.id}"/>
-                </c:url>--%>
+                <tbody>
+                <c:forEach items="${address}" var="add">
 
-                <tr>
-                    <td>${add.country}</td>
-                    <td>${add.city}</td>
-                    <td>${add.district}</td>
-                    <td>${add.street}</td>
-                    <td>${add.house}</td>
-                    <td>${add.apartment}</td>
+                    <tr>
+                        <td>${add.country}</td>
+                        <td>${add.city}</td>
+                        <td>${add.district}</td>
+                        <td>${add.street}</td>
+                        <td>${add.house}</td>
+                        <td>${add.apartment}</td>
 
-                    <td>
-                        <form>
-                            <a href="/editAddressUser${add.id}" type="submit"
-                               style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid; "> <spring:message code="editAddress"/></a>
-                        </form>
-                    </td>
+                        <td>
+                            <form>
+                                <a href="/editAddressUser${add.id}" type="submit"
+                                   style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid; ">
+                                    <spring:message code="editAddress"/></a>
+                            </form>
+                        </td>
 
-                </tr>
+                    </tr>
 
-            </c:forEach>
-            </tbody>
+                </c:forEach>
+                </tbody>
+            </c:if>
+            <c:if test="${address.size()<1}">
+                <td><spring:message code="eC"/></td>
+            </c:if>
         </form:form>
     </table>
+    <a href="/personalInformationUser" class="big-button"><spring:message code="bK"/></a>
 
-    <div class="svg">
-
-        <a class="button" href="/personalInformationUser">
-            <svg>
-                <rect height="40" width="130" fill="transparent"/>
-            </svg>
-            <span style="font-size: 10pt"> <spring:message code="bK"/></span>
-        </a>
-    </div>
 </div>
 
 </body>
 
 
 <style>
+    <%@include file ="../css/internationalize.css"%>
     <%@include file ="../css/dop.css"%>
     <%@include file ="../css/button.css"%>
 </style>

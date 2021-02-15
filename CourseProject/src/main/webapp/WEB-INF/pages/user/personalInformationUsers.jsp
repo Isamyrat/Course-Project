@@ -13,12 +13,12 @@
 <html>
 
 <header>
-    <div style="float: right">
-        <a href="/personalInformationUsers${personId}?lang=en"><spring:message code="app.en"/></a>
-        <a href="/personalInformationUsers${personId}?lang=ru"><spring:message code="app.en"/></a>
+    <div class="localize">
+        <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
+        <a href="/personalInformationUsers${personId}?lang=en" class="big-button"><spring:message code="app.en"/></a>
+        <a href="/personalInformationUsers${personId}?lang=ru" class="big-button"><spring:message code="app.en"/></a>
     </div>
 </header>
-
 <body>
 <div class="container">
 
@@ -37,11 +37,9 @@
                 <th> <spring:message code="aG"/></th>
             </tr>
             </thead>
-            <tbody>
+            <c:if test="${person != null}">
 
-          <%--  <c:url var="editPerson" value="/editPersonalInformationUser">
-                <c:param name="personId" value="${person.id}"/>
-            </c:url>--%>
+            <tbody>
 
             <tr>
                 <td>${person.age}</td>
@@ -58,23 +56,19 @@
 
             </tr>
             </tbody>
+            </c:if>
+            <c:if test="${person == null}">
+                <td><spring:message code="eC"/> </td>
+            </c:if>
         </form:form>
     </table>
-
-    <div class="svg">
-
-        <a class="button" href="/personalInformationUser">
-            <svg>
-                <rect height="40" width="130" fill="transparent"/>
-            </svg>
-            <span style="font-size: 10pt"> <spring:message code="bK"/></span>
-        </a>
-    </div>
+    <a href="/personalInformationUser" class="big-button"><spring:message code="bK"/></a>
 </div>
 </body>
 
 
 <style>
+    <%@include file ="../css/internationalize.css"%>
     <%@include file ="../css/dop.css"%>
     <%@include file ="../css/button.css"%>
 </style>

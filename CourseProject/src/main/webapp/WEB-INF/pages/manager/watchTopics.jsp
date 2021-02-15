@@ -2,6 +2,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="script" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html>
@@ -11,13 +12,15 @@
 </head>
 
 <html>
+
+
 <header>
-    <div style="float: right">
-        <h4><a href="/watchTopics${topicId}?lang=en" style="color: white; font-size: 10px"><spring:message code="app.en"/></a></h4>
-        <h4><a href="/watchTopics${topicId}?lang=ru" style="color: white"><spring:message code="app.ru"/></a></h4>
+    <div class="localize">
+        <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
+        <h4><a href="/watchTopics${topicId}?lang=en" class="big-button"><spring:message code="app.en"/></a></h4>
+        <h4><a href="/watchTopics${topicId}?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
     </div>
 </header>
-
 <body>
 
 <sec:authorize access="hasRole('ROLE_MANAGER')">
@@ -34,17 +37,18 @@
                 <tr>
                     <th> <spring:message code="tTT"/></th>
                     <th> <spring:message code="tR"/></th>
+                    <th><spring:message code="aG"/> </th>
                 </tr>
                 </thead>
                 <tbody>
               <%--  <c:url var="editTopic" value="/editTopics">
                     <c:param name="topicId" value="${allTopics.id}"/>
                 </c:url>--%>
-
+                <c:if test="${allTopics != null}">
                 <tr>
-                    <th>${allTopics.text}</th>
-                    <th>${allTopics.rules}</th>
-                    <th>
+                    <td>${allTopics.text}</td>
+                    <td>${allTopics.rules}</td>
+                    <td>
                         <form>
                             <a href="/editTopics${allTopics.id}"  type="submit"
                                style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; "> <spring:message code="editT"/></a>
@@ -54,20 +58,17 @@
                             <input type="hidden" name="action" value="delete"/>
                             <button type="submit" style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; "> <spring:message code="deleteT"/></button>
                         </form>
-                    </th>
+                    </td>
                 </tr>
+                </c:if>
+                <c:if test="${allTopics == null}">
+                    <td><spring:message code="eC"/> </td>
+                </c:if>
                 </tbody>
             </form:form>
         </table>
+        <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
 
-        <div class="svg">
-            <a class="button" href="/menuManager">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 8pt"> <spring:message code="mAM"/></span>
-            </a>
-        </div>
     </div>
 </sec:authorize>
 
@@ -94,20 +95,13 @@
                 </tbody>
             </form:form>
         </table>
-
-        <div class="svg">
-            <a class="button" href="/watchAllCoursesManager">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 8pt"><spring:message code="bK"/></span>
-            </a>
-        </div>
+        <a href="/watchAllCoursesManager" class="big-button"><spring:message code="bK"/></a>
     </div>
 </sec:authorize>
 </body>
 
 <style>
+    <%@include file ="../css/internationalize.css"%>
     <%@include file ="../css/button.css"%>
     <%@include file ="../css/dop.css"%>
 </style>

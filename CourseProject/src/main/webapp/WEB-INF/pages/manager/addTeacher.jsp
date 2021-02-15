@@ -11,9 +11,10 @@
 
 <html>
 <header>
-    <div style="float: right">
-        <h4><a href="?lang=en" style="color: white; font-size: 10px"><spring:message code="app.en"/></a></h4>
-        <h4><a href="?lang=ru" style="color: white"><spring:message code="app.ru"/></a></h4>
+    <div class="localize">
+        <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
+        <h4><a href="?lang=en" class="big-button"><spring:message code="app.en"/></a></h4>
+        <h4><a href="?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
     </div>
 </header>
 
@@ -61,6 +62,8 @@
 
 </body>
 <style>
+    <%@include file ="../css/button.css"%>
+    <%@include file ="../css/internationalize.css"%>
     <%@include file ="../css/edit.css"%>
 </style>
 </html>

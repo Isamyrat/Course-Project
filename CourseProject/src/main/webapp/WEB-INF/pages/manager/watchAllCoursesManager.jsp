@@ -13,12 +13,12 @@
 <html>
 <body>
 <header>
-    <div style="float: right">
-        <h4><a href="?lang=en" style="color: white; font-size: 10px"><spring:message code="app.en"/></a></h4>
-        <h4><a href="?lang=ru" style="color: white"><spring:message code="app.ru"/></a></h4>
+    <div class="localize">
+        <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
+        <h4><a href="?lang=en" class="big-button"><spring:message code="app.en"/></a></h4>
+        <h4><a href="?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
     </div>
 </header>
-
 <sec:authorize access="hasRole('ROLE_USER')">
 
     <div class="container">
@@ -80,25 +80,9 @@
                 </c:if>
             </form:form>
         </table>
-        <div class="svg">
-            <a class="button" href="/personalInformationUser">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 10pt"><spring:message code="bK"/></span>
-            </a>
-            <a class="button" href="/watchRequestCallUser">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 10pt"><spring:message code="wWGR"/></span>
-            </a>
-        </div>
-
-
+        <a href="/watchRequestCallUser" class="big-button"><spring:message code="wWGR"/></a>
+        <a href="/personalInformationUser" class="big-button"><spring:message code="bK"/></a>
     </div>
-
-
 </sec:authorize>
 
 
@@ -130,7 +114,6 @@
                     </thead>
                     <tbody>
                     <c:forEach items="${allCoursesUser}" var="courses">
-
                         <tr>
                             <td>${courses.time}</td>
                             <td>${courses.language}</td>
@@ -171,31 +154,14 @@
                 </c:if>
             </form:form>
         </table>
-        <div class="svg">
-            <form action="${pageContext.request.contextPath}/menuManager" method="get">
-                <button type="submit"
-                        style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 25px ">
-                    <spring:message code="mAM"/></button>
-            </form>
-            <form action="${pageContext.request.contextPath}/menuManager" method="get">
-                <button type="submit"
-                        style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 25px ">
-                    <spring:message code="mAM"/></button>
-            </form>
-          <%--  <a class="button" href="/menuManager">
-                <svg>
-                    <rect height="40" width="130" fill="transparent"/>
-                </svg>
-                <span style="font-size: 10pt"> <spring:message code="mAM"/></span>
-            </a>--%>
-        </div>
-
+        <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
     </div>
 </sec:authorize>
 </body>
-
 <style>
-    <%@include file ="../css/button.css"%>
+
+    <%@include file ="../css/internationalize.css"%>
     <%@include file ="../css/dop.css"%>
+    <%@include file="../css/button.css"%>
 </style>
 </html>

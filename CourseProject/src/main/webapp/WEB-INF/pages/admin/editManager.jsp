@@ -54,6 +54,7 @@
 
 </body>
 <style>
+    <%@include file ="../css/button.css"%>
     <%@include file ="../css/edit.css"%>
 </style>
 </html>
