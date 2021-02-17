@@ -44,7 +44,7 @@ public class TopicController {
             model.addAttribute("topicLL", "Данный топик уже существует можете его изменить!!");
             return "manager/addTopics";
         }
-        return "manager/watchTopics";
+        return "redirect:/menuManager";
     }
 
     @GetMapping("/editTopics{topicId}")

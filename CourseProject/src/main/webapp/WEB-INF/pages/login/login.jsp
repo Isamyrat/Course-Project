@@ -8,13 +8,10 @@
     <meta charset="utf-8">
     <title>Log in with your account</title>
 </head>
-
 <body>
 <sec:authorize access="isAuthenticated()">
     <% response.sendRedirect("/"); %>
 </sec:authorize>
-<spring:message code="eL" var="eLl"/>
-<spring:message code="eP" var="ePp"/>
 
 <div class="limiter">
 
@@ -24,33 +21,30 @@
 
             <div class="login100-form-title">
 					<span class="login100-form-title-1">
-						<spring:message code="eT"/>
-					</span>
+                        Log in</span>
             </div>
 
             <form class="login100-form validate-form" method="POST" action="/login">
                 <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                    <span class="label-input100"><spring:message code="lN"/></span>
-                    <input class="input100" type="text" name="username" placeholder="${eLl}" autofocus="true">
+                    <span class="label-input100">Login</span>
+                    <input class="input100" type="text" name="username" placeholder="Please enter your login:" autofocus="true">
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-                    <span class="label-input100"><spring:message code="pW"/></span>
-                    <input class="input100"  name="password"  type="password" placeholder="${ePp}">
+                    <span class="label-input100">Password</span>
+                    <input class="input100"  name="password"  type="password" placeholder="Please enter your password:">
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn">
-                        <spring:message code="lN"/>
-                    </button>
+                        Login</button>
                 </div>
 
                 <div class="container-login101-form-btn"  >
                     <a href="/registration" class="login101-form-btn" >
-                        <spring:message code="registrationT"/>
-
+                        Registration
                     </a>
                 </div>
                 <div class="container-login100-form-btn">
@@ -71,6 +65,5 @@
 
 <style>
     <%@include file ="../css/main.css"%>
-    <%@include file ="../css/util.css"%>
 </style>
 </html>

@@ -83,7 +83,7 @@ public class CallBackController {
 
         callBackService.saveCallBack(callBack);
 
-        return "redirect:/";
+        return "redirect:/personalInformationUser";
     }
 
     @GetMapping("/editCallBack{callBackId}")
@@ -104,6 +104,7 @@ public class CallBackController {
         Group group = groupService.findByCourseS(course.getId());
 
         System.out.println(user.toString()  + "  " + course.toString());
+
         Set<User> users = new HashSet<>();
         users.add(user);
         group.setUserGroup(users);
@@ -122,7 +123,7 @@ public class CallBackController {
 
         editCallBack.setCallBackDate(String.valueOf(LocalDate.now()));
         callBackService.editCallBack(editCallBack);
-        return "redirect:/";
+        return "redirect:/personalInformationUser";
     }
 
 }

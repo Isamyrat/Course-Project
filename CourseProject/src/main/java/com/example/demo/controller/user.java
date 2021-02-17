@@ -54,29 +54,29 @@ public class user {
 
     @PostMapping("/saveTeacherses")
     public String saveTeacher(@ModelAttribute("userEdit")  User userTeacher) {
-        userService.saveTeacher(userTeacher);
+        userService.editTeacher(userTeacher);
 
-        return "redirect:/logout";
+        return "redirect:/personalInformationUser";
     }
 
 
     @PostMapping("/saveManagers")
     public String saveManager(@ModelAttribute("userEdit")  User userTeacher) {
-        userService.saveManager(userTeacher);
+        userService.editManager(userTeacher);
 
-        return "redirect:/logout";
+        return "redirect:/personalInformationUser";
     }
     @PostMapping("/saveUsers")
     public String saveUser(@ModelAttribute("userEdit")  User userTeacher) {
-        userService.saveUser(userTeacher);
+        userService.editUser(userTeacher);
 
-        return "redirect:/logout";
+        return "redirect:/personalInformationUser";
     }
     @PostMapping("/saveAdmins")
     public String saveAdmin(@ModelAttribute("userEdit")  User userTeacher) {
-        userService.saveAdmin(userTeacher);
+        userService.editAdmin(userTeacher);
 
-        return "redirect:/logout";
+        return "redirect:/personalInformationUser";
     }
 
 

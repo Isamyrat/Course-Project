@@ -53,10 +53,10 @@ public class User implements UserDetails {
     @OneToOne(mappedBy = "user_requestCall")
     private RequestCall requestCall;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user_address", cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user_address", cascade = CascadeType.ALL)
     private Set<Address> address;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "userCallBack", cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "userCallBack", cascade = CascadeType.ALL)
     private Set<CallBack> callBack;
 
     @OneToOne(fetch = FetchType.EAGER,mappedBy = "user_teacher",cascade = CascadeType.ALL)

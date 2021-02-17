@@ -102,7 +102,22 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
         return true;
     }
-
+    public User editTeacher(User user) {
+        user.setRoles(Collections.singleton(new Role(4L, "ROLE_Teacher")));
+        return userRepository.save(user);
+    }
+    public User editAdmin(User user) {
+        user.setRoles(Collections.singleton(new Role(2L, "ROLE_ADMIN")));
+        return userRepository.save(user);
+    }
+    public User editManager(User user) {
+        user.setRoles(Collections.singleton(new Role(3L, "ROLE_MANAGER")));
+        return userRepository.save(user);
+    }
+    public User editUser(User user) {
+        user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+        return userRepository.save(user);
+    }
     public boolean deleteUser(Long userId) {
         if (userRepository.findById(userId).isPresent()) {
             userRepository.deleteById(userId);

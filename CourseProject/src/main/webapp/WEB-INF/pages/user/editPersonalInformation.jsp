@@ -37,14 +37,8 @@
             <div class=" user-box">
                 <form:input path="surname"/>
             </div>
-            <label style="color: #8e8e92"><spring:message code="eL"/></label>
-            <div class="user-box">
-                <form:input path="username"/>
-            </div>
-            <label style="color: #8e8e92"><spring:message code="eP"/></label>
-            <div class="user-box">
-                <form:input path="password"/>
-            </div>
+            <form:hidden path="username"/>
+            <form:hidden path="password"/>
             <button  style="background-color: #141e30">
                 <span></span>
                 <span></span>
@@ -80,14 +74,8 @@
             <div class=" user-box">
                 <form:input path="surname"/>
             </div>
-            <label style="color: #8e8e92"><spring:message code="eL"/></label>
-            <div class="user-box">
-                <form:input path="username"/>
-            </div>
-            <label style="color: #8e8e92"><spring:message code="eP"/></label>
-            <div class="user-box">
-                <form:input path="password"/>
-            </div>
+            <form:hidden path="username"/>
+            <form:hidden path="password"/>
             <button  style="background-color: #141e30">
                 <span></span>
                 <span></span>
@@ -123,14 +111,8 @@
             <div class=" user-box">
                 <form:input path="surname"/>
             </div>
-            <label style="color: #8e8e92"><spring:message code="eL"/></label>
-            <div class="user-box">
-                <form:input path="username"/>
-            </div>
-            <label style="color: #8e8e92"><spring:message code="eP"/></label>
-            <div class="user-box">
-                <form:input path="password"/>
-            </div>
+            <form:hidden path="username"/>
+            <form:hidden path="password"/>
             <button  style="background-color: #141e30">
                 <span></span>
                 <span></span>
@@ -166,14 +148,8 @@
             <div class=" user-box">
                 <form:input path="surname"/>
             </div>
-            <label style="color: #8e8e92"><spring:message code="eL"/></label>
-            <div class="user-box">
-                <form:input path="username"/>
-            </div>
-            <label style="color: #8e8e92"><spring:message code="eP"/></label>
-            <div class="user-box">
-                <form:input path="password"/>
-            </div>
+            <form:hidden path="username"/>
+            <form:hidden path="password"/>
             <button  style="background-color: #141e30">
                 <span></span>
                 <span></span>

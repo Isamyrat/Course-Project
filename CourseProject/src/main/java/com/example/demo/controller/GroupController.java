@@ -140,4 +140,14 @@ public class GroupController {
         return "redirect:/watchGroup";
     }
 
+    @RequestMapping(value = "/deleteStudent", method = RequestMethod.POST)
+    public String  deleteStudent(@RequestParam(required = true, defaultValue = "" ) Long userId,
+                              @RequestParam(required = true, defaultValue = "" ) String action) {
+
+
+        if (action.equals("delete")){
+            groupService.deleteUser(userId);
+        }
+        return "redirect:/watchGroup";
+    }
 }

@@ -122,6 +122,32 @@ public class GroupService {
         return groupUser;
     }
 
+    public boolean deleteUser(Long userId) {
+        Group groupUser = new Group();
+        List<Group> groups = groupRepository.findAll();
+        for (Group group : groups) {
+            for (User user1 : group.getUserGroup()) {
+                if (user1.getId().equals(userId)) {
+                    groupUser = group;
+                }
+            }
+        }
+        Set<User> users = groupRepository.user(groupUser.getId());
+        User usrId = userRepository.findByUser(userId);
+
+       /* for(User user : users){
+            if(user.getId().equals(userId)){
+                usrId = user;
+            }
+        }*/
+        users.clear();
+        groupUser.setUserGroup(users);
+        groupRepository.save(groupUser);
+
+        return true;
+    }
+
+
     public List<Group> findByTeacher(Long id) {
         return groupRepository.findByTeacher(id);
     }

@@ -36,6 +36,7 @@
                 <th><spring:message code="sOS"/></th>
                 <th><spring:message code="aOs"/></th>
                 <th><spring:message code="nOs"/></th>
+                <th><spring:message code="nOs"/></th>
             </tr>
             </thead>
             <tbody>
@@ -46,8 +47,15 @@
                     <td>${users.surname}</td>
                     <td>${users.personalInformation.age}</td>
                     <td>${users.personalInformation.number}</td>
+                    <td>
+                        <form action="${pageContext.request.contextPath}/deleteStudent" method="post">
+                            <input type="hidden" name="userId" value="${users.id}"/>
+                            <input type="hidden" name="action" value="delete"/>
+                            <button type="submit" style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
+                                <spring:message code="dU"/></button>
+                        </form>
+                    </td>
                 </tr>
-
             </c:forEach>
             </tbody>
         </form:form>

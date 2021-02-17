@@ -37,31 +37,6 @@ public class manager {
 
         return "manager/addTeacher";
     }
-
-    @PostMapping("/deleteTeacher")
-    public String  deleteUser(@RequestParam(required = true, defaultValue = "" ) Long userId,
-                              @RequestParam(required = true, defaultValue = "" ) String action,
-                              Model model) {
-        if (action.equals("delete")){
-            userService.deleteUser(userId);
-        }
-        return "manager/watchTeacher";
-    }
-    @GetMapping("/editTeacher{userId}")
-    public String editTeacher(@PathVariable(value = "userId") Long userId,
-                              Model model){
-        User user = userService.findUserById(userId);
-        model.addAttribute("userTeacher", user)
-            .addAttribute("userId", userId);
-
-        return "manager/editTeacher";
-    }
-    @PostMapping("/saveTeachers")
-    public String saveCustomers(@ModelAttribute("userTeacher")  User userTeacher) {
-        userService.saveTeacher(userTeacher);
-
-        return "redirect:/watchTeacher";
-    }
     @PostMapping("/saveTeacher")
     public String saveCustomer(@ModelAttribute("userTeacher") @Valid User userTeacher, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
@@ -75,6 +50,34 @@ public class manager {
     }
 
 
+
+    @GetMapping("/editTeacher{userId}")
+    public String editTeacher(@PathVariable(value = "userId") Long userId,
+                              Model model){
+        User user = userService.findUserById(userId);
+
+        model.addAttribute("userTeacher", user)
+            .addAttribute("userId", userId);
+
+        return "manager/editTeacher";
+    }
+    @PostMapping("/saveTeachers")
+    public String saveCustomers(@ModelAttribute("userTeacher")  User userTeacher) {
+
+        userService.editTeacher(userTeacher);
+
+        return "redirect:/watchTeacher";
+    }
+
+    @PostMapping("/deleteTeacher")
+    public String  deleteUser(@RequestParam(required = true, defaultValue = "" ) Long userId,
+                              @RequestParam(required = true, defaultValue = "" ) String action,
+                              Model model) {
+        if (action.equals("delete")){
+            userService.deleteUser(userId);
+        }
+        return "redirect:/watchTeacher";
+    }
 
     @GetMapping("/watchJournalManager")
     public String watchJournalManager() {

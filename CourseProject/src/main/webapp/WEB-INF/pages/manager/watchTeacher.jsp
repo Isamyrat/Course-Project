@@ -46,13 +46,7 @@
                         <td>${user.name}</td>
                         <td>${user.surname}</td>
                         <td>
-                            <form action="${pageContext.request.contextPath}/deleteTeacher" method="post">
-                                <input type="hidden" name="userId" value="${user.id}"/>
-                                <input type="hidden" name="action" value="delete"/>
-                                <button type="submit"
-                                        style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 25px ">
-                                    <spring:message code="dT"/></button>
-                            </form>
+
                                 <%--<form action="/editTeacher${user.id}" method="get">
                                     <input type="hidden" name="userId" value="${user.id}"/>
                                     <button type="submit"  style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; "><spring:message code="cT"/></button>
@@ -61,6 +55,13 @@
                                 <a href="/editTeacher${user.id}" type="submit"
                                    style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;font-size: 20px"><spring:message
                                         code="cT"/></a>
+                            </form>
+                            <form action="${pageContext.request.contextPath}/deleteTeacher" method="post">
+                                <input type="hidden" name="userId" value="${user.id}"/>
+                                <input type="hidden" name="action" value="delete"/>
+                                <button type="submit"
+                                        style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 25px ">
+                                    <spring:message code="dT"/></button>
                             </form>
 
                         </td>
