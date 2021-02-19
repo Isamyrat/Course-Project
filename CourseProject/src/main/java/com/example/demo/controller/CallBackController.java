@@ -36,9 +36,7 @@ public class CallBackController {
 
         User user = userService.getUser(userDetails.getUsername());
 
-        List<CallBack> callBacks = callBackService.callBackFind(user.getId());
-
-        model.addAttribute("callBack",callBacks);
+        model.addAttribute("callBack", callBackService.callBackFind(user.getId()));
 
         return "manager/watchRequestCall";
     }
@@ -46,11 +44,7 @@ public class CallBackController {
     @GetMapping("/watchRequestCall")
     public String watchRequestCall(Model model) {
 
-        String status = "В ожидании";
-
-        List<CallBack> callBack  = callBackService.findByStatus(status);
-
-        model.addAttribute("callBackManager", callBack);
+        model.addAttribute("callBackManager", callBackService.findByStatus());
 
         return "manager/watchRequestCall";
     }
@@ -58,34 +52,25 @@ public class CallBackController {
     @GetMapping("/watchRequestCallArhiv")
     public String watchRequestCallArhiv(Model model) {
 
-        String status1 = "Одобрено";
-        String status2 = "Отказано";
-        List<CallBack> callBack  = callBackService.findAll(status1,status2);
-
-        model.addAttribute("callBackManagerArhiv", callBack);
+        model.addAttribute("callBackManagerArhiv", callBackService.findAll());
 
         return "manager/watchRequestCallArhiv";
     }
 
     @PostMapping("/addToCourse")
-    public String addToCourse(@ModelAttribute("course") Long course, Model model) {
+    public String addToCourse(@ModelAttribute("courseId") Long courseId, Model model) {
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
-        User u = userService.getUser(userDetails.getUsername());
+        User user = userService.getUser(userDetails.getUsername());
 
-        CallBack callBack = new CallBack();
+        Course course1 = callBackService.findCourse(courseId);
 
-        Course course1 = callBackService.findCourse(course);
-
-        callBack.setCourseCallBack(course1);
-        callBack.setUserCallBack(u);
-
-        if(!callBackService.saveCallBack(callBack)){
+        if (!callBackService.saveCallBack(user, course1)) {
             model.addAttribute("addToError", "Вы уже отправляли запрос на данный курс. Ожидайте ответа!!");
             return "redirect:/watchAllCoursesManager";
         }
-
 
         return "redirect:/personalInformationUser";
     }
@@ -93,34 +78,32 @@ public class CallBackController {
     @GetMapping("/editCallBack{callBackId}")
     public String editTopics(@PathVariable("callBackId") Long callBackId,
                              Model model) {
-        CallBack callBack = callBackService.findById(callBackId);
-        model.addAttribute("editCallBack",callBack)
-            .addAttribute("callBackId", callBackId);
+
+        model.addAttribute("editCallBack", callBackService.findById(callBackId))
+                .addAttribute("callBackId", callBackId);
         return "user/editCallBack";
     }
 
     @PostMapping("/saveApprove")
     public String saveApprove(@ModelAttribute("editCallBack") CallBack editCallBack) {
 
-
         User user = userService.findUserById(editCallBack.getUserCallBack().getId());
+
         Course course = callBackService.findCourse(editCallBack.getCourseCallBack().getId());
+
         Group group = groupService.findByCourseS(course.getId());
 
-        System.out.println(user.toString()  + "  " + course.toString());
-
         Set<User> users = new HashSet<>();
+
         users.add(user);
+
         group.setUserGroup(users);
         group.setCourse_group(course);
-        System.out.println(group.getCourse_group()  + " " + group.getUserGroup());
-
-
 
         if (editCallBack.getStatus().equals("Approve")) {
             editCallBack.setStatus("Одобрено");
             groupService.saveUser(group);
-        }else if (editCallBack.getStatus().equals("NotApprove")) {
+        } else if (editCallBack.getStatus().equals("NotApprove")) {
             editCallBack.setStatus("Отказано");
         }
 

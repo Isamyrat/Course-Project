@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Controller
-public class manager {
+public class ManagerController {
 
     @Autowired
     private UserService userService;
@@ -24,7 +24,6 @@ public class manager {
 
     @GetMapping("/watchTeacher")
     public String watchTeacher(Model model) {
-
 
         model.addAttribute("allTeachers", userService.allUsers());
 
@@ -56,9 +55,8 @@ public class manager {
     @GetMapping("/editTeacher{userId}")
     public String editTeacher(@PathVariable(value = "userId") Long userId,
                               Model model){
-        User user = userService.findUserById(userId);
 
-        model.addAttribute("userTeacher", user)
+        model.addAttribute("userTeacher", userService.findUserById(userId))
             .addAttribute("userId", userId);
 
         return "manager/editTeacher";
@@ -73,8 +71,7 @@ public class manager {
 
     @PostMapping("/deleteTeacher")
     public String  deleteUser(@RequestParam(required = true, defaultValue = "" ) Long userId,
-                              @RequestParam(required = true, defaultValue = "" ) String action,
-                              Model model) {
+                              @RequestParam(required = true, defaultValue = "" ) String action) {
         if (action.equals("delete")){
             userService.deleteUser(userId);
         }
@@ -107,8 +104,6 @@ public class manager {
     public String saveJournalMan() {
         return "manager/watchJournalManager";
     }
-
-
 
 }
 

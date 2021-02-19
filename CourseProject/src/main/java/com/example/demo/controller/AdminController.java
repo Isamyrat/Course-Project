@@ -3,19 +3,16 @@ package com.example.demo.controller;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
 public class AdminController {
+
     @Autowired
     private UserService userService;
 
@@ -39,14 +36,15 @@ public class AdminController {
     public String  deleteUser(@RequestParam(required = true, defaultValue = "" ) Long userId,
                               @RequestParam(required = true, defaultValue = "" ) String action) {
 
-
         if (action.equals("delete")){
             userService.deleteUser(userId);
         }
+
         return "login/admin";
     }
     @GetMapping("/addManager")
     public String edit(Model model){
+
         model.addAttribute("userManager", new User());
 
         return "admin/addManager";
@@ -54,13 +52,16 @@ public class AdminController {
     @PostMapping("/saveUser")
     public String saveCustomer(@ModelAttribute("userManager") @Valid User userManager,
                                BindingResult bindingResult, Model model) {
+
         if (bindingResult.hasErrors()) {
             return "admin/addManager";
         }
+
         if (!userService.saveManager(userManager)){
             model.addAttribute("usernameError", "Пользователь с таким именем уже существует. Пожалйста напишите другой логин!!");
             return "admin/addManager";
         }
+
         return "redirect:/admin";
     }
 
@@ -68,6 +69,5 @@ public class AdminController {
     public String menuAdmin() {
         return "admin/menuAdmin";
     }
-
 
 }

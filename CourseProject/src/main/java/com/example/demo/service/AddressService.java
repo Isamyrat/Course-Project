@@ -43,28 +43,8 @@ public class AddressService {
         return addressRepository.findByUser(userId);
     }
 
-    public User findUser(Long user){
-        return userRepository.findByUser(user);
-    }
-
     public Address editAddress(Address address){
         return addressRepository.save(address);
-    }
-
-    public boolean deleteAddress(Long id){
-        Address address = findById(id);
-
-
-
-        if(address != null){
-            addressRepository.delete(address);
-            return true;
-        }/*
-        if(addressRepository.findById(id).isPresent()){
-            addressRepository.deleteById(id);
-            return true;
-        }*/
-        return false;
     }
 
 

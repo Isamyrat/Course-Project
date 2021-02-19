@@ -44,9 +44,6 @@ public class PersonalInformationService {
         return personalInfoRepository.findByPersonId(user);
     }
 
-    public User findUser(Long user) {
-        return userRepository.findByUser(user);
-    }
 
     @Transactional
     public PersonalInformation editPerson(PersonalInformation personalInformation) {

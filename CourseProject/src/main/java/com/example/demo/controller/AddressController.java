@@ -13,8 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
 public class AddressController {
 
@@ -26,12 +24,10 @@ public class AddressController {
 
     @GetMapping("/userAddressWatch{addressId}")
     public String userAddressWatch(@PathVariable(value = "addressId") Long addressId,
-                                   Model model){
+                                   Model model) {
 
-        List<Address> address = addressService.addressFind(addressId);
-
-        model.addAttribute("address", address)
-            .addAttribute("addressId", addressId);
+        model.addAttribute("address", addressService.addressFind(addressId))
+                .addAttribute("addressId", addressId);
 
         return "user/userAddressWatch";
     }
@@ -39,21 +35,19 @@ public class AddressController {
     @GetMapping("/addAddressUser")
     public String addAddressUser(Model model) {
 
-             model.addAttribute("addressAdd", new Address());
+        model.addAttribute("addressAdd", new Address());
 
         return "user/addAddressUser";
     }
 
     @PostMapping("/saveAddress")
     public String saveAddress(@ModelAttribute("addressAdd")
-                               Address address, Model model) {
+                                      Address address, Model model) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
-        User u = userService.getUser(userDetails.getUsername());
-
-        User user = addressService.findUser(u.getId());
+        User user = userService.getUser(userDetails.getUsername());
 
         address.setUser_address(user);
 
@@ -69,12 +63,8 @@ public class AddressController {
     public String editAddressUser(@PathVariable("addressId") Long addressId,
                                   Model model) {
 
-        Address address = addressService.findById(addressId);
-
-
-        model.addAttribute("addressEdit", address)
-            .addAttribute("addressId",addressId);
-
+        model.addAttribute("addressEdit", addressService.findById(addressId))
+                .addAttribute("addressId", addressId);
 
         return "user/editAddressUser";
     }
@@ -87,13 +77,4 @@ public class AddressController {
         return "redirect:/personalInformationUser";
     }
 
-    @PostMapping("/deleteAddress")
-    public String deleteTopic(@RequestParam(required = true, defaultValue = "") Long idAddress,
-                              @RequestParam(required = true, defaultValue = "") String action) {
-
-        if(action.equals("delete")){
-            addressService.deleteAddress(idAddress);
-        }
-        return "redirect:/personalInformationUser";
-    }
 }

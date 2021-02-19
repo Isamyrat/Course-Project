@@ -28,18 +28,27 @@ public class CallBackService {
         return callBack.orElse(new CallBack());
     }
 
-    public List<CallBack> findAll(String status1, String status2) {
+    public List<CallBack> findAll() {
+        String status1 = "Одобрено";
+        String status2 = "Отказано";
+
         return callBackRepository.findByStatuss(status1, status2);
     }
 
-    public List<CallBack> findByStatus(String status) {
+    public List<CallBack> findByStatus() {
+
+        String status = "В ожидании";
+
         return callBackRepository.findByStatus(status);
     }
 
-    public Boolean saveCallBack(CallBack callBack) {
-        User user = userRepository.findByUser(callBack.getUserCallBack().getId());
+    public Boolean saveCallBack(User userRequestCall, Course courseRequestCall) {
 
-        Course course = courseRepository.findByCourseId(callBack.getCourseCallBack().getId());
+        User user = userRepository.findByUser(userRequestCall.getId());
+
+        Course course = courseRepository.findByCourseId(courseRequestCall.getId());
+
+        CallBack callBack = new CallBack();
 
         callBack.setStatus("В ожидании");
 

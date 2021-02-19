@@ -12,48 +12,41 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class user {
+public class UserController {
 
     @Autowired
     private UserService userService;
 
     @GetMapping("/personalInformationUser")
-    public String personalInformationUser(HttpServletRequest request, Model model) {
+    public String personalInformationUser(Model model) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
-        User u = userService.getUser(userDetails.getUsername());
-        request.getSession().setAttribute("userId",u.getId());
+        User user = userService.getUser(userDetails.getUsername());
 
-        User user = userService.findUserById(u.getId());
-        model.addAttribute("userId",user);
+        model.addAttribute("userId", userService.findUserById(user.getId()));
 
         return "user/personalInformation";
     }
 
     @GetMapping("/editUser")
-    public String edit(HttpServletRequest request, Model model){
+    public String edit(Model model) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
+        User user = userService.getUser(userDetails.getUsername());
 
-        User u = userService.getUser(userDetails.getUsername());
-        request.getSession().setAttribute("userId",u.getId());
-
-
-        User user = userService.findUserById(u.getId());
-        model.addAttribute("userEdit",user);
+        model.addAttribute("userEdit", userService.findUserById(user.getId()));
 
         return "user/editPersonalInformation";
     }
 
     @PostMapping("/saveTeacherses")
-    public String saveTeacher(@ModelAttribute("userEdit")  User userTeacher) {
+    public String saveTeacher(@ModelAttribute("userEdit") User userTeacher) {
         userService.editTeacher(userTeacher);
 
         return "redirect:/personalInformationUser";
@@ -61,19 +54,21 @@ public class user {
 
 
     @PostMapping("/saveManagers")
-    public String saveManager(@ModelAttribute("userEdit")  User userTeacher) {
+    public String saveManager(@ModelAttribute("userEdit") User userTeacher) {
         userService.editManager(userTeacher);
 
         return "redirect:/personalInformationUser";
     }
+
     @PostMapping("/saveUsers")
-    public String saveUser(@ModelAttribute("userEdit")  User userTeacher) {
+    public String saveUser(@ModelAttribute("userEdit") User userTeacher) {
         userService.editUser(userTeacher);
 
         return "redirect:/personalInformationUser";
     }
+
     @PostMapping("/saveAdmins")
-    public String saveAdmin(@ModelAttribute("userEdit")  User userTeacher) {
+    public String saveAdmin(@ModelAttribute("userEdit") User userTeacher) {
         userService.editAdmin(userTeacher);
 
         return "redirect:/personalInformationUser";

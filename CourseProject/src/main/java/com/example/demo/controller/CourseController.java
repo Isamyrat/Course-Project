@@ -5,10 +5,8 @@ import com.example.demo.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 
 @Controller
 public class CourseController {
@@ -18,13 +16,17 @@ public class CourseController {
 
     @GetMapping("/watchAllCoursesManager")
     public String watchAllCoursesManager(Model model) {
+
         model.addAttribute("allCoursesUser", courseService.allCourses());
+
         return "manager/watchAllCoursesManager";
     }
 
     @GetMapping("/addCourse")
     public String addCourse(Model model) {
+
         model.addAttribute("courseAdd", new Course());
+
         return "manager/addCourse";
     }
 
@@ -41,13 +43,12 @@ public class CourseController {
         return "redirect:/watchAllCoursesManager";
     }
 
-    @GetMapping("/editCourseManager{course}")
-    public String editCourseManager(@PathVariable("course") Long course,
+    @GetMapping("/editCourseManager{courseId}")
+    public String editCourseManager(@PathVariable("courseId") Long courseId,
                                     Model model) {
 
-        Course course1= courseService.courseById(course);
-        model.addAttribute("editCourse", course1)
-            .addAttribute("course", course);
+        model.addAttribute("editCourse", courseService.courseById(courseId))
+            .addAttribute("courseId", courseId);
 
         return "manager/editCourseManager";
     }

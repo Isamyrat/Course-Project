@@ -3,7 +3,6 @@ package com.example.demo.service;
 import com.example.demo.dao.CourseRepository;
 import com.example.demo.dao.GroupRepository;
 import com.example.demo.dao.UserRepository;
-import com.example.demo.model.CallBack;
 import com.example.demo.model.Course;
 import com.example.demo.model.Group;
 import com.example.demo.model.User;
@@ -22,12 +21,6 @@ public class GroupService {
     private CourseRepository courseRepository;
 
     @Autowired
-    private CourseService courseService;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
     private UserRepository userRepository;
 
 
@@ -36,7 +29,15 @@ public class GroupService {
         return group.orElse(new Group());
     }
 
-    public List<Group> findByStatus(String status) {
+    public List<Group> findByStatus() {
+
+        String status = "В ожидании";
+        return groupRepository.findByStatus(status);
+    }
+
+    public List<Group> findByStatusOne() {
+
+        String status = "Закончилась";
         return groupRepository.findByStatus(status);
     }
 
@@ -109,7 +110,6 @@ public class GroupService {
     }
 
     public Group findByUser(Long id) {
-        User user = new User();
         Group groupUser = new Group();
         List<Group> groups = groupRepository.findAll();
         for (Group group : groups) {

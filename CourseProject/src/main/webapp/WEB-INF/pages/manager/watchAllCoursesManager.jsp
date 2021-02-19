@@ -65,7 +65,7 @@
                             </td>
                             <td>
                                 <form action="${pageContext.request.contextPath}/addToCourse" method="post">
-                                    <input type="hidden" name="course" value="${courses.id}"/>
+                                    <input type="hidden" name="courseId" value="${courses.id}"/>
                                     <button type="submit"
                                             style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
                                         <spring:message code="aTG"/></button>

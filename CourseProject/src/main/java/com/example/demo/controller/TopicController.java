@@ -1,16 +1,11 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Course;
 import com.example.demo.model.Topic;
 import com.example.demo.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.Optional;
 
 @Controller
 public class TopicController {
@@ -21,10 +16,9 @@ public class TopicController {
     @GetMapping("/watchTopics{topicId}")
     public String watchTopics(@PathVariable("topicId") Long topicId,
                               Model model) {
-        Topic topic = topicService.topicFind(topicId);
 
-        model.addAttribute("allTopics",topic)
-            .addAttribute("topicId",topicId);
+        model.addAttribute("allTopics", topicService.topicFind(topicId))
+                .addAttribute("topicId", topicId);
 
 
         return "manager/watchTopics";
@@ -32,18 +26,18 @@ public class TopicController {
 
     @GetMapping("/addTopics")
     public String addTopics(Model model) {
-        model.addAttribute("topicAdd",new Topic());
+        model.addAttribute("topicAdd", new Topic());
         return "manager/addTopics";
     }
 
     @PostMapping("/saveTopicManager")
     public String saveTopicManager(@ModelAttribute("topicAdd")
-                                  Topic topicForm,
+                                           Topic topicForm,
                                    Model model) {
 
-        if(!topicService.saveTopic(topicForm)) {
-            model.addAttribute("topicLL", "Такого курса не существует!!");
-            model.addAttribute("topicLevel", "Данный топик уже существует можете его изменить");
+        if (!topicService.saveTopic(topicForm)) {
+            model.addAttribute("topicLL", "Такого курса не существует!!")
+                    .addAttribute("topicLevel", "Данный топик уже существует можете его изменить");
             return "manager/addTopics";
         }
         return "redirect:/menuManager";
@@ -52,9 +46,9 @@ public class TopicController {
     @GetMapping("/editTopics{topicId}")
     public String editTopics(@PathVariable("topicId") Long topicId,
                              Model model) {
-        Topic topic1 = topicService.topicById(topicId);
-        model.addAttribute("editTopic",topic1)
-            .addAttribute("topicId",topicId);
+
+        model.addAttribute("editTopic", topicService.topicById(topicId))
+                .addAttribute("topicId", topicId);
         return "manager/editTopics";
     }
 

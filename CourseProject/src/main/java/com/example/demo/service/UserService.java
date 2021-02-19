@@ -12,16 +12,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService {
-   /* @PersistenceContext
-    private EntityManager em;*/
 
     @Autowired
     UserRepository userRepository;
@@ -51,7 +47,7 @@ public class UserService implements UserDetailsService {
 
 
     public List<User> allUsers() {
-        return  userRepository.findAll();
+        return userRepository.findAll();
     }
 
     public boolean saveUser(User user) {
@@ -66,6 +62,7 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
         return true;
     }
+
     public boolean saveAdmin(User user) {
         User userFromDB = userRepository.findByUsername(user.getUsername());
 
@@ -91,6 +88,7 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
         return true;
     }
+
     public boolean saveTeacher(User user) {
         User userFromDB = userRepository.findByUsername(user.getUsername());
 
@@ -103,22 +101,27 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
         return true;
     }
+
     public User editTeacher(User user) {
         user.setRoles(Collections.singleton(new Role(4L, "ROLE_Teacher")));
         return userRepository.save(user);
     }
+
     public User editAdmin(User user) {
         user.setRoles(Collections.singleton(new Role(2L, "ROLE_ADMIN")));
         return userRepository.save(user);
     }
+
     public User editManager(User user) {
         user.setRoles(Collections.singleton(new Role(3L, "ROLE_MANAGER")));
         return userRepository.save(user);
     }
+
     public User editUser(User user) {
         user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
         return userRepository.save(user);
     }
+
     public boolean deleteUser(Long userId) {
         if (userRepository.findById(userId).isPresent()) {
             userRepository.deleteById(userId);
@@ -127,12 +130,7 @@ public class UserService implements UserDetailsService {
         return false;
     }
 
-    /*public List<User> usergtList(Long idMin) {
-        return em.createQuery("SELECT u FROM User u WHERE u.id > :paramId", User.class)
-                .setParameter("paramId", idMin).getResultList();
-    }*/
-
-    public User getUser(String username){
+    public User getUser(String username) {
         return userRepository.findByUsername(username);
     }
 

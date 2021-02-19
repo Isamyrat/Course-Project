@@ -1,6 +1,5 @@
 package com.example.demo.dao;
 
-import com.example.demo.model.Course;
 import com.example.demo.model.Group;
 import com.example.demo.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

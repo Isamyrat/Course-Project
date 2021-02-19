@@ -12,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-
 @Controller
 public class PersonalController {
 
@@ -29,9 +27,7 @@ public class PersonalController {
     public String personalInformationUsers(@PathVariable("personId") Long personId,
                                            Model model) {
 
-        PersonalInformation person = personalInformationService.findPerson(personId);
-
-        model.addAttribute("person", person)
+        model.addAttribute("person", personalInformationService.findPerson(personId))
              .addAttribute("personId",personId);
 
         return "user/personalInformationUsers";
@@ -53,10 +49,7 @@ public class PersonalController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
-        User u = userService.getUser(userDetails.getUsername());
-
-
-        User user = personalInformationService.findUser(u.getId());
+        User user = userService.getUser(userDetails.getUsername());
 
         personalInformation.setUser_information(user);
 
@@ -72,9 +65,7 @@ public class PersonalController {
     public String editPersonalInformationUser(@PathVariable("personId") Long personId,
                                              Model model) {
 
-        PersonalInformation person = personalInformationService.findById(personId);
-
-        model.addAttribute("personEdit", person)
+    model.addAttribute("personEdit", personalInformationService.findById(personId))
             .addAttribute("personId", personId);
 
 
@@ -88,5 +79,4 @@ public class PersonalController {
 
         return "redirect:/personalInformationUser";
     }
-
 }

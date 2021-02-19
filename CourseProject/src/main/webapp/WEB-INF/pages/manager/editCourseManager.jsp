@@ -14,8 +14,8 @@
 <header>
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
-        <h4><a href="/editCourseManager${course}?lang=en" class="big-button"><spring:message code="app.en"/></a></h4>
-        <h4><a href="/editCourseManager${course}?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
+        <h4><a href="/editCourseManager${courseId}?lang=en" class="big-button"><spring:message code="app.en"/></a></h4>
+        <h4><a href="/editCourseManager${courseId}?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
     </div>
 </header>
 

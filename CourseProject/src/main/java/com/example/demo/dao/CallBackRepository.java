@@ -1,8 +1,6 @@
 package com.example.demo.dao;
 
-import com.example.demo.model.Address;
 import com.example.demo.model.CallBack;
-import com.example.demo.model.Course;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
