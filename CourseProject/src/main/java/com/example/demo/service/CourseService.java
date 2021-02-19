@@ -33,10 +33,10 @@ public class CourseService {
     public boolean saveCourse(Course course){
         Course course1 = courseRepository.findByCourse(course.getLanguage(),course.getLevel());
 
-
         if(course1 !=null){
             return false;
         }
+
         courseRepository.save(course);
         return true;
     }

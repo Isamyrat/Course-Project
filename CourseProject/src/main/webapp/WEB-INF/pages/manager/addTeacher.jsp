@@ -25,6 +25,7 @@
     <form:form  method="POST" action="/saveTeacher" modelAttribute="userTeacher">
 
         <form:hidden path="id"/>
+
         <label style="color: #8e8e92"><spring:message code="nM"/></label>
         <div class="user-box">
             <form:input path="name"/>
@@ -35,14 +36,19 @@
         <div class=" user-box">
             <form:input path="surname"/>
         </div>
+
         <label style="color: #8e8e92"><spring:message code="eL"/></label>
         <div class="user-box">
             <form:input path="username"/>
         </div>
+
         <label style="color: #8e8e92"><spring:message code="eP"/></label>
         <div class="user-box">
             <form:input path="password"/>
+            <form:errors path="username"/>
+                ${usernameError}
         </div>
+
         <button  style="background-color: #141e30">
             <span></span>
             <span></span>
@@ -50,6 +56,7 @@
             <span></span>
             <spring:message code="save"/>
         </button><p>
+
         <a href="/menuManager">
             <span></span>
             <span></span>

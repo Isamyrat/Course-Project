@@ -30,7 +30,9 @@ public class PersonalInformationService {
     public Boolean savePersonInfo(PersonalInformation personalInformation) {
         User user = userRepository.findByUser(personalInformation.getUser_information().getId());
 
-        if (user == null) {
+        PersonalInformation personalInformation1 = personalInfoRepository.findByPersonId(user.getId());
+
+        if (personalInformation1 != null) {
             return false;
         }
         personalInformation.setUser_information(user);

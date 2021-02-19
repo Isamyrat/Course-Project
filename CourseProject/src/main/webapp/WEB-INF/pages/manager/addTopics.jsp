@@ -31,12 +31,13 @@
             <div class="signup-form">
                 <form:form method="POST" class="register-form" id="register-form" action="/saveTopicManager" modelAttribute="topicAdd" >
                     <h2><spring:message code="enterDatas"/></h2>
+
                     <form:hidden path="id"/>
+
                     <div class="form-row">
                         <div class="form-group">
                             <label><spring:message code="addText"/></label>
                             <form:input type="text" path="text"/>
-
                         </div>
 
                         <div class="form-group">
@@ -56,6 +57,7 @@
                                     <option value="Turkish"><spring:message code="trC"/></option>
                                     <option value="Russian"> <spring:message code="ruC"/></option>
                                 </form:select>
+                                    ${topicLevel}
                                 <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                             </div>
                         </div>
@@ -68,8 +70,9 @@
                                     <option value="Elementary">Elementary</option>
                                     <option value="Advanced">Advanced</option>
                                     <option value="Interdemiade">Interdemiade</option>
-                                    ${topicLL}
+
                                 </form:select>
+                                    ${topicLL}
                                 <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                             </div>
                         </div>

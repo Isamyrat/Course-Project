@@ -26,10 +26,14 @@ public class AddressService {
     public Boolean saveAddress(Address address){
         User user = userRepository.findByUser(address.getUser_address().getId());
 
-        /*if(user == null){
+        Address address1 = addressRepository.findByCountryAndCityAndDistrictAndStreetAndHouseAndApartment(address.getCountry(),address.getCity(),address.getDistrict(),address.getStreet(),address.getHouse(),address.getApartment());
+
+        Address address2 = addressRepository.findByCountryAndCityAndDistrictAndStreetAndHouse(address.getCountry(),address.getCity(),address.getDistrict(),address.getStreet(),address.getHouse());
+
+        if(address1 != null || address2 != null){
             return false;
         }
-*/
+
         address.setUser_address(user);
         addressRepository.save(address);
         return true;

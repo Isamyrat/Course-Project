@@ -41,18 +41,18 @@
                 <c:if test="${userId != null}">
                     <tbody>
 
-                    <c:url var="addPerson" value="/addPersonalInformationUser">
+                   <%-- <c:url var="addPerson" value="/addPersonalInformationUser">
                     </c:url>
 
                     <c:url var="addAddress" value="/addAddressUser">
-                    </c:url>
+                    </c:url>--%>
 
                     <tr>
                         <td>${userId.name}</td>
                         <td>${userId.surname}</td>
                         <td>
                             <form>
-                                <a href="${addPerson}" type="submit"
+                                <a href="/addPersonalInformationUser" type="submit"
                                    style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px"><spring:message
                                         code="adPI"/>е</a>
                             </form>
@@ -68,7 +68,7 @@
                         </td>
                         <td>
                             <form>
-                                <a href="${addAddress}" type="submit"
+                                <a href="/addAddressUser" type="submit"
                                    style="background-color: rgba(255, 255, 255, 0.2);   color: #000000; border: 1px #f5f4f4 solid; font-size: 25px"><spring:message
                                         code="adAddress"/></a>
                             </form>

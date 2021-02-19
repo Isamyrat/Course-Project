@@ -38,9 +38,18 @@ public class TopicService {
     }
     public Boolean saveTopic(Topic topic){
         Course course = courseRepository.findByCourse(topic.getCourse_topic().getLanguage(),topic.getCourse_topic().getLevel());
+
         if(course==null){
             return false;
         }
+
+        Topic topic1 = topicRepository.findByCourse_topicId(course.getId());
+
+
+        if(topic1 != null){
+            return false;
+        }
+
 
         topic.setCourse_topic(course);
         topicRepository.save(topic);
@@ -49,10 +58,6 @@ public class TopicService {
 
     public  Topic topicFind(Long course){
         return topicRepository.findByCourse_topicId(course);
-    }
-
-    public  Course courseFind(String language,String level){
-        return courseRepository.findByCourse(language,level);
     }
 
     public Topic editTopic(Topic topic){

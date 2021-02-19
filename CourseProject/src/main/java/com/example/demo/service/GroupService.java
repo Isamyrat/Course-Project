@@ -133,13 +133,7 @@ public class GroupService {
             }
         }
         Set<User> users = groupRepository.user(groupUser.getId());
-        User usrId = userRepository.findByUser(userId);
 
-       /* for(User user : users){
-            if(user.getId().equals(userId)){
-                usrId = user;
-            }
-        }*/
         users.clear();
         groupUser.setUserGroup(users);
         groupRepository.save(groupUser);

@@ -2,8 +2,6 @@ package com.example.demo.controller;
 
 
 import com.example.demo.model.Address;
-import com.example.demo.model.CallBack;
-import com.example.demo.model.PersonalInformation;
 import com.example.demo.model.User;
 import com.example.demo.service.AddressService;
 import com.example.demo.service.UserService;
@@ -16,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import javax.validation.Valid;
 
 @Controller
 public class AddressController {
@@ -49,7 +46,7 @@ public class AddressController {
 
     @PostMapping("/saveAddress")
     public String saveAddress(@ModelAttribute("addressAdd")
-                              @Valid Address address) {
+                               Address address, Model model) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -61,7 +58,7 @@ public class AddressController {
         address.setUser_address(user);
 
         if (!addressService.saveAddress(address)) {
-
+            model.addAttribute("addressError", "Такой адрес уже существует!!!");
             return "user/addAddressUser";
         }
 

@@ -21,4 +21,7 @@ public interface CallBackRepository extends CrudRepository<CallBack, Long> {
 
     @Query("select c from CallBack  c where c.status = :status1 or  c.status = :status2")
     List<CallBack> findByStatuss(String status1, String status2);
+
+    @Query("select c from  CallBack  c where c.userCallBack.id = :userId and  c.courseCallBack.id = :courseId and c.status = :status")
+    CallBack findByUserSingle(@Param("userId")Long userId, @Param("courseId")Long courseId, @Param("status")String status );
 }

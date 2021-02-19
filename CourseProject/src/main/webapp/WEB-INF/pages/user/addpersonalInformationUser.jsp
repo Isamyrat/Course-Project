@@ -40,6 +40,7 @@
         <div class="user-box">
             <form:input path="number"/>
         </div>
+        ${personError}
         <form:hidden path="status"/>
         <form:hidden path="user_information"/>
         <button style="background-color: #141e30">

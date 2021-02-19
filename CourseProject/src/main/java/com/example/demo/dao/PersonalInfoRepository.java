@@ -16,6 +16,6 @@ public interface PersonalInfoRepository extends CrudRepository<PersonalInformati
     Optional<PersonalInformation> findById(Long aLong);
 
     @Query("select p from PersonalInformation p where p.user_information.id =:userId")
-    public PersonalInformation findByPersonId(@Param("userId")Long userId);
+    PersonalInformation findByPersonId(@Param("userId")Long userId);
 
 }

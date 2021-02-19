@@ -38,12 +38,24 @@ public class CallBackService {
 
     public Boolean saveCallBack(CallBack callBack) {
         User user = userRepository.findByUser(callBack.getUserCallBack().getId());
+
         Course course = courseRepository.findByCourseId(callBack.getCourseCallBack().getId());
+
+        callBack.setStatus("В ожидании");
+
+        CallBack callBack1 = callBackRepository.findByUserSingle(user.getId(), course.getId(), callBack.getStatus());
+
+        if(callBack1 != null){
+            return false;
+        }
+
         callBack.setStatus("В ожидании");
         callBack.setCallBackDate(String.valueOf(LocalDate.now()));
         callBack.setUserCallBack(user);
         callBack.setCourseCallBack(course);
+
         callBackRepository.save(callBack);
+
         return true;
     }
 

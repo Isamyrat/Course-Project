@@ -69,8 +69,10 @@
                                     <button type="submit"
                                             style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
                                         <spring:message code="aTG"/></button>
+
                                 </form>
                             </td>
+
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -79,6 +81,7 @@
                     <td><spring:message code="eC"/></td>
                 </c:if>
             </form:form>
+
         </table>
         <a href="/watchRequestCallUser" class="big-button"><spring:message code="wWGR"/></a>
         <a href="/personalInformationUser" class="big-button"><spring:message code="bK"/></a>
@@ -109,7 +112,6 @@
                         <th><spring:message code="aG"/></th>
                         <th><spring:message code="topCours"/></th>
                         <th><spring:message code="delCourse"/></th>
-
                     </tr>
                     </thead>
                     <tbody>

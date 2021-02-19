@@ -64,7 +64,6 @@
                                     <option value="Turkish"><spring:message code="trC"/></option>
                                     <option value="Russian"> <spring:message code="ruC"/></option>
                                 </form:select>
-                                <form:errors path="language"></form:errors>
                             ${courseLanguageError}
                                 <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                             </div>
@@ -78,8 +77,6 @@
                                     <option value="Advanced">Advanced</option>
                                     <option value="Interdemiade">Interdemiade</option>
                                 </form:select>
-                                <form:errors path="level"></form:errors>
-                                    ${courseLevelError}
                                 <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                             </div>
                         </div>

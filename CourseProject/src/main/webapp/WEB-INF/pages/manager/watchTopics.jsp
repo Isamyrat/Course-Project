@@ -41,9 +41,6 @@
                 </tr>
                 </thead>
                 <tbody>
-              <%--  <c:url var="editTopic" value="/editTopics">
-                    <c:param name="topicId" value="${allTopics.id}"/>
-                </c:url>--%>
                 <c:if test="${allTopics != null}">
                 <tr>
                     <td>${allTopics.text}</td>
@@ -53,11 +50,7 @@
                             <a href="/editTopics${allTopics.id}"  type="submit"
                                style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; "> <spring:message code="editT"/></a>
                         </form>
-                        <form action="${pageContext.request.contextPath}/deleteTopic" method="post">
-                            <input type="hidden" name="idTopic" value="${allTopics.id}"/>
-                            <input type="hidden" name="action" value="delete"/>
-                            <button type="submit" style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; "> <spring:message code="deleteT"/></button>
-                        </form>
+
                     </td>
                 </tr>
                 </c:if>

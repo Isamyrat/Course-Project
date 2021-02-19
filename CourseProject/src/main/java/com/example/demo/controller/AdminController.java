@@ -58,7 +58,7 @@ public class AdminController {
             return "admin/addManager";
         }
         if (!userService.saveManager(userManager)){
-            model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
+            model.addAttribute("usernameError", "Пользователь с таким именем уже существует. Пожалйста напишите другой логин!!");
             return "admin/addManager";
         }
         return "redirect:/admin";

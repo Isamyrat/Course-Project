@@ -78,6 +78,7 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
         return true;
     }
+
     public boolean saveManager(User user) {
         User userFromDB = userRepository.findByUsername(user.getUsername());
 

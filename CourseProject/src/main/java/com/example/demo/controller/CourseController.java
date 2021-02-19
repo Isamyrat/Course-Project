@@ -30,15 +30,12 @@ public class CourseController {
 
     @PostMapping("/saveCourseAddManager")
     public String saveCourseManager(@ModelAttribute("courseAdd")
-                                    @Valid Course courseForm,
-                                    BindingResult bindingResult,
+                                    Course courseForm,
                                     Model model) {
-        if(bindingResult.hasErrors()){
-            return "manager/addCourse";
-        }
+
         if(!courseService.saveCourse(courseForm)){
-            model.addAttribute("courseLevelError", "Курсы с таким уровенем и языком уже создан!");
             model.addAttribute("courseLanguageError", "Курсы с таким уровенем и языком уже создан!");
+            return "manager/addCourse";
         }
 
         return "redirect:/watchAllCoursesManager";
@@ -69,6 +66,6 @@ public class CourseController {
         if(action.equals("delete")){
             courseService.deleteByIdCourse(idCourse);
         }
-        return "manager/watchAllCoursesManager";
+        return "redirect:/watchAllCoursesManager";
     }
 }

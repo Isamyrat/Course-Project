@@ -27,7 +27,6 @@
     <form:form method="POST" action="/saveAddress" modelAttribute="addressAdd">
 
         <form:hidden path="id"/>
-
         <label style="color: #8e8e92"><spring:message code="addCount"/></label>
         <div class="user-box">
             <form:input path="country"/>
@@ -54,6 +53,7 @@
         <div class="user-box">
             <form:input path="apartment"/>
         </div>
+        ${addressError}
 
         <form:hidden path="user_address"/>
 

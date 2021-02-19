@@ -47,7 +47,7 @@ public class PersonalController {
 
     @PostMapping("/savePersonalInfos")
     public String savePersonalInfos(@ModelAttribute("personAdd")
-                                    @Valid PersonalInformation personalInformation,
+                                    PersonalInformation personalInformation,
                                     Model model) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -61,8 +61,8 @@ public class PersonalController {
         personalInformation.setUser_information(user);
 
         if (!personalInformationService.savePersonInfo(personalInformation)) {
-            model.addAttribute("personError", "Пользователь с личными данными уже существует");
-            return "user/addPersonalInformationUser";
+            model.addAttribute("personError", "Пользователь с личными данными уже существует, вы можете изменить их");
+            return "user/addpersonalInformationUser";
         }
 
         return "redirect:/personalInformationUser";

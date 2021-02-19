@@ -17,27 +17,31 @@
         <h4><a href="?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
     </div>
 </header>
-<body>
 
+<body>
 <div class="login-box">
     <h2><spring:message code="aManager"/> </h2>
     <form:form  method="POST" action="/saveUser" modelAttribute="userManager">
 
         <form:hidden path="id"/>
+
         <label style="color: #8e8e92"><spring:message code="nM"/></label>
         <div class="user-box">
             <form:input path="name"/>
         </div>
 
         <label style="color: #8e8e92"><spring:message code="sN"/></label>
-
         <div class=" user-box">
             <form:input path="surname"/>
         </div>
+
         <label style="color: #8e8e92"><spring:message code="eL"/></label>
         <div class="user-box">
             <form:input path="username"/>
+            <form:errors path="username"/>
+            ${usernameError}
         </div>
+
         <label style="color: #8e8e92"><spring:message code="eP"/></label>
         <div class="user-box">
             <form:input path="password"/>

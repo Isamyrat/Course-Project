@@ -68,7 +68,7 @@ public class CallBackController {
     }
 
     @PostMapping("/addToCourse")
-    public String addToCourse(@ModelAttribute("course") Long course) {
+    public String addToCourse(@ModelAttribute("course") Long course, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
@@ -81,7 +81,11 @@ public class CallBackController {
         callBack.setCourseCallBack(course1);
         callBack.setUserCallBack(u);
 
-        callBackService.saveCallBack(callBack);
+        if(!callBackService.saveCallBack(callBack)){
+            model.addAttribute("addToError", "Вы уже отправляли запрос на данный курс. Ожидайте ответа!!");
+            return "redirect:/watchAllCoursesManager";
+        }
+
 
         return "redirect:/personalInformationUser";
     }

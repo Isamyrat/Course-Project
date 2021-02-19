@@ -37,8 +37,10 @@ public class manager {
 
         return "manager/addTeacher";
     }
+
     @PostMapping("/saveTeacher")
-    public String saveCustomer(@ModelAttribute("userTeacher") @Valid User userTeacher, BindingResult bindingResult, Model model) {
+    public String saveCustomer(@ModelAttribute("userTeacher") @Valid User userTeacher,
+                               BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "manager/addTeacher";
         }

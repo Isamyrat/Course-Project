@@ -25,7 +25,6 @@
 <spring:message code="sN" var="sNm"/>
 <div class="container">
     <header>
-
         <h1>
             <a href="/">
 
@@ -39,26 +38,20 @@
     <form:form method="POST" modelAttribute="userForm">
         <label class="col-one-half">
             <form:input type="text" path="username" placeholder="${eLl}" cssStyle="font-size: 15px"
-                        autofocus="true"></form:input>
-            <form:errors path="username"></form:errors>
-                ${usernameError}
-                <%--  <span class="label-text">First Name</span>
-                  <input type="text" name="firstName">--%>
+                        autofocus="true"/>
+            <form:errors path="username"/>
+           ${usernameError}
         </label>
         <label class="col-one-half">
             <form:input type="password" path="password" placeholder="${ePp}" cssStyle="font-size: 15px"/>
 
-                <%--<span class="label-text">Last Name</span>
-                    <input type="text" name="lastName">--%>
         </label>
         <label>
-            <form:input type="text" path="name" placeholder="${nMM}" cssStyle="font-size: 15px"></form:input>
+            <form:input type="text" path="name" placeholder="${nMM}" cssStyle="font-size: 15px"/>
 
-                <%--<span class="label-text">Email</span>
-                    <input type="text" name="email">--%>
         </label>
         <label class="password">
-            <form:input type="text" path="surname" placeholder="${sNm}" cssStyle="font-size: 15px"></form:input>
+            <form:input type="text" path="surname" placeholder="${sNm}" cssStyle="font-size: 15px"/>
 
         </label>
 

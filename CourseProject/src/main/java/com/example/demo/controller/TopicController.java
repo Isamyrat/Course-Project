@@ -38,10 +38,12 @@ public class TopicController {
 
     @PostMapping("/saveTopicManager")
     public String saveTopicManager(@ModelAttribute("topicAdd")
-                                   @Valid Topic topicForm,
+                                  Topic topicForm,
                                    Model model) {
+
         if(!topicService.saveTopic(topicForm)) {
-            model.addAttribute("topicLL", "Данный топик уже существует можете его изменить!!");
+            model.addAttribute("topicLL", "Такого курса не существует!!");
+            model.addAttribute("topicLevel", "Данный топик уже существует можете его изменить");
             return "manager/addTopics";
         }
         return "redirect:/menuManager";
@@ -59,16 +61,6 @@ public class TopicController {
     @PostMapping("/saveEditTopic")
     public String saveEditTopic(@ModelAttribute("editTopic") Topic topic) {
         topicService.editTopic(topic);
-        return "manager/menu";
-    }
-
-    @PostMapping("/deleteTopic")
-    public String deleteTopic(@RequestParam(required = true, defaultValue = "") Long idTopic,
-                              @RequestParam(required = true, defaultValue = "") String action) {
-
-        if(action.equals("delete")){
-            topicService.deleteTopic(idTopic);
-        }
         return "manager/menu";
     }
 }
