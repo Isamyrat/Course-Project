@@ -33,6 +33,7 @@
                         <div class="form-group">
                             <label><spring:message code="nOG"/></label>
                             <form:input type="text" path="number_group"/>
+                                ${groupError}
                         </div>
                     </div>
                     <form:hidden path="userGroup"/>
@@ -43,9 +44,13 @@
                             <label><spring:message code="select"/></label>
                             <div class="form-select">
                                 <form:select path="user_teacher">
+                                    <option value=""></option>
                                     <c:forEach items="${users}" var="user">
-                                        <option value=""></option>
-                                        <option value="${user.id}">${user.surname}</option>
+                                        <c:forEach items="${user.roles}" var="role">
+                                            <c:if test="${role.name=='ROLE_TEACHER'}">
+                                                <option value="${user.id}">${user.surname}</option>
+                                            </c:if>
+                                        </c:forEach>
                                     </c:forEach>
                                 </form:select>
                                 <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
@@ -59,8 +64,8 @@
                             <label><spring:message code="select"/></label>
                             <div class="form-select">
                                 <form:select path="course_group">
+                                    <option value=""></option>
                                     <c:forEach items="${courses}" var="course">
-                                        <option value=""></option>
                                         <option value="${course.id}">${course.level} - ${course.language}</option>
                                     </c:forEach>
                                 </form:select>

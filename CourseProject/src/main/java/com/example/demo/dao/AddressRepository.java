@@ -17,9 +17,6 @@ public interface AddressRepository  extends CrudRepository<Address,Long> {
     @Query("select a from  Address  a where a.user_address.id = :userId")
     List<Address> findByUser(@Param("userId")Long userId);
 
-
-    Address findByCountryAndCityAndDistrictAndStreetAndHouseAndApartment(String country,String city,String district,String street,String house,String apartment);
-
-    Address findByCountryAndCityAndDistrictAndStreetAndHouse(String country,String city,String district,String street,String house);
-
+    @Query("select a from  Address  a where a.user_address.id = :userId and a.country = :country and a.city = :city and a.district = :district and a.street = :street and a.house = :house and  a.apartment = :apartment")
+    Address findByAddress(@Param("userId")Long userId, @Param("country") String country, @Param("city") String city, @Param("district") String district, @Param("street") String street,@Param("house") String house,@Param("apartment") String apartment);
 }

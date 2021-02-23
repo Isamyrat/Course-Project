@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Course;
 import com.example.demo.model.Group;
 import com.example.demo.model.User;
 import com.example.demo.service.CourseService;
@@ -39,7 +38,7 @@ public class GroupController {
                                   Model model) {
 
         model.addAttribute("watchUsers", groupService.findById(idGroup))
-            .addAttribute("idGroup", idGroup);
+                .addAttribute("idGroup", idGroup);
 
         return "manager/watchGroupUsers";
     }
@@ -59,7 +58,7 @@ public class GroupController {
 
         User user = userService.getUser(userDetails.getUsername());
 
-        model.addAttribute("userGroup",groupService.findByUser(user.getId()));
+        model.addAttribute("userGroup", groupService.findByUser(user.getId()));
         return "manager/watchGroup";
     }
 
@@ -78,25 +77,20 @@ public class GroupController {
     public String addGroup(Model model) {
 
         model.addAttribute("users", userService.allUsers())
-            .addAttribute("courses", courseService.allCourses())
-            .addAttribute("group", new Group());
+                .addAttribute("courses", courseService.allCourses())
+                .addAttribute("group", new Group());
 
         return "manager/addGroup";
     }
 
-
     @PostMapping("/saveGroupManager")
-    public String saveGroupManager(@ModelAttribute ("group") Group group)
-    {
+    public String saveGroupManager(@ModelAttribute("group") Group group, Model model) {
 
-        Course course = courseService.courseById(group.getCourse_group().getId());
+        if (!groupService.saveGroup(group)) {
+            model.addAttribute("groupError", "Такой номер группы уже существует измените его пожалуйста!!!");
+            return "manager/addGroup";
+        }
 
-        User user  = userService.findUserById(group.getUser_teacher().getId());
-
-        group.setCourse_group(course);
-        group.setUser_teacher(user);
-
-        groupService.saveGroup(group);
         return "redirect:/watchGroup";
     }
 
@@ -104,13 +98,10 @@ public class GroupController {
     public String editGroupManager(@PathVariable("groupId") Long groupId,
                                    Model model) {
 
-        model.addAttribute("group",groupService.findByNumberOfGroup(groupId))
-            .addAttribute("groupId", groupId);
+        model.addAttribute("group", groupService.findByNumberOfGroup(groupId))
+                .addAttribute("groupId", groupId);
         return "manager/editGroupManager";
     }
-
-
-
 
     @PostMapping("/saveGroupMan")
     public String saveGroupMan(@ModelAttribute("groupEdit") Group group) {
@@ -118,11 +109,11 @@ public class GroupController {
         return "redirect:/watchGroup";
     }
 
-    @RequestMapping(value = "/deleteStudent", method = RequestMethod.POST)
-    public String  deleteStudent(@RequestParam(required = true, defaultValue = "" ) Long userId,
-                              @RequestParam(required = true, defaultValue = "" ) String action) {
+    @PostMapping("/deleteStud")
+    public String deleteStudent(@RequestParam(required = true, defaultValue = "") Long userId,
+                                @RequestParam(required = true, defaultValue = "") String action) {
 
-        if (action.equals("delete")){
+        if (action.equals("delete")) {
             groupService.deleteUser(userId);
         }
         return "redirect:/watchGroup";

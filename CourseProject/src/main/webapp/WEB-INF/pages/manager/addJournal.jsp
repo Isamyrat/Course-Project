@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html>
@@ -28,32 +29,32 @@
                 <img src="../css/images/signup-img.jpg" alt="">
             </div>
             <div class="signup-form">
-                <form method="GET" class="register-form" id="register-form" action="/saveCourseManager">
+                <form:form method="POST" modelAttribute="journalAdd" class="register-form" id="register-form" action="/saveJournalManager">
                     <h2><spring:message code="enterDatas"/></h2>
                     <div class="form-row">
-                        <div class="form-group">
+                        <%--<div class="form-group">
                             <label for="name"><spring:message code="upsent"/></label>
                             <input type="text" name="name" id="name" required/>
-                        </div>
+                        </div>--%>
                         <div class="form-group">
-                            <label for="father_name"><spring:message code="date"/></label>
-                            <input type="text" name="father_name" id="father_name" required/>
+                            <label><spring:message code="date"/></label>
+                            <form:input type="text" path="date"/>
                         </div>
                     </div>
-                    <div class="form-group">
+                   <%-- <div class="form-group">
                         <label for="Days"><spring:message code="point"/></label>
                         <input type="text" name="Days" id="Days" required/>
-                    </div>
+                    </div>--%>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="city"><spring:message code="select"/></label>
+                            <label><spring:message code="select"/></label>
                             <div class="form-select">
-                                <select name="city" id="city">
-                                    <option value="">873304</option>
-                                    <option value="">874304</option>
-                                    <option value="">874404</option>
-                                    <option value="">872304</option>
-                                </select>
+                                <form:select path="group_journal">
+                                    <c:forEach items="${groups}" var="group">
+                                    <option value=""></option>
+                                    <option value="${group.id}">${group.number_group}</option>
+                                    </c:forEach>
+                                </form:select>
                                 <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                             </div>
                         </div>
@@ -61,7 +62,7 @@
                     <div class="form-submit">
                         <input type="submit" value="${save}" class="submit" name="submit" id="submit">
                     </div>
-                </form>
+                </form:form>
 
                 <div class="form-submit">
                     <form action="/menuManager">

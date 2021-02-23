@@ -19,7 +19,7 @@ public class Group {
 
     private String  status;
 
-    @OneToOne(mappedBy = "group_journal")
+    @OneToOne(mappedBy = "group_journal", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Journal journal;
 
     @OneToOne(fetch = FetchType.EAGER)
@@ -30,6 +30,9 @@ public class Group {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_user")
     Set<User> userGroup;
+
+    public Group() {
+    }
 
 
     public User getUser_teacher() {

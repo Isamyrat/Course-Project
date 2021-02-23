@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.dao.CourseRepository;
 import com.example.demo.dao.GroupRepository;
 import com.example.demo.dao.UserRepository;
+import com.example.demo.model.CallBack;
 import com.example.demo.model.Course;
 import com.example.demo.model.Group;
 import com.example.demo.model.User;
@@ -23,6 +24,11 @@ public class GroupService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private CallBackService callBackService;
 
     public Group findById(Long groupId) {
         Optional<Group> group = groupRepository.findById(groupId);
@@ -35,6 +41,10 @@ public class GroupService {
         return groupRepository.findByStatus(status);
     }
 
+    public List<Group> findAll() {
+
+        return groupRepository.findAll();
+    }
     public List<Group> findByStatusOne() {
 
         String status = "Закончилась";
@@ -46,6 +56,13 @@ public class GroupService {
     }
 
     public Boolean saveGroup(Group group) {
+
+        Group group1 = groupRepository.findByNumber(group.getNumber_group());
+
+        if(group1 != null){
+            return false;
+        }
+
         User user = userRepository.findByUser(group.getUser_teacher().getId());
 
         Course course = courseRepository.findByCourseId(group.getCourse_group().getId());
@@ -53,6 +70,8 @@ public class GroupService {
         group.setStatus("В ожидании");
         group.setCourse_group(course);
         group.setUser_teacher(user);
+
+
         groupRepository.save(group);
         return true;
     }
@@ -61,53 +80,36 @@ public class GroupService {
         return groupRepository.save(group);
     }
 
-    public void saveUser(Group group) {
-/*        System.out.println(group.getCourse_group()  + " " + group.getUserGroup());
+    public Boolean saveUser(CallBack callBack) {
 
-        Course courses = courseRepository.findByCourseId(group.getCourse_group().getId());
-        System.out.println(group.getCourse_group()  + " " + group.getUserGroup());
+        Group group = new Group();
+        User user = userService.findUserById(callBack.getUserCallBack().getId());
 
-        User userGroup = new User();
+        Course course = callBackService.findCourse(callBack.getCourseCallBack().getId());
 
 
-        for (User user1 : group.getUserGroup()) {
-            userGroup.setId(user1.getId());
+        List<Group> groupList = groupRepository.findForAdd(course.getId(),"В ожидании");
+
+        if(groupList.size() == 0){
+            return false;
         }
-        System.out.println(group.getCourse_group()  + " " + group.getUserGroup());
 
-        Set<User> userSet = new HashSet<>();
-        User userGroups = userRepository.findByUser(userGroup.getId());
-        System.out.println(group.getCourse_group()  + " " + group.getUserGroup());
+        for (Group group1: groupList) {
+            group = group1;
+            break;
+        }
 
-        userSet.add(userGroups);
+        Set<User> users = group.getUserGroup();
 
-        Group group1  = groupRepository.findByCourse(courses.getId());
-
-
-        System.out.println(group.getCourse_group()  + " " + group.getUserGroup());
-
-        group1.setCourse_group(courses);
-        group1.setUserGroup(userSet);*/
-        System.out.println(group.getCourse_group()  + " " + group.getUserGroup());
-        groupRepository.save(group);/*
-        Course course = courseRepository.findByCourseId(callBack.getCourseCallBack().getId());
-
-        Set<User> users = Collections.singleton(callBack.getUserCallBack());
-
-        group.setCourse_group(course);
+        users.add(user);
 
         group.setUserGroup(users);
+        group.setCourse_group(course);
 
-        Course course1 = courseRepository.findByCourseId(group.getCourse_group().getId());
-
-        Group group1 = groupRepository.findByCourse(course1.getId());
-
-        group1.setUserGroup(users);
-        group1.setCourse_group(course);
-        groupRepository.save(group1);
-
-        return true;*/
+        groupRepository.save(group);
+        return true;
     }
+
 
     public Group findByUser(Long id) {
         Group groupUser = new Group();
@@ -124,7 +126,12 @@ public class GroupService {
 
     public boolean deleteUser(Long userId) {
         Group groupUser = new Group();
+
+        User user = userService.findUserById(userId);
+
         List<Group> groups = groupRepository.findAll();
+
+
         for (Group group : groups) {
             for (User user1 : group.getUserGroup()) {
                 if (user1.getId().equals(userId)) {
@@ -132,22 +139,20 @@ public class GroupService {
                 }
             }
         }
-        Set<User> users = groupRepository.user(groupUser.getId());
+        Set<User> userSet = groupUser.getUserGroup();
 
-        users.clear();
-        groupUser.setUserGroup(users);
+        System.out.println(userSet);
+
+        userSet.removeIf(s -> s.getId().equals(userId));
+
+        groupUser.setUserGroup(userSet);
         groupRepository.save(groupUser);
 
         return true;
     }
 
-
     public List<Group> findByTeacher(Long id) {
         return groupRepository.findByTeacher(id);
-    }
-
-    public Group findByCourseS(Long id) {
-        return groupRepository.findByCourse(id);
     }
 
 }

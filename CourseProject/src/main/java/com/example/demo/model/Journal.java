@@ -9,8 +9,8 @@ public class Journal {
     @GeneratedValue( strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_group", referencedColumnName = "id")
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_group", referencedColumnName = "id",nullable = false)
     private Group group_journal;
 
     private String date;

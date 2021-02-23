@@ -18,19 +18,17 @@ public class AddressService {
     @Autowired
     private UserRepository userRepository;
 
-    public Address findById(Long userId){
+    public Address findById(Long userId) {
         Optional<Address> address = addressRepository.findById(userId);
         return address.orElse(new Address());
     }
 
-    public Boolean saveAddress(Address address){
+    public Boolean saveAddress(Address address) {
         User user = userRepository.findByUser(address.getUser_address().getId());
 
-        Address address1 = addressRepository.findByCountryAndCityAndDistrictAndStreetAndHouseAndApartment(address.getCountry(),address.getCity(),address.getDistrict(),address.getStreet(),address.getHouse(),address.getApartment());
+        Address address1 = addressRepository.findByAddress(user.getId(), address.getCountry(), address.getCity(), address.getDistrict(), address.getStreet(), address.getHouse(), address.getApartment());
 
-        Address address2 = addressRepository.findByCountryAndCityAndDistrictAndStreetAndHouse(address.getCountry(),address.getCity(),address.getDistrict(),address.getStreet(),address.getHouse());
-
-        if(address1 != null || address2 != null){
+       if (address1 != null) {
             return false;
         }
 
@@ -39,11 +37,11 @@ public class AddressService {
         return true;
     }
 
-    public List<Address> addressFind(Long userId){
+    public List<Address> addressFind(Long userId) {
         return addressRepository.findByUser(userId);
     }
 
-    public Address editAddress(Address address){
+    public Address editAddress(Address address) {
         return addressRepository.save(address);
     }
 

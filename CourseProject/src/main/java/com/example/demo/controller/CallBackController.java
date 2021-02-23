@@ -85,24 +85,17 @@ public class CallBackController {
     }
 
     @PostMapping("/saveApprove")
-    public String saveApprove(@ModelAttribute("editCallBack") CallBack editCallBack) {
+    public String saveApprove(@ModelAttribute("editCallBack") CallBack editCallBack,
+                                Model model) {
 
-        User user = userService.findUserById(editCallBack.getUserCallBack().getId());
-
-        Course course = callBackService.findCourse(editCallBack.getCourseCallBack().getId());
-
-        Group group = groupService.findByCourseS(course.getId());
-
-        Set<User> users = new HashSet<>();
-
-        users.add(user);
-
-        group.setUserGroup(users);
-        group.setCourse_group(course);
 
         if (editCallBack.getStatus().equals("Approve")) {
             editCallBack.setStatus("Одобрено");
-            groupService.saveUser(group);
+            if (!groupService.saveUser(editCallBack)) {
+                model.addAttribute("addToError", "Данной группы еще не существует добавьте его сначала");
+                return "redirect:/watchGroup";
+            }
+
         } else if (editCallBack.getStatus().equals("NotApprove")) {
             editCallBack.setStatus("Отказано");
         }

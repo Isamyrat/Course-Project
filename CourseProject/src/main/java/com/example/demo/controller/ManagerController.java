@@ -78,32 +78,6 @@ public class ManagerController {
         return "redirect:/watchTeacher";
     }
 
-    @GetMapping("/watchJournalManager")
-    public String watchJournalManager() {
-        return "manager/watchJournalManager";
-    }
-
-    @GetMapping("/addJournal")
-    public String addJournal() {
-        return "manager/addJournal";
-    }
-
-
-    @GetMapping("/saveJournalManager")
-    public String saveJournalManager() {
-        return "manager/watchJournalManager";
-    }
-
-
-    @GetMapping("/editJournalManager")
-    public String editJournalManager() {
-        return "manager/editJournal";
-    }
-
-    @GetMapping("/saveJournalMan")
-    public String saveJournalMan() {
-        return "manager/watchJournalManager";
-    }
 
 }
 
