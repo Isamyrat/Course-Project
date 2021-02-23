@@ -10,8 +10,6 @@
     <title><spring:message code="titleStud"/></title>
 </head>
 
-<html>
-
 <header>
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
@@ -52,7 +50,7 @@
                             <input type="hidden" name="userId" value="${users.id}"/>
                             <input type="hidden" name="groupNumber" value="${watchUsers.number_group}"/>
                             <input type="hidden" name="action" value="delete"/>
-                            <button type="submit" style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
+                            <button type="submit" style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 20px">
                                 <spring:message code="dU"/></button>
                         </form>
                     </td>

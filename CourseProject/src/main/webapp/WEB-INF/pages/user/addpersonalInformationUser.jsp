@@ -9,8 +9,6 @@
     <title><spring:message code="adPI"/></title>
 </head>
 
-<html>
-
 <header>
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
@@ -26,17 +24,17 @@
 
         <form:hidden path="id"/>
 
-        <label style="color: #8e8e92"><spring:message code="etAg"/></label>
+        <label class="label-color"><spring:message code="etAg"/></label>
         <div class="user-box">
             <form:input path="age" />
         </div>
 
-        <label style="color: #8e8e92"><spring:message code="etGe"/></label>
+        <label class="label-color"><spring:message code="etGe"/></label>
         <div class=" user-box">
             <form:input path="gender"/>
         </div>
 
-        <label style="color: #8e8e92"><spring:message code="etNum"/></label>
+        <label class="label-color"><spring:message code="etNum"/></label>
         <div class="user-box">
             <form:input path="number"/>
         </div>

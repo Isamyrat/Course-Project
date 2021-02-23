@@ -9,7 +9,6 @@
     <title><spring:message code="editJournal"/></title>
 </head>
 
-<html>
 <header>
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
@@ -27,7 +26,7 @@
 --%>
         <form:hidden path="id"/>
 
-        <label><spring:message code="studentT"/></label>
+        <label class="label-color"><spring:message code="studentT"/></label>
         <div class="user-box">
             <form:input type="text" path="date"/>
         </div>

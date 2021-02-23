@@ -28,17 +28,22 @@
             <form:input type="text" path="number_group"/>
         </div>
 
-        <label class="label-color"><spring:message code="select"/></label>
-        <form:select path="status">
-            <option value=""></option>
-            <option value="В ожидании"><spring:message code="sGroup"/></option>
-            <option value="Началось"><spring:message code="sGrup"/></option>
-            <option value="Закончилась"><spring:message code="sGrp"/></option>
-        </form:select>>
 
+        <label class="label-color"><spring:message code="select"/></label>
+        <form:select path="user_teacher">
+            <option value=""></option>
+            <c:forEach items="${teacher}" var="teacher">
+                <c:forEach items="${teacher.roles}" var="role">
+                    <c:if test="${role.name=='ROLE_TEACHER'}">
+                        <option value="${teacher.id}">${teacher.surname}</option>
+                    </c:if>
+                </c:forEach>
+            </c:forEach>
+        </form:select>
+
+        <form:hidden path="status"/>
         <form:hidden path="userGroup"/>
         <form:hidden path="course_group"/>
-        <form:hidden path="user_teacher"/>
 
         <button style="background-color: #141e30">
             <span></span>

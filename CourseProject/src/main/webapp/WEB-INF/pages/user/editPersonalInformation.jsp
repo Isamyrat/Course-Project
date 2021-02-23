@@ -10,8 +10,6 @@
     <title><spring:message code="ePA"/></title>
 </head>
 
-<html>
-
 <header>
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
@@ -27,18 +25,20 @@
         <form:form  method="POST" action="/saveAdmins" modelAttribute="userEdit">
 
             <form:hidden path="id"/>
-            <label style="color: #8e8e92"><spring:message code="nM"/></label>
+
+            <label class="label-color"><spring:message code="nM"/></label>
             <div class="user-box">
                 <form:input path="name"/>
             </div>
 
-            <label style="color: #8e8e92"><spring:message code="sN"/></label>
-
+            <label class="label-color"><spring:message code="sN"/></label>
             <div class=" user-box">
                 <form:input path="surname"/>
             </div>
+
             <form:hidden path="username"/>
             <form:hidden path="password"/>
+            <p>
             <button  style="background-color: #141e30">
                 <span></span>
                 <span></span>
@@ -47,6 +47,7 @@
                 <spring:message code="save"/>
             </button>
             </p>
+            <p>
             <a href="/personalInformationUser">
                 <span></span>
                 <span></span>
@@ -64,18 +65,19 @@
         <form:form  method="POST" action="/saveUsers" modelAttribute="userEdit">
 
             <form:hidden path="id"/>
-            <label style="color: #8e8e92"><spring:message code="nM"/></label>
+            <label class="label-color"><spring:message code="nM"/></label>
             <div class="user-box">
                 <form:input path="name"/>
             </div>
 
-            <label style="color: #8e8e92"><spring:message code="sN"/></label>
-
+            <label class="label-color"><spring:message code="sN"/></label>
             <div class=" user-box">
                 <form:input path="surname"/>
             </div>
+
             <form:hidden path="username"/>
             <form:hidden path="password"/>
+            <p>
             <button  style="background-color: #141e30">
                 <span></span>
                 <span></span>
@@ -84,6 +86,7 @@
                 <spring:message code="save"/>
             </button>
             </p>
+            <p>
             <a href="/personalInformationUser">
                 <span></span>
                 <span></span>
@@ -101,18 +104,19 @@
         <form:form  method="POST" action="/saveManagers" modelAttribute="userEdit">
 
             <form:hidden path="id"/>
-            <label style="color: #8e8e92"><spring:message code="nM"/></label>
+
+            <label class="label-color"><spring:message code="nM"/></label>
             <div class="user-box">
                 <form:input path="name"/>
             </div>
 
-            <label style="color: #8e8e92"><spring:message code="sN"/></label>
-
+            <label class="label-color"><spring:message code="sN"/></label>
             <div class=" user-box">
                 <form:input path="surname"/>
             </div>
             <form:hidden path="username"/>
             <form:hidden path="password"/>
+            <p>
             <button  style="background-color: #141e30">
                 <span></span>
                 <span></span>
@@ -121,6 +125,7 @@
                 <spring:message code="save"/>
             </button>
             </p>
+            <p>
             <a href="/personalInformationUser">
                 <span></span>
                 <span></span>
@@ -138,18 +143,19 @@
         <form:form  method="POST" action="/saveTeacherses" modelAttribute="userEdit">
 
             <form:hidden path="id"/>
-            <label style="color: #8e8e92"><spring:message code="nM"/></label>
+            <label class="label-color"><spring:message code="nM"/></label>
             <div class="user-box">
                 <form:input path="name"/>
             </div>
 
-            <label style="color: #8e8e92"><spring:message code="sN"/></label>
-
+            <label class="label-color"><spring:message code="sN"/></label>
             <div class=" user-box">
                 <form:input path="surname"/>
             </div>
+
             <form:hidden path="username"/>
             <form:hidden path="password"/>
+            <p>
             <button  style="background-color: #141e30">
                 <span></span>
                 <span></span>
@@ -158,6 +164,7 @@
                 <spring:message code="save"/>
             </button>
             </p>
+            <p>
             <a href="/personalInformationUser">
                 <span></span>
                 <span></span>

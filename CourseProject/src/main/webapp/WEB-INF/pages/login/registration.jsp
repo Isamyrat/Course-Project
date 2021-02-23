@@ -70,6 +70,7 @@
 
 <style>
     <%@include file ="../css/internationalize.css"%>
+    <%@include file ="../css/button.css"%>
     <%@include file ="../css/registration.css"%>
     <%@include file ="../css/js/index.js"%>
 </style>

@@ -10,7 +10,6 @@
     <title><spring:message code="titleGroup"/></title>
 </head>
 
-<html>
 <header>
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
@@ -40,6 +39,7 @@
                         <th><spring:message code="dOG"/></th>
                         <th><spring:message code="sG"/></th>
                         <th><spring:message code="aG"/></th>
+                        <th><spring:message code="aG"/></th>
 
                     </tr>
                     </thead>
@@ -64,8 +64,17 @@
                                     <br>
                                     <form>
                                         <a href="/editGroupManager${groups.number_group}" type="submit"
-                                           style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 25px ">
+                                           style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
                                             <spring:message code="eG"/></a>
+                                    </form>
+
+                                </td>
+                                <td>
+
+                                    <form>
+                                        <a href="/editGroupTeacher${groups.number_group}" type="submit"
+                                           style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
+                                            <spring:message code="eTG"/></a>
                                     </form>
 
                                 </td>
@@ -80,6 +89,7 @@
             </form:form>
         </table>
         <a href="/watchGroupArhiv" class="big-button"><spring:message code="wAG"/></a>
+        <a href="/watchGroupWaiting" class="big-button"><spring:message code="wAW"/></a>
         <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
     </div>
 </sec:authorize>
@@ -142,9 +152,7 @@
                 <c:if test="${userGroup != null}">
 
                     <c:forEach items="${userGroup}" var="teacher">
-                        <%-- <c:url var="watchUsers" value="/watchGroupUsers">
-                             <c:param name="idGroup" value="${teacher.id}"/>
-                         </c:url>--%>
+
                         <tr>
                             <td>${teacher.number_group}</td>
                             <td>${teacher.course_group.language}</td>

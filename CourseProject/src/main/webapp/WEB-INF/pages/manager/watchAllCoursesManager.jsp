@@ -10,7 +10,6 @@
     <title><spring:message code="wCourse"/></title>
 </head>
 
-<html>
 <body>
 <header>
     <div class="localize">

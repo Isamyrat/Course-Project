@@ -33,6 +33,14 @@ public class GroupController {
         return "manager/watchGroup";
     }
 
+    @GetMapping("/watchGroupWaiting")
+    public String watchGroupWaiting(Model model) {
+
+        model.addAttribute("watchGroupWaiting", groupService.findByStatusWaiting());
+
+        return "manager/watchGroupWaiting";
+    }
+
     @GetMapping("/watchGroupUsers{idGroup}")
     public String watchGroupUsers(@PathVariable("idGroup") Long idGroup,
                                   Model model) {
@@ -99,9 +107,17 @@ public class GroupController {
                                    Model model) {
 
         model.addAttribute("group", groupService.findByNumberOfGroup(groupId))
-                .addAttribute("groupId", groupId)
-                .addAttribute("teacher", userService.allUsers());
+                .addAttribute("groupId", groupId);
         return "manager/editGroupManager";
+    }
+
+    @GetMapping("/editGroupTeacher{groupId}")
+    public String editGroupTeacher(@PathVariable("groupId") Long groupId,
+                                   Model model) {
+
+        model.addAttribute("group", groupService.findByNumberOfGroup(groupId))
+                .addAttribute("teacher", userService.allUsers());
+        return "manager/editGroupTeacher";
     }
 
     @PostMapping("/saveGroupMan")

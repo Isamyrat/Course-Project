@@ -8,7 +8,6 @@
     <meta charset="utf-8">
     <title><spring:message code="wCall"/></title>
 </head>
-<html>
 
 <header>
     <div class="localize">

@@ -29,9 +29,6 @@
         <thead>
         <tr>
             <th><spring:message code="idT"/></th>
-            <%--
-                        <th><spring:message code="lN"/></th>
-                        <th><spring:message code="pW"/></th>--%>
             <th><spring:message code="nMU"/></th>
             <th><spring:message code="sNUS"/></th>
             <th><spring:message code="rU"/></th>
@@ -43,9 +40,6 @@
             <c:forEach items="${allUsers}" var="user">
                 <tr>
                     <td>${user.id}</td>
-                        <%--
-                                        <td>${user.username}</td>
-                                        <td>${user.password}</td>--%>
                     <td>${user.name}</td>
                     <td>${user.surname}</td>
                     <td>

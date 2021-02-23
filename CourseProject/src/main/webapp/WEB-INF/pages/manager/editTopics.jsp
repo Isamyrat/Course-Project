@@ -9,8 +9,6 @@
     <title><spring:message code="editT"/></title>
 </head>
 
-<html>
-
 <header>
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
@@ -26,12 +24,12 @@
 
         <form:hidden path="id"/>
 
-        <label><spring:message code="addRules"/></label>
+        <label class="label-color"><spring:message code="addRules"/></label>
         <div class="user-box">
             <form:input type="text" path="rules"/>
         </div>
 
-        <label><spring:message code="addText"/></label>
+        <label class="label-color"><spring:message code="addText"/></label>
         <div class="user-box">
             <form:input type="text" path="text"/>
         </div>

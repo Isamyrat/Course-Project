@@ -37,6 +37,12 @@ public class GroupService {
 
     public List<Group> findByStatus() {
 
+        String status = "Началось";
+        return groupRepository.findByStatus(status);
+    }
+
+    public List<Group> findByStatusWaiting() {
+
         String status = "В ожидании";
         return groupRepository.findByStatus(status);
     }

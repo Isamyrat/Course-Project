@@ -10,13 +10,11 @@
     <title> <spring:message code="peronalInfo"/></title>
 </head>
 
-<html>
-
 <header>
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
         <a href="/personalInformationUsers${personId}?lang=en" class="big-button"><spring:message code="app.en"/></a>
-        <a href="/personalInformationUsers${personId}?lang=ru" class="big-button"><spring:message code="app.en"/></a>
+        <a href="/personalInformationUsers${personId}?lang=ru" class="big-button"><spring:message code="app.ru"/></a>
     </div>
 </header>
 <body>

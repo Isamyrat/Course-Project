@@ -9,8 +9,6 @@
     <title><spring:message code="eCM"/></title>
 </head>
 
-<html>
-
 <header>
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
@@ -26,27 +24,27 @@
 
         <form:hidden path="id"/>
 
-        <label><spring:message code="p"/></label>
+        <label class="label-color"><spring:message code="p"/></label>
         <div class="user-box">
             <form:input  path="price"/>
         </div>
 
-        <label><spring:message code="oTGW"/></label>
+        <label class="label-color"><spring:message code="oTGW"/></label>
         <div class="user-box">
             <form:input type="text" path="time"/>
         </div>
 
-        <label><spring:message code="oTDW"/></label>
+        <label class="label-color"><spring:message code="oTDW"/></label>
         <div class="user-box">
             <form:input type="text"  path="days"/>
         </div>
 
-        <label><spring:message code="dOC"/></label>
+        <label class="label-color"><spring:message code="dOC"/></label>
         <div class="user-box">
             <form:input type="text" path="start_date"/>
         </div>
 
-        <label><spring:message code="dOTC"/></label>
+        <label class="label-color"><spring:message code="dOTC"/></label>
         <div class="user-box">
             <form:input type="text" path="duration"/>
         </div>

@@ -9,8 +9,6 @@
     <title><spring:message code="eCB"/></title>
 </head>
 
-<html>
-
 <header>
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
@@ -28,7 +26,7 @@
 
         <form:hidden path="callBackDate"/>
 
-
+        <label class="label-color"><spring:message code="select"/></label>
         <form:select path="status">
             <option value=""></option>
             <option value="Approve"><spring:message code="aCa"/></option>

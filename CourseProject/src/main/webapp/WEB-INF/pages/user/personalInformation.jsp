@@ -10,7 +10,6 @@
     <title>Персональный аккаунт</title>
 </head>
 
-<html>
 <header>
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
@@ -40,12 +39,6 @@
                 </thead>
                 <c:if test="${userId != null}">
                     <tbody>
-
-                   <%-- <c:url var="addPerson" value="/addPersonalInformationUser">
-                    </c:url>
-
-                    <c:url var="addAddress" value="/addAddressUser">
-                    </c:url>--%>
 
                     <tr>
                         <td>${userId.name}</td>

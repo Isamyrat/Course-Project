@@ -8,7 +8,6 @@
     <title><spring:message code="mA"/></title>
 </head>
 
-<html>
 <header>
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>

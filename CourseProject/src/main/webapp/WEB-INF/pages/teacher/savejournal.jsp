@@ -8,7 +8,6 @@
     <title><spring:message code="editJournal"/></title>
 </head>
 
-<html>
 <header>
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
@@ -20,22 +19,26 @@
 
 <div class="login-box" >
     <h2><spring:message code="addNewPoint"/></h2>
-    <form >
+    <form>
+
         <div class="user-box">
             <input type="text" name="" required="">
-            <label><spring:message code="date"/></label>
+            <label class="label-color"><spring:message code="date"/></label>
         </div>
+
         <div class="user-box">
             <input type="text" name="" required="">
-            <label><spring:message code="studentT"/></label>
+            <label class="label-color"><spring:message code="studentT"/></label>
         </div>
+
         <div class="user-box">
             <input type="text" name="" required="">
-            <label><spring:message code="point"/></label>
+            <label class="label-color"><spring:message code="point"/></label>
         </div>
+
         <div class="user-box">
             <input type="text" name="" required="">
-            <label><spring:message code="upsent"/></label>
+            <label class="label-color"><spring:message code="upsent"/></label>
         </div>
         <a href="/saveJournal">
             <span></span>

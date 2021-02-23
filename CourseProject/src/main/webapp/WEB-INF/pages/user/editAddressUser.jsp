@@ -9,8 +9,6 @@
     <title><spring:message code="editAddress"/></title>
 </head>
 
-<html>
-
 <header>
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
@@ -25,29 +23,32 @@
 
         <form:hidden path="id"/>
 
-        <label style="color: #8e8e92"><spring:message code="addCount"/></label>
+        <label class="label-color"><spring:message code="addCount"/></label>
         <div class="user-box">
             <form:input path="country"/>
         </div>
 
-        <label style="color: #8e8e92"><spring:message code="addCity"/></label>
+        <label class="label-color"><spring:message code="addCity"/></label>
         <div class=" user-box">
             <form:input path="city"/>
         </div>
 
-        <label style="color: #8e8e92"><spring:message code="addD"/></label>
+        <label class="label-color"><spring:message code="addD"/></label>
         <div class="user-box">
             <form:input path="district"/>
         </div>
-        <label style="color: #8e8e92"><spring:message code="addS"/></label>
+
+        <label class="label-color"><spring:message code="addS"/></label>
         <div class="user-box">
             <form:input path="street"/>
         </div>
-        <label style="color: #8e8e92"><spring:message code="addH"/></label>
+
+        <label class="label-color"><spring:message code="addH"/></label>
         <div class="user-box">
             <form:input path="house"/>
         </div>
-        <label style="color: #8e8e92"><spring:message code="addA"/></label>
+
+        <label class="label-color"><spring:message code="addA"/></label>
         <div class="user-box">
             <form:input path="apartment"/>
         </div>

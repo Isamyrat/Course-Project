@@ -9,7 +9,6 @@
     <title><spring:message code="adTeach"/></title>
 </head>
 
-<html>
 <header>
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
@@ -26,23 +25,22 @@
 
         <form:hidden path="id"/>
 
-        <label style="color: #8e8e92"><spring:message code="nM"/></label>
+        <label class="label-color"><spring:message code="nM"/></label>
         <div class="user-box">
             <form:input path="name"/>
         </div>
 
-        <label style="color: #8e8e92"><spring:message code="sN"/></label>
-
+        <label class="label-color"><spring:message code="sN"/></label>
         <div class=" user-box">
             <form:input path="surname"/>
         </div>
 
-        <label style="color: #8e8e92"><spring:message code="eL"/></label>
+        <label class="label-color"><spring:message code="eL"/></label>
         <div class="user-box">
             <form:input path="username"/>
         </div>
 
-        <label style="color: #8e8e92"><spring:message code="eP"/></label>
+        <label class="label-color"><spring:message code="eP"/></label>
         <div class="user-box">
             <form:input path="password"/>
             <form:errors path="username"/>
