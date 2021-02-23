@@ -48,10 +48,6 @@
 
                         <c:forEach items="${watchGroups}" var="groups">
 
-                            <%--<c:url var="editGroup" value="/editGroupManager">
-                                <c:param name="idGroup" value="${groups.id}"/>
-                            </c:url>--%>
-
                             <tr>
                                 <td>${groups.number_group}</td>
                                 <td>${groups.user_teacher.surname}</td>

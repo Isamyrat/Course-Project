@@ -116,7 +116,7 @@ public class GroupService {
         List<Group> groups = groupRepository.findAll();
         for (Group group : groups) {
             for (User user1 : group.getUserGroup()) {
-                if (user1.getId().equals(id)) {
+                if(user1.getId().equals(id)) {
                     groupUser = group;
                 }
             }
@@ -124,31 +124,19 @@ public class GroupService {
         return groupUser;
     }
 
-    public boolean deleteUser(Long userId) {
-        Group groupUser = new Group();
-
+    public void deleteUser(Long userId, Long groupNumber){
+        Group groupUser = groupRepository.findByNumber(groupNumber);
         User user = userService.findUserById(userId);
-
-        List<Group> groups = groupRepository.findAll();
-
-
-        for (Group group : groups) {
-            for (User user1 : group.getUserGroup()) {
-                if (user1.getId().equals(userId)) {
-                    groupUser = group;
-                }
-            }
-        }
         Set<User> userSet = groupUser.getUserGroup();
-
-        System.out.println(userSet);
+/*
 
         userSet.removeIf(s -> s.getId().equals(userId));
+*/
 
+        userSet.remove(user);
         groupUser.setUserGroup(userSet);
-        groupRepository.save(groupUser);
 
-        return true;
+        groupRepository.save(groupUser);
     }
 
     public List<Group> findByTeacher(Long id) {

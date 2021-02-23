@@ -30,14 +30,29 @@
             <form:input type="text" path="number_group"/>
         </div>
 
-        <label><spring:message code="sG"/></label>
-        <div class="user-box">
-            <form:input type="text" path="status"/>
-        </div>
+
+        <label><spring:message code="select"/></label>
+        <form:select path="user_teacher">
+            <option value=""></option>
+            <c:forEach items="${teacher}" var="teacher">
+                <c:forEach items="${teacher.roles}" var="role">
+                    <c:if test="${role.name=='ROLE_TEACHER'}">
+                        <option value="${teacher.id}">${teacher.surname}</option>
+                    </c:if>
+                </c:forEach>
+            </c:forEach>
+        </form:select>
+
+
+        <form:select path="status">
+            <option value=""></option>
+            <option value="В ожидании"><spring:message code="sGroup"/></option>
+            <option value="Началось"><spring:message code="sGrup"/></option>
+            <option value="Закончилась"><spring:message code="sGrp"/></option>
+        </form:select>>
 
         <form:hidden path="userGroup"/>
         <form:hidden path="course_group"/>
-        <form:hidden path="user_teacher"/>
 
         <button style="background-color: #141e30">
             <span></span>
@@ -47,13 +62,13 @@
             <spring:message code="save"/>
         </button>
         <p>
-        <a href="/menuManager">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <spring:message code="bK"/>
-        </a></p>
+            <a href="/menuManager">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <spring:message code="bK"/>
+            </a></p>
     </form:form>
 </div>
 </body>

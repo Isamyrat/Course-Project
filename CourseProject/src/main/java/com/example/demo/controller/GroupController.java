@@ -99,7 +99,8 @@ public class GroupController {
                                    Model model) {
 
         model.addAttribute("group", groupService.findByNumberOfGroup(groupId))
-                .addAttribute("groupId", groupId);
+                .addAttribute("groupId", groupId)
+                .addAttribute("teacher", userService.allUsers());
         return "manager/editGroupManager";
     }
 
@@ -111,10 +112,12 @@ public class GroupController {
 
     @PostMapping("/deleteStud")
     public String deleteStudent(@RequestParam(required = true, defaultValue = "") Long userId,
+                                @RequestParam(required = true, defaultValue = "") Long groupNumber,
                                 @RequestParam(required = true, defaultValue = "") String action) {
 
+
         if (action.equals("delete")) {
-            groupService.deleteUser(userId);
+            groupService.deleteUser(userId,groupNumber);
         }
         return "redirect:/watchGroup";
     }
