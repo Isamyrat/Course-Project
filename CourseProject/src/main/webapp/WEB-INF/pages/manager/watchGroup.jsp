@@ -36,7 +36,6 @@
                         <th><spring:message code="tOG"/></th>
                         <th><spring:message code="lOG"/></th>
                         <th><spring:message code="laOG"/></th>
-                        <th><spring:message code="dOG"/></th>
                         <th><spring:message code="sG"/></th>
                         <th><spring:message code="aG"/></th>
                         <th><spring:message code="aG"/></th>
@@ -53,7 +52,6 @@
                                 <td>${groups.user_teacher.surname}</td>
                                 <td>${groups.course_group.level}</td>
                                 <td>${groups.course_group.language}</td>
-                                <td>${groups.course_group.start_date}</td>
                                 <td>${groups.status}</td>
                                 <td>
                                     <form>
@@ -109,7 +107,6 @@
                     <th><spring:message code="tOG"/></th>
                     <th><spring:message code="lOG"/></th>
                     <th><spring:message code="laOG"/></th>
-                    <th><spring:message code="dOG"/></th>
                 </tr>
                 </thead>
 
@@ -119,7 +116,6 @@
                     <td>${userGroup.user_teacher.surname}</td>
                     <td>${userGroup.course_group.language}</td>
                     <td>${userGroup.course_group.level}</td>
-                    <td>${userGroup.course_group.start_date}</td>
                 </tr>
 
                 </tbody>
@@ -143,7 +139,6 @@
                     <th><spring:message code="nOG"/></th>
                     <th><spring:message code="lOG"/></th>
                     <th><spring:message code="laOG"/></th>
-                    <th><spring:message code="dOG"/></th>
                     <th><spring:message code="aG"/></th>
                 </tr>
                 </thead>
@@ -157,7 +152,6 @@
                             <td>${teacher.number_group}</td>
                             <td>${teacher.course_group.language}</td>
                             <td>${teacher.course_group.level}</td>
-                            <td>${teacher.course_group.start_date}</td>
                             <td>
                                 <form>
                                     <a href="/watchGroupUsers${teacher.id}" type="submit"

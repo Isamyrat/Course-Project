@@ -33,7 +33,6 @@
             <th><spring:message code="tOG"/></th>
             <th><spring:message code="lOG"/></th>
             <th><spring:message code="laOG"/></th>
-            <th><spring:message code="dOG"/></th>
             <th><spring:message code="sG"/></th>
         </tr>
         </thead>
@@ -45,7 +44,6 @@
             <td>${groups.user_teacher.surname}</td>
             <td>${groups.course_group.level}</td>
             <td>${groups.course_group.language}</td>
-            <td>${groups.course_group.start_date}</td>
             <td>${groups.status}</td>
         </tr>
         </c:forEach>

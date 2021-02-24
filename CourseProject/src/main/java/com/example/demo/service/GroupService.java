@@ -87,12 +87,11 @@ public class GroupService {
     }
 
     public Boolean saveUser(CallBack callBack) {
-
         Group group = new Group();
+
         User user = userService.findUserById(callBack.getUserCallBack().getId());
 
         Course course = callBackService.findCourse(callBack.getCourseCallBack().getId());
-
 
         List<Group> groupList = groupRepository.findForAdd(course.getId(),"В ожидании");
 
@@ -107,13 +106,36 @@ public class GroupService {
 
         Set<User> users = group.getUserGroup();
 
-        users.add(user);
+        if(users.size()==12){
 
-        group.setUserGroup(users);
-        group.setCourse_group(course);
+            if(groupList.size() < 2){
+                return false;
+            }
 
-        groupRepository.save(group);
-        return true;
+            for(Group group1 : groupList.subList(1,groupList.size())){
+                group = group1;
+                break;
+            }
+
+            Set<User> userSet = group.getUserGroup();
+
+            userSet.add(user);
+
+            group.setUserGroup(userSet);
+            group.setCourse_group(course);
+
+            groupRepository.save(group);
+            return true;
+        }else {
+
+            users.add(user);
+
+            group.setUserGroup(users);
+            group.setCourse_group(course);
+
+            groupRepository.save(group);
+            return true;
+        }
     }
 
 
@@ -132,14 +154,12 @@ public class GroupService {
 
     public void deleteUser(Long userId, Long groupNumber){
         Group groupUser = groupRepository.findByNumber(groupNumber);
-        User user = userService.findUserById(userId);
+       // User user = userService.findUserById(userId);
         Set<User> userSet = groupUser.getUserGroup();
-/*
 
         userSet.removeIf(s -> s.getId().equals(userId));
-*/
 
-        userSet.remove(user);
+        //userSet.remove(user);
         groupUser.setUserGroup(userSet);
 
         groupRepository.save(groupUser);

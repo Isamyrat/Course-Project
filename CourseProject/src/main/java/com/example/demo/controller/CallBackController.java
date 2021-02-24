@@ -92,7 +92,7 @@ public class CallBackController {
         if (editCallBack.getStatus().equals("Approve")) {
             editCallBack.setStatus("Одобрено");
             if (!groupService.saveUser(editCallBack)) {
-                model.addAttribute("addToError", "Данной группы еще не существует добавьте его сначала");
+                model.addAttribute("addToError", "Данной группы еще не существует добавьте его сначала. Группа заполнена создайте новую группу.");
                 return "redirect:/watchGroup";
             }
 
