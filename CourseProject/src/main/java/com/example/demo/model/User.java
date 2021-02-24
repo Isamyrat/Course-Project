@@ -22,6 +22,38 @@ public class User implements UserDetails {
     private String name;
     private String surname;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Role> roles;
+
+    @OneToOne(mappedBy = "user_requestCall")
+    private RequestCall requestCall;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user_address", cascade = CascadeType.ALL)
+    private Set<Address> address;
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "userCallBack", cascade = CascadeType.ALL)
+    private Set<CallBack> callBack;
+
+    @OneToOne(fetch = FetchType.EAGER,mappedBy = "user_teacher",cascade = CascadeType.ALL)
+    private Group group;
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "userGroup",cascade = CascadeType.ALL)
+    private Set<Group> groups;
+
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "user_information", cascade = CascadeType.ALL, orphanRemoval = true)
+    private PersonalInformation personalInformation;
+
+    public User() {
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
     public RequestCall getRequestCall() {
         return requestCall;
     }
@@ -45,38 +77,6 @@ public class User implements UserDetails {
 
     public void setPersonalInformation(PersonalInformation personalInformation) {
         this.personalInformation = personalInformation;
-    }
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
-
-    @OneToOne(mappedBy = "user_requestCall")
-    private RequestCall requestCall;
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user_address", cascade = CascadeType.ALL)
-    private Set<Address> address;
-
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "userCallBack", cascade = CascadeType.ALL)
-    private Set<CallBack> callBack;
-
-    @OneToOne(fetch = FetchType.EAGER,mappedBy = "user_teacher",cascade = CascadeType.ALL)
-    private Group group;
-
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "userGroup",cascade = CascadeType.ALL)
-    private Set<Group> groups;
-
-    public Group getGroup() {
-        return group;
-    }
-
-    public void setGroup(Group group) {
-        this.group = group;
-    }
-
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "user_information", cascade = CascadeType.ALL, orphanRemoval = true)
-    private PersonalInformation personalInformation;
-
-    public User() {
     }
 
     public Set<CallBack> getCallBack() {

@@ -77,4 +77,15 @@ public class AddressController {
         return "redirect:/personalInformationUser";
     }
 
+
+    @PostMapping("/deleteAddress")
+    public String  deleteUser(@RequestParam(required = true, defaultValue = "" ) Long addressId,
+                              @RequestParam(required = true, defaultValue = "" ) String action) {
+
+        if (action.equals("delete")){
+            addressService.deleteAddress(addressId);
+        }
+
+        return "redirect:/personalInformationUser";
+    }
 }

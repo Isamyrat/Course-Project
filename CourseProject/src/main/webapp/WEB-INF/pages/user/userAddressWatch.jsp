@@ -58,6 +58,14 @@
                                    style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid; ">
                                     <spring:message code="editAddress"/></a>
                             </form>
+                            <form action="${pageContext.request.contextPath}/deleteAddress" method="post">
+                                <input type="hidden" name="addressId" value="${add.id}"/>
+                                <input type="hidden" name="action" value="delete"/>
+                                <button type="submit"
+                                        style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
+                                    <spring:message code="dU"/></button>
+                            </form>
+
                         </td>
 
                     </tr>

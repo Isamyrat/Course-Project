@@ -7,11 +7,9 @@ import javax.persistence.*;
 @Table(name = "Address")
 public class Address {
 
-
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO)
     private Long id;
-
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_human", referencedColumnName = "id", nullable = false)
