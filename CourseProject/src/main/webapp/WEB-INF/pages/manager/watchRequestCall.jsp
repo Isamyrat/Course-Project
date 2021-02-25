@@ -39,12 +39,7 @@
             </tr>
             </thead>
             <c:if test="${callBackManager.size()>0}">
-
                 <c:forEach items="${callBackManager}" var="manager">
-
-                    <%-- <c:url var="updateLink" value="/editCallBack">
-                         <c:param name="callBackId" value="${manager.id}"/>
-                     </c:url>--%>
                     <tr>
                         <td>${manager.id}</td>
                         <td>${manager.status}</td>
@@ -68,6 +63,8 @@
                 <td><spring:message code="eC"/></td>
             </c:if>
         </table>
+        <a href="/watchRequestCallArhiv" class="big-button"><spring:message code="wCallArhiv"/></a>
+
         <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
     </div>
 </sec:authorize>

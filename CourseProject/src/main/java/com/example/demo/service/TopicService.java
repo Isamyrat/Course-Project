@@ -27,14 +27,6 @@ public class TopicService {
         return (List<Topic>) topicRepository.findAll();
     }
 
-    public Boolean deleteTopic(Long id){
-        if(topicRepository.findById(id).isPresent()){
-            topicRepository.deleteById(id);
-
-            return true;
-        }
-        return false;
-    }
     public Boolean saveTopic(Topic topic){
         Course course = courseRepository.findByCourse(topic.getCourse_topic().getLanguage(),topic.getCourse_topic().getLevel());
 
@@ -43,7 +35,6 @@ public class TopicService {
         }
 
         Topic topic1 = topicRepository.findByCourse_topicId(course.getId());
-
 
         if(topic1 != null){
             return false;
@@ -59,9 +50,12 @@ public class TopicService {
         return topicRepository.findByCourse_topicId(course);
     }
 
-    public Topic editTopic(Topic topic){
-        return topicRepository.save(topic);
+    public void editTopic(Topic topic){
+        topicRepository.save(topic);
     }
 
+    public void deleteTopic(Long topicId) {
+        topicRepository.deleteTopicById(topicId);
+    }
 
 }

@@ -15,7 +15,7 @@
         <h4><a href="?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
     </div>
 </header>
-<html>
+
 <body>
 <div class="container">
     <table>
@@ -32,7 +32,8 @@
             <th><spring:message code="nMU"/></th>
             <th><spring:message code="sNUS"/></th>
             <th><spring:message code="laOG"/></th>
-            <th><spring:message code="lOG"/></th>
+            <th><spring:message code="lOG"/></th
+            <th><spring:message code="aG"/></th>
         </tr>
         </thead>
         <c:forEach items="${callBackManagerArhiv}" var="arhiv">
@@ -44,7 +45,15 @@
                 <td>${arhiv.userCallBack.surname}</td>
                 <td>${arhiv.courseCallBack.level}</td>
                 <td>${arhiv.courseCallBack.language}</td>
-
+                <td>
+                    <form action="${pageContext.request.contextPath}/deleteCallBack" method="post">
+                        <input type="hidden" name="callBackId" value="${arhiv.id}"/>
+                        <input type="hidden" name="action" value="delete"/>
+                        <button type="submit"  onclick="if(!(confirm('Are you sure want to delete this topic?'))) return false"
+                                style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
+                            <spring:message code="del"/></button>
+                    </form>
+                </td>
             </tr>
         </c:forEach>
     </table>

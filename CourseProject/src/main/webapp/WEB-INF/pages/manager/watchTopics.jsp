@@ -44,10 +44,17 @@
                     <td>${allTopics.rules}</td>
                     <td>
                         <form>
-                            <a href="/editTopics${allTopics.id}"  type="submit"
+                            <a href="/editTopics${allTopics.id}"
                                style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; "> <spring:message code="editT"/></a>
                         </form>
+                        <form action="${pageContext.request.contextPath}/deleteTopic" method="post">
+                            <input type="hidden" name="topicId" value="${allTopics.id}"/>
+                            <input type="hidden" name="action" value="delete"/>
+                            <button type="submit"  onclick="if(!(confirm('Are you sure want to delete this topic?'))) return false"
+                                    style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
+                                <spring:message code="del"/></button>
 
+                        </form>
                     </td>
                 </tr>
                 </c:if>

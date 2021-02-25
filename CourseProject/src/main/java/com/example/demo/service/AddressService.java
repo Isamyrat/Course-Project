@@ -45,19 +45,8 @@ public class AddressService {
         return addressRepository.save(address);
     }
 
-    public boolean deleteAddress(Long addressId) {
-
+    public void deleteAddress(Long addressId) {
         addressRepository.deleteAddressById(addressId);
-        return true;
     }
 
-/*
-    public boolean deleteAddress(Long addressId) {
-
-        if (addressRepository.findById(addressId).isPresent()) {
-            addressRepository.deleteById(addressId);
-            return true;
-        }
-        return false;
-    }*/
 }

@@ -11,13 +11,12 @@ public class CallBack {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id",nullable = false)
     private User userCallBack;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "course_id")
+    @JoinColumn(name = "course_id", referencedColumnName = "id",nullable = false)
     private Course courseCallBack;
 
     @JoinColumn(name = "CALLBACKDATE")

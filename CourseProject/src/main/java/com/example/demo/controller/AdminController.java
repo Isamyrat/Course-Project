@@ -40,7 +40,7 @@ public class AdminController {
             userService.deleteUser(userId);
         }
 
-        return "login/admin";
+        return "redirect:/admin";
     }
     @GetMapping("/addManager")
     public String edit(Model model){

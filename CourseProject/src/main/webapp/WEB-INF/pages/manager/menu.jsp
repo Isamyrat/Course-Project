@@ -30,7 +30,6 @@
     <a href="/watchTeacher" class="btn btn-4"><spring:message code="wTeach"/></a>
     <a href="/watchJournalManager" class="btn btn-4"><spring:message code="wJournals"/></a>
     <a href="/watchRequestCall" class="btn btn-5"><spring:message code="wCall"/></a>
-    <a href="/watchRequestCallArhiv" class="btn btn-5"><spring:message code="wCallArhiv"/></a>
     <a href="/watchGroup" class="btn btn-5"><spring:message code="wGroups"/></a>
     <a href="/watchAllCoursesManager" class="btn btn-6"><spring:message code="wCourse"/></a>
     <a href="/personalInformationUser" class="btn btn-6"><spring:message code="bK"/></a>

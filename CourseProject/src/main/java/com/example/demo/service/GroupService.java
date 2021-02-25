@@ -82,8 +82,8 @@ public class GroupService {
         return true;
     }
 
-    public Group editStatus(Group group) {
-        return groupRepository.save(group);
+    public void editStatus(Group group) {
+        groupRepository.save(group);
     }
 
     public Boolean saveUser(CallBack callBack) {
@@ -154,14 +154,11 @@ public class GroupService {
 
     public void deleteUser(Long userId, Long groupNumber){
         Group groupUser = groupRepository.findByNumber(groupNumber);
-       // User user = userService.findUserById(userId);
         Set<User> userSet = groupUser.getUserGroup();
 
         userSet.removeIf(s -> s.getId().equals(userId));
 
-        //userSet.remove(user);
         groupUser.setUserGroup(userSet);
-
         groupRepository.save(groupUser);
     }
 

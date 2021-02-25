@@ -29,9 +29,6 @@
         <thead>
         <tr>
             <th><spring:message code="idT"/></th>
-            <%--
-                  <th><spring:message code="lN"/></th>
-                  <th><spring:message code="pW"/></th>--%>
             <th><spring:message code="nMU"/></th>
             <th><spring:message code="sNUS"/></th>
             <th><spring:message code="rU"/></th>
@@ -43,9 +40,6 @@
                 <c:if test="${role.name=='ROLE_MANAGER'}">
                     <tr>
                         <td>${user.id}</td>
-                            <%--
-                                    <td>${user.username}</td>
-                                    <td>${user.password}</td>--%>
                         <td>${user.name}</td>
                         <td>${user.surname}</td>
                         <td>
@@ -55,7 +49,7 @@
                             <form action="${pageContext.request.contextPath}/admin" method="post">
                                 <input type="hidden" name="userId" value="${user.id}"/>
                                 <input type="hidden" name="action" value="delete"/>
-                                <button type="submit"
+                                <button type="submit"  onclick="if(!(confirm('Are you sure want to delete this topic?'))) return false"
                                         style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
                                     <spring:message code="dM"/></button>
                             </form>

@@ -77,8 +77,13 @@ public class CallBackService {
         return courseRepository.findByCourseId(course);
     }
 
-    public CallBack editCallBack(CallBack callBack) {
-        return callBackRepository.save(callBack);
+    public void editCallBack(CallBack callBack) {
+         callBackRepository.save(callBack);
+    }
+
+
+    public void deleteCallBack(Long callBackId) {
+        callBackRepository.deleteCallBackId(callBackId);
     }
 
 }

@@ -46,8 +46,8 @@ public class PersonalInformationService {
 
 
     @Transactional
-    public PersonalInformation editPerson(PersonalInformation personalInformation) {
-        return personalInfoRepository.save(personalInformation);
+    public void editPerson(PersonalInformation personalInformation) {
+        personalInfoRepository.save(personalInformation);
     }
 
 }

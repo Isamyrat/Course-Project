@@ -57,4 +57,16 @@ public class TopicController {
         topicService.editTopic(topic);
         return "manager/menu";
     }
+
+    @PostMapping("/deleteTopic")
+    public String  deleteTopic(@RequestParam(required = true, defaultValue = "" ) Long topicId,
+                              @RequestParam(required = true, defaultValue = "" ) String action) {
+
+        if (action.equals("delete")){
+            topicService.deleteTopic(topicId);
+        }
+
+        return "manager/menu";
+    }
+
 }

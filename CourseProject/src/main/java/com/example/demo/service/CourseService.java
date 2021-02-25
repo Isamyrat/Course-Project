@@ -40,8 +40,8 @@ public class CourseService {
         courseRepository.save(course);
         return true;
     }
-    public Course editCourse(Course course){
-        return courseRepository.save(course);
+    public void editCourse(Course course){
+        courseRepository.save(course);
     }
 
 }

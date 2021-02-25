@@ -106,4 +106,15 @@ public class CallBackController {
         return "redirect:/personalInformationUser";
     }
 
+
+    @PostMapping("/deleteCallBack")
+    public String  deleteCallBack(@RequestParam(required = true, defaultValue = "" ) Long callBackId,
+                              @RequestParam(required = true, defaultValue = "" ) String action) {
+        if (action.equals("delete")){
+            callBackService.deleteCallBack(callBackId);
+        }
+
+        return "manager/menu";
+    }
+
 }

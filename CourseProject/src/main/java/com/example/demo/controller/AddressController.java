@@ -79,7 +79,7 @@ public class AddressController {
 
 
     @PostMapping("/deleteAddress")
-    public String  deleteUser(@RequestParam(required = true, defaultValue = "" ) Long addressId,
+    public String  deleteAddress(@RequestParam(required = true, defaultValue = "" ) Long addressId,
                               @RequestParam(required = true, defaultValue = "" ) String action) {
 
         if (action.equals("delete")){

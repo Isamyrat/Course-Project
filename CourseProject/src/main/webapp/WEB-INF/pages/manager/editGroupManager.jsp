@@ -31,9 +31,9 @@
         <label class="label-color"><spring:message code="select"/></label>
         <form:select path="status">
             <option value=""></option>
-            <option value="В ожидании"><spring:message code="sGroup"/></option>
-            <option value="Началось"><spring:message code="sGrup"/></option>
-            <option value="Закончилась"><spring:message code="sGrp"/></option>
+            <option value="Waiting"><spring:message code="sGroup"/></option>
+            <option value="Started"><spring:message code="sGrup"/></option>
+            <option value="Finished"><spring:message code="sGrp"/></option>
         </form:select>>
 
         <form:hidden path="userGroup"/>
