@@ -4,7 +4,6 @@ import com.example.demo.model.Journal;
 import com.example.demo.service.GroupService;
 import com.example.demo.service.JournalService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +17,21 @@ public class JournalController {
     @Autowired
     private GroupService groupService;
 
+
     @GetMapping("/watchJournalManager")
     public String watchJournalManager(Model model) {
 
-        model.addAttribute("journals", journalService.findALl());
+        model.addAttribute("journals", journalService.findByStatus());
 
         return "manager/watchJournalManager";
+    }
+
+    @GetMapping("/watchJournal")
+    public String watchJournal(Model model) {
+
+        model.addAttribute("journalsArchive", journalService.findByStatusArchive());
+
+        return "manager/watchJournal";
     }
 
     @GetMapping("/addJournal")
@@ -44,28 +52,9 @@ public class JournalController {
             model.addAttribute("journalError", "Для данной группы журнал уже существует!!");
             return "manager/addJournal";
         }
-
         return "redirect:/watchJournalManager";
     }
 
-    @GetMapping("/editJournalManager{journalId}")
-    public String editJournalManager(@PathVariable("journalId") Long journalId,
-                                     Model model) {
-
-        model.addAttribute("editJournal", journalService.findById(journalId))
-                .addAttribute("journalId" , journalId);
-
-
-        return "manager/editJournal";
-    }
-
-    @PostMapping("/saveJournalMan")
-    public String saveJournalMan(@ModelAttribute("editJournal") Journal journal) {
-
-        journalService.editJournal(journal);
-
-        return "redirect:/watchJournalManager";
-    }
 
     @PostMapping("/deleteJournal")
     public String deleteJournal(@RequestParam(required = true, defaultValue = "") Long journalId,

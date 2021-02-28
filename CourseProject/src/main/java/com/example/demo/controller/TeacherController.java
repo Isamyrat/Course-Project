@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TeacherController {
 
-    @GetMapping("/watchJournal")
+  /*  @GetMapping("/watchJournal")
     public String watchJournal() {
-        return "teacher/watchJournal";
+        return "manager/watchJournal";
     }
 
     @GetMapping("/editJournal")
@@ -19,8 +19,8 @@ public class TeacherController {
 
     @GetMapping("/saveJournal")
     public String saveJournal() {
-        return "teacher/watchJournal";
-    }
+        return "manager/watchJournal";
+    }*/
 
 
 }

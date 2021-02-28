@@ -8,7 +8,7 @@ import java.util.Set;
 public class Group {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -17,23 +17,32 @@ public class Group {
 
     private Long number_group;
 
-    private String  status;
-
-    @OneToOne(mappedBy = "group_journal", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Journal journal;
+    private String status;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_teacher", referencedColumnName = "id")
     private User user_teacher;
 
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_user")
     Set<User> userGroup;
 
+    @OneToOne(mappedBy = "group_number", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Journal journal;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "journal_group", cascade = CascadeType.ALL)
+    private Set<JournalGroup> journalGroups;
+
     public Group() {
     }
 
+    public Set<JournalGroup> getJournalGroups() {
+        return journalGroups;
+    }
+
+    public void setJournalGroups(Set<JournalGroup> journalGroups) {
+        this.journalGroups = journalGroups;
+    }
 
     public User getUser_teacher() {
         return user_teacher;

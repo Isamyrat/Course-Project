@@ -35,13 +35,13 @@ public class GroupService {
         return group.orElse(new Group());
     }
 
-    public List<Group> findByStatus() {
+    public Set<Group> findByStatus() {
 
         String status = "Началось";
         return groupRepository.findByStatus(status);
     }
 
-    public List<Group> findByStatusWaiting() {
+    public Set<Group> findByStatusWaiting() {
 
         String status = "В ожидании";
         return groupRepository.findByStatus(status);
@@ -51,7 +51,7 @@ public class GroupService {
 
         return groupRepository.findAll();
     }
-    public List<Group> findByStatusOne() {
+    public Set<Group> findByStatusOne() {
 
         String status = "Закончилась";
         return groupRepository.findByStatus(status);
@@ -162,7 +162,7 @@ public class GroupService {
         groupRepository.save(groupUser);
     }
 
-    public List<Group> findByTeacher(Long id) {
+    public Set<Group> findByTeacher(Long id) {
         return groupRepository.findByTeacher(id);
     }
 

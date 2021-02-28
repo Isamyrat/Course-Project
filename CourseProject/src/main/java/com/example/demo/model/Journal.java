@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Journal")
@@ -9,15 +10,24 @@ public class Journal {
     @GeneratedValue( strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_group", referencedColumnName = "id",nullable = false)
-    private Group group_journal;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "GROUP_NUMBER", referencedColumnName = "id",nullable = false)
+    private Group group_number;
 
-    private String date;
-    private Long point;
-    private String absent;
+    private String status;
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "group_journals", cascade = CascadeType.ALL)
+    private Set<JournalGroup> journalGroupSet;
 
     public Journal() {
+    }
+
+    public Set<JournalGroup> getJournalGroupSet() {
+        return journalGroupSet;
+    }
+
+    public void setJournalGroupSet(Set<JournalGroup> journalGroupSet) {
+        this.journalGroupSet = journalGroupSet;
     }
 
     public Long getId() {
@@ -28,35 +38,19 @@ public class Journal {
         this.id = id;
     }
 
-    public Group getGroup_journal() {
-        return group_journal;
+    public Group getGroup_number() {
+        return group_number;
     }
 
-    public void setGroup_journal(Group group_journal) {
-        this.group_journal = group_journal;
+    public void setGroup_number(Group group_number) {
+        this.group_number = group_number;
     }
 
-    public String getDate() {
-        return date;
+    public String getStatus() {
+        return status;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public Long getPoint() {
-        return point;
-    }
-
-    public void setPoint(Long point) {
-        this.point = point;
-    }
-
-    public String getAbsent() {
-        return absent;
-    }
-
-    public void setAbsent(String absent) {
-        this.absent = absent;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

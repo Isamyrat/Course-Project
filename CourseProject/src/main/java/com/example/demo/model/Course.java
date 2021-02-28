@@ -38,7 +38,7 @@ public class Course {
 
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "courseCallBack", cascade = CascadeType.ALL)
-    private List<CallBack> callBack;
+    private Set<CallBack> callBack;
 
 
 
@@ -48,11 +48,11 @@ public class Course {
     public Course() {
     }
 
-    public List<CallBack> getCallBack() {
+    public Set<CallBack> getCallBack() {
         return callBack;
     }
 
-    public void setCallBack(List<CallBack> callBack) {
+    public void setCallBack(Set<CallBack> callBack) {
         this.callBack = callBack;
     }
 
@@ -136,20 +136,4 @@ public class Course {
         this.duration = duration;
     }
 
-    @Override
-    public String toString() {
-        return "Course{" +
-                "id=" + id +
-                ", language='" + language + '\'' +
-                ", start_date='" + start_date + '\'' +
-                ", price=" + price +
-                ", level='" + level + '\'' +
-                ", days='" + days + '\'' +
-                ", time='" + time + '\'' +
-                ", duration='" + duration + '\'' +
-                ", topic=" + topic +
-                ", callBack=" + callBack +
-                ", group=" + group +
-                '}';
-    }
 }

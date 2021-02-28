@@ -2,47 +2,64 @@ html,
 body {
     height: 100%;
 }
+
 body {
     margin: 0;
     background: url("https://media4.s-nbcnews.com/i/newscms/2018_29/2504731/180720-read-book-good-health-ac-417p_d45a94886721a00630767948819fb120.jpg");
     font-family: sans-serif;
     font-weight: 100;
 }
+
+.content-page {
+    display: none
+}
+
+.content-page-active {
+    display: block
+}
+
 .container {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 table {
     width: 1500px;
     border-collapse: collapse;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
+
 th,
 td {
     padding: 15px;
     background-color: rgba(255, 255, 255, 0.2);
     color: #000000;
 }
+
 th {
     text-align: left;
 }
+
 thead th {
     font-size: 25px;
     font-weight: bold;
     background-color: #55608f;
     color: white;
 }
+
 tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.3);
 }
+
 tbody td {
     font-size: 35px;
     font-weight: bold;
     position: relative;
 }
+
 tbody td:hover:before {
     content: "";
     position: absolute;

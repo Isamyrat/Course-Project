@@ -23,34 +23,19 @@
 <div class="main">
     <div class="container">
         <div class="signup-content">
-            <div>
-                <img src="../css/images/signup-img.jpg" alt="">
-            </div>
             <div class="signup-form">
-                <form:form method="POST" modelAttribute="journalAdd" class="register-form" id="register-form" action="/saveJournalManager">
+                <form:form method="POST" modelAttribute="journalAdd" class="register-form" id="register-form"
+                           action="/saveJournalManager">
                     <h2><spring:message code="enterDatas"/></h2>
-                    <div class="form-row">
-                        <%--<div class="form-group">
-                            <label for="name"><spring:message code="upsent"/></label>
-                            <input type="text" name="name" id="name" required/>
-                        </div>--%>
-                        <div class="form-group">
-                            <label><spring:message code="date"/></label>
-                            <form:input type="text" path="date"/>
-                        </div>
-                    </div>
-                   <%-- <div class="form-group">
-                        <label for="Days"><spring:message code="point"/></label>
-                        <input type="text" name="Days" id="Days" required/>
-                    </div>--%>
                     <div class="form-row">
                         <div class="form-group">
                             <label><spring:message code="select"/></label>
                             <div class="form-select">
-                                <form:select path="group_journal">
-                                    <c:forEach items="${groups}" var="group">
+                                    ${journalError}
+                                <form:select path="group_number">
                                     <option value=""></option>
-                                    <option value="${group.id}">${group.number_group}</option>
+                                    <c:forEach items="${groups}" var="group">
+                                        <option value="${group.id}">${group.number_group}</option>
                                     </c:forEach>
                                 </form:select>
                                 <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
@@ -70,7 +55,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 </body>

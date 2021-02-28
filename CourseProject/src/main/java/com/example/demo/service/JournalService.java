@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dao.GroupRepository;
 import com.example.demo.dao.JournalRepository;
 import com.example.demo.model.Group;
 import com.example.demo.model.Journal;
@@ -19,11 +20,45 @@ public class JournalService {
     @Autowired
     private GroupService groupService;
 
+    @Autowired
+    private GroupRepository groupRepository;
+
 
     public Journal findById(Long id){
         Optional<Journal> journal = journalRepository.findById(id);
         return journal.orElse(new Journal());
     }
+    public Set<Journal> findByStatus() {
+
+        String status = "Используется";
+        return journalRepository.findByStatus(status);
+    }
+
+    public Set<Journal> findByStatusArchive() {
+
+        String status = "Закончилась";
+        return journalRepository.findByStatus(status);
+    }
+    /*
+    public Set<Group> findAllByGroup() {
+
+        List<Group> groupSet = groupService.findAll();
+
+        List<Journal> journalList = findALl();
+
+        Set<Group> groupSet1 = new HashSet<>();
+
+        for(Journal journal : journalList){
+            for(Group group1 : groupSet){
+             if(!journal.getGroup_number().getId().equals(group1.getId())){
+                 groupSet1.add(group1);
+             }
+            }
+        }
+
+        return groupSet1;
+    }*/
+
 
 
     public List<Journal> findALl(){
@@ -31,15 +66,16 @@ public class JournalService {
     }
 
     public Boolean saveJournal(Journal journal){
-        Group group = groupService.findById(journal.getGroup_journal().getId());
+        Group group = groupService.findById(journal.getGroup_number().getId());
 
-        Journal journal1 = journalRepository.findByGroup_journalId(group.getId());
+        Set<Journal> journal1 = journalRepository.findByGroup_number(group.getNumber_group());
 
-        if(journal1 != null){
+        if(journal1.size() != 0){
             return false;
         }
 
-        journal.setGroup_journal(group);
+        journal.setStatus("Используется");
+        journal.setGroup_number(group);
         journalRepository.save(journal);
         return true;
     }
@@ -51,7 +87,7 @@ public class JournalService {
     @Transactional
     @Modifying
     public void deleteJournal(Long id){
-        journalRepository.deleteAllById(id);
+        journalRepository.deleteJournalById(id);
     }
 
 
