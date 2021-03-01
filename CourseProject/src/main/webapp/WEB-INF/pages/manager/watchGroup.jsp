@@ -107,6 +107,7 @@
                     <th><spring:message code="tOG"/></th>
                     <th><spring:message code="lOG"/></th>
                     <th><spring:message code="laOG"/></th>
+                    <th><spring:message code="aCJ"/></th>
                 </tr>
                 </thead>
 
@@ -116,6 +117,14 @@
                     <td>${userGroup.user_teacher.surname}</td>
                     <td>${userGroup.course_group.language}</td>
                     <td>${userGroup.course_group.level}</td>
+                    <td>
+                        <form>
+                            <a href="/watchJournalGroupUser${userGroup.number_group}" type="submit"
+                               style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;font-size: 20px"><spring:message
+                                    code="aCJW"/></a>
+                        </form>
+
+                    </td>
                 </tr>
 
                 </tbody>

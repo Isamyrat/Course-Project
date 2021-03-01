@@ -43,7 +43,17 @@ public class User implements UserDetails {
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "user_information", cascade = CascadeType.ALL, orphanRemoval = true)
     private PersonalInformation personalInformation;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "journal_user", cascade = CascadeType.ALL)
+    private Set<JournalGroup> journalGroups;
+
     public User() {
+    }
+    public Set<JournalGroup> getJournalGroups() {
+        return journalGroups;
+    }
+
+    public void setJournalGroups(Set<JournalGroup> journalGroups) {
+        this.journalGroups = journalGroups;
     }
 
     public Group getGroup() {

@@ -18,6 +18,9 @@ public interface JournalRepository extends CrudRepository<Journal,Long> {
     @Query("select j from  Journal  j where j.group_number.number_group = :groupNumber")
     Set<Journal> findByGroup_number(@Param("groupNumber") Long groupNumber);
 
+    @Query("select j from  Journal  j where j.group_number.number_group = :groupNumber")
+    Journal findByGroup(@Param("groupNumber") Long groupNumber);
+
     Set<Journal> findByStatus(String status);
 
     @Modifying

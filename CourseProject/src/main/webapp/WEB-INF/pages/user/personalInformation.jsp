@@ -47,7 +47,7 @@
                             <form>
                                 <a href="/addPersonalInformationUser" type="submit"
                                    style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px"><spring:message
-                                        code="adPI"/>е</a>
+                                        code="adPI"/></a>
                             </form>
                             <span></span>
                             <p>

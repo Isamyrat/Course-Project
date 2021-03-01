@@ -18,8 +18,8 @@ public class JournalGroup {
     private Journal group_journals;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "GROUP_ID", nullable = false)
-    private Group journal_group;
+    @JoinColumn(name = "USER_ID", nullable = false)
+    private User journal_user;
 
     public JournalGroup() {
     }
@@ -32,12 +32,12 @@ public class JournalGroup {
         this.id = id;
     }
 
-    public Group getJournal_group() {
-        return journal_group;
+    public User getJournal_user() {
+        return journal_user;
     }
 
-    public void setJournal_group(Group journal_group) {
-        this.journal_group = journal_group;
+    public void setJournal_user(User journal_user) {
+        this.journal_user = journal_user;
     }
 
     public Journal getGroup_journals() {

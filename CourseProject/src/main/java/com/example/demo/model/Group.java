@@ -30,19 +30,11 @@ public class Group {
     @OneToOne(mappedBy = "group_number", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Journal journal;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "journal_group", cascade = CascadeType.ALL)
-    private Set<JournalGroup> journalGroups;
+
 
     public Group() {
     }
 
-    public Set<JournalGroup> getJournalGroups() {
-        return journalGroups;
-    }
-
-    public void setJournalGroups(Set<JournalGroup> journalGroups) {
-        this.journalGroups = journalGroups;
-    }
 
     public User getUser_teacher() {
         return user_teacher;

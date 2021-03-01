@@ -1,7 +1,6 @@
 package com.example.demo.dao;
 
 import com.example.demo.model.Group;
-import com.example.demo.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -23,10 +22,6 @@ public interface GroupRepository extends JpaRepository<Group, Long> {
 
     @Query("select g from  Group g where  g.user_teacher.id = :id")
     Set<Group> findByTeacher(Long id);
-
-
-    @Query("select  g.userGroup from Group g where g.id = :id")
-    Set<User> user(Long id);
 
     @Query("select g from  Group  g where  g.course_group.id = :id and g.status = :status")
     List<Group> findForAdd(Long id, String status);
