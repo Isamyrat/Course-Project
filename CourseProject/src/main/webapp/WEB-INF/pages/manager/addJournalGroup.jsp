@@ -12,10 +12,11 @@
 <header>
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
-        <h4><a href="/addJournalGroup${userId}${groupNumber}?lang=en" class="big-button"><spring:message code="app.en"/></a></h4>
-        <h4><a href="/addJournalGroup${userId}${groupNumber}?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
+        <h4><a href="/addJournalGroup/${userId}/${groupNumber}?lang=en" class="big-button"><spring:message code="app.en"/></a></h4>
+        <h4><a href="/addJournalGroup/${userId}/${groupNumber}?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
     </div>
 </header>
+
 <body>
 
 <spring:message code="save" var="save"/>
@@ -82,7 +83,7 @@
 
                 </form:form>
                 <div class="form-submit">
-                    <form action="/menuManager">
+                    <form action="/personalInformationUser">
                         <input type="submit" value="${back}" class="submit" style="background-color: #ff6801"/>
                     </form>
                 </div>

@@ -24,19 +24,37 @@ public class JournalGroupController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/watchJournalGroup")
-    public String watchJournalGroup(@RequestParam("groupNumber") Long groupNumber,
-                                    @RequestParam("userId") Long userId,
+    @GetMapping("/watchJournalGroup/{userId}/{groupNumber}")
+    public String watchJournalGroup(@PathVariable("userId") Long userId,
+                                    @PathVariable("groupNumber") Long groupNumber,
                                     Model model) {
 
-        model.addAttribute("watchGroups", journalGroupService.findAllDataForStudent(userId,groupNumber));
+        model.addAttribute("watchGroups", journalGroupService.findAllDataForStudent(userId,groupNumber))
+                .addAttribute("userId",userId)
+                .addAttribute("groupNumber", groupNumber);
 
         return "manager/watchJournalGroup";
     }
 
-    @GetMapping("/addJournalGroup")
-    public String addJournalGroup(@RequestParam("groupNumber") Long groupNumber,
-                           @RequestParam("userId") Long userId,
+    @GetMapping("/watchJournalGroupUser{groupNumber}")
+    public String watchJournalGroupUser(@PathVariable("groupNumber") Long groupNumber,
+                                        Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        User user = userService.getUser(userDetails.getUsername());
+
+
+        model.addAttribute("watchGroups", journalGroupService.findAllDataForStudent(user.getId(),groupNumber))
+                .addAttribute("groupNumber", groupNumber);
+
+
+        return "user/watchJournalGroupUser";
+    }
+
+    @GetMapping("/addJournalGroup/{userId}/{groupNumber}")
+    public String addJournalGroup(@PathVariable("userId") Long userId,
+                                  @PathVariable("groupNumber") Long groupNumber,
                            Model model) {
 
         model.addAttribute("userId", userId)
@@ -63,21 +81,7 @@ public class JournalGroupController {
 
         return "manager/editJournalGroup";
     }
-    @GetMapping("/watchJournalGroupUser{groupNumber}")
-    public String watchJournalGroupUser(@PathVariable("groupNumber") Long groupNumber,
-                                   Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
-        User user = userService.getUser(userDetails.getUsername());
-
-
-        model.addAttribute("watchGroups", journalGroupService.findAllDataForStudent(user.getId(),groupNumber))
-                .addAttribute("groupNumber", groupNumber);
-
-
-        return "user/watchJournalGroupUser";
-    }
 
     @PostMapping("/saveJournalGroup")
     public String saveJournalGroup(@ModelAttribute("journalGroupEdit") JournalGroup journalGroup) {

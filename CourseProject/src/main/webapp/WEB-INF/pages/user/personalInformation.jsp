@@ -39,7 +39,6 @@
                 </thead>
                 <c:if test="${userId != null}">
                     <tbody>
-
                     <tr>
                         <td>${userId.name}</td>
                         <td>${userId.surname}</td>
@@ -123,9 +122,7 @@
                 </c:if>
             </form:form>
         </table>
-
         <a href="/editUser" class="big-button"><spring:message code="cPI"/></a>
-        <a href="/watchJournalManager" class="big-button"><spring:message code="wJ"/></a>
         <a href="/watchGroupTeacher" class="big-button"><spring:message code="wG"/></a>
         <a href="/" class="big-button"><spring:message code="bK"/></a>
     </div>

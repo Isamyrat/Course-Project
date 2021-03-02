@@ -39,6 +39,7 @@
                         <th><spring:message code="sG"/></th>
                         <th><spring:message code="aG"/></th>
                         <th><spring:message code="aG"/></th>
+                        <th><spring:message code="aG"/></th>
 
                     </tr>
                     </thead>
@@ -63,18 +64,22 @@
                                     <form>
                                         <a href="/editGroupManager${groups.number_group}" type="submit"
                                            style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
-                                            <spring:message code="eG"/></a>
+                                            <spring:message code="eNG"/></a>
                                     </form>
-
                                 </td>
                                 <td>
-
                                     <form>
                                         <a href="/editGroupTeacher${groups.number_group}" type="submit"
                                            style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
                                             <spring:message code="eTG"/></a>
                                     </form>
-
+                                </td>
+                                <td>
+                                    <form>
+                                        <a href="/editGroupStatus${groups.number_group}" type="submit"
+                                           style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
+                                            <spring:message code="eG"/></a>
+                                    </form>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -110,24 +115,33 @@
                     <th><spring:message code="aCJ"/></th>
                 </tr>
                 </thead>
-
                 <tbody>
-                <tr>
-                    <td>${userGroup.number_group}</td>
-                    <td>${userGroup.user_teacher.surname}</td>
-                    <td>${userGroup.course_group.language}</td>
-                    <td>${userGroup.course_group.level}</td>
-                    <td>
-                        <form>
-                            <a href="/watchJournalGroupUser${userGroup.number_group}" type="submit"
-                               style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;font-size: 20px"><spring:message
-                                    code="aCJW"/></a>
-                        </form>
+                <c:if test="${userGroup.size()>0}">
 
-                    </td>
-                </tr>
+                    <c:forEach items="${userGroup}" var="groups">
+                        <tr>
+                            <td>${groups.number_group}</td>
+                            <td>${groups.user_teacher.surname}</td>
+                            <td>${groups.course_group.language}</td>
+                            <td>${groups.course_group.level}</td>
+                            <td>
+                                <form>
+                                    <a href="/watchJournalGroupUser${groups.number_group}" type="submit"
+                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;font-size: 20px"><spring:message
+                                            code="aCJW"/></a>
+                                </form>
 
+                            </td>
+                        </tr>
+
+                    </c:forEach>
+                </c:if>
+                <c:if test="${userGroup.size()<1}">
+                    <td><spring:message code="eC"/></td>
+                </c:if>
                 </tbody>
+
+
             </form:form>
         </table>
         <a href="/personalInformationUser" class="big-button"><spring:message code="bK"/></a>
@@ -153,29 +167,30 @@
                 </thead>
 
                 <tbody>
-                <c:if test="${userGroup != null}">
+                <c:if test="${userGroup.size()>0}">
 
-                    <c:forEach items="${userGroup}" var="teacher">
+                <c:forEach items="${userGroup}" var="teacher">
 
-                        <tr>
-                            <td>${teacher.number_group}</td>
-                            <td>${teacher.course_group.language}</td>
-                            <td>${teacher.course_group.level}</td>
-                            <td>
-                                <form>
-                                    <a href="/watchGroupUsers${teacher.id}" type="submit"
-                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px ">
-                                        <spring:message code="titleStud"/></a>
-                                </form>
-                            </td>
-                        </tr>
-                    </c:forEach>
+
+                    <tr>
+                        <td>${teacher.number_group}</td>
+                        <td>${teacher.course_group.language}</td>
+                        <td>${teacher.course_group.level}</td>
+                        <td>
+                            <form>
+                                <a href="/watchGroupUsers${teacher.id}" type="submit"
+                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px ">
+                                    <spring:message code="titleStud"/></a>
+                            </form>
+                        </td>
+                    </tr>
+                </c:forEach>
                 </c:if>
-
-                <c:if test="${userGroup == null}">
+                <c:if test="${userGroup.size()<1}">
                     <td><spring:message code="eC"/></td>
                 </c:if>
                 </tbody>
+
             </form:form>
         </table>
         <a href="/personalInformationUser" class="big-button"><spring:message code="bK"/></a>

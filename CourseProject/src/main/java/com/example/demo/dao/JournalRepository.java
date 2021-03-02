@@ -23,6 +23,9 @@ public interface JournalRepository extends CrudRepository<Journal,Long> {
 
     Set<Journal> findByStatus(String status);
 
+    @Query("select j from  Journal  j where j.status = :status or j.status = :status1")
+    Set<Journal> findByStatusOrStatus(String status,String status1);
+
     @Modifying
     @Transactional
     @Query(value = "delete from Journal j where j.id = :id", nativeQuery = true)

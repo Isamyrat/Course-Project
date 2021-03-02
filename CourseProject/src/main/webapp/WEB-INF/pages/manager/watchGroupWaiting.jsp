@@ -38,7 +38,7 @@
                     <th><spring:message code="sG"/></th>
                     <th><spring:message code="aG"/></th>
                     <th><spring:message code="aG"/></th>
-
+                    <th><spring:message code="aG"/></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -62,18 +62,22 @@
                                 <form>
                                     <a href="/editGroupManager${groups.number_group}" type="submit"
                                        style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
-                                        <spring:message code="eG"/></a>
+                                        <spring:message code="eNG"/></a>
                                 </form>
-
                             </td>
                             <td>
-
                                 <form>
                                     <a href="/editGroupTeacher${groups.number_group}" type="submit"
-                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 25px ">
+                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
                                         <spring:message code="eTG"/></a>
                                 </form>
-
+                            </td>
+                            <td>
+                                <form>
+                                    <a href="/editGroupStatus${groups.number_group}" type="submit"
+                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
+                                        <spring:message code="eG"/></a>
+                                </form>
                             </td>
                         </tr>
                     </c:forEach>

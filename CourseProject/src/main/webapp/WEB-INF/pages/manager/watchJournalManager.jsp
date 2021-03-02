@@ -20,41 +20,49 @@
 <body>
 <sec:authorize access="hasRole('ROLE_MANAGER')">
 
-<div class="container">
-    <table>
-        <form:form modelAttribute="journals">
-            <thead>
-            <tr>
-                <th><spring:message code="jJJ"/></th>
-            </tr>
-            </thead>
-            <thead>
-            <tr>
-                <th><spring:message code="nOG"/></th>
-                <th><spring:message code="aG"/></th>
-            </tr>
-            </thead>
-            <c:forEach items="${journals}" var="journal">
-                <tbody>
+    <div class="container">
+        <table>
+            <form:form modelAttribute="journals">
+                <thead>
                 <tr>
-                    <td>${journal.group_number.number_group}</td>
-
-                    <td>
-                        <form>
-                            <a href="/watchGroupUsers${journal.group_number.id}" type="submit"
-                               style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
-                                <spring:message code="titleStud"/></a>
-                        </form>
-                    </td>
+                    <th><spring:message code="jJJ"/></th>
                 </tr>
-                </tbody>
-            </c:forEach>
-        </form:form>
-    </table>
-    <a href="/watchJournal" class="big-button"><spring:message code="wJMA"/></a>
-    <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
+                </thead>
+                <thead>
+                <tr>
+                    <th><spring:message code="nOG"/></th>
+                    <th><spring:message code="aG"/></th>
+                </tr>
+                </thead>
 
-</div>
+                <tbody>
+                <c:if test="${journals.size()>0}">
+
+                <c:forEach items="${journals}" var="journal">
+                    <tr>
+                        <td>${journal.group_number.number_group}</td>
+
+                        <td>
+                            <form>
+                                <a href="/watchGroupUsers${journal.group_number.id}" type="submit"
+                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
+                                    <spring:message code="titleStud"/></a>
+                            </form>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </c:if>
+                <c:if test="${journals.size()<1}">
+                    <td><spring:message code="eC"/></td>
+                </c:if>
+                </tbody>
+
+            </form:form>
+        </table>
+        <a href="/watchJournal" class="big-button"><spring:message code="wJMA"/></a>
+        <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
+
+    </div>
 </sec:authorize>
 
 <sec:authorize access="hasRole('ROLE_TEACHER')">

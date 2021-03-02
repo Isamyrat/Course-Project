@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Journal;
-import com.example.demo.service.GroupService;
 import com.example.demo.service.JournalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,9 +11,6 @@ public class JournalController {
 
     @Autowired
     private JournalService journalService;
-
-    @Autowired
-    private GroupService groupService;
 
 
     @GetMapping("/watchJournalManager")
@@ -32,27 +27,6 @@ public class JournalController {
         model.addAttribute("journalsArchive", journalService.findByStatusArchive());
 
         return "manager/watchJournal";
-    }
-
-    @GetMapping("/addJournal")
-    public String addJournal(Model model) {
-
-        model.addAttribute("journalAdd", new Journal())
-                .addAttribute("groups", groupService.findAll());
-
-        return "manager/addJournal";
-    }
-
-
-    @PostMapping("/saveJournalManager")
-    public String saveJournalManager(@ModelAttribute("journalAdd") Journal journal,
-                                     Model model) {
-
-        if(!journalService.saveJournal(journal)){
-            model.addAttribute("journalError", "Для данной группы журнал уже существует!!");
-            return "manager/addJournal";
-        }
-        return "redirect:/watchJournalManager";
     }
 
 

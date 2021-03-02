@@ -30,25 +30,29 @@
             <tr>
                 <th><spring:message code="nOG"/></th>
                 <th><spring:message code="aG"/></th>
-
             </tr>
             </thead>
-                <c:forEach items="${journalsArchive}" var="journal">
             <tbody>
-            <tr>
-                <td>${journal.group_number.number_group}</td>
-                <td>
-                    <form action="${pageContext.request.contextPath}/deleteJournal" method="post">
-                        <input type="hidden" name="journalId" value="${journal.id}"/>
-                        <input type="hidden" name="action" value="delete"/>
-                        <button type="submit"
-                                style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 25px ">
-                            <spring:message code="dC"/></button>
-                    </form>
-                </td>
-            </tr>
-            </tbody>
+            <c:if test="${journalsArchive.size()>0}">
+
+                <c:forEach items="${journalsArchive}" var="journal">
+                    <tr>
+                        <td>${journal.group_number.number_group}</td>
+
+                        <td>
+                            <form>
+                                <a href="/watchGroupUsers${journal.group_number.id}" type="submit"
+                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
+                                    <spring:message code="titleStud"/></a>
+                            </form>
+                        </td>
+                    </tr>
                 </c:forEach>
+            </c:if>
+            <c:if test="${journalsArchive.size()<1}">
+                <td><spring:message code="eC"/></td>
+            </c:if>
+            </tbody>
             </form:form>
         </table>
         <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>

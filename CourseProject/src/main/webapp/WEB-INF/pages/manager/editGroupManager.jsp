@@ -28,14 +28,8 @@
             <form:input type="text" path="number_group"/>
         </div>
 
-        <label class="label-color"><spring:message code="select"/></label>
-        <form:select path="status">
-            <option value=""></option>
-            <option value="Waiting"><spring:message code="sGroup"/></option>
-            <option value="Started"><spring:message code="sGrup"/></option>
-            <option value="Finished"><spring:message code="sGrp"/></option>
-        </form:select>>
 
+        <form:hidden path="status"/>
         <form:hidden path="userGroup"/>
         <form:hidden path="course_group"/>
         <form:hidden path="user_teacher"/>

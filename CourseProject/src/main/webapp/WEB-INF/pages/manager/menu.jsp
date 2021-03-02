@@ -26,7 +26,6 @@
     <a href="/addCourse" class="btn btn-1"><spring:message code="addCours"/></a>
     <a href="/addGroup" class="btn btn-2"><spring:message code="addGroup"/></a>
     <a href="/addTopics" class="btn btn-2"><spring:message code="addTopic"/></a>
-    <a href="/addJournal" class="btn btn-2"><spring:message code="addJournal"/></a>
     <a href="/watchTeacher" class="btn btn-4"><spring:message code="wTeach"/></a>
     <a href="/watchJournalManager" class="btn btn-4"><spring:message code="wJournals"/></a>
     <a href="/watchRequestCall" class="btn btn-5"><spring:message code="wCall"/></a>

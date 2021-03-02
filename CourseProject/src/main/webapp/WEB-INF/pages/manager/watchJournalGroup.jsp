@@ -13,8 +13,8 @@
 <header>
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
-        <h4><a href="/watchJournalGroup${userId}${groupNumber}?lang=en" class="big-button"><spring:message code="app.en"/></a></h4>
-        <h4><a href="/watchJournalGroup${userId}${groupNumber}?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
+        <h4><a href="/watchJournalGroup/${userId}/${groupNumber}?lang=en" class="big-button"><spring:message code="app.en"/></a></h4>
+        <h4><a href="/watchJournalGroup/${userId}/${groupNumber}?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
     </div>
 </header>
 <body>
@@ -37,6 +37,8 @@
                 </tr>
                 </thead>
                 <tbody>
+                <c:if test="${watchGroups.size()>0}">
+
                 <c:forEach items="${watchGroups}" var="users">
 
                     <tr>
@@ -45,6 +47,10 @@
                         <td>${users.absent}</td>
                     </tr>
                 </c:forEach>
+                </c:if>
+                <c:if test="${watchGroups.size()<1}">
+                    <td><spring:message code="eC"/></td>
+                </c:if>
                 </tbody>
             </form:form>
         </table>
@@ -72,6 +78,8 @@
                 </tr>
                 </thead>
                 <tbody>
+                <c:if test="${watchGroups.size()>0}">
+
                 <c:forEach items="${watchGroups}" var="users">
 
                     <tr>
@@ -83,7 +91,6 @@
                                 <a href="/editJournalGroup${users.id}" type="submit"
                                    style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;font-size: 20px"><spring:message
                                         code="eJG"/></a>
-                                <input type="hidden" name="journalGroupId" value="${users.id}"/>
                             </form>
                         </td>
                         <td>
@@ -96,8 +103,11 @@
                             </form>
                         </td>
                     </tr>
-
                 </c:forEach>
+                </c:if>
+                <c:if test="${watchGroups.size()<1}">
+                    <td><spring:message code="eC"/></td>
+                </c:if>
                 </tbody>
             </form:form>
         </table>

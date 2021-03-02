@@ -25,19 +25,15 @@
         <form:hidden path="id"/>
 
         <label class="label-color"><spring:message code="select"/></label>
-        <form:select path="user_teacher">
+        <form:select path="status">
             <option value=""></option>
-            <c:forEach items="${teacher}" var="teacher">
-                <c:forEach items="${teacher.roles}" var="role">
-                    <c:if test="${role.name=='ROLE_TEACHER'}">
-                        <option value="${teacher.id}">${teacher.surname}</option>
-                    </c:if>
-                </c:forEach>
-            </c:forEach>
-        </form:select>
+            <option value="В ожидании"><spring:message code="sGroup"/></option>
+            <option value="Началось"><spring:message code="sGrup"/></option>
+            <option value="Закончилась"><spring:message code="sGrp"/></option>
+        </form:select>>
 
         <form:hidden path="number_group"/>
-        <form:hidden path="status"/>
+        <form:hidden path="user_teacher"/>
         <form:hidden path="userGroup"/>
         <form:hidden path="course_group"/>
 

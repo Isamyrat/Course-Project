@@ -3,10 +3,7 @@ package com.example.demo.service;
 import com.example.demo.dao.CourseRepository;
 import com.example.demo.dao.GroupRepository;
 import com.example.demo.dao.UserRepository;
-import com.example.demo.model.CallBack;
-import com.example.demo.model.Course;
-import com.example.demo.model.Group;
-import com.example.demo.model.User;
+import com.example.demo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +23,9 @@ public class GroupService {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private JournalService journalService;
 
     @Autowired
     private CallBackService callBackService;
@@ -62,7 +62,7 @@ public class GroupService {
     }
 
     public Boolean saveGroup(Group group) {
-
+        Journal journal = new Journal();
         Group group1 = groupRepository.findByNumber(group.getNumber_group());
 
         if(group1 != null){
@@ -79,10 +79,18 @@ public class GroupService {
 
 
         groupRepository.save(group);
+
+        journal.setStatus(group.getStatus());
+        journal.setGroup_number(group);
+        journalService.saveJournal(journal);
         return true;
     }
 
     public void editStatus(Group group) {
+        Journal journal = journalService.findByGroup(group.getNumber_group());
+        journal.setStatus(group.getStatus());
+        journal.setGroup_number(group);
+        journalService.editJournal(journal);
         groupRepository.save(group);
     }
 
@@ -139,17 +147,17 @@ public class GroupService {
     }
 
 
-    public Group findByUser(Long id) {
-        Group groupUser = new Group();
+    public List<Group> findByUser(Long id) {
         List<Group> groups = groupRepository.findAll();
+        List<Group> groupList = new ArrayList<>();
         for (Group group : groups) {
             for (User user1 : group.getUserGroup()) {
                 if(user1.getId().equals(id)) {
-                    groupUser = group;
+                    groupList.add(group);
                 }
             }
         }
-        return groupUser;
+        return groupList;
     }
 
     public void deleteUser(Long userId, Long groupNumber){

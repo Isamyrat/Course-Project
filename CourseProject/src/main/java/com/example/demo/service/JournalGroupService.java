@@ -34,6 +34,8 @@ public class JournalGroupService {
         return journalGroup.orElse(new JournalGroup());
     }
 
+
+
     public List<JournalGroup> findAllDataForStudent(Long idUser, Long groupNumber) {
 
         Group group1 = groupService.findByNumberOfGroup(groupNumber);

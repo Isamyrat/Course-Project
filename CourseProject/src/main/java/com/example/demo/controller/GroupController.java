@@ -111,6 +111,15 @@ public class GroupController {
         return "manager/editGroupManager";
     }
 
+    @GetMapping("/editGroupStatus{groupId}")
+    public String editGroupStatus(@PathVariable("groupId") Long groupId,
+                                   Model model) {
+
+        model.addAttribute("group", groupService.findByNumberOfGroup(groupId))
+                .addAttribute("groupId", groupId);
+        return "manager/editGroupStatus";
+    }
+
     @GetMapping("/editGroupTeacher{groupId}")
     public String editGroupTeacher(@PathVariable("groupId") Long groupId,
                                    Model model) {
