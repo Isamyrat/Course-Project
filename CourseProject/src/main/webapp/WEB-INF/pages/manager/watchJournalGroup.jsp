@@ -18,6 +18,7 @@
     </div>
 </header>
 <body>
+<spring:message code="askRC" var="askRC"/>
 
 <sec:authorize access="hasRole('ROLE_MANAGER')">
     <div class="container">
@@ -98,7 +99,8 @@
                                 <input type="hidden" name="journalGroupId" value="${users.id}"/>
                                 <input type="hidden" name="action" value="delete"/>
                                 <button type="submit"
-                                        style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 20px">
+                                        onclick="if(!(confirm('${askRC}'))) return false"
+                                        style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
                                     <spring:message code="dJG"/></button>
                             </form>
                         </td>

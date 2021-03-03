@@ -25,9 +25,6 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-    @OneToOne(mappedBy = "user_requestCall")
-    private RequestCall requestCall;
-
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user_address", cascade = CascadeType.ALL)
     private Set<Address> address;
 
@@ -62,14 +59,6 @@ public class User implements UserDetails {
 
     public void setGroup(Group group) {
         this.group = group;
-    }
-
-    public RequestCall getRequestCall() {
-        return requestCall;
-    }
-
-    public void setRequestCall(RequestCall requestCall) {
-        this.requestCall = requestCall;
     }
 
     public Set<Address> getAddress() {
@@ -154,7 +143,6 @@ public class User implements UserDetails {
         return true;
     }
 
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -179,23 +167,5 @@ public class User implements UserDetails {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", roles=" + roles +
-                ", requestCall=" + requestCall +
-                ", address=" + address +
-                ", callBack=" + callBack +
-                ", group=" + group +
-                ", groups=" + groups +
-                ", personalInformation=" + personalInformation +
-                '}';
     }
 }

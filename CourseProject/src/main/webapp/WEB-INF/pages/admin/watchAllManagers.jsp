@@ -19,6 +19,8 @@
 </header>
 
 <body>
+<spring:message code="askMan" var="askMan"/>
+
 <div class="container">
     <table>
         <thead>
@@ -49,7 +51,7 @@
                             <form action="${pageContext.request.contextPath}/admin" method="post">
                                 <input type="hidden" name="userId" value="${user.id}"/>
                                 <input type="hidden" name="action" value="delete"/>
-                                <button type="submit"  onclick="if(!(confirm('Are you sure want to delete this topic?'))) return false"
+                                <button type="submit"  onclick="if(!(confirm('${askMan}'))) return false"
                                         style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
                                     <spring:message code="dM"/></button>
                             </form>

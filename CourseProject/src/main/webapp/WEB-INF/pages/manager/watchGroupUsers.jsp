@@ -18,6 +18,7 @@
     </div>
 </header>
 <body>
+<spring:message code="askGS" var="askGS"/>
 
 <sec:authorize access="hasRole('ROLE_MANAGER')">
 <div class="container">
@@ -56,7 +57,8 @@
                             <input type="hidden" name="userId" value="${users.id}"/>
                             <input type="hidden" name="groupNumber" value="${watchUsers.number_group}"/>
                             <input type="hidden" name="action" value="delete"/>
-                            <button type="submit" style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 20px">
+                            <button type="submit"  onclick="if(!(confirm('${askGS}'))) return false"
+                                    style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
                                 <spring:message code="dU"/></button>
                         </form>
                     </td>

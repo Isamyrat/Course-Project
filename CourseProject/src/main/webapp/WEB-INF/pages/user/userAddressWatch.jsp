@@ -19,6 +19,8 @@
 </header>
 
 <body>
+<spring:message code="askUAD" var="askUAD"/>
+
 <div class="container">
 
     <table>
@@ -62,12 +64,11 @@
                                 <input type="hidden" name="addressId" value="${add.id}"/>
                                 <input type="hidden" name="action" value="delete"/>
                                 <button type="submit"
+                                        onclick="if(!(confirm('${askUAD}'))) return false"
                                         style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
                                     <spring:message code="dU"/></button>
                             </form>
-
                         </td>
-
                     </tr>
 
                 </c:forEach>

@@ -17,6 +17,8 @@
 </header>
 
 <body>
+<spring:message code="askT" var="askT"/>
+
 <div class="container">
     <table>
         <thead>
@@ -46,7 +48,7 @@
                             <form action="${pageContext.request.contextPath}/deleteTeacher" method="post">
                                 <input type="hidden" name="userId" value="${user.id}"/>
                                 <input type="hidden" name="action" value="delete"/>
-                                <button type="submit"  onclick="if(!(confirm('Are you sure want to delete this topic?'))) return false"
+                                <button type="submit"  onclick="if(!(confirm('${askT}'))) return false"
                                         style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
                                     <spring:message code="dT"/></button>
                             </form>

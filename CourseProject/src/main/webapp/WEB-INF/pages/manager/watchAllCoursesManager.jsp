@@ -18,6 +18,8 @@
         <h4><a href="?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
     </div>
 </header>
+<spring:message code="askMC" var="askMC"/>
+
 <sec:authorize access="hasRole('ROLE_USER')">
 
     <div class="container">
@@ -140,8 +142,8 @@
                             <td>
                                 <form action="${pageContext.request.contextPath}/saveCourseEditStatus" method="post">
                                     <input type="hidden" name="idCourse" value="${courses.id}"/>
-                                    <button type="submit"
-                                            style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 25px ">
+                                    <button type="submit"  onclick="if(!(confirm('${askMC}'))) return false"
+                                            style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
                                         <spring:message code="sTA"/></button>
                                 </form>
                             </td>

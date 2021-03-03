@@ -19,6 +19,8 @@
     </div>
 </header>
 <body>
+<spring:message code="askTOp" var="askTOp"/>
+
 
 <sec:authorize access="hasRole('ROLE_MANAGER')">
     <div class="container">
@@ -50,7 +52,7 @@
                         <form action="${pageContext.request.contextPath}/deleteTopic" method="post">
                             <input type="hidden" name="topicId" value="${allTopics.id}"/>
                             <input type="hidden" name="action" value="delete"/>
-                            <button type="submit"  onclick="if(!(confirm('Are you sure want to delete this topic?'))) return false"
+                            <button type="submit"  onclick="if(!(confirm('${askTOp}'))) return false"
                                     style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
                                 <spring:message code="del"/></button>
 

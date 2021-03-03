@@ -19,6 +19,8 @@
 </header>
 
 <body>
+<spring:message code="askAU" var="askAU"/>
+
 <div class="container">
     <table>
         <thead>
@@ -50,7 +52,7 @@
                             <input type="hidden" name="userId" value="${user.id}"/>
                             <input type="hidden" name="action" value="delete"/>
                             <button type="submit"
-                                    onclick="if(!(confirm('Are you sure want to delete this topic?'))) return false"
+                                    onclick="if(!(confirm('${askAU}'))) return false"
                                     style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
                                 <spring:message code="dU"/></button>
                         </form>
