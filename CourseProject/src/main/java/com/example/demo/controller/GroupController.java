@@ -85,7 +85,7 @@ public class GroupController {
     public String addGroup(Model model) {
 
         model.addAttribute("users", userService.allUsers())
-                .addAttribute("courses", courseService.allCourses())
+                .addAttribute("courses", courseService.courseList())
                 .addAttribute("group", new Group());
 
         return "manager/addGroup";

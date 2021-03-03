@@ -9,8 +9,6 @@
     <title><spring:message code="addTopic"/></title>
 </head>
 
-<html>
-
 <header>
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
@@ -45,38 +43,22 @@
                             <form:input type="text" path="rules"/>
                         </div>
                     </div>
-                    <form:hidden path="course_topic"/>
                     <div class="form-row">
                         <div class="form-group">
                             <label><spring:message code="select"/></label>
                             <div class="form-select">
-                                <form:select path="course_topic.language">
+                                <form:select path="course_topic">
                                     <option value=""></option>
-                                    <option value="English"><spring:message code="enC"/></option>
-                                    <option value="French"><spring:message code="frC"/></option>
-                                    <option value="Turkish"><spring:message code="trC"/></option>
-                                    <option value="Russian"> <spring:message code="ruC"/></option>
+                                    <c:forEach items="${courses}" var="course">
+                                        <option value="${course.id}">${course.level} - ${course.language}</option>
+                                    </c:forEach>
                                 </form:select>
-                                    ${topicLevel}
-                                <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label><spring:message code="select"/></label>
-                            <div class="form-select">
-                                <form:select path="course_topic.level">
-                                    <option value=""></option>
-                                    <option value="Start">Start</option>
-                                    <option value="Elementary">Elementary</option>
-                                    <option value="Advanced">Advanced</option>
-                                    <option value="Interdemiade">Interdemiade</option>
-
-                                </form:select>
-                                    ${topicLL}
+                                ${topicLL}
                                 <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                             </div>
                         </div>
                     </div>
+
                     <div class="form-submit">
                         <input type="submit" value="${save}" class="submit" name="submit" id="submit" />
                     </div>

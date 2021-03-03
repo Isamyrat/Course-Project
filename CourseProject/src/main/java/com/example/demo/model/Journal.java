@@ -1,5 +1,8 @@
 package com.example.demo.model;
 
+import com.example.demo.model.enumModel.Status;
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -14,7 +17,10 @@ public class Journal {
     @JoinColumn(name = "GROUP_NUMBER", referencedColumnName = "id",nullable = false)
     private Group group_number;
 
-    private String status;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @JoinColumn(name = "STATUS")
+    private Status status;
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "group_journals", cascade = CascadeType.ALL)
     private Set<JournalGroup> journalGroupSet;
@@ -46,11 +52,11 @@ public class Journal {
         this.group_number = group_number;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 }

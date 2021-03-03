@@ -1,5 +1,8 @@
 package com.example.demo.model;
 
+import com.example.demo.model.enumModel.Status;
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -29,6 +32,11 @@ public class Course {
     @JoinColumn(name = "TIME")
     private String time;
 
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @JoinColumn(name = "STATUS")
+    private Status status;
+
 
     @JoinColumn(name = "DURATION")
     private String duration;
@@ -46,6 +54,14 @@ public class Course {
     private Set<Group> group;
 
     public Course() {
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public Set<CallBack> getCallBack() {

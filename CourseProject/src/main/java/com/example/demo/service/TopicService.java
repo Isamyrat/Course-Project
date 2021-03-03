@@ -18,6 +18,10 @@ public class TopicService {
     @Autowired
     CourseRepository courseRepository;
 
+    @Autowired
+    CourseService courseService;
+
+
     public Topic topicById(Long id){
         Optional<Topic> topic = topicRepository.findById(id);
         return topic.orElse(new Topic());
@@ -28,20 +32,17 @@ public class TopicService {
     }
 
     public Boolean saveTopic(Topic topic){
-        Course course = courseRepository.findByCourse(topic.getCourse_topic().getLanguage(),topic.getCourse_topic().getLevel());
+        Course course1 = courseService.courseById(topic.getCourse_topic().getId());
 
-        if(course==null){
-            return false;
-        }
 
-        Topic topic1 = topicRepository.findByCourse_topicId(course.getId());
+        Topic topic1 = topicRepository.findByCourse_topicId(course1.getId());
 
         if(topic1 != null){
             return false;
         }
 
 
-        topic.setCourse_topic(course);
+        topic.setCourse_topic(course1);
         topicRepository.save(topic);
         return true;
     }

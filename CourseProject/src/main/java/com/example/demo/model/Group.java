@@ -1,5 +1,8 @@
 package com.example.demo.model;
 
+import com.example.demo.model.enumModel.Status;
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -17,7 +20,10 @@ public class Group {
 
     private Long number_group;
 
-    private String status;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @JoinColumn(name = "STATUS")
+    private Status status;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_teacher", referencedColumnName = "id")
@@ -52,11 +58,11 @@ public class Group {
         this.userGroup = userGroup;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

@@ -12,8 +12,10 @@
 <header>
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
-        <h4><a href="/editPersonalInformationUser${personId}?lang=en" class="big-button"><spring:message code="app.en"/></a></h4>
-        <h4><a href="/editPersonalInformationUser${personId}?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
+        <h4><a href="/editPersonalInformationUser${personId}?lang=en" class="big-button"><spring:message
+                code="app.en"/></a></h4>
+        <h4><a href="/editPersonalInformationUser${personId}?lang=ru" class="big-button"><spring:message
+                code="app.ru"/></a></h4>
     </div>
 </header>
 <body>
@@ -25,20 +27,22 @@
 
         <label class="label-color"><spring:message code="etAg"/></label>
         <div class="user-box">
-            <form:input  path="age"/>
+            <form:input path="age"/>
         </div>
 
         <label class="label-color"><spring:message code="etGe"/></label>
-        <div class=" user-box">
-            <form:input  path="gender"/>
-        </div>
+        <form:select path="gender">
+            <option value=""></option>
+            <option value="Male"><spring:message code="male"/></option>
+            <option value="Female"><spring:message code="female"/></option>
+        </form:select>>
 
-        <label class="label-color"><spring:message code="etNum"/></label>
+        <p>
+            <label class="label-color"><spring:message code="etNum"/></label>
         <div class="user-box">
-            <form:input path="number" />
+            <form:input path="number"/>
         </div>
-
-        <form:hidden path="status"/>
+        </p>
         <form:hidden path="user_information"/>
 
         <button style="background-color: #141e30">
@@ -49,13 +53,13 @@
             <spring:message code="save"/>
         </button>
         <p>
-        <a href="/personalInformationUser">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <spring:message code="bK"/>
-        </a>
+            <a href="/personalInformationUser">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <spring:message code="bK"/>
+            </a>
         </p>
     </form:form>
 </div>

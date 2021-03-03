@@ -17,9 +17,17 @@ public class CourseController {
     @GetMapping("/watchAllCoursesManager")
     public String watchAllCoursesManager(Model model) {
 
-        model.addAttribute("allCoursesUser", courseService.allCourses());
+        model.addAttribute("allCoursesUser", courseService.courseList());
 
         return "manager/watchAllCoursesManager";
+    }
+
+    @GetMapping("/watchAllCoursesManagerArchive")
+    public String watchAllCoursesManagerArchive(Model model) {
+
+        model.addAttribute("allCoursesUser", courseService.coursesList());
+
+        return "manager/watchAllCoursesManagerArchive";
     }
 
     @GetMapping("/addCourse")
@@ -61,12 +69,21 @@ public class CourseController {
         return "redirect:/watchAllCoursesManager";
     }
 
-    @PostMapping("/deleteCourseManager")
-    public String deleteCourseManager(@RequestParam(required = true, defaultValue = "") Long idCourse,
-                                      @RequestParam(required = true, defaultValue = "") String action) {
-        if(action.equals("delete")){
-            courseService.deleteByIdCourse(idCourse);
-        }
+    @PostMapping("/saveCourseEditStatus")
+    public String saveCourseEditStatus(@RequestParam("idCourse") Long idCourse) {
+
+        courseService.editCourseStatus(idCourse);
+
         return "redirect:/watchAllCoursesManager";
     }
+
+    @PostMapping("/saveCourseStatusEdit")
+    public String saveCourseStatusEdit(@RequestParam("idCourse") Long idCourse) {
+
+        courseService.editStatusCourse(idCourse);
+
+        return "redirect:/watchAllCoursesManager";
+    }
+
+
 }

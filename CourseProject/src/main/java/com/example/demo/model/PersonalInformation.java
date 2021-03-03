@@ -1,6 +1,10 @@
 package com.example.demo.model;
 
 
+import com.example.demo.model.enumModel.Gender;
+import com.example.demo.model.enumModel.Status;
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,8 +24,12 @@ public class PersonalInformation {
     private String number;
 
     private String age;
-    private String status;
-    private String gender;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @JoinColumn(name = "GENDER")
+    private Gender gender;
+
 
     public PersonalInformation() {
     }
@@ -58,19 +66,11 @@ public class PersonalInformation {
         this.age = age;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 }

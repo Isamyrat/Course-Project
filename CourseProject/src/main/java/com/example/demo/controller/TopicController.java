@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Topic;
+import com.example.demo.service.CourseService;
 import com.example.demo.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,9 @@ public class TopicController {
 
     @Autowired
     private TopicService topicService;
+
+    @Autowired
+    private CourseService courseService;
 
     @GetMapping("/watchTopics{topicId}")
     public String watchTopics(@PathVariable("topicId") Long topicId,
@@ -26,7 +30,8 @@ public class TopicController {
 
     @GetMapping("/addTopics")
     public String addTopics(Model model) {
-        model.addAttribute("topicAdd", new Topic());
+        model.addAttribute("topicAdd", new Topic())
+                .addAttribute("courses", courseService.courseList());
         return "manager/addTopics";
     }
 
@@ -36,8 +41,7 @@ public class TopicController {
                                    Model model) {
 
         if (!topicService.saveTopic(topicForm)) {
-            model.addAttribute("topicLL", "Такого курса не существует!!")
-                    .addAttribute("topicLevel", "Данный топик уже существует можете его изменить");
+            model.addAttribute("topicLL", "Данный топик уже существует можете его изменить!!");
             return "manager/addTopics";
         }
         return "redirect:/menuManager";

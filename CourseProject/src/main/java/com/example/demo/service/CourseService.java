@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.dao.CourseRepository;
 import com.example.demo.model.Course;
+import com.example.demo.model.enumModel.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -21,14 +22,6 @@ public class CourseService {
         Optional<Course> course = courseRepository.findById(id);
         return  course.orElse(new Course());
     }
-    public Boolean deleteByIdCourse(Long id){
-        if(courseRepository.findById(id).isPresent()) {
-             courseRepository.deleteById(id);
-            return true;
-        }
-        return false;
-    }
-
 
     public boolean saveCourse(Course course){
         Course course1 = courseRepository.findByCourse(course.getLanguage(),course.getLevel());
@@ -40,7 +33,24 @@ public class CourseService {
         courseRepository.save(course);
         return true;
     }
+    public List<Course> courseList (){
+        return courseRepository.findByStatus(Status.Use);
+    }
+    public List<Course> coursesList (){
+        return courseRepository.findByStatus(Status.NotUse);
+    }
     public void editCourse(Course course){
+        courseRepository.save(course);
+    }
+
+    public void editCourseStatus(Long courseId){
+        Course course = courseById(courseId);
+        course.setStatus(Status.NotUse);
+        courseRepository.save(course);
+    }
+    public void editStatusCourse(Long courseId){
+        Course course = courseById(courseId);
+        course.setStatus(Status.Use);
         courseRepository.save(course);
     }
 

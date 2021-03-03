@@ -1,10 +1,11 @@
 package com.example.demo.dao;
 
 import com.example.demo.model.Course;
+import com.example.demo.model.enumModel.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import java.util.Optional;
+import java.util.*;
 
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Long> {
@@ -17,5 +18,7 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
 
     @Query("select c from Course  c where c.id = :id")
     Course findByCourseId(Long id);
+
+    List<Course> findByStatus(Status status);
 
 }

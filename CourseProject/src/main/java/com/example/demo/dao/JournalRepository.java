@@ -1,6 +1,7 @@
 package com.example.demo.dao;
 
 import com.example.demo.model.Journal;
+import com.example.demo.model.enumModel.Status;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -21,10 +22,10 @@ public interface JournalRepository extends CrudRepository<Journal,Long> {
     @Query("select j from  Journal  j where j.group_number.number_group = :groupNumber")
     Journal findByGroup(@Param("groupNumber") Long groupNumber);
 
-    Set<Journal> findByStatus(String status);
+    Set<Journal> findByStatus(Status status);
 
     @Query("select j from  Journal  j where j.status = :status or j.status = :status1")
-    Set<Journal> findByStatusOrStatus(String status,String status1);
+    Set<Journal> findByStatusOrStatus(Status status,Status status1);
 
     @Modifying
     @Transactional

@@ -1,6 +1,7 @@
 package com.example.demo.dao;
 
 import com.example.demo.model.Group;
+import com.example.demo.model.enumModel.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -15,7 +16,7 @@ public interface GroupRepository extends JpaRepository<Group, Long> {
     @Query("select g from  Group  g where  g.number_group = :number")
     Group findByNumber(Long number);
 
-    Set<Group> findByStatus(String status);
+    Set<Group> findByStatus(Status status);
 
     @Query("select g from  Group g where  g.course_group.id = :id")
     Group findByCourse(Long id);
@@ -24,5 +25,5 @@ public interface GroupRepository extends JpaRepository<Group, Long> {
     Set<Group> findByTeacher(Long id);
 
     @Query("select g from  Group  g where  g.course_group.id = :id and g.status = :status")
-    List<Group> findForAdd(Long id, String status);
+    List<Group> findForAdd(Long id, Status status);
 }

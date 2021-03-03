@@ -4,6 +4,7 @@ import com.example.demo.dao.CourseRepository;
 import com.example.demo.dao.GroupRepository;
 import com.example.demo.dao.UserRepository;
 import com.example.demo.model.*;
+import com.example.demo.model.enumModel.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,14 +38,12 @@ public class GroupService {
 
     public Set<Group> findByStatus() {
 
-        String status = "Началось";
-        return groupRepository.findByStatus(status);
+        return groupRepository.findByStatus(Status.Start);
     }
 
     public Set<Group> findByStatusWaiting() {
 
-        String status = "В ожидании";
-        return groupRepository.findByStatus(status);
+        return groupRepository.findByStatus(Status.Wait);
     }
 
     public List<Group> findAll() {
@@ -53,8 +52,7 @@ public class GroupService {
     }
     public Set<Group> findByStatusOne() {
 
-        String status = "Закончилась";
-        return groupRepository.findByStatus(status);
+        return groupRepository.findByStatus(Status.Finish);
     }
 
     public Group findByNumberOfGroup(Long number) {
@@ -73,7 +71,7 @@ public class GroupService {
 
         Course course = courseRepository.findByCourseId(group.getCourse_group().getId());
 
-        group.setStatus("В ожидании");
+        group.setStatus(Status.Wait);
         group.setCourse_group(course);
         group.setUser_teacher(user);
 
@@ -101,7 +99,7 @@ public class GroupService {
 
         Course course = callBackService.findCourse(callBack.getCourseCallBack().getId());
 
-        List<Group> groupList = groupRepository.findForAdd(course.getId(),"В ожидании");
+        List<Group> groupList = groupRepository.findForAdd(course.getId(),Status.Wait);
 
         if(groupList.size() == 0){
             return false;

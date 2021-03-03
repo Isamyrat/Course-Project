@@ -1,5 +1,8 @@
 package com.example.demo.model;
 
+import com.example.demo.model.enumModel.Status;
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 
 @Entity
@@ -22,9 +25,11 @@ public class CallBack {
     @JoinColumn(name = "CALLBACKDATE")
     private String callBackDate;
 
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @JoinColumn(name = "STATUS")
+    private Status status;
 
-    @JoinColumn(name = "status")
-    private String status;
 
     public CallBack() {
     }
@@ -61,11 +66,11 @@ public class CallBack {
         this.callBackDate = callBackDate;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 }

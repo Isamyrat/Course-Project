@@ -29,8 +29,8 @@
         <label class="label-color"><spring:message code="select"/></label>
         <form:select path="status">
             <option value=""></option>
-            <option value="Approve"><spring:message code="aCa"/></option>
-            <option value="NotApprove"><spring:message code="aNot"/></option>
+            <option value="Approved"><spring:message code="aCa"/></option>
+            <option value="Denied"><spring:message code="aNot"/></option>
         </form:select>
 
         <form:hidden path="userCallBack"/>

@@ -29,7 +29,6 @@ public class JournalController {
         return "manager/watchJournal";
     }
 
-
     @PostMapping("/deleteJournal")
     public String deleteJournal(@RequestParam(required = true, defaultValue = "") Long journalId,
                                 @RequestParam(required = true, defaultValue = "") String action) {

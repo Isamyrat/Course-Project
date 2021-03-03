@@ -1,6 +1,7 @@
 package com.example.demo.dao;
 
 import com.example.demo.model.CallBack;
+import com.example.demo.model.enumModel.Status;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -19,13 +20,13 @@ public interface CallBackRepository extends CrudRepository<CallBack, Long> {
     @Query("select c from  CallBack  c where c.userCallBack.id = :userId")
     List<CallBack> findByUser(@Param("userId")Long userId);
 
-    List<CallBack> findByStatus(String status);
+    List<CallBack> findByStatus(Status status);
 
     @Query("select c from CallBack  c where c.status = :status1 or  c.status = :status2")
-    List<CallBack> findByStatuss(String status1, String status2);
+    List<CallBack> findByStatuss(Status status1, Status status2);
 
     @Query("select c from  CallBack  c where c.userCallBack.id = :userId and  c.courseCallBack.id = :courseId and c.status = :status")
-    CallBack findByUserSingle(@Param("userId")Long userId, @Param("courseId")Long courseId, @Param("status")String status );
+    CallBack findByUserSingle(@Param("userId")Long userId, @Param("courseId")Long courseId, @Param("status")Status status );
 
 
     @Modifying

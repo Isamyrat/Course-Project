@@ -30,16 +30,19 @@
         </div>
 
         <label class="label-color"><spring:message code="etGe"/></label>
-        <div class=" user-box">
-            <form:input path="gender"/>
-        </div>
+        <form:select path="gender">
+            <option value=""></option>
+            <option value="Male"><spring:message code="male"/></option>
+            <option value="Female"><spring:message code="female"/></option>
+        </form:select>>
+
+
 
         <label class="label-color"><spring:message code="etNum"/></label>
         <div class="user-box">
             <form:input path="number"/>
         </div>
         ${personError}
-        <form:hidden path="status"/>
         <form:hidden path="user_information"/>
         <button style="background-color: #141e30">
             <span></span>

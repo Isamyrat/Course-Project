@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.dao.JournalRepository;
 import com.example.demo.model.Group;
 import com.example.demo.model.Journal;
+import com.example.demo.model.enumModel.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
@@ -28,16 +29,12 @@ public class JournalService {
         return journalRepository.findByGroup(groupNumber);
     }
     public Set<Journal> findByStatus() {
-
-        String status = "В ожидании";
-        String status1 = "Началось";
-        return journalRepository.findByStatusOrStatus(status,status1);
+        return journalRepository.findByStatusOrStatus(Status.Wait,Status.Start);
     }
 
     public Set<Journal> findByStatusArchive() {
 
-        String status = "Закончилась";
-        return journalRepository.findByStatus(status);
+        return journalRepository.findByStatus(Status.Finish);
     }
 
     public void saveJournal(Journal journal){

@@ -6,6 +6,7 @@ import com.example.demo.dao.UserRepository;
 import com.example.demo.model.CallBack;
 import com.example.demo.model.Course;
 import com.example.demo.model.User;
+import com.example.demo.model.enumModel.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,17 +30,12 @@ public class CallBackService {
     }
 
     public List<CallBack> findAll() {
-        String status1 = "Одобрено";
-        String status2 = "Отказано";
-
-        return callBackRepository.findByStatuss(status1, status2);
+        return callBackRepository.findByStatuss(Status.Approved, Status.Denied);
     }
 
     public List<CallBack> findByStatus() {
 
-        String status = "В ожидании";
-
-        return callBackRepository.findByStatus(status);
+        return callBackRepository.findByStatus(Status.Wait);
     }
 
     public Boolean saveCallBack(User userRequestCall, Course courseRequestCall) {
@@ -50,7 +46,7 @@ public class CallBackService {
 
         CallBack callBack = new CallBack();
 
-        callBack.setStatus("В ожидании");
+        callBack.setStatus(Status.Wait);
 
         CallBack callBack1 = callBackRepository.findByUserSingle(user.getId(), course.getId(), callBack.getStatus());
 
@@ -58,7 +54,7 @@ public class CallBackService {
             return false;
         }
 
-        callBack.setStatus("В ожидании");
+        callBack.setStatus(Status.Wait);
         callBack.setCallBackDate(String.valueOf(LocalDate.now()));
         callBack.setUserCallBack(user);
         callBack.setCourseCallBack(course);

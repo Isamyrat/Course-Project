@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 
 import com.example.demo.model.*;
+import com.example.demo.model.enumModel.Status;
 import com.example.demo.service.CallBackService;
 import com.example.demo.service.GroupService;
 import com.example.demo.service.UserService;
@@ -89,15 +90,11 @@ public class CallBackController {
                                 Model model) {
 
 
-        if (editCallBack.getStatus().equals("Approve")) {
-            editCallBack.setStatus("Одобрено");
+        if (editCallBack.getStatus().equals(Status.Approved)) {
             if (!groupService.saveUser(editCallBack)) {
                 model.addAttribute("addToError", "Данной группы еще не существует добавьте его сначала. Группа заполнена создайте новую группу.");
                 return "redirect:/watchGroup";
             }
-
-        } else if (editCallBack.getStatus().equals("NotApprove")) {
-            editCallBack.setStatus("Отказано");
         }
 
 
