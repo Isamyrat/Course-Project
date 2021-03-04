@@ -134,6 +134,11 @@ public class GroupController {
         groupService.editStatus(group);
         return "redirect:/watchGroup";
     }
+    @PostMapping("/saveManagerGroup")
+    public String saveManagerGroup(@ModelAttribute("groupEdit") Group group) {
+        groupService.editGroup(group);
+        return "redirect:/watchGroup";
+    }
 
     @PostMapping("/deleteStud")
     public String deleteStudent(@RequestParam(required = true, defaultValue = "") Long userId,

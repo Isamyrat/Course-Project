@@ -20,7 +20,7 @@
 
 <div class="login-box">
     <h2><spring:message code="enterData"/></h2>
-    <form:form modelAttribute="group" method="POST" action="/saveGroupMan">
+    <form:form modelAttribute="group" method="POST" action="/saveManagerGroup">
 
         <label class="label-color"><spring:message code="nOG"/></label>
         <form:hidden path="id"/>

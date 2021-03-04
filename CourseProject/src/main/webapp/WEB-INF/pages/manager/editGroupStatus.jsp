@@ -12,8 +12,8 @@
 <header>
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
-        <h4><a href="/editGroupManager${groupId}?lang=en" class="big-button"><spring:message code="app.en"/></a></h4>
-        <h4><a href="/editGroupManager${groupId}?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
+        <h4><a href="/editGroupStatus${groupId}?lang=en" class="big-button"><spring:message code="app.en"/></a></h4>
+        <h4><a href="/editGroupStatus${groupId}?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
     </div>
 </header>
 <body>

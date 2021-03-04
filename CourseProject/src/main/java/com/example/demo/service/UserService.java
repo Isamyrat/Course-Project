@@ -3,6 +3,7 @@ package com.example.demo.service;
 
 import com.example.demo.dao.RoleRepository;
 import com.example.demo.dao.UserRepository;
+import com.example.demo.model.Group;
 import com.example.demo.model.Role;
 import com.example.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -24,6 +23,9 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     RoleRepository roleRepository;
+
+    @Autowired
+    GroupService groupService;
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -122,12 +124,20 @@ public class UserService implements UserDetailsService {
         return userRepository.save(user);
     }
 
-    public boolean deleteUser(Long userId) {
+    public void deleteUser(Long userId) {
         if (userRepository.findById(userId).isPresent()) {
             userRepository.deleteById(userId);
-            return true;
         }
-        return false;
+    }
+    public Boolean deleteTeacher(Long userId) {
+        List<Group> groupList = groupService.findByTeacherAndStatus(userId);
+        if(groupList.size() == 0) {
+            if (userRepository.findById(userId).isPresent()) {
+                userRepository.deleteById(userId);
+            }
+            return true;
+        }else
+            return false;
     }
 
     public User getUser(String username) {

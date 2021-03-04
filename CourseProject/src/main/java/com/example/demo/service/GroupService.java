@@ -83,6 +83,9 @@ public class GroupService {
         journalService.saveJournal(journal);
         return true;
     }
+    public void editGroup(Group group) {
+        groupRepository.save(group);
+    }
 
     public void editStatus(Group group) {
         Journal journal = journalService.findByGroup(group.getNumber_group());
@@ -170,6 +173,10 @@ public class GroupService {
 
     public Set<Group> findByTeacher(Long id) {
         return groupRepository.findByTeacher(id);
+    }
+
+    public List<Group> findByTeacherAndStatus(Long id) {
+        return groupRepository.findByTeacherAndStatus(id, Status.Wait,Status.Start);
     }
 
 }

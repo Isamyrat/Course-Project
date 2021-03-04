@@ -31,29 +31,59 @@
                     <h2><spring:message code="enterDatas"/></h2>
                     <div class="form-row">
                         <div class="form-group">
-                            <label><spring:message code="dOTC"/></label>
-                            <form:input type="text" path="duration"/>
+                            <label><spring:message code="dOTC"/>:</label>
+                            <div class="form-select">
+                                <form:select path="duration">
+                                    <option value=""></option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </form:select>
+                            </div>
                         </div>
+                        <div class="form-group">
+                            <label><spring:message code="oTDW"/></label>
+                            <div class="form-select">
+                                <form:select path="days">
+                                    <option value=""></option>
+                                    <option value="1-3-5">1-3-5</option>
+                                    <option value="2-4-6">2-4-6</option>
+                                </form:select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label><spring:message code="oTGW"/></label>
+                            <div class="form-select">
+                                <form:select path="time">
+                                    <option value=""></option>
+                                    <option value="9-11">9-11</option>
+                                    <option value="1-3">1-3</option>
+                                    <option value="4-6">4-6</option>
+                                    <option value="7-9">7-9</option>
+                                </form:select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
                         <div class="form-group">
                             <label><spring:message code="dOC"/></label>
                             <form:input type="text" path="start_date" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label ><spring:message code="oTDW"/></label>
-                        <form:input type="text" path="days" />
-                    </div>
-                    <div class="form-group">
                         <label><spring:message code="p"/></label>
                         <form:input path="price"/>
                     </div>
-                    <div class="form-group">
-                        <label><spring:message code="oTGW"/>:</label>
-                        <form:input type="text" path="time"/>
-                    </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label><spring:message code="select"/>:</label>
+                            <label><spring:message code="selectLang"/></label>
                             <div class="form-select">
                                 <form:select path="language">
                                     <option value=""></option>
@@ -67,9 +97,10 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label><spring:message code="select"/></label>
+                            <label><spring:message code="selectLevel"/></label>
                             <div class="form-select">
                                 <form:select path="level">
+                                    <option value=""></option>
                                     <option value="Start">Start</option>
                                     <option value="Elementary">Elementary</option>
                                     <option value="Advanced">Advanced</option>
@@ -104,7 +135,5 @@
     <%@include file ="../css/material-design-iconic-font.min.css"%>
     <%@include file ="../css/js/jquery-3.3.1.min.js"%>
     <%@include file ="../css/js/custom.js"%>
-    <%@include file ="../css/button.css"%>
-
 </style>
 </html>

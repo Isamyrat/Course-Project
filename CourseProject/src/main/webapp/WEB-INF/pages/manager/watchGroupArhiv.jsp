@@ -35,6 +35,7 @@
                 <th><spring:message code="laOG"/></th>
                 <th><spring:message code="sG"/></th>
                 <th><spring:message code="aG"/></th>
+                <th><spring:message code="aG"/></th>
             </tr>
             </thead>
             <tbody>

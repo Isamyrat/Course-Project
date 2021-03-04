@@ -30,7 +30,7 @@
         <th><spring:message code="idT"/></th>
         <th><spring:message code="nMU"/></th>
         <th><spring:message code="sNUS"/></th>
-        <th><spring:message code="aG"/></th>
+        <th><spring:message code="aG"/>${errorTeacher}</th>
         </thead>
         <c:forEach items="${allTeachers}" var="user">
             <c:forEach items="${user.roles}" var="role">
@@ -45,6 +45,7 @@
                                    style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;font-size: 20px"><spring:message
                                         code="cT"/></a>
                             </form>
+
                             <form action="${pageContext.request.contextPath}/deleteTeacher" method="post">
                                 <input type="hidden" name="userId" value="${user.id}"/>
                                 <input type="hidden" name="action" value="delete"/>

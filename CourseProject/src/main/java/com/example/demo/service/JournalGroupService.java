@@ -40,6 +40,8 @@ public class JournalGroupService {
 
         Group group1 = groupService.findByNumberOfGroup(groupNumber);
 
+        Journal journal = journalService.findByGroup(group1.getNumber_group());
+
         Set<User> usersSet = group1.getUserGroup();
 
         User user1 = new User();
@@ -50,7 +52,7 @@ public class JournalGroupService {
             }
         }
 
-        return journalGroupRepository.findByUser(user1.getId());
+        return journalGroupRepository.findByUser(user1.getId(),journal.getId());
     }
 
     public void saveJournalStudent(JournalGroup journalGroup,Long groupNumber,Long userId ) {

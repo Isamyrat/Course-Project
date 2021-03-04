@@ -18,6 +18,8 @@
         <h4><a href="?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
     </div>
 </header>
+
+<spring:message code="askMCB" var="askMCB"/>
 <div class="container">
 
     <table id="table-id">
@@ -37,7 +39,6 @@
                     <th><spring:message code="dOTC"/></th>
                     <th><spring:message code="oTDW"/></th>
                     <th><spring:message code="p"/></th>
-                    <th><spring:message code="aG"/></th>
                     <th><spring:message code="topCours"/></th>
                     <th><spring:message code="delCourse"/></th>
                 </tr>
@@ -54,13 +55,6 @@
                         <td>${courses.price}</td>
                         <td>
                             <form>
-                                <a href="/editCourseManager${courses.id}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
-                                    <spring:message code="eCM"/></a>
-                            </form>
-                        </td>
-                        <td>
-                            <form>
                                 <a href="/watchTopics${courses.id}" type="submit"
                                    style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
                                     <spring:message code="tTG"/></a>
@@ -69,8 +63,8 @@
                         <td>
                             <form action="${pageContext.request.contextPath}/saveCourseStatusEdit" method="post">
                                 <input type="hidden" name="idCourse" value="${courses.id}"/>
-                                <button type="submit"
-                                        style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 25px ">
+                                <button type="submit"  onclick="if(!(confirm('${askMCB}'))) return false"
+                                        style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
                                     <spring:message code="sTAB"/></button>
                             </form>
                         </td>

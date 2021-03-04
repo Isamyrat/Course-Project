@@ -19,8 +19,8 @@ public interface JournalGroupRepository extends JpaRepository<JournalGroup, Long
     @Override
     Optional<JournalGroup> findById(Long aLong);
 
-    @Query("select jg from  JournalGroup  jg where jg.journal_user.id = :idUser")
-    List<JournalGroup> findByUser(@Param("idUser") Long idUser);
+    @Query("select jg from  JournalGroup  jg where jg.journal_user.id = :idUser and jg.group_journals.id = :idJournal")
+    List<JournalGroup> findByUser(@Param("idUser") Long idUser, @Param("idJournal") Long idJournal);
 
     @Modifying
     @Transactional

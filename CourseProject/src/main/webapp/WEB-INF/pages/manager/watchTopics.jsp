@@ -67,7 +67,6 @@
             </form:form>
         </table>
         <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
-
     </div>
 </sec:authorize>
 
@@ -88,8 +87,8 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <th>${allTopics.text}</th>
-                    <th>${allTopics.rules}</th>
+                    <td>${allTopics.text}</td>
+                    <td>${allTopics.rules}</td>
                 </tr>
                 </tbody>
             </form:form>

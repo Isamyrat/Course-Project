@@ -30,6 +30,7 @@ public class CourseService {
             return false;
         }
 
+        course.setStatus(Status.Use);
         courseRepository.save(course);
         return true;
     }
@@ -40,6 +41,7 @@ public class CourseService {
         return courseRepository.findByStatus(Status.NotUse);
     }
     public void editCourse(Course course){
+        course.setStatus(Status.Use);
         courseRepository.save(course);
     }
 
