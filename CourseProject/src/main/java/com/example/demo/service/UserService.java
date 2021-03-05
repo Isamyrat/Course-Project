@@ -47,6 +47,10 @@ public class UserService implements UserDetailsService {
         return userFromDb.orElse(new User());
     }
 
+    public Role findRoleById(Long userId) {
+        Optional<Role> role = roleRepository.findById(userId);
+        return role.orElse(new Role());
+    }
 
     public List<User> allUsers() {
         return userRepository.findAll();
@@ -124,13 +128,21 @@ public class UserService implements UserDetailsService {
         return userRepository.save(user);
     }
 
-    public void deleteUser(Long userId) {
-        if (userRepository.findById(userId).isPresent()) {
+    public void deleteManager(Long userId) {
             userRepository.deleteById(userId);
-        }
+    }
+    public Boolean deleteStudents(Long userId) {
+        List<Group> groupList = groupService.findByUserId(userId);
+        if(groupList.size() == 0) {
+            if (userRepository.findById(userId).isPresent()) {
+                userRepository.deleteById(userId);
+            }
+            return true;
+        }else
+            return false;
     }
     public Boolean deleteTeacher(Long userId) {
-        List<Group> groupList = groupService.findByTeacherAndStatus(userId);
+        List<Group> groupList = groupService.findByTeacherId(userId);
         if(groupList.size() == 0) {
             if (userRepository.findById(userId).isPresent()) {
                 userRepository.deleteById(userId);

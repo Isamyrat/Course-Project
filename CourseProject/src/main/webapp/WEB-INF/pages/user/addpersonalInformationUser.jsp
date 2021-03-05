@@ -39,10 +39,11 @@
 
 
         <label class="label-color"><spring:message code="etNum"/></label>
-        <div class="user-box">
+        <div class="user-box" style="color: white">
             <form:input path="number"/>
+                ${personError}
         </div>
-        ${personError}
+
         <form:hidden path="user_information"/>
         <button style="background-color: #141e30">
             <span></span>

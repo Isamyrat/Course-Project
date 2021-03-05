@@ -32,14 +32,27 @@ public class AdminController {
         return "admin/watchAllManagers";
     }
 
-    @PostMapping("/admin")
-    public String  deleteUser(@RequestParam(required = true, defaultValue = "" ) Long userId,
-                              @RequestParam(required = true, defaultValue = "" ) String action) {
+    @PostMapping("/deleteManager")
+    public String  deleteManager(@RequestParam(required = true, defaultValue = "" ) Long userId,
+                              @RequestParam(required = true, defaultValue = "" ) String action,Model model) {
+
 
         if (action.equals("delete")){
-            userService.deleteUser(userId);
+            userService.deleteManager(userId);
         }
+        return "redirect:/menuAdmin";
+    }
+    @PostMapping("/deleteUsers")
+    public String  deleteUsers(@RequestParam(required = true, defaultValue = "" ) Long userId,
+                              @RequestParam(required = true, defaultValue = "" ) String action,Model model) {
 
+
+        if (action.equals("delete")){
+            if(!userService.deleteStudents(userId)){
+                model.addAttribute("errorStudent", "Данный студент учится/учился в группе, вам необходитмо его удалить из группы, а затем вы можете его удалить польностью!!!!");
+                return "manager/errors";
+            }
+        }
         return "redirect:/admin";
     }
     @GetMapping("/addManager")

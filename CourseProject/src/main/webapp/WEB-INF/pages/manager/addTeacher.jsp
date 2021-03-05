@@ -41,7 +41,7 @@
         </div>
 
         <label class="label-color"><spring:message code="eP"/></label>
-        <div class="user-box">
+        <div class="user-box" style="color: white">
             <form:input path="password"/>
             <form:errors path="username"/>
                 ${usernameError}

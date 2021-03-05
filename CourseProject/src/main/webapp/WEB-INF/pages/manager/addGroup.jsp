@@ -32,7 +32,6 @@
                         <div class="form-group">
                             <label><spring:message code="nOG"/></label>
                             <form:input type="text" path="number_group"/>
-                                ${groupError}
                         </div>
                     </div>
                     <form:hidden path="userGroup"/>

@@ -96,7 +96,7 @@ public class GroupController {
 
         if (!groupService.saveGroup(group)) {
             model.addAttribute("groupError", "Такой номер группы уже существует измените его пожалуйста!!!");
-            return "manager/addGroup";
+            return "manager/errors";
         }
 
         return "redirect:/watchGroup";

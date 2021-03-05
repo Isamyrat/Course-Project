@@ -7,4 +7,6 @@ import java.util.*;
 
 public interface RoleRepository extends JpaRepository<Role, Long> {
     <T>List<T> findByName(String name);
+
+    Optional<Role> findById(Long id);
 }

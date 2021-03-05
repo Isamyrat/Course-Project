@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html>
@@ -19,51 +20,95 @@
 <body>
 <spring:message code="askT" var="askT"/>
 
-<div class="container">
-    <table>
-        <thead>
-        <tr>
-            <th><spring:message code="tUT"/></th>
-        </tr>
-        </thead>
-        <thead>
-        <th><spring:message code="idT"/></th>
-        <th><spring:message code="nMU"/></th>
-        <th><spring:message code="sNUS"/></th>
-        <th><spring:message code="aG"/>${errorTeacher}</th>
-        </thead>
-        <c:forEach items="${allTeachers}" var="user">
-            <c:forEach items="${user.roles}" var="role">
-                <c:if test="${role.name=='ROLE_TEACHER'}">
-                    <tr>
-                        <td>${user.id}</td>
-                        <td>${user.name}</td>
-                        <td>${user.surname}</td>
-                        <td>
-                            <form>
-                                <a href="/editTeacher${user.id}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;font-size: 20px"><spring:message
-                                        code="cT"/></a>
-                            </form>
+<sec:authorize access="hasRole('ROLE_MANAGER')">
+    <div class="container">
+        <table>
+            <thead>
+            <tr>
+                <th><spring:message code="tUT"/></th>
+            </tr>
+            </thead>
+            <thead>
+            <th><spring:message code="idT"/></th>
+            <th><spring:message code="nMU"/></th>
+            <th><spring:message code="sNUS"/></th>
+            <th><spring:message code="aG"/></th>
+            </thead>
+            <c:forEach items="${allTeachers}" var="user">
+                <c:forEach items="${user.roles}" var="role">
+                    <c:if test="${role.name=='ROLE_TEACHER'}">
+                        <tr>
+                            <td>${user.id}</td>
+                            <td>${user.name}</td>
+                            <td>${user.surname}</td>
+                            <td>
+                                <form>
+                                    <a href="/editTeacher${user.id}" type="submit"
+                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;font-size: 20px"><spring:message
+                                            code="cT"/></a>
+                                </form>
+                                <form action="${pageContext.request.contextPath}/deleteTeacher" method="post">
+                                    <input type="hidden" name="userId" value="${user.id}"/>
+                                    <input type="hidden" name="action" value="delete"/>
+                                    <button type="submit" onclick="if(!(confirm('${askT}'))) return false"
+                                            style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
+                                        <spring:message code="dT"/></button>
+                                </form>
+                            </td>
 
-                            <form action="${pageContext.request.contextPath}/deleteTeacher" method="post">
-                                <input type="hidden" name="userId" value="${user.id}"/>
-                                <input type="hidden" name="action" value="delete"/>
-                                <button type="submit"  onclick="if(!(confirm('${askT}'))) return false"
-                                        style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
-                                    <spring:message code="dT"/></button>
-                            </form>
-
-                        </td>
-
-                    </tr>
-                </c:if>
+                        </tr>
+                    </c:if>
+                </c:forEach>
             </c:forEach>
-        </c:forEach>
-    </table>
-    <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
-</div>
-<span></span>
+        </table>
+        <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
+    </div>
+
+</sec:authorize>
+
+
+
+
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+    <div class="container">
+        <table>
+            <thead>
+            <tr>
+                <th><spring:message code="tUT"/></th>
+            </tr>
+            </thead>
+            <thead>
+            <th><spring:message code="idT"/></th>
+            <th><spring:message code="nMU"/></th>
+            <th><spring:message code="sNUS"/></th>
+            <th><spring:message code="aG"/></th>
+            </thead>
+            <c:forEach items="${allTeachers}" var="user">
+                <c:forEach items="${user.roles}" var="role">
+                    <c:if test="${role.name=='ROLE_TEACHER'}">
+                        <tr>
+                            <td>${user.id}</td>
+                            <td>${user.name}</td>
+                            <td>${user.surname}</td>
+                            <td>
+                                <form action="${pageContext.request.contextPath}/deleteTeacher" method="post">
+                                    <input type="hidden" name="userId" value="${user.id}"/>
+                                    <input type="hidden" name="action" value="delete"/>
+                                    <button type="submit" onclick="if(!(confirm('${askT}'))) return false"
+                                            style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
+                                        <spring:message code="dT"/></button>
+                                </form>
+                            </td>
+
+                        </tr>
+                    </c:if>
+                </c:forEach>
+            </c:forEach>
+        </table>
+        <a href="/menuAdmin" class="big-button"><spring:message code="mA"/></a>
+    </div>
+
+</sec:authorize>
 </body>
 
 <style>

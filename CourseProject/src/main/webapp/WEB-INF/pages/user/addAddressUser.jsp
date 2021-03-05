@@ -50,10 +50,11 @@
         </div>
 
         <label class="label-color"><spring:message code="addA"/></label>
-        <div class="user-box">
+        <div class="user-box" style="color: white">
             <form:input path="apartment"/>
+                ${addressError}
         </div>
-        ${addressError}
+
 
         <form:hidden path="user_address"/>
 

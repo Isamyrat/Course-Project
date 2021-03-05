@@ -42,7 +42,7 @@ public class TopicController {
 
         if (!topicService.saveTopic(topicForm)) {
             model.addAttribute("topicLL", "Данный топик уже существует можете его изменить!!");
-            return "manager/addTopics";
+            return "manager/errors";
         }
         return "redirect:/menuManager";
     }

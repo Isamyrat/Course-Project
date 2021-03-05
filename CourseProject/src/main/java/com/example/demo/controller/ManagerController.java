@@ -32,6 +32,7 @@ public class ManagerController {
 
     @GetMapping("/addTeacher")
     public String edit(Model model) {
+
         model.addAttribute("userTeacher", new User());
 
         return "manager/addTeacher";
@@ -49,7 +50,6 @@ public class ManagerController {
         }
         return "redirect:/watchTeacher";
     }
-
 
 
     @GetMapping("/editTeacher{userId}")
@@ -74,8 +74,8 @@ public class ManagerController {
                               @RequestParam(required = true, defaultValue = "" ) String action, Model model) {
         if (action.equals("delete")){
             if(!userService.deleteTeacher(userId)){
-                model.addAttribute("errorTeacher", "Данный преподаватель преподает в группе. Смените преподавателя на другой а затем можете удалять!!!!");
-                return "manager/watchTeacher";
+                model.addAttribute("errorTeacher", "Данный преподаватель преподает в группе. Смените преподавателя на другой, а затем можете удалять!!!!");
+                return "manager/errors";
             }
         }
         return "redirect:/watchTeacher";

@@ -33,10 +33,10 @@
             <th><spring:message code="idT"/></th>
             <th><spring:message code="nMU"/></th>
             <th><spring:message code="sNUS"/></th>
-            <th><spring:message code="rU"/></th>
             <th><spring:message code="aG"/></th>
         </tr>
         </thead>
+        <c:if test="${allUsers.size()>0}">
         <c:forEach items="${allUsers}" var="user">
             <c:forEach items="${user.roles}" var="role">
                 <c:if test="${role.name=='ROLE_MANAGER'}">
@@ -45,10 +45,7 @@
                         <td>${user.name}</td>
                         <td>${user.surname}</td>
                         <td>
-                            <c:forEach items="${user.roles}" var="role">${role.name}; </c:forEach>
-                        </td>
-                        <td>
-                            <form action="${pageContext.request.contextPath}/admin" method="post">
+                            <form action="${pageContext.request.contextPath}/deleteManager" method="post">
                                 <input type="hidden" name="userId" value="${user.id}"/>
                                 <input type="hidden" name="action" value="delete"/>
                                 <button type="submit"  onclick="if(!(confirm('${askMan}'))) return false"
@@ -62,10 +59,13 @@
                 </c:if>
             </c:forEach>
         </c:forEach>
+        </c:if>
+        <c:if test="${allUsers.size()<1}">
+            <td><spring:message code="eC"/></td>
+        </c:if>
     </table>
     <a href="/menuAdmin" class="big-button"><spring:message code="mA"/></a>
 </div>
-<span></span>
 </body>
 
 <style>

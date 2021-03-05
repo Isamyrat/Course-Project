@@ -23,6 +23,8 @@
 <br>
 <a href="/watchManagersAdmin" class="fancy-btn"><spring:message code="wMan"/></a>
 <br>
+<a href="/watchTeacher" class="fancy-btn"><spring:message code="wTeach"/></a>
+<br>
 <a href="/personalInformationUser" class="fancy-btn"><spring:message code="bK"/></a>
 
 </body>

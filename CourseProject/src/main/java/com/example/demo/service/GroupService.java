@@ -175,8 +175,11 @@ public class GroupService {
         return groupRepository.findByTeacher(id);
     }
 
-    public List<Group> findByTeacherAndStatus(Long id) {
-        return groupRepository.findByTeacherAndStatus(id, Status.Wait,Status.Start);
+    public List<Group> findByTeacherId(Long id) {
+        return groupRepository.findByTeacherId(id);
+    }
+    public List<Group> findByUserId(Long id) {
+        return findByUser(id);
     }
 
 }
