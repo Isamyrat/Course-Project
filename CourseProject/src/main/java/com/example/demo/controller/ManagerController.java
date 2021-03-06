@@ -22,10 +22,10 @@ public class ManagerController {
         return "manager/menu";
     }
 
-    @GetMapping("/watchTeacher")
-    public String watchTeacher(Model model) {
-
-        model.addAttribute("allTeachers", userService.allUsers());
+    @GetMapping("/watchTeacher/{pageNumber}/{pageSize}")
+    public String watchTeacher(@PathVariable int pageNumber,@PathVariable int pageSize, Model model) {
+        model.addAttribute("allTeachers", userService.allTeachers(pageNumber,pageSize))
+                .addAttribute("pageNumber", pageNumber);
 
         return "manager/watchTeacher";
     }
@@ -48,7 +48,7 @@ public class ManagerController {
             model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
             return "manager/addTeacher";
         }
-        return "redirect:/watchTeacher";
+        return "redirect:/menuManager";
     }
 
 
@@ -66,7 +66,7 @@ public class ManagerController {
 
         userService.editTeacher(userTeacher);
 
-        return "redirect:/watchTeacher";
+        return "redirect:/menuManager";
     }
 
     @PostMapping("/deleteTeacher")
@@ -78,7 +78,7 @@ public class ManagerController {
                 return "manager/errors";
             }
         }
-        return "redirect:/watchTeacher";
+        return "redirect:/menuManager";
     }
 
 

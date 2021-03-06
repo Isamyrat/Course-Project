@@ -20,7 +20,7 @@
 
 <div class="container">
     <table>
-        <form:form modelAttribute="watchUsersArhiv">
+        <form:form modelAttribute="watchGroupArchive">
             <thead>
             <tr>
                 <th><spring:message code="tiTle"/></th>
@@ -39,8 +39,8 @@
             </tr>
             </thead>
             <tbody>
-            <c:if test="${watchUsersArhiv.size()>0}">
-                <c:forEach items="${watchUsersArhiv}" var="groups">
+            <c:if test="${watchGroupArchive.size()>0}">
+                <c:forEach items="${watchGroupArchive}" var="groups">
 
                     <tr>
                         <td>${groups.number_group}</td>
@@ -66,12 +66,22 @@
                 </c:forEach>
 
             </c:if>
-            <c:if test="${watchUsersArhiv.size()<1}">
+            <c:if test="${watchGroupArchive.size()<1}">
                 <td><spring:message code="eC"/></td>
             </c:if>
             </tbody>
         </form:form>
     </table>
+    <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
+        <c:if test="${pageNumber>0}">
+            <a href="/watchGroupArchive/${pageNumber-1}/${7}" class="arrow left"
+               style="float: left; padding-left: 100px;  font-size: 60px"><</a>
+        </c:if>
+        <c:if test="${watchGroupArchive.size()>pageNumber}">
+            <a href="/watchGroupArchive/${pageNumber+1}/${7}" class="arrow right"
+               style="float: left; padding-left: 160px; font-size: 60px"> > </a>
+        </c:if>
+    </form>
     <a href="/menuManager" class="big-button"><spring:message code="bK"/></a>
 </div>
 

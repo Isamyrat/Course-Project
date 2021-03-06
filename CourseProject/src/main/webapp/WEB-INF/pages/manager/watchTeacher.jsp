@@ -35,8 +35,6 @@
             <th><spring:message code="aG"/></th>
             </thead>
             <c:forEach items="${allTeachers}" var="user">
-                <c:forEach items="${user.roles}" var="role">
-                    <c:if test="${role.name=='ROLE_TEACHER'}">
                         <tr>
                             <td>${user.id}</td>
                             <td>${user.name}</td>
@@ -55,18 +53,21 @@
                                         <spring:message code="dT"/></button>
                                 </form>
                             </td>
-
                         </tr>
-                    </c:if>
-                </c:forEach>
             </c:forEach>
         </table>
+        <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
+            <c:if test="${pageNumber>0}">
+                <a href="/watchTeacher/${pageNumber-1}/${8}" class="arrow left" style="float: left; padding-left: 100px;  font-size: 60px"><</a>
+            </c:if>
+            <c:if test="${allTeachers.size()>pageNumber}">
+                <a href="/watchTeacher/${pageNumber+1}/${8}" class="arrow right" style="float: left; padding-left: 160px; font-size: 60px"> > </a>
+            </c:if>
+        </form>
         <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
     </div>
 
 </sec:authorize>
-
-
 
 
 <sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -84,8 +85,6 @@
             <th><spring:message code="aG"/></th>
             </thead>
             <c:forEach items="${allTeachers}" var="user">
-                <c:forEach items="${user.roles}" var="role">
-                    <c:if test="${role.name=='ROLE_TEACHER'}">
                         <tr>
                             <td>${user.id}</td>
                             <td>${user.name}</td>
@@ -101,14 +100,21 @@
                             </td>
 
                         </tr>
-                    </c:if>
-                </c:forEach>
             </c:forEach>
         </table>
+        <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
+            <c:if test="${pageNumber>0}">
+                <a href="/watchTeacher/${pageNumber-1}/${8}" class="arrow left" style="float: left; padding-left: 100px;  font-size: 60px"><</a>
+            </c:if>
+            <c:if test="${allTeachers.size()>pageNumber}">
+                <a href="/watchTeacher/${pageNumber+1}/${8}" class="arrow right" style="float: left; padding-left: 160px; font-size: 60px"> > </a>
+            </c:if>
+        </form>
         <a href="/menuAdmin" class="big-button"><spring:message code="mA"/></a>
     </div>
 
 </sec:authorize>
+
 </body>
 
 <style>

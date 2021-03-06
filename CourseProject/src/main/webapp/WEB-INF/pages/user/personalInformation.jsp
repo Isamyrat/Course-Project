@@ -82,9 +82,9 @@
 
             </form:form>
         </table>
-        <a href="/watchAllCoursesManager" class="big-button"><spring:message code="wAC"/></a>
+        <a href="/watchAllCoursesManager/${0}/${3}" class="big-button"><spring:message code="wAC"/></a>
         <a href="/editUser" class="big-button"><spring:message code="cPI"/></a>
-        <a href="/watchGroupUser" class="big-button"><spring:message code="wWG"/></a>
+        <a href="/watchGroupUser/${0}/${7}" class="big-button"><spring:message code="wWG"/></a>
         <a href="/" class="big-button"><spring:message code="bK"/></a>
     </div>
 
@@ -123,7 +123,7 @@
             </form:form>
         </table>
         <a href="/editUser" class="big-button"><spring:message code="cPI"/></a>
-        <a href="/watchGroupTeacher" class="big-button"><spring:message code="wG"/></a>
+        <a href="/watchGroupTeacher/${0}/${7}" class="big-button"><spring:message code="wG"/></a>
         <a href="/" class="big-button"><spring:message code="bK"/></a>
     </div>
 </sec:authorize>

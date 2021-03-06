@@ -59,50 +59,22 @@
 
             </form:form>
         </table>
-        <a href="/watchJournal" class="big-button"><spring:message code="wJMA"/></a>
+        <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
+            <c:if test="${pageNumber>0}">
+                <a href="/watchJournalManager/${pageNumber-1}/${7}" class="arrow left"
+                   style="float: left; padding-left: 100px;  font-size: 60px"><</a>
+            </c:if>
+            <c:if test="${journals.size()>pageNumber}">
+                <a href="/watchJournalManager/${pageNumber+1}/${7}" class="arrow right"
+                   style="float: left; padding-left: 160px; font-size: 60px"> > </a>
+            </c:if>
+        </form>
+        <a href="/watchJournal/${0}/${7}" class="big-button"><spring:message code="wJMA"/></a>
         <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
 
     </div>
 </sec:authorize>
 
-<sec:authorize access="hasRole('ROLE_TEACHER')">
-
-    <div class="container">
-        <table>
-            <form:form modelAttribute="journals">
-                <thead>
-                <tr>
-                    <th><spring:message code="jJJ"/></th>
-                </tr>
-                </thead>
-                <thead>
-                <tr>
-                    <th><spring:message code="nOG"/></th>
-                    <th><spring:message code="aG"/></th>
-                </tr>
-                </thead>
-                <c:forEach items="${journals}" var="journal">
-                    <tbody>
-                    <tr>
-                        <td>${journal.group_number.number_group}</td>
-
-                        <td>
-                            <form>
-                                <a href="/watchGroupUsers${journal.group_number.id}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
-                                    <spring:message code="titleStud"/></a>
-                            </form>
-                        </td>
-                    </tr>
-                    </tbody>
-                </c:forEach>
-            </form:form>
-        </table>
-        <a href="/watchJournal" class="big-button"><spring:message code="wJMA"/></a>
-        <a href="/personalInformationUser" class="big-button"><spring:message code="mAM"/></a>
-
-    </div>
-</sec:authorize>
 </body>
 
 <style>

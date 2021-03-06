@@ -26,11 +26,11 @@
     <a href="/addCourse" class="btn btn-1"><spring:message code="addCours"/></a>
     <a href="/addGroup" class="btn btn-2"><spring:message code="addGroup"/></a>
     <a href="/addTopics" class="btn btn-2"><spring:message code="addTopic"/></a>
-    <a href="/watchTeacher" class="btn btn-4"><spring:message code="wTeach"/></a>
-    <a href="/watchJournalManager" class="btn btn-4"><spring:message code="wJournals"/></a>
-    <a href="/watchRequestCall" class="btn btn-5"><spring:message code="wCall"/></a>
-    <a href="/watchGroup" class="btn btn-5"><spring:message code="wGroups"/></a>
-    <a href="/watchAllCoursesManager" class="btn btn-6"><spring:message code="wCourse"/></a>
+    <a href="/watchTeacher/${0}/${10}" class="btn btn-4"><spring:message code="wTeach"/></a>
+    <a href="/watchJournalManager/${0}/${7}" class="btn btn-4"><spring:message code="wJournals"/></a>
+    <a href="/watchRequestCall/${0}/${7}" class="btn btn-5"><spring:message code="wCall"/></a>
+    <a href="/watchGroup/${0}/${3}" class="btn btn-5"><spring:message code="wGroups"/></a>
+    <a href="/watchAllCoursesManager/${0}/${3}" class="btn btn-6"><spring:message code="wCourse"/></a>
     <a href="/personalInformationUser" class="btn btn-6"><spring:message code="bK"/></a>
 </div>
 <div class="footer-wrapper">
@@ -38,7 +38,6 @@
 
 </div>
 
-</div>
 </body>
 <style>
     <%@include file ="../css/button.css"%>

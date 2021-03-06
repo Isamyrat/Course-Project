@@ -4,6 +4,9 @@ import com.example.demo.dao.CourseRepository;
 import com.example.demo.model.Course;
 import com.example.demo.model.enumModel.Status;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -13,10 +16,6 @@ public class CourseService {
 
     @Autowired
     CourseRepository courseRepository;
-
-    public List<Course> allCourses(){
-        return  courseRepository.findAll();
-    }
 
     public Course courseById(Long id){
         Optional<Course> course = courseRepository.findById(id);
@@ -34,11 +33,13 @@ public class CourseService {
         courseRepository.save(course);
         return true;
     }
+    public List<Course> courses(int pageNumber,int pageSize){
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        Page<Course> page = courseRepository.findAll(pageable);
+        return page.toList();
+    }
     public List<Course> courseList (){
         return courseRepository.findByStatus(Status.Use);
-    }
-    public List<Course> coursesList (){
-        return courseRepository.findByStatus(Status.NotUse);
     }
     public void editCourse(Course course){
         course.setStatus(Status.Use);

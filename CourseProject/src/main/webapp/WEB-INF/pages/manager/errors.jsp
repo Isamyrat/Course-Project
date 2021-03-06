@@ -15,13 +15,16 @@
 <div class="container">
     <div class="localize" style="width: 500px; height: 300px; font-size: 35px; color: black;" >
         ${groupError}
-        ${topicLL} ${errorTeacher}${errorStudent}
+        ${topicLL} ${errorTeacher}${errorStudent}${addToError}${addToErrors}
         <p>
             <sec:authorize access="hasRole('ROLE_ADMIN')">
                 <a href="/menuAdmin" class="big-button"><spring:message code="bK"/></a>
             </sec:authorize>
             <sec:authorize access="hasRole('ROLE_MANAGER')">
                 <a href="/menuManager" class="big-button"><spring:message code="bK"/></a>
+            </sec:authorize>
+            <sec:authorize access="hasRole('ROLE_USER')">
+                <a href="/personalInformationUser" class="big-button"><spring:message code="bK"/></a>
             </sec:authorize>
         </p>
     </div>

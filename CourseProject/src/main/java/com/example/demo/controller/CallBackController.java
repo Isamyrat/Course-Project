@@ -15,7 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.*;
+
 
 @Controller
 public class CallBackController {
@@ -29,33 +29,38 @@ public class CallBackController {
     @Autowired
     private GroupService groupService;
 
-    @GetMapping("/watchRequestCallUser")
-    public String watchRequestCallUser(Model model) {
+    @GetMapping("/watchRequestCallUser/{pageNumber}/{pageSize}")
+    public String watchRequestCallUser(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         User user = userService.getUser(userDetails.getUsername());
 
-        model.addAttribute("callBack", callBackService.callBackFind(user.getId()));
+        model.addAttribute("callBackManager", callBackService.callBackListUser(pageNumber,pageSize,user.getId()))
+                .addAttribute("pageNumber", pageNumber);
 
         return "manager/watchRequestCall";
     }
 
-    @GetMapping("/watchRequestCall")
-    public String watchRequestCall(Model model) {
 
-        model.addAttribute("callBackManager", callBackService.findByStatus());
+    @GetMapping("/watchRequestCall/{pageNumber}/{pageSize}")
+    public String watchRequestCall(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
+
+        model.addAttribute("callBackManager", callBackService.callBackList(pageNumber,pageSize))
+                .addAttribute("pageNumber", pageNumber);
 
         return "manager/watchRequestCall";
     }
 
-    @GetMapping("/watchRequestCallArhiv")
-    public String watchRequestCallArhiv(Model model) {
+    @GetMapping("/watchRequestCallArchive/{pageNumber}/{pageSize}")
+    public String watchRequestCallArchive(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
 
-        model.addAttribute("callBackManagerArhiv", callBackService.findAll());
 
-        return "manager/watchRequestCallArhiv";
+        model.addAttribute("watchRequestCallArchive", callBackService.callBackListArchive(pageNumber,pageSize))
+                .addAttribute("pageNumber", pageNumber);
+
+        return "manager/watchRequestCallArchive";
     }
 
     @PostMapping("/addToCourse")
@@ -70,7 +75,7 @@ public class CallBackController {
 
         if (!callBackService.saveCallBack(user, course1)) {
             model.addAttribute("addToError", "Вы уже отправляли запрос на данный курс. Ожидайте ответа!!");
-            return "redirect:/watchAllCoursesManager";
+            return "manager/errors";
         }
 
         return "redirect:/personalInformationUser";
@@ -92,8 +97,8 @@ public class CallBackController {
 
         if (editCallBack.getStatus().equals(Status.Approved)) {
             if (!groupService.saveUser(editCallBack)) {
-                model.addAttribute("addToError", "Данной группы еще не существует добавьте его сначала. Группа заполнена создайте новую группу.");
-                return "redirect:/watchGroup";
+                model.addAttribute("addToErrors", "Данной группы не существует добавьте его сначала/Группа заполнена создайте новую группу.");
+                return "manager/errors";
             }
         }
 

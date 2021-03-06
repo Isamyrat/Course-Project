@@ -56,7 +56,7 @@
                                 <td>${groups.status}</td>
                                 <td>
                                     <form>
-                                        <a href="/watchGroupUsers${groups.id}" type="submit"
+                                        <a href="/watchGroupUsers/${groups.id}" type="submit"
                                            style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
                                             <spring:message code="titleStud"/></a>
                                     </form>
@@ -91,8 +91,18 @@
                 </c:if>
             </form:form>
         </table>
-        <a href="/watchGroupArhiv" class="big-button"><spring:message code="wAG"/></a>
-        <a href="/watchGroupWaiting" class="big-button"><spring:message code="wAW"/></a>
+        <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
+            <c:if test="${pageNumber>0}">
+                <a href="/watchGroup/${pageNumber-1}/${3}" class="arrow left"
+                   style="float: left; padding-left: 100px;  font-size: 60px"><</a>
+            </c:if>
+            <c:if test="${watchGroups.size()>pageNumber}">
+                <a href="/watchGroup/${pageNumber+1}/${3}" class="arrow right"
+                   style="float: left; padding-left: 160px; font-size: 60px"> > </a>
+            </c:if>
+        </form>
+        <a href="/watchGroupArchive/${0}/${7}" class="big-button"><spring:message code="wAG"/></a>
+        <a href="/watchGroupWaiting/${0}/${3}" class="big-button"><spring:message code="wAW"/></a>
         <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
     </div>
 </sec:authorize>
@@ -126,7 +136,7 @@
                             <td>${groups.course_group.level}</td>
                             <td>
                                 <form>
-                                    <a href="/watchJournalGroupUser${groups.number_group}" type="submit"
+                                    <a href="/watchJournalGroupUser${groups.number_group}/${0}/${7}" type="submit"
                                        style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;font-size: 20px"><spring:message
                                             code="aCJW"/></a>
                                 </form>
@@ -144,6 +154,16 @@
 
             </form:form>
         </table>
+        <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
+            <c:if test="${pageNumber>0}">
+                <a href="/watchGroupUser/${pageNumber-1}/${7}" class="arrow left"
+                   style="float: left; padding-left: 100px;  font-size: 60px"><</a>
+            </c:if>
+            <c:if test="${userGroup.size()>pageNumber}">
+                <a href="/watchGroupUser/${pageNumber+1}/${7}" class="arrow right"
+                   style="float: left; padding-left: 160px; font-size: 60px"> > </a>
+            </c:if>
+        </form>
         <a href="/personalInformationUser" class="big-button"><spring:message code="bK"/></a>
     </div>
 
@@ -170,8 +190,6 @@
                 <c:if test="${userGroup.size()>0}">
 
                 <c:forEach items="${userGroup}" var="teacher">
-
-
                     <tr>
                         <td>${teacher.number_group}</td>
                         <td>${teacher.course_group.language}</td>
@@ -190,9 +208,18 @@
                     <td><spring:message code="eC"/></td>
                 </c:if>
                 </tbody>
-
             </form:form>
         </table>
+        <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
+            <c:if test="${pageNumber>0}">
+                <a href="/watchGroupTeacher/${pageNumber-1}/${7}" class="arrow left"
+                   style="float: left; padding-left: 100px;  font-size: 60px"><</a>
+            </c:if>
+            <c:if test="${userGroup.size()>pageNumber}">
+                <a href="/watchGroupTeacher/${pageNumber+1}/${7}" class="arrow right"
+                   style="float: left; padding-left: 160px; font-size: 60px"> > </a>
+            </c:if>
+        </form>
         <a href="/personalInformationUser" class="big-button"><spring:message code="bK"/></a>
     </div>
 </sec:authorize>

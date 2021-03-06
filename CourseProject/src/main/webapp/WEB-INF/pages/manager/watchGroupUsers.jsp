@@ -64,7 +64,7 @@
                     </td>
                     <td>
                         <form>
-                            <a href="/watchJournalGroup/${users.id}/${watchUsers.number_group}" type="submit"
+                            <a href="/watchJournalGroup/${users.id}/${watchUsers.number_group}/${0}/${7}" type="submit"
                                style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;font-size: 20px"><spring:message
                                     code="aCJW"/></a>
                         </form>
@@ -108,7 +108,7 @@
 
                         <td>
                             <form>
-                                <a href="/watchJournalGroup/${users.id}/${watchUsers.number_group}" type="submit"
+                                <a href="/watchJournalGroup/${users.id}/${watchUsers.number_group}/${0}/${7}" type="submit"
                                    style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;font-size: 20px"><spring:message
                                         code="aCJW"/></a>
                             </form>
@@ -127,7 +127,6 @@
         <a href="/personalInformationUser" class="big-button"><spring:message code="bK"/></a>
     </div>
 </sec:authorize>
-
 
 </body>
 

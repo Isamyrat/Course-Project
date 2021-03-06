@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.PermitAll;
 import javax.validation.Valid;
 
 @Controller
@@ -16,22 +17,25 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/admin")
-    public String userList(Model model) {
+    @GetMapping("/admin/{pageNumber}/{pageSize}")
+    public String userList(@PathVariable int pageNumber,@PathVariable int pageSize, Model model) {
 
-        model.addAttribute("allUsers", userService.allUsers());
+        model.addAttribute("allUsers", userService.allUser(pageNumber,pageSize))
+                        .addAttribute("pageNumber", pageNumber);
 
         return "login/admin";
     }
 
-    @GetMapping("/watchManagersAdmin")
-    public String managerList(Model model) {
+    @GetMapping("/watchManagersAdmin/{pageNumber}/{pageSize}")
+    public String managerList(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
 
-        model.addAttribute("allUsers", userService.allUsers());
+
+        model.addAttribute("allUsers", userService.allManagers(pageNumber,pageSize))
+                .addAttribute("pageNumber", pageNumber);
+
 
         return "admin/watchAllManagers";
     }
-
     @PostMapping("/deleteManager")
     public String  deleteManager(@RequestParam(required = true, defaultValue = "" ) Long userId,
                               @RequestParam(required = true, defaultValue = "" ) String action,Model model) {
@@ -53,7 +57,7 @@ public class AdminController {
                 return "manager/errors";
             }
         }
-        return "redirect:/admin";
+        return "redirect:/menuAdmin";
     }
     @GetMapping("/addManager")
     public String edit(Model model){
@@ -75,7 +79,7 @@ public class AdminController {
             return "admin/addManager";
         }
 
-        return "redirect:/admin";
+        return "redirect:/menuAdmin";
     }
 
     @GetMapping("/menuAdmin")

@@ -18,26 +18,27 @@ public class JournalGroupController {
     @Autowired
     private JournalGroupService journalGroupService;
 
-    @Autowired
-    private GroupService groupService;
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("/watchJournalGroup/{userId}/{groupNumber}")
+    @GetMapping("/watchJournalGroup/{userId}/{groupNumber}/{pageNumber}/{pageSize}")
     public String watchJournalGroup(@PathVariable("userId") Long userId,
                                     @PathVariable("groupNumber") Long groupNumber,
+                                    @PathVariable int pageNumber,@PathVariable int pageSize,
                                     Model model) {
 
-        model.addAttribute("watchGroups", journalGroupService.findAllDataForStudent(userId,groupNumber))
+        model.addAttribute("watchGroups", journalGroupService.findAllDataForStudent(pageNumber,pageSize,userId,groupNumber))
                 .addAttribute("userId",userId)
-                .addAttribute("groupNumber", groupNumber);
+                .addAttribute("groupNumber", groupNumber)
+                .addAttribute("pageNumber", pageNumber);
 
         return "manager/watchJournalGroup";
     }
 
-    @GetMapping("/watchJournalGroupUser{groupNumber}")
+    @GetMapping("/watchJournalGroupUser{groupNumber}/{pageNumber}/{pageSize}")
     public String watchJournalGroupUser(@PathVariable("groupNumber") Long groupNumber,
+                                        @PathVariable int pageNumber,@PathVariable int pageSize,
                                         Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -45,8 +46,9 @@ public class JournalGroupController {
         User user = userService.getUser(userDetails.getUsername());
 
 
-        model.addAttribute("watchGroups", journalGroupService.findAllDataForStudent(user.getId(),groupNumber))
-                .addAttribute("groupNumber", groupNumber);
+        model.addAttribute("watchGroups", journalGroupService.findAllDataForStudent(pageNumber,pageSize,user.getId(),groupNumber))
+                .addAttribute("groupNumber", groupNumber)
+                .addAttribute("pageNumber", pageNumber);
 
 
         return "user/watchJournalGroupUser";

@@ -5,6 +5,8 @@ import com.example.demo.model.Group;
 import com.example.demo.model.Journal;
 import com.example.demo.model.enumModel.Status;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,15 +30,19 @@ public class JournalService {
     public Journal findByGroup(Long groupNumber){
         return journalRepository.findByGroup(groupNumber);
     }
-    public Set<Journal> findByStatus() {
-        return journalRepository.findByStatusOrStatus(Status.Wait,Status.Start);
+
+
+
+    public List<Journal> findByStatus(int pageNumber, int pageSize){
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        return journalRepository.findAllByStatusOrStatus(Status.Wait,Status.Start, pageable);
     }
 
-    public Set<Journal> findByStatusArchive() {
 
-        return journalRepository.findByStatus(Status.Finish);
+    public List<Journal> findByStatusArchive(int pageNumber, int pageSize){
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        return journalRepository.findAllByStatus(Status.Finish, pageable);
     }
-
     public void saveJournal(Journal journal){
         Group group = groupService.findById(journal.getGroup_number().getId());
 
@@ -47,12 +53,6 @@ public class JournalService {
 
     public void editJournal(Journal journal){
         journalRepository.save(journal);
-    }
-
-    @Transactional
-    @Modifying
-    public void deleteJournal(Long id){
-        journalRepository.deleteJournalById(id);
     }
 
 

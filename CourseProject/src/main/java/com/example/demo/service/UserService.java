@@ -1,12 +1,12 @@
 package com.example.demo.service;
 
 
-import com.example.demo.dao.RoleRepository;
-import com.example.demo.dao.UserRepository;
-import com.example.demo.model.Group;
-import com.example.demo.model.Role;
-import com.example.demo.model.User;
+import com.example.demo.dao.*;
+import com.example.demo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,6 +28,18 @@ public class UserService implements UserDetailsService {
     GroupService groupService;
 
     @Autowired
+    JournalGroupRepository journalGroupRepository;
+
+    @Autowired
+    AddressRepository addressRepository;
+
+    @Autowired
+    CallBackRepository callBackRepository;
+
+    @Autowired
+    PersonalInfoRepository personalInfoRepository;
+
+    @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
@@ -47,13 +59,45 @@ public class UserService implements UserDetailsService {
         return userFromDb.orElse(new User());
     }
 
-    public Role findRoleById(Long userId) {
-        Optional<Role> role = roleRepository.findById(userId);
-        return role.orElse(new Role());
-    }
-
     public List<User> allUsers() {
         return userRepository.findAll();
+    }
+
+    public List<User> allUser(int pageNumber,int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        Page<User> page = userRepository.findAll(pageable);
+        List<User> userList = new ArrayList<>();
+        for(User user : page){
+            for(Role role : user.getRoles()) {
+                if(role.getName().equals("ROLE_USER"))
+                userList.add(user);
+            }
+        }
+        return userList;
+    }
+    public List<User> allManagers(int pageNumber,int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        Page<User> page = userRepository.findAll(pageable);
+        List<User> userList = new ArrayList<>();
+        for(User user : page){
+            for(Role role : user.getRoles()) {
+                if(role.getName().equals("ROLE_MANAGER"))
+                    userList.add(user);
+            }
+        }
+        return userList;
+    }
+    public List<User> allTeachers(int pageNumber,int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        Page<User> page = userRepository.findAll(pageable);
+        List<User> userList = new ArrayList<>();
+        for(User user : page){
+            for(Role role : user.getRoles()) {
+                if(role.getName().equals("ROLE_TEACHER"))
+                    userList.add(user);
+            }
+        }
+        return userList;
     }
 
     public boolean saveUser(User user) {
@@ -132,8 +176,24 @@ public class UserService implements UserDetailsService {
             userRepository.deleteById(userId);
     }
     public Boolean deleteStudents(Long userId) {
+        List<JournalGroup> journalGroupList = journalGroupRepository.findByUserId(userId);
+        List<Address> addressList = addressRepository.findByUser(userId);
         List<Group> groupList = groupService.findByUserId(userId);
+        List<CallBack> callBackList = callBackRepository.findByUser(userId);
+        PersonalInformation personalInformation = personalInfoRepository.findByPersonId(userId);
         if(groupList.size() == 0) {
+            if(callBackList.size()>0){
+                callBackRepository.deleteAllByUserCallBack(userId);
+            }
+            if(addressList.size()>0){
+                addressRepository.deleteAllByUser_address(userId);
+            }
+            if(journalGroupList.size()>0){
+                journalGroupRepository.deleteAllByJournal_user(userId);
+            }
+            if(personalInformation!=null){
+                personalInfoRepository.deleteAllByUser_information(userId);
+            }
             if (userRepository.findById(userId).isPresent()) {
                 userRepository.deleteById(userId);
             }

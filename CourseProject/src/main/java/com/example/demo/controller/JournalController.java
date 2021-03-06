@@ -13,30 +13,22 @@ public class JournalController {
     private JournalService journalService;
 
 
-    @GetMapping("/watchJournalManager")
-    public String watchJournalManager(Model model) {
+    @GetMapping("/watchJournalManager/{pageNumber}/{pageSize}")
+    public String watchJournalManager(@PathVariable int pageNumber,@PathVariable int pageSize, Model model) {
 
-        model.addAttribute("journals", journalService.findByStatus());
+        model.addAttribute("journals", journalService.findByStatus(pageNumber,pageSize))
+                .addAttribute("pageNumber", pageNumber);
 
         return "manager/watchJournalManager";
     }
 
-    @GetMapping("/watchJournal")
-    public String watchJournal(Model model) {
+    @GetMapping("/watchJournal/{pageNumber}/{pageSize}")
+    public String watchJournal(@PathVariable int pageNumber,@PathVariable int pageSize, Model model) {
 
-        model.addAttribute("journalsArchive", journalService.findByStatusArchive());
+        model.addAttribute("journalsArchive", journalService.findByStatusArchive(pageNumber,pageSize))
+                .addAttribute("pageNumber", pageNumber);
 
         return "manager/watchJournal";
-    }
-
-    @PostMapping("/deleteJournal")
-    public String deleteJournal(@RequestParam(required = true, defaultValue = "") Long journalId,
-                                @RequestParam(required = true, defaultValue = "") String action) {
-
-        if(action.equals("delete")){
-            journalService.deleteJournal(journalId);
-        }
-        return "redirect:/watchJournalManager";
     }
 
 }

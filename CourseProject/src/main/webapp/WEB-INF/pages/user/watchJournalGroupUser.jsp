@@ -53,6 +53,16 @@
             </tbody>
         </form:form>
     </table>
+    <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
+        <c:if test="${pageNumber>0}">
+            <a href="/watchJournalGroupUser${groupNumber}/${pageNumber-1}/${7}" class="arrow left"
+               style="float: left; padding-left: 100px;  font-size: 60px"><</a>
+        </c:if>
+        <c:if test="${watchGroups.size()>pageNumber}">
+            <a href="/watchJournalGroupUser${groupNumber}/${pageNumber+1}/${7}" class="arrow right"
+               style="float: left; padding-left: 160px; font-size: 60px"> > </a>
+        </c:if>
+    </form>
     <a href="/personalInformationUser" class="big-button"><spring:message code="bK"/></a>
 </div>
 

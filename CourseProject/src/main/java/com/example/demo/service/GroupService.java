@@ -6,6 +6,9 @@ import com.example.demo.dao.UserRepository;
 import com.example.demo.model.*;
 import com.example.demo.model.enumModel.Status;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -36,23 +39,17 @@ public class GroupService {
         return group.orElse(new Group());
     }
 
-    public Set<Group> findByStatus() {
-
-        return groupRepository.findByStatus(Status.Start);
+    public List<Group> findByStatus(int pageNumber, int pageSize){
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        return groupRepository.findAllByStatus(Status.Start, pageable);
     }
-
-    public Set<Group> findByStatusWaiting() {
-
-        return groupRepository.findByStatus(Status.Wait);
+    public List<Group> findByStatusWaiting(int pageNumber, int pageSize){
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        return groupRepository.findAllByStatus(Status.Wait, pageable);
     }
-
-    public List<Group> findAll() {
-
-        return groupRepository.findAll();
-    }
-    public Set<Group> findByStatusOne() {
-
-        return groupRepository.findByStatus(Status.Finish);
+    public List<Group> findByStatusArchive(int pageNumber, int pageSize){
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        return groupRepository.findAllByStatus(Status.Finish, pageable);
     }
 
     public Group findByNumberOfGroup(Long number) {
@@ -160,6 +157,19 @@ public class GroupService {
         }
         return groupList;
     }
+    public List<Group> findByUserList(int pageNumber, int pageSize,Long id) {
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        Page<Group> groups = groupRepository.findAll(pageable);
+        List<Group> groupList = new ArrayList<>();
+        for (Group group : groups) {
+            for (User user1 : group.getUserGroup()) {
+                if(user1.getId().equals(id)) {
+                    groupList.add(group);
+                }
+            }
+        }
+        return groupList;
+    }
 
     public void deleteUser(Long userId, Long groupNumber){
         Group groupUser = groupRepository.findByNumber(groupNumber);
@@ -171,9 +181,12 @@ public class GroupService {
         groupRepository.save(groupUser);
     }
 
-    public Set<Group> findByTeacher(Long id) {
-        return groupRepository.findByTeacher(id);
+
+    public List<Group> findByTeacher(int pageNumber, int pageSize,Long userId){
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        return groupRepository.findAllByUser_teacher(userId, pageable);
     }
+
 
     public List<Group> findByTeacherId(Long id) {
         return groupRepository.findByTeacherId(id);

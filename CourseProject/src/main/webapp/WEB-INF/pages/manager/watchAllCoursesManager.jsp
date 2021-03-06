@@ -42,39 +42,38 @@
                         <th><spring:message code="p"/></th>
                         <th><spring:message code="aG"/></th>
                         <th><spring:message code="addToCourses"/></th>
-
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach items="${allCoursesUser}" var="courses">
+                        <c:if test="${courses.status==status}">
+                            <tr>
+                                <td>${courses.time}</td>
+                                <td>${courses.language}</td>
+                                <td>${courses.level}</td>
+                                <td>${courses.start_date}</td>
+                                <td>${courses.duration}</td>
+                                <td>${courses.days}</td>
+                                <td>${courses.price}</td>
+                                <td>
+                                    <form>
+                                        <a href="/watchTopics${courses.id}" type="submit"
+                                           style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
+                                            <spring:message code="tTG"/></a>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="${pageContext.request.contextPath}/addToCourse" method="post">
+                                        <input type="hidden" name="courseId" value="${courses.id}"/>
+                                        <button type="submit"
+                                                style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
+                                            <spring:message code="aTG"/></button>
 
+                                    </form>
+                                </td>
 
-                        <tr>
-                            <td>${courses.time}</td>
-                            <td>${courses.language}</td>
-                            <td>${courses.level}</td>
-                            <td>${courses.start_date}</td>
-                            <td>${courses.duration}</td>
-                            <td>${courses.days}</td>
-                            <td>${courses.price}</td>
-                            <td>
-                                <form>
-                                    <a href="/watchTopics${courses.id}" type="submit"
-                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
-                                        <spring:message code="tTG"/></a>
-                                </form>
-                            </td>
-                            <td>
-                                <form action="${pageContext.request.contextPath}/addToCourse" method="post">
-                                    <input type="hidden" name="courseId" value="${courses.id}"/>
-                                    <button type="submit"
-                                            style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
-                                        <spring:message code="aTG"/></button>
-
-                                </form>
-                            </td>
-
-                        </tr>
+                            </tr>
+                        </c:if>
                     </c:forEach>
                     </tbody>
                 </c:if>
@@ -82,9 +81,18 @@
                     <td><spring:message code="eC"/></td>
                 </c:if>
             </form:form>
-
         </table>
-        <a href="/watchRequestCallUser" class="big-button"><spring:message code="wWGR"/></a>
+        <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
+            <c:if test="${pageNumber>0}">
+                <a href="/watchAllCoursesManager/${pageNumber-1}/${4}" class="arrow left"
+                   style="float: left; padding-left: 100px;  font-size: 60px"><</a>
+            </c:if>
+            <c:if test="${allCoursesUser.size()>pageNumber}">
+                <a href="/watchAllCoursesManager/${pageNumber+1}/${4}" class="arrow right"
+                   style="float: left; padding-left: 160px; font-size: 60px"> > </a>
+            </c:if>
+        </form>
+        <a href="/watchRequestCallUser/${0}/${10}" class="big-button"><spring:message code="wWGR"/></a>
         <a href="/personalInformationUser" class="big-button"><spring:message code="bK"/></a>
     </div>
 </sec:authorize>
@@ -117,37 +125,40 @@
                     </thead>
                     <tbody>
                     <c:forEach items="${allCoursesUser}" var="courses">
-                        <tr>
-                            <td>${courses.time}</td>
-                            <td>${courses.language}</td>
-                            <td>${courses.level}</td>
-                            <td>${courses.start_date}</td>
-                            <td>${courses.duration}</td>
-                            <td>${courses.days}</td>
-                            <td>${courses.price}</td>
-                            <td>
-                                <form>
-                                    <a href="/editCourseManager${courses.id}" type="submit"
-                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
-                                        <spring:message code="eCM"/></a>
-                                </form>
-                            </td>
-                            <td>
-                                <form>
-                                    <a href="/watchTopics${courses.id}" type="submit"
-                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
-                                        <spring:message code="tTG"/></a>
-                                </form>
-                            </td>
-                            <td>
-                                <form action="${pageContext.request.contextPath}/saveCourseEditStatus" method="post">
-                                    <input type="hidden" name="idCourse" value="${courses.id}"/>
-                                    <button type="submit"  onclick="if(!(confirm('${askMC}'))) return false"
-                                            style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
-                                        <spring:message code="sTA"/></button>
-                                </form>
-                            </td>
-                        </tr>
+                        <c:if test="${courses.status==status}">
+                            <tr>
+                                <td>${courses.time}</td>
+                                <td>${courses.language}</td>
+                                <td>${courses.level}</td>
+                                <td>${courses.start_date}</td>
+                                <td>${courses.duration}</td>
+                                <td>${courses.days}</td>
+                                <td>${courses.price}</td>
+                                <td>
+                                    <form>
+                                        <a href="/editCourseManager${courses.id}" type="submit"
+                                           style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
+                                            <spring:message code="eCM"/></a>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form>
+                                        <a href="/watchTopics${courses.id}" type="submit"
+                                           style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
+                                            <spring:message code="tTG"/></a>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="${pageContext.request.contextPath}/saveCourseEditStatus"
+                                          method="post">
+                                        <input type="hidden" name="idCourse" value="${courses.id}"/>
+                                        <button type="submit" onclick="if(!(confirm('${askMC}'))) return false"
+                                                style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
+                                            <spring:message code="sTA"/></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </c:if>
                     </c:forEach>
                     </tbody>
                 </c:if>
@@ -156,7 +167,17 @@
                 </c:if>
             </form:form>
         </table>
-        <a href="/watchAllCoursesManagerArchive" class="big-button"><spring:message code="wACM"/></a>
+        <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
+            <c:if test="${pageNumber>0}">
+                <a href="/watchAllCoursesManager/${pageNumber-1}/${4}" class="arrow left"
+                   style="float: left; padding-left: 100px;  font-size: 60px"><</a>
+            </c:if>
+            <c:if test="${allCoursesUser.size()>pageNumber}">
+                <a href="/watchAllCoursesManager/${pageNumber+1}/${4}" class="arrow right"
+                   style="float: left; padding-left: 160px; font-size: 60px"> > </a>
+            </c:if>
+        </form>
+        <a href="/watchAllCoursesManagerArchive/${0}/${3}" class="big-button"><spring:message code="wACM"/></a>
         <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
 
     </div>

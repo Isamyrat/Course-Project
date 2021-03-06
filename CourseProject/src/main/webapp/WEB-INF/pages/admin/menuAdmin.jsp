@@ -17,13 +17,14 @@
 </header>
 <body>
 
-<a href="/admin" class="fancy-btn"><spring:message code="wUser"/></a>
+<a href="/admin/${0}/${10}" class="fancy-btn"><spring:message code="wUser"/></a>
+
 <br>
 <a href="/addManager" class="fancy-btn"><spring:message code="aManager"/></a>
 <br>
-<a href="/watchManagersAdmin" class="fancy-btn"><spring:message code="wMan"/></a>
+<a href="/watchManagersAdmin/${0}/${10}" class="fancy-btn"><spring:message code="wMan"/></a>
 <br>
-<a href="/watchTeacher" class="fancy-btn"><spring:message code="wTeach"/></a>
+<a href="/watchTeacher/${0}/${10}" class="fancy-btn"><spring:message code="wTeach"/></a>
 <br>
 <a href="/personalInformationUser" class="fancy-btn"><spring:message code="bK"/></a>
 

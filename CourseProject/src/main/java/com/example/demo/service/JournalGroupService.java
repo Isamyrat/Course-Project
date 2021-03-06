@@ -7,6 +7,8 @@ import com.example.demo.model.Journal;
 import com.example.demo.model.JournalGroup;
 import com.example.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,8 +37,7 @@ public class JournalGroupService {
     }
 
 
-
-    public List<JournalGroup> findAllDataForStudent(Long idUser, Long groupNumber) {
+    public List<JournalGroup> findAllDataForStudent(int pageNumber, int pageSize, Long idUser, Long groupNumber) {
 
         Group group1 = groupService.findByNumberOfGroup(groupNumber);
 
@@ -51,8 +52,8 @@ public class JournalGroupService {
                 user1 = user;
             }
         }
-
-        return journalGroupRepository.findByUser(user1.getId(),journal.getId());
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        return journalGroupRepository.findAllByJournal_userAndId(user1.getId(),journal.getId(),pageable);
     }
 
     public void saveJournalStudent(JournalGroup journalGroup,Long groupNumber,Long userId ) {

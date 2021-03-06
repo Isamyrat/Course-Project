@@ -25,22 +25,31 @@ public class GroupController {
     @Autowired
     private CourseService courseService;
 
-    @GetMapping("/watchGroup")
-    public String watchGroup(Model model) {
+    @GetMapping("/watchGroup/{pageNumber}/{pageSize}")
+    public String watchGroup(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
 
-        model.addAttribute("watchGroups", groupService.findByStatus());
+        model.addAttribute("watchGroups", groupService.findByStatus(pageNumber,pageSize))
+                .addAttribute("pageNumber", pageNumber);
 
         return "manager/watchGroup";
     }
 
-    @GetMapping("/watchGroupWaiting")
-    public String watchGroupWaiting(Model model) {
+    @GetMapping("/watchGroupWaiting/{pageNumber}/{pageSize}")
+    public String watchGroupWaiting(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
 
-        model.addAttribute("watchGroupWaiting", groupService.findByStatusWaiting());
+        model.addAttribute("watchGroupWaiting", groupService.findByStatusWaiting(pageNumber,pageSize))
+                .addAttribute("pageNumber", pageNumber);
 
         return "manager/watchGroupWaiting";
     }
+    @GetMapping("/watchGroupArchive/{pageNumber}/{pageSize}")
+    public String watchGroupArchive(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
 
+        model.addAttribute("watchGroupArchive", groupService.findByStatusArchive(pageNumber,pageSize))
+                .addAttribute("pageNumber", pageNumber);
+
+        return "manager/watchGroupArchive";
+    }
     @GetMapping("/watchGroupUsers{idGroup}")
     public String watchGroupUsers(@PathVariable("idGroup") Long idGroup,
                                   Model model) {
@@ -51,33 +60,27 @@ public class GroupController {
         return "manager/watchGroupUsers";
     }
 
-    @GetMapping("/watchGroupArhiv")
-    public String watchGroupArhiv(Model model) {
-
-        model.addAttribute("watchUsersArhiv", groupService.findByStatusOne());
-
-        return "manager/watchGroupArhiv";
-    }
-
-    @GetMapping("/watchGroupUser")
-    public String watchGroupUser(Model model) {
+    @GetMapping("/watchGroupUser/{pageNumber}/{pageSize}")
+    public String watchGroupUser(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         User user = userService.getUser(userDetails.getUsername());
 
-        model.addAttribute("userGroup", groupService.findByUser(user.getId()));
+        model.addAttribute("userGroup", groupService.findByUserList(pageNumber,pageSize,user.getId()))
+                .addAttribute("pageNumber", pageNumber);
         return "manager/watchGroup";
     }
 
-    @GetMapping("/watchGroupTeacher")
-    public String watchGroupTeacher(Model model) {
+    @GetMapping("/watchGroupTeacher/{pageNumber}/{pageSize}")
+    public String watchGroupTeacher(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         User user = userService.getUser(userDetails.getUsername());
 
-        model.addAttribute("userGroup", groupService.findByTeacher(user.getId()));
+        model.addAttribute("userGroup", groupService.findByTeacher(pageNumber,pageSize, user.getId()))
+                .addAttribute("pageNumber", pageNumber);
         return "manager/watchGroup";
     }
 
@@ -99,7 +102,7 @@ public class GroupController {
             return "manager/errors";
         }
 
-        return "redirect:/watchGroup";
+        return "redirect:/watchGroup/${0}/${3}";
     }
 
     @GetMapping("/editGroupManager{groupId}")
@@ -132,12 +135,12 @@ public class GroupController {
     @PostMapping("/saveGroupMan")
     public String saveGroupMan(@ModelAttribute("groupEdit") Group group) {
         groupService.editStatus(group);
-        return "redirect:/watchGroup";
+        return "redirect:/watchGroup/${0}/${3}";
     }
     @PostMapping("/saveManagerGroup")
     public String saveManagerGroup(@ModelAttribute("groupEdit") Group group) {
         groupService.editGroup(group);
-        return "redirect:/watchGroup";
+        return "redirect:/watchGroup/${0}/${3}";
     }
 
     @PostMapping("/deleteStud")
@@ -149,6 +152,6 @@ public class GroupController {
         if (action.equals("delete")) {
             groupService.deleteUser(userId,groupNumber);
         }
-        return "redirect:/watchGroup";
+        return "redirect:/watchGroup/${0}/${3}";
     }
 }

@@ -89,6 +89,16 @@
             </c:if>
         </form:form>
     </table>
+    <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
+        <c:if test="${pageNumber>0}">
+            <a href="/watchGroupWaiting/${pageNumber-1}/${3}" class="arrow left"
+               style="float: left; padding-left: 100px;  font-size: 60px"><</a>
+        </c:if>
+        <c:if test="${watchGroupWaiting.size()>pageNumber}">
+            <a href="/watchGroupWaiting/${pageNumber+1}/${3}" class="arrow right"
+               style="float: left; padding-left: 160px; font-size: 60px"> > </a>
+        </c:if>
+    </form>
     <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
 </div>
 

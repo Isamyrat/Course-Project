@@ -93,7 +93,7 @@
                 </tbody>
             </form:form>
         </table>
-        <a href="/watchAllCoursesManager" class="big-button"><spring:message code="bK"/></a>
+        <a href="/watchAllCoursesManager/${0}/${3}" class="big-button"><spring:message code="bK"/></a>
     </div>
 </sec:authorize>
 </body>

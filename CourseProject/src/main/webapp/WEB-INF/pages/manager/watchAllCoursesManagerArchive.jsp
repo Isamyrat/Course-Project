@@ -45,6 +45,7 @@
                 </thead>
                 <tbody>
                 <c:forEach items="${allCoursesUser}" var="courses">
+                    <c:if test="${courses.status==status}">
                     <tr>
                         <td>${courses.time}</td>
                         <td>${courses.language}</td>
@@ -69,6 +70,7 @@
                             </form>
                         </td>
                     </tr>
+                    </c:if>
                 </c:forEach>
                 </tbody>
             </c:if>
@@ -77,6 +79,16 @@
             </c:if>
         </form:form>
     </table>
+    <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
+        <c:if test="${pageNumber>0}">
+            <a href="/watchAllCoursesManagerArchive/${pageNumber-1}/${4}" class="arrow left"
+               style="float: left; padding-left: 100px;  font-size: 60px"><</a>
+        </c:if>
+        <c:if test="${allCoursesUser.size()>pageNumber}">
+            <a href="/watchAllCoursesManagerArchive/${pageNumber+1}/${4}" class="arrow right"
+               style="float: left; padding-left: 160px; font-size: 60px"> > </a>
+        </c:if>
+    </form>
     <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
 </div>
 </body>

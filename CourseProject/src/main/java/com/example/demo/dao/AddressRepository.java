@@ -26,4 +26,9 @@ public interface AddressRepository  extends CrudRepository<Address,Long> {
     @Transactional
     @Query(value = "delete from Address  a where a.id = :id", nativeQuery = true)
     void deleteAddressById(Long id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "delete from Address where ID_HUMAN = :id", nativeQuery = true)
+    void deleteAllByUser_address(Long id);
 }

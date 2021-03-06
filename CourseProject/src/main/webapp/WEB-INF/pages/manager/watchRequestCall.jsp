@@ -63,7 +63,17 @@
                 <td><spring:message code="eC"/></td>
             </c:if>
         </table>
-        <a href="/watchRequestCallArhiv" class="big-button"><spring:message code="wCallArhiv"/></a>
+        <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
+            <c:if test="${pageNumber>0}">
+                <a href="/watchRequestCall/${pageNumber-1}/${7}" class="arrow left"
+                   style="float: left; padding-left: 100px;  font-size: 60px"><</a>
+            </c:if>
+            <c:if test="${callBackManager.size()>pageNumber}">
+                <a href="/watchRequestCall/${pageNumber+1}/${7}" class="arrow right"
+                   style="float: left; padding-left: 160px; font-size: 60px"> > </a>
+            </c:if>
+        </form>
+        <a href="/watchRequestCallArchive/${0}/${10}" class="big-button"><spring:message code="wCallArhiv"/></a>
 
         <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
     </div>
@@ -84,25 +94,34 @@
                 <th><spring:message code="lOG"/></th>
             </tr>
             </thead>
-            <c:if test="${callBack.size()>0}">
+            <c:if test="${callBackManager.size()>0}">
+                <c:forEach items="${callBackManager}" var="user">
+                        <tbody>
+                        <tr>
+                            <td>${user.status}</td>
+                            <td>${user.callBackDate}</td>
+                            <td>${user.courseCallBack.language}</td>
+                            <td>${user.courseCallBack.level}</td>
 
-                <c:forEach items="${callBack}" var="user">
-                    <tbody>
-                    <tr>
-                        <td>${user.status}</td>
-                        <td>${user.callBackDate}</td>
-                        <td>${user.courseCallBack.language}</td>
-                        <td>${user.courseCallBack.level}</td>
-
-                    </tr>
-                    </tbody>
+                        </tr>
+                        </tbody>
                 </c:forEach>
             </c:if>
-            <c:if test="${callBack.size()<1}">
+            <c:if test="${callBackManager.size()<1}">
                 <td><spring:message code="eC"/></td>
             </c:if>
         </table>
-        <a href="/watchAllCoursesManager" class="big-button"><spring:message code="bK"/></a>
+        <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
+            <c:if test="${pageNumber>0}">
+                <a href="/watchRequestCallUser/${pageNumber-1}/${9}" class="arrow left"
+                   style="float: left; padding-left: 100px;  font-size: 60px"><</a>
+            </c:if>
+            <c:if test="${callBackManager.size()>pageNumber}">
+                <a href="/watchRequestCallUser/${pageNumber+1}/${9}" class="arrow right"
+                   style="float: left; padding-left: 160px; font-size: 60px"> > </a>
+            </c:if>
+        </form>
+        <a href="/watchAllCoursesManager/${0}/${3}" class="big-button"><spring:message code="bK"/></a>
     </div>
 </sec:authorize>
 </body>
