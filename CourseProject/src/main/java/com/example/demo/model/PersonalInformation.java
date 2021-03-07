@@ -1,16 +1,12 @@
 package com.example.demo.model;
 
-
 import com.example.demo.model.enumModel.Gender;
-import com.example.demo.model.enumModel.Status;
 import com.sun.istack.NotNull;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Personal_Information")
 public class PersonalInformation {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,11 +14,9 @@ public class PersonalInformation {
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_human",referencedColumnName = "id",nullable = false)
-    private User user_information;
-
+    private User userInformation;
 
     private String number;
-
     private String age;
 
     @NotNull
@@ -50,12 +44,12 @@ public class PersonalInformation {
         this.number = number;
     }
 
-    public User getUser_information() {
-        return user_information;
+    public User getUserInformation() {
+        return userInformation;
     }
 
-    public void setUser_information(User user_information) {
-        this.user_information = user_information;
+    public void setUserInformation(User userInformation) {
+        this.userInformation = userInformation;
     }
 
     public String getAge() {

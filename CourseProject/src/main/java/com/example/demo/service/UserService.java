@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-
 import com.example.demo.dao.*;
 import com.example.demo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,45 +54,47 @@ public class UserService implements UserDetailsService {
     }
 
     public User findUserById(Long userId) {
-        Optional<User> userFromDb = userRepository.findById(userId);
-        return userFromDb.orElse(new User());
+        Optional<User> user = userRepository.findById(userId);
+        return user.orElse(new User());
     }
 
     public List<User> allUsers() {
         return userRepository.findAll();
     }
 
-    public List<User> allUser(int pageNumber,int pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+    public List<User> allUser(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
         Page<User> page = userRepository.findAll(pageable);
         List<User> userList = new ArrayList<>();
-        for(User user : page){
-            for(Role role : user.getRoles()) {
-                if(role.getName().equals("ROLE_USER"))
-                userList.add(user);
-            }
-        }
-        return userList;
-    }
-    public List<User> allManagers(int pageNumber,int pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber,pageSize);
-        Page<User> page = userRepository.findAll(pageable);
-        List<User> userList = new ArrayList<>();
-        for(User user : page){
-            for(Role role : user.getRoles()) {
-                if(role.getName().equals("ROLE_MANAGER"))
+        for (User user : page) {
+            for (Role role : user.getRoles()) {
+                if (role.getName().equals("ROLE_USER"))
                     userList.add(user);
             }
         }
         return userList;
     }
-    public List<User> allTeachers(int pageNumber,int pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+
+    public List<User> allManagers(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
         Page<User> page = userRepository.findAll(pageable);
         List<User> userList = new ArrayList<>();
-        for(User user : page){
-            for(Role role : user.getRoles()) {
-                if(role.getName().equals("ROLE_TEACHER"))
+        for (User user : page) {
+            for (Role role : user.getRoles()) {
+                if (role.getName().equals("ROLE_MANAGER"))
+                    userList.add(user);
+            }
+        }
+        return userList;
+    }
+
+    public List<User> allTeachers(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+        Page<User> page = userRepository.findAll(pageable);
+        List<User> userList = new ArrayList<>();
+        for (User user : page) {
+            for (Role role : user.getRoles()) {
+                if (role.getName().equals("ROLE_TEACHER"))
                     userList.add(user);
             }
         }
@@ -108,19 +109,6 @@ public class UserService implements UserDetailsService {
         }
 
         user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return true;
-    }
-
-    public boolean saveAdmin(User user) {
-        User userFromDB = userRepository.findByUsername(user.getUsername());
-
-        if (userFromDB != null) {
-            return false;
-        }
-
-        user.setRoles(Collections.singleton(new Role(2L, "ROLE_ADMIN")));
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return true;
@@ -152,63 +140,65 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
-    public User editTeacher(User user) {
+    public void editTeacher(User user) {
         user.setRoles(Collections.singleton(new Role(4L, "ROLE_Teacher")));
-        return userRepository.save(user);
+        userRepository.save(user);
     }
 
-    public User editAdmin(User user) {
+    public void editAdmin(User user) {
         user.setRoles(Collections.singleton(new Role(2L, "ROLE_ADMIN")));
-        return userRepository.save(user);
+        userRepository.save(user);
     }
 
-    public User editManager(User user) {
+    public void editManager(User user) {
         user.setRoles(Collections.singleton(new Role(3L, "ROLE_MANAGER")));
-        return userRepository.save(user);
+        userRepository.save(user);
     }
 
-    public User editUser(User user) {
+    public void editUser(User user) {
         user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
-        return userRepository.save(user);
+        userRepository.save(user);
     }
 
     public void deleteManager(Long userId) {
-            userRepository.deleteById(userId);
+        userRepository.deleteById(userId);
     }
+
     public Boolean deleteStudents(Long userId) {
         List<JournalGroup> journalGroupList = journalGroupRepository.findByUserId(userId);
-        List<Address> addressList = addressRepository.findByUser(userId);
+        List<Address> addressList = addressRepository.findByUserId(userId);
         List<Group> groupList = groupService.findByUserId(userId);
-        List<CallBack> callBackList = callBackRepository.findByUser(userId);
+        List<CallBack> callBackList = callBackRepository.findByUserId(userId);
         PersonalInformation personalInformation = personalInfoRepository.findByPersonId(userId);
-        if(groupList.size() == 0) {
-            if(callBackList.size()>0){
-                callBackRepository.deleteAllByUserCallBack(userId);
+        if (groupList.size() == 0) {
+            if (callBackList.size() > 0) {
+                callBackRepository.deleteAllByUserId(userId);
             }
-            if(addressList.size()>0){
-                addressRepository.deleteAllByUser_address(userId);
+            if (addressList.size() > 0) {
+                addressRepository.deleteAllByUserId(userId);
             }
-            if(journalGroupList.size()>0){
-                journalGroupRepository.deleteAllByJournal_user(userId);
+            if (journalGroupList.size() > 0) {
+                journalGroupRepository.deleteAllByUserId(userId);
             }
-            if(personalInformation!=null){
-                personalInfoRepository.deleteAllByUser_information(userId);
+            if (personalInformation != null) {
+                personalInfoRepository.deleteAllByUserId(userId);
             }
             if (userRepository.findById(userId).isPresent()) {
                 userRepository.deleteById(userId);
             }
             return true;
-        }else
+        } else
             return false;
     }
+
     public Boolean deleteTeacher(Long userId) {
         List<Group> groupList = groupService.findByTeacherId(userId);
-        if(groupList.size() == 0) {
+        if (groupList.size() == 0) {
             if (userRepository.findById(userId).isPresent()) {
                 userRepository.deleteById(userId);
             }
             return true;
-        }else
+        } else
             return false;
     }
 

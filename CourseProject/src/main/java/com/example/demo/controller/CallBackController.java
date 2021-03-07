@@ -94,7 +94,6 @@ public class CallBackController {
     public String saveApprove(@ModelAttribute("editCallBack") CallBack editCallBack,
                                 Model model) {
 
-
         if (editCallBack.getStatus().equals(Status.Approved)) {
             if (!groupService.saveUser(editCallBack)) {
                 model.addAttribute("addToErrors", "Данной группы не существует добавьте его сначала/Группа заполнена создайте новую группу.");
@@ -102,10 +101,9 @@ public class CallBackController {
             }
         }
 
-
         editCallBack.setCallBackDate(String.valueOf(LocalDate.now()));
         callBackService.editCallBack(editCallBack);
-        return "redirect:/personalInformationUser";
+        return "redirect:/menuManager";
     }
 
 
@@ -116,7 +114,7 @@ public class CallBackController {
             callBackService.deleteCallBack(callBackId);
         }
 
-        return "manager/menu";
+        return "redirect:/menuManager";
     }
 
 }

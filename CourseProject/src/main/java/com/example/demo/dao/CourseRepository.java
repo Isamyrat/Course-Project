@@ -2,6 +2,7 @@ package com.example.demo.dao;
 
 import com.example.demo.model.Course;
 import com.example.demo.model.enumModel.Status;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -21,4 +22,5 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
 
     List<Course> findByStatus(Status status);
 
+    List<Course> findAllByStatus(Status status, Pageable pageable);
 }

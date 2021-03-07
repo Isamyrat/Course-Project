@@ -1,13 +1,11 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Course;
-import com.example.demo.model.enumModel.Status;
 import com.example.demo.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 
 @Controller
 public class CourseController {
@@ -18,9 +16,8 @@ public class CourseController {
     @GetMapping("/watchAllCoursesManager/{pageNumber}/{pageSize}")
     public String watchAllCoursesManager(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
 
-        model.addAttribute("allCoursesUser", courseService.courses(pageNumber,pageSize))
-                .addAttribute("pageNumber", pageNumber)
-                    .addAttribute("status", Status.Use);
+        model.addAttribute("allCourses", courseService.findCourse(pageNumber,pageSize))
+                .addAttribute("pageNumber", pageNumber);
 
         return "manager/watchAllCoursesManager";
     }
@@ -28,9 +25,8 @@ public class CourseController {
     @GetMapping("/watchAllCoursesManagerArchive/{pageNumber}/{pageSize}")
     public String watchAllCoursesManagerArchive(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
 
-        model.addAttribute("allCoursesUser", courseService.courses(pageNumber,pageSize))
-                .addAttribute("pageNumber", pageNumber)
-                .addAttribute("status", Status.NotUse);
+        model.addAttribute("allCoursesArchive", courseService.findByStatusList(pageNumber,pageSize))
+                .addAttribute("pageNumber", pageNumber);
 
         return "manager/watchAllCoursesManagerArchive";
     }
@@ -53,7 +49,7 @@ public class CourseController {
             return "manager/addCourse";
         }
 
-        return "redirect:/watchAllCoursesManager/${0}/${3}";
+        return "redirect:/menuManager";
     }
 
     @GetMapping("/editCourseManager{courseId}")
@@ -71,7 +67,7 @@ public class CourseController {
 
         courseService.editCourse(course);
 
-        return "redirect:/watchAllCoursesManager/${0}/${3}";
+        return "redirect:/menuManager";
     }
 
     @PostMapping("/saveCourseEditStatus")
@@ -79,7 +75,7 @@ public class CourseController {
 
         courseService.editCourseStatus(idCourse);
 
-        return "redirect:/watchAllCoursesManager/${0}/${3}";
+        return "redirect:/menuManager";
     }
 
     @PostMapping("/saveCourseStatusEdit")
@@ -87,8 +83,7 @@ public class CourseController {
 
         courseService.editStatusCourse(idCourse);
 
-        return "redirect:/watchAllCoursesManager/${0}/${3}";
+        return "redirect:/menuManager";
     }
-
 
 }

@@ -41,7 +41,7 @@
 
         <label class="label-color"><spring:message code="dOC"/></label>
         <div class="user-box">
-            <form:input type="text" path="start_date"/>
+            <form:input type="text" path="startDate"/>
         </div>
 
         <label class="label-color"><spring:message code="dOTC"/></label>

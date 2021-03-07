@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.model.JournalGroup;
 import com.example.demo.model.User;
-import com.example.demo.service.GroupService;
 import com.example.demo.service.JournalGroupService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,11 +44,9 @@ public class JournalGroupController {
 
         User user = userService.getUser(userDetails.getUsername());
 
-
         model.addAttribute("watchGroups", journalGroupService.findAllDataForStudent(pageNumber,pageSize,user.getId(),groupNumber))
                 .addAttribute("groupNumber", groupNumber)
                 .addAttribute("pageNumber", pageNumber);
-
 
         return "user/watchJournalGroupUser";
     }
@@ -72,7 +69,7 @@ public class JournalGroupController {
                                    @RequestParam("userId") Long userId) {
 
         journalGroupService.saveJournalStudent(journalGroup,groupNumber,userId);
-        return "redirect:/";
+        return "redirect:/personalInformationUser";
     }
     @GetMapping("/editJournalGroup{journalGroupId}")
     public String editJournalGroup(@PathVariable("journalGroupId") Long journalGroupId,
@@ -90,7 +87,7 @@ public class JournalGroupController {
 
        journalGroupService.editJournalGroup(journalGroup);
 
-        return "redirect:/";
+        return "redirect:/personalInformationUser";
     }
 
     @PostMapping("/deleteJournalGroup")
@@ -101,6 +98,6 @@ public class JournalGroupController {
             journalGroupService.deleteJournalGroup(journalGroupId);
         }
 
-        return "redirect:/";
+        return "redirect:/personalInformationUser";
     }
 }

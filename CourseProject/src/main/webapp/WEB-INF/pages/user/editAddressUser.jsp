@@ -53,7 +53,7 @@
             <form:input path="apartment"/>
         </div>
 
-        <form:hidden path="user_address"/>
+        <form:hidden path="userAddress"/>
 
         <button style="background-color: #141e30">
             <span></span>

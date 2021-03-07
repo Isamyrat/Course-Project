@@ -72,15 +72,14 @@ public class ManagerController {
     @PostMapping("/deleteTeacher")
     public String  deleteUser(@RequestParam(required = true, defaultValue = "" ) Long userId,
                               @RequestParam(required = true, defaultValue = "" ) String action, Model model) {
+
         if (action.equals("delete")){
             if(!userService.deleteTeacher(userId)){
                 model.addAttribute("errorTeacher", "Данный преподаватель преподает в группе. Смените преподавателя на другой, а затем можете удалять!!!!");
                 return "manager/errors";
             }
         }
-        return "redirect:/menuManager";
+        return "redirect:/personalInformationUser";
     }
-
-
 }
 

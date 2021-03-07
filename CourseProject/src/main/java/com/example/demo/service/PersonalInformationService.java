@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-
 import com.example.demo.dao.PersonalInfoRepository;
 import com.example.demo.dao.UserRepository;
 import com.example.demo.model.PersonalInformation;
@@ -11,10 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-
 @Service
 public class PersonalInformationService {
-
 
     @Autowired
     private PersonalInfoRepository personalInfoRepository;
@@ -28,14 +25,14 @@ public class PersonalInformationService {
     }
 
     public Boolean savePersonInfo(PersonalInformation personalInformation) {
-        User user = userRepository.findByUser(personalInformation.getUser_information().getId());
+        User user = userRepository.findByUser(personalInformation.getUserInformation().getId());
 
         PersonalInformation personalInformation1 = personalInfoRepository.findByPersonId(user.getId());
 
         if (personalInformation1 != null) {
             return false;
         }
-        personalInformation.setUser_information(user);
+        personalInformation.setUserInformation(user);
         personalInfoRepository.save(personalInformation);
         return true;
     }
@@ -43,7 +40,6 @@ public class PersonalInformationService {
     public PersonalInformation findPerson(Long user) {
         return personalInfoRepository.findByPersonId(user);
     }
-
 
     @Transactional
     public void editPerson(PersonalInformation personalInformation) {

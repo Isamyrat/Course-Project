@@ -1,8 +1,6 @@
 package com.example.demo.model;
 
-
 import org.springframework.security.core.GrantedAuthority;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -11,6 +9,7 @@ import java.util.Set;
 public class Role implements GrantedAuthority {
     @Id
     private Long id;
+
     private String name;
 
     @Transient

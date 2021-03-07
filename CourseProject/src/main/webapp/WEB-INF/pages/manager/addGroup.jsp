@@ -31,7 +31,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label><spring:message code="nOG"/></label>
-                            <form:input type="text" path="number_group"/>
+                            <form:input type="text" path="numberGroup"/>
                         </div>
                     </div>
                     <form:hidden path="userGroup"/>
@@ -41,7 +41,7 @@
                         <div class="form-group">
                             <label><spring:message code="select"/></label>
                             <div class="form-select">
-                                <form:select path="user_teacher">
+                                <form:select path="userTeacher">
                                     <option value=""></option>
                                     <c:forEach items="${users}" var="user">
                                         <c:forEach items="${user.roles}" var="role">
@@ -56,12 +56,11 @@
                         </div>
                     </div>
 
-
                     <div class="form-row">
                         <div class="form-group">
                             <label><spring:message code="select"/></label>
                             <div class="form-select">
-                                <form:select path="course_group">
+                                <form:select path="courseGroup">
                                     <option value=""></option>
                                     <c:forEach items="${courses}" var="course">
                                         <option value="${course.id}">${course.level} - ${course.language}</option>
@@ -84,12 +83,8 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
-
-
 </body>
 
 <style>

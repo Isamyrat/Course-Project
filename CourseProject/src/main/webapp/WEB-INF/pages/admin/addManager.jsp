@@ -20,7 +20,7 @@
 <body>
 <div class="login-box">
     <h2><spring:message code="aManager"/> </h2>
-    <form:form  method="POST" action="/saveUser" modelAttribute="userManager">
+    <form:form  method="POST" action="/saveManager" modelAttribute="userManager">
 
         <form:hidden path="id"/>
 

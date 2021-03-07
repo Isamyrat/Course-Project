@@ -42,13 +42,12 @@ public class AddressController {
     @PostMapping("/saveAddress")
     public String saveAddress(@ModelAttribute("addressAdd")
                                       Address address, Model model) {
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         User user = userService.getUser(userDetails.getUsername());
 
-        address.setUser_address(user);
+        address.setUserAddress(user);
 
         if (!addressService.saveAddress(address)) {
             model.addAttribute("addressError", "Такой адрес уже существует!!!");

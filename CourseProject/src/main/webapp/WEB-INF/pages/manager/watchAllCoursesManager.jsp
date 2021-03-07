@@ -24,13 +24,13 @@
 
     <div class="container">
         <table>
-            <form:form modelAttribute="allCoursesUser">
+            <form:form modelAttribute="allCourses">
                 <thead>
                 <tr>
                     <th><spring:message code="aC"/></th>
                 </tr>
                 </thead>
-                <c:if test="${allCoursesUser.size()>0}">
+                <c:if test="${allCourses.size()>0}">
                     <thead>
                     <tr>
                         <th><spring:message code="oTGW"/></th>
@@ -45,13 +45,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${allCoursesUser}" var="courses">
-                        <c:if test="${courses.status==status}">
+                    <c:forEach items="${allCourses}" var="courses">
                             <tr>
                                 <td>${courses.time}</td>
                                 <td>${courses.language}</td>
                                 <td>${courses.level}</td>
-                                <td>${courses.start_date}</td>
+                                <td>${courses.startDate}</td>
                                 <td>${courses.duration}</td>
                                 <td>${courses.days}</td>
                                 <td>${courses.price}</td>
@@ -73,11 +72,10 @@
                                 </td>
 
                             </tr>
-                        </c:if>
                     </c:forEach>
                     </tbody>
                 </c:if>
-                <c:if test="${allCoursesUser.size()<1}">
+                <c:if test="${allCourses.size()<1}">
                     <td><spring:message code="eC"/></td>
                 </c:if>
             </form:form>
@@ -87,7 +85,7 @@
                 <a href="/watchAllCoursesManager/${pageNumber-1}/${4}" class="arrow left"
                    style="float: left; padding-left: 100px;  font-size: 60px"><</a>
             </c:if>
-            <c:if test="${allCoursesUser.size()>pageNumber}">
+            <c:if test="${allCourses.size()>pageNumber}">
                 <a href="/watchAllCoursesManager/${pageNumber+1}/${4}" class="arrow right"
                    style="float: left; padding-left: 160px; font-size: 60px"> > </a>
             </c:if>
@@ -102,13 +100,13 @@
 
     <div class="container">
         <table id="table-id">
-            <form:form modelAttribute="allCoursesUser">
+            <form:form modelAttribute="allCourses">
                 <thead>
                 <tr>
                     <th><spring:message code="aC"/></th>
                 </tr>
                 </thead>
-                <c:if test="${allCoursesUser.size()>0}">
+                <c:if test="${allCourses.size()>0}">
                     <thead>
                     <tr>
                         <th><spring:message code="oTGW"/></th>
@@ -124,13 +122,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${allCoursesUser}" var="courses">
-                        <c:if test="${courses.status==status}">
+                    <c:forEach items="${allCourses}" var="courses">
                             <tr>
                                 <td>${courses.time}</td>
                                 <td>${courses.language}</td>
                                 <td>${courses.level}</td>
-                                <td>${courses.start_date}</td>
+                                <td>${courses.startDate}</td>
                                 <td>${courses.duration}</td>
                                 <td>${courses.days}</td>
                                 <td>${courses.price}</td>
@@ -158,11 +155,10 @@
                                     </form>
                                 </td>
                             </tr>
-                        </c:if>
                     </c:forEach>
                     </tbody>
                 </c:if>
-                <c:if test="${allCoursesUser.size()<1}">
+                <c:if test="${allCourses.size()<1}">
                     <td><spring:message code="eC"/></td>
                 </c:if>
             </form:form>
@@ -172,7 +168,7 @@
                 <a href="/watchAllCoursesManager/${pageNumber-1}/${4}" class="arrow left"
                    style="float: left; padding-left: 100px;  font-size: 60px"><</a>
             </c:if>
-            <c:if test="${allCoursesUser.size()>pageNumber}">
+            <c:if test="${allCourses.size()>pageNumber}">
                 <a href="/watchAllCoursesManager/${pageNumber+1}/${4}" class="arrow right"
                    style="float: left; padding-left: 160px; font-size: 60px"> > </a>
             </c:if>

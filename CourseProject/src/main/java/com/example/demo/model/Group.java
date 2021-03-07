@@ -16,9 +16,9 @@ public class Group {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_course", nullable = false)
-    Course course_group;
+    Course courseGroup;
 
-    private Long number_group;
+    private Long numberGroup;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -27,27 +27,24 @@ public class Group {
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_teacher", referencedColumnName = "id")
-    private User user_teacher;
+    private User userTeacher;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_user")
     Set<User> userGroup;
 
-    @OneToOne(mappedBy = "group_number", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "groupNumber", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Journal journal;
-
-
 
     public Group() {
     }
 
-
-    public User getUser_teacher() {
-        return user_teacher;
+    public User getUserTeacher() {
+        return userTeacher;
     }
 
-    public void setUser_teacher(User user_teacher) {
-        this.user_teacher = user_teacher;
+    public void setUserTeacher(User userTeacher) {
+        this.userTeacher = userTeacher;
     }
 
     public Set<User> getUserGroup() {
@@ -74,12 +71,12 @@ public class Group {
         this.id = id;
     }
 
-    public Course getCourse_group() {
-        return course_group;
+    public Course getCourseGroup() {
+        return courseGroup;
     }
 
-    public void setCourse_group(Course course_group) {
-        this.course_group = course_group;
+    public void setCourseGroup(Course courseGroup) {
+        this.courseGroup = courseGroup;
     }
 
     public Journal getJournal() {
@@ -90,11 +87,11 @@ public class Group {
         this.journal = journal;
     }
 
-    public Long getNumber_group() {
-        return number_group;
+    public Long getNumberGroup() {
+        return numberGroup;
     }
 
-    public void setNumber_group(Long number_group) {
-        this.number_group = number_group;
+    public void setNumberGroup(Long numberGroup) {
+        this.numberGroup = numberGroup;
     }
 }

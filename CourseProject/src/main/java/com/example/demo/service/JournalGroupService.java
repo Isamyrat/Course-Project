@@ -36,12 +36,11 @@ public class JournalGroupService {
         return journalGroup.orElse(new JournalGroup());
     }
 
-
     public List<JournalGroup> findAllDataForStudent(int pageNumber, int pageSize, Long idUser, Long groupNumber) {
 
         Group group1 = groupService.findByNumberOfGroup(groupNumber);
 
-        Journal journal = journalService.findByGroup(group1.getNumber_group());
+        Journal journal = journalService.findByGroup(group1.getNumberGroup());
 
         Set<User> usersSet = group1.getUserGroup();
 
@@ -53,7 +52,7 @@ public class JournalGroupService {
             }
         }
         Pageable pageable = PageRequest.of(pageNumber,pageSize);
-        return journalGroupRepository.findAllByJournal_userAndId(user1.getId(),journal.getId(),pageable);
+        return journalGroupRepository.findAllByUserIdAndJournalId(user1.getId(),journal.getId(),pageable);
     }
 
     public void saveJournalStudent(JournalGroup journalGroup,Long groupNumber,Long userId ) {
@@ -70,23 +69,21 @@ public class JournalGroupService {
             }
         }
 
-        Journal journal = journalRepository.findByGroup(group1.getNumber_group());
+        Journal journal = journalRepository.findByGroup(group1.getNumberGroup());
 
         journalGroup.setDate(String.valueOf(LocalDate.now()));
-        journalGroup.setGroup_journals(journal);
-        journalGroup.setJournal_user(user1);
+        journalGroup.setGroupJournals(journal);
+        journalGroup.setJournalUser(user1);
         journalGroupRepository.save(journalGroup);
-
     }
 
     public void editJournalGroup(JournalGroup journalGroup) {
         journalGroupRepository.save(journalGroup);
     }
 
-
     @Transactional
     @Modifying
     public void deleteJournalGroup(Long id) {
-        journalGroupRepository.deleteJournalGroupById(id);
+        journalGroupRepository.deleteJournalById(id);
     }
 }

@@ -24,7 +24,6 @@ public class TopicController {
         model.addAttribute("allTopics", topicService.topicFind(topicId))
                 .addAttribute("topicId", topicId);
 
-
         return "manager/watchTopics";
     }
 
@@ -59,7 +58,7 @@ public class TopicController {
     @PostMapping("/saveEditTopic")
     public String saveEditTopic(@ModelAttribute("editTopic") Topic topic) {
         topicService.editTopic(topic);
-        return "manager/menu";
+        return "redirect:/menuManager";
     }
 
     @PostMapping("/deleteTopic")
@@ -69,8 +68,7 @@ public class TopicController {
         if (action.equals("delete")){
             topicService.deleteTopic(topicId);
         }
-
-        return "manager/menu";
+        return "redirect:/menuManager";
     }
 
 }

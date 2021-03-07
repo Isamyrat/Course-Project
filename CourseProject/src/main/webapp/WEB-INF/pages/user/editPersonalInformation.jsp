@@ -140,7 +140,7 @@
 <sec:authorize access="hasRole('ROLE_TEACHER')">
     <div class="login-box">
         <h2><spring:message code="ePA"/></h2>
-        <form:form  method="POST" action="/saveTeacherses" modelAttribute="userEdit">
+        <form:form  method="POST" action="/saveTeacherInfo" modelAttribute="userEdit">
 
             <form:hidden path="id"/>
             <label class="label-color"><spring:message code="nM"/></label>

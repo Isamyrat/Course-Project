@@ -15,14 +15,14 @@ public class Journal {
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "GROUP_NUMBER", referencedColumnName = "id",nullable = false)
-    private Group group_number;
+    private Group groupNumber;
 
     @NotNull
     @Enumerated(EnumType.STRING)
     @JoinColumn(name = "STATUS")
     private Status status;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "group_journals", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "groupJournals", cascade = CascadeType.ALL)
     private Set<JournalGroup> journalGroupSet;
 
     public Journal() {
@@ -44,12 +44,12 @@ public class Journal {
         this.id = id;
     }
 
-    public Group getGroup_number() {
-        return group_number;
+    public Group getGroupNumber() {
+        return groupNumber;
     }
 
-    public void setGroup_number(Group group_number) {
-        this.group_number = group_number;
+    public void setGroupNumber(Group groupNumber) {
+        this.groupNumber = groupNumber;
     }
 
     public Status getStatus() {

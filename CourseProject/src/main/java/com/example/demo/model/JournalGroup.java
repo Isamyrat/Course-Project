@@ -15,11 +15,11 @@ public class JournalGroup {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "JOURNAL_ID", nullable = false)
-    private Journal group_journals;
+    private Journal groupJournals;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID", nullable = false)
-    private User journal_user;
+    private User journalUser;
 
     public JournalGroup() {
     }
@@ -32,20 +32,20 @@ public class JournalGroup {
         this.id = id;
     }
 
-    public User getJournal_user() {
-        return journal_user;
+    public User getJournalUser() {
+        return journalUser;
     }
 
-    public void setJournal_user(User journal_user) {
-        this.journal_user = journal_user;
+    public void setJournalUser(User journalUser) {
+        this.journalUser = journalUser;
     }
 
-    public Journal getGroup_journals() {
-        return group_journals;
+    public Journal getGroupJournals() {
+        return groupJournals;
     }
 
-    public void setGroup_journals(Journal group_journals) {
-        this.group_journals = group_journals;
+    public void setGroupJournals(Journal groupJournals) {
+        this.groupJournals = groupJournals;
     }
 
     public String getDate() {

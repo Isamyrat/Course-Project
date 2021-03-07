@@ -50,12 +50,12 @@
                     <td>
                         <form action="${pageContext.request.contextPath}/deleteStud" method="post">
                             <input type="hidden" name="userId" value="${users.id}"/>
-                            <input type="hidden" name="groupNumber" value="${watchUsers.number_group}"/>
+                            <input type="hidden" name="groupNumber" value="${watchUsers.numberGroup}"/>
                             <input type="hidden" name="action" value="delete"/>
                         </form>
                         <form action="${pageContext.request.contextPath}/deleteStud" method="post">
                             <input type="hidden" name="userId" value="${users.id}"/>
-                            <input type="hidden" name="groupNumber" value="${watchUsers.number_group}"/>
+                            <input type="hidden" name="groupNumber" value="${watchUsers.numberGroup}"/>
                             <input type="hidden" name="action" value="delete"/>
                             <button type="submit"  onclick="if(!(confirm('${askGS}'))) return false"
                                     style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
@@ -64,7 +64,7 @@
                     </td>
                     <td>
                         <form>
-                            <a href="/watchJournalGroup/${users.id}/${watchUsers.number_group}/${0}/${7}" type="submit"
+                            <a href="/watchJournalGroup/${users.id}/${watchUsers.numberGroup}/${0}/${7}" type="submit"
                                style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;font-size: 20px"><spring:message
                                     code="aCJW"/></a>
                         </form>
@@ -108,12 +108,12 @@
 
                         <td>
                             <form>
-                                <a href="/watchJournalGroup/${users.id}/${watchUsers.number_group}/${0}/${7}" type="submit"
+                                <a href="/watchJournalGroup/${users.id}/${watchUsers.numberGroup}/${0}/${7}" type="submit"
                                    style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;font-size: 20px"><spring:message
                                         code="aCJW"/></a>
                             </form>
                             <form>
-                                <a href="/addJournalGroup/${users.id}/${watchUsers.number_group}" type="submit"
+                                <a href="/addJournalGroup/${users.id}/${watchUsers.numberGroup}" type="submit"
                                    style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;font-size: 20px"><spring:message
                                         code="aJG"/></a>
                             </form>

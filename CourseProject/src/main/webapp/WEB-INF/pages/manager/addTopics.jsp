@@ -47,7 +47,7 @@
                         <div class="form-group">
                             <label><spring:message code="select"/></label>
                             <div class="form-select">
-                                <form:select path="course_topic">
+                                <form:select path="courseTopic">
                                     <option value=""></option>
                                     <c:forEach items="${courses}" var="course">
                                         <option value="${course.id}">${course.level} - ${course.language}</option>

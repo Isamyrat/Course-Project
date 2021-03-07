@@ -24,21 +24,21 @@ public class AddressService {
     }
 
     public Boolean saveAddress(Address address) {
-        User user = userRepository.findByUser(address.getUser_address().getId());
+        User user = userRepository.findByUser(address.getUserAddress().getId());
 
-        Address address1 = addressRepository.findByAddress(user.getId(), address.getCountry(), address.getCity(), address.getDistrict(), address.getStreet(), address.getHouse(), address.getApartment());
+        Address address1 = addressRepository.findByUserIdAndAddress(user.getId(), address.getCountry(), address.getCity(), address.getDistrict(), address.getStreet(), address.getHouse(), address.getApartment());
 
        if (address1 != null) {
             return false;
         }
 
-        address.setUser_address(user);
+        address.setUserAddress(user);
         addressRepository.save(address);
         return true;
     }
 
     public List<Address> addressFind(Long userId) {
-        return addressRepository.findByUser(userId);
+        return addressRepository.findByUserId(userId);
     }
 
     public Address editAddress(Address address) {

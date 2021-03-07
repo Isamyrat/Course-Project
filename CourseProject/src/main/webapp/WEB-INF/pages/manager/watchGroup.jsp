@@ -36,11 +36,10 @@
                         <th><spring:message code="tOG"/></th>
                         <th><spring:message code="lOG"/></th>
                         <th><spring:message code="laOG"/></th>
-                        <th><spring:message code="sG"/></th>
                         <th><spring:message code="aG"/></th>
                         <th><spring:message code="aG"/></th>
                         <th><spring:message code="aG"/></th>
-
+                        <th><spring:message code="aG"/></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -49,34 +48,34 @@
                         <c:forEach items="${watchGroups}" var="groups">
 
                             <tr>
-                                <td>${groups.number_group}</td>
-                                <td>${groups.user_teacher.surname}</td>
-                                <td>${groups.course_group.level}</td>
-                                <td>${groups.course_group.language}</td>
-                                <td>${groups.status}</td>
+                                <td>${groups.numberGroup}</td>
+                                <td>${groups.userTeacher.surname}</td>
+                                <td>${groups.courseGroup.level}</td>
+                                <td>${groups.courseGroup.language}</td>
                                 <td>
                                     <form>
                                         <a href="/watchGroupUsers/${groups.id}" type="submit"
                                            style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
                                             <spring:message code="titleStud"/></a>
                                     </form>
-                                    <br>
+                                </td>
+                                <td>
                                     <form>
-                                        <a href="/editGroupManager${groups.number_group}" type="submit"
+                                        <a href="/editGroupManager${groups.numberGroup}" type="submit"
                                            style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
                                             <spring:message code="eNG"/></a>
                                     </form>
                                 </td>
                                 <td>
                                     <form>
-                                        <a href="/editGroupTeacher${groups.number_group}" type="submit"
+                                        <a href="/editGroupTeacher${groups.numberGroup}" type="submit"
                                            style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
                                             <spring:message code="eTG"/></a>
                                     </form>
                                 </td>
                                 <td>
                                     <form>
-                                        <a href="/editGroupStatus${groups.number_group}" type="submit"
+                                        <a href="/editGroupStatus${groups.numberGroup}" type="submit"
                                            style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
                                             <spring:message code="eG"/></a>
                                     </form>
@@ -130,13 +129,13 @@
 
                     <c:forEach items="${userGroup}" var="groups">
                         <tr>
-                            <td>${groups.number_group}</td>
-                            <td>${groups.user_teacher.surname}</td>
-                            <td>${groups.course_group.language}</td>
-                            <td>${groups.course_group.level}</td>
+                            <td>${groups.numberGroup}</td>
+                            <td>${groups.userTeacher.surname}</td>
+                            <td>${groups.courseGroup.level}</td>
+                            <td>${groups.courseGroup.language}</td>
                             <td>
                                 <form>
-                                    <a href="/watchJournalGroupUser${groups.number_group}/${0}/${7}" type="submit"
+                                    <a href="/watchJournalGroupUser${groups.numberGroup}/${0}/${7}" type="submit"
                                        style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;font-size: 20px"><spring:message
                                             code="aCJW"/></a>
                                 </form>
@@ -191,9 +190,9 @@
 
                 <c:forEach items="${userGroup}" var="teacher">
                     <tr>
-                        <td>${teacher.number_group}</td>
-                        <td>${teacher.course_group.language}</td>
-                        <td>${teacher.course_group.level}</td>
+                        <td>${teacher.numberGroup}</td>
+                        <td>${teacher.courseGroup.level}</td>
+                        <td>${teacher.courseGroup.language}</td>
                         <td>
                             <form>
                                 <a href="/watchGroupUsers${teacher.id}" type="submit"

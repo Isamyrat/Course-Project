@@ -32,10 +32,10 @@
             <option value="Finish"><spring:message code="sGrp"/></option>
         </form:select>
 
-        <form:hidden path="number_group"/>
-        <form:hidden path="user_teacher"/>
+        <form:hidden path="numberGroup"/>
+        <form:hidden path="userTeacher"/>
         <form:hidden path="userGroup"/>
-        <form:hidden path="course_group"/>
+        <form:hidden path="courseGroup"/>
 
         <button style="background-color: #141e30">
             <span></span>

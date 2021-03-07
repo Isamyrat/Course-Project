@@ -33,7 +33,6 @@
                 <th><spring:message code="tOG"/></th>
                 <th><spring:message code="lOG"/></th>
                 <th><spring:message code="laOG"/></th>
-                <th><spring:message code="sG"/></th>
                 <th><spring:message code="aG"/></th>
                 <th><spring:message code="aG"/></th>
             </tr>
@@ -43,10 +42,10 @@
                 <c:forEach items="${watchGroupArchive}" var="groups">
 
                     <tr>
-                        <td>${groups.number_group}</td>
-                        <td>${groups.user_teacher.surname}</td>
-                        <td>${groups.course_group.level}</td>
-                        <td>${groups.course_group.language}</td>
+                        <td>${groups.numberGroup}</td>
+                        <td>${groups.userTeacher.surname}</td>
+                        <td>${groups.courseGroup.level}</td>
+                        <td>${groups.courseGroup.language}</td>
                         <td>${groups.status}</td>
                         <td>
                             <form>
@@ -57,7 +56,7 @@
                         </td>
                         <td>
                             <form>
-                                <a href="/editGroupStatus${groups.number_group}" type="submit"
+                                <a href="/editGroupStatus${groups.numberGroup}" type="submit"
                                    style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
                                     <spring:message code="eG"/></a>
                             </form>

@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.PermitAll;
 import javax.validation.Valid;
 
 @Controller
@@ -66,7 +65,7 @@ public class AdminController {
 
         return "admin/addManager";
     }
-    @PostMapping("/saveUser")
+    @PostMapping("/saveManager")
     public String saveCustomer(@ModelAttribute("userManager") @Valid User userManager,
                                BindingResult bindingResult, Model model) {
 
@@ -79,7 +78,7 @@ public class AdminController {
             return "admin/addManager";
         }
 
-        return "redirect:/menuAdmin";
+        return  "admin/menuAdmin";
     }
 
     @GetMapping("/menuAdmin")

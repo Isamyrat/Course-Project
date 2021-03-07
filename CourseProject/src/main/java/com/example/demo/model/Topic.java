@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "Topic")
@@ -13,19 +12,20 @@ public class Topic {
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_course", referencedColumnName = "id",nullable = false)
-    private Course course_topic;
+    private Course courseTopic;
 
     private String rules;
     private String text;
 
-    public Course getCourse_topic() {
-        return course_topic;
-    }
     public Topic() {
     }
 
-    public void setCourse_topic(Course course_topic) {
-        this.course_topic = course_topic;
+    public Course getCourseTopic() {
+        return courseTopic;
+    }
+
+    public void setCourseTopic(Course courseTopic) {
+        this.courseTopic = courseTopic;
     }
 
     public Long getId() {

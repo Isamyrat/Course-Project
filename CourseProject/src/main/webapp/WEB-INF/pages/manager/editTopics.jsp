@@ -34,7 +34,7 @@
             <form:input type="text" path="text"/>
         </div>
 
-        <form:hidden path="course_topic"/>
+        <form:hidden path="courseTopic"/>
         <button  style="background-color: #141e30">
             <span></span>
             <span></span>

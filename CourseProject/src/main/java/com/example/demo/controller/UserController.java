@@ -45,7 +45,7 @@ public class UserController {
         return "user/editPersonalInformation";
     }
 
-    @PostMapping("/saveTeacherses")
+    @PostMapping("/saveTeacherInfo")
     public String saveTeacher(@ModelAttribute("userEdit") User userTeacher) {
         userService.editTeacher(userTeacher);
 
@@ -55,6 +55,7 @@ public class UserController {
 
     @PostMapping("/saveManagers")
     public String saveManager(@ModelAttribute("userEdit") User userTeacher) {
+
         userService.editManager(userTeacher);
 
         return "redirect:/personalInformationUser";

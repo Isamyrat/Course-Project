@@ -13,16 +13,14 @@ import java.util.Optional;
 @Repository
 public interface PersonalInfoRepository extends CrudRepository<PersonalInformation,Long> {
 
-
     @Override
     Optional<PersonalInformation> findById(Long aLong);
 
-    @Query("select p from PersonalInformation p where p.user_information.id =:userId")
+    @Query("select p from PersonalInformation p where p.userInformation.id =:userId")
     PersonalInformation findByPersonId(@Param("userId")Long userId);
-
 
     @Modifying
     @Transactional
     @Query(value = "delete from PERSONAL_INFORMATION  where ID_HUMAN = :id", nativeQuery = true)
-    void deleteAllByUser_information(Long id);
+    void deleteAllByUserId(Long id);
 }

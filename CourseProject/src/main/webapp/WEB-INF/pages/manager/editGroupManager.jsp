@@ -25,14 +25,14 @@
         <label class="label-color"><spring:message code="nOG"/></label>
         <form:hidden path="id"/>
         <div class="user-box">
-            <form:input type="text" path="number_group"/>
+            <form:input type="text" path="numberGroup"/>
         </div>
 
 
         <form:hidden path="status"/>
+        <form:hidden path="userTeacher"/>
         <form:hidden path="userGroup"/>
-        <form:hidden path="course_group"/>
-        <form:hidden path="user_teacher"/>
+        <form:hidden path="courseGroup"/>
 
         <button style="background-color: #141e30">
             <span></span>

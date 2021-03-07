@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Table(name = "Call_Back")
 public class CallBack {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -29,7 +28,6 @@ public class CallBack {
     @Enumerated(EnumType.STRING)
     @JoinColumn(name = "STATUS")
     private Status status;
-
 
     public CallBack() {
     }

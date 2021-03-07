@@ -63,8 +63,6 @@
     <a href="/personalInformationUser" class="big-button"><spring:message code="bK"/></a>
 </div>
 </body>
-
-
 <style>
     <%@include file ="../css/internationalize.css"%>
     <%@include file ="../css/dop.css"%>

@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Персональный аккаунт</title>
+    <title><spring:message code="personalAccaunt"/></title>
 </head>
 
 <header>
@@ -20,7 +20,6 @@
 <body>
 
 <sec:authorize access="hasRole('ROLE_USER')">
-
     <div class="container">
         <table>
             <form:form modelAttribute="userId">
@@ -55,7 +54,6 @@
                                    style="background-color: rgba(255, 255, 255, 0.2);  color: #000000; border: 1px #f5f4f4 solid; font-size: 25px"><spring:message
                                         code="pI"/></a>
                             </form>
-                            </p>
 
                         </td>
                         <td>
@@ -71,7 +69,7 @@
                                    style="background-color: rgba(255, 255, 255, 0.2);   color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px"><spring:message
                                         code="wAI"/></a>
                             </form>
-                            </p>
+
                         </td>
                     </tr>
                     </tbody>
@@ -87,8 +85,6 @@
         <a href="/watchGroupUser/${0}/${7}" class="big-button"><spring:message code="wWG"/></a>
         <a href="/" class="big-button"><spring:message code="bK"/></a>
     </div>
-
-
 </sec:authorize>
 
 

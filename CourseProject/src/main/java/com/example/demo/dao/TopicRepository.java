@@ -16,8 +16,8 @@ public interface TopicRepository extends CrudRepository<Topic,Long> {
     @Override
     Optional<Topic> findById(Long aLong);
 
-    @Query("select t from Topic  t where t.course_topic.id = :courseId")
-    Topic findByCourse_topicId(@Param("courseId") Long courseId);
+    @Query("select t from Topic  t where t.courseTopic.id = :courseId")
+    Topic findByCourseId(@Param("courseId") Long courseId);
 
     @Modifying
     @Transactional

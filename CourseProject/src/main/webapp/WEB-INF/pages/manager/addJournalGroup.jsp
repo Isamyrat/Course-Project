@@ -12,16 +12,16 @@
 <header>
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
-        <h4><a href="/addJournalGroup/${userId}/${groupNumber}?lang=en" class="big-button"><spring:message code="app.en"/></a></h4>
-        <h4><a href="/addJournalGroup/${userId}/${groupNumber}?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
+        <h4><a href="/addJournalGroup/${userId}/${groupNumber}?lang=en" class="big-button"><spring:message
+                code="app.en"/></a></h4>
+        <h4><a href="/addJournalGroup/${userId}/${groupNumber}?lang=ru" class="big-button"><spring:message
+                code="app.ru"/></a></h4>
     </div>
 </header>
 
 <body>
-
 <spring:message code="save" var="save"/>
 <spring:message code="bK" var="back"/>
-
 <div class="main">
     <div class="container">
         <div class="signup-content">
@@ -70,10 +70,8 @@
                         </div>
                     </div>
 
-
-
-                    <form:hidden path="journal_user"/>
-                    <form:hidden path="group_journals"/>
+                    <form:hidden path="journalUser"/>
+                    <form:hidden path="groupJournals"/>
                     <input type="hidden" name="userId" value="${userId}"/>
                     <input type="hidden" name="groupNumber" value="${groupNumber}"/>
 
@@ -89,11 +87,8 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
-
 
 </body>
 

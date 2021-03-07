@@ -16,11 +16,11 @@ public interface AddressRepository  extends CrudRepository<Address,Long> {
 
     Optional<Address> findById(Long aLong);
 
-    @Query("select a from  Address  a where a.user_address.id = :userId")
-    List<Address> findByUser(@Param("userId") Long userId);
+    @Query("select a from  Address  a where a.userAddress.id = :userId")
+    List<Address> findByUserId(@Param("userId") Long userId);
 
-    @Query("select a from  Address  a where a.user_address.id = :userId and a.country = :country and a.city = :city and a.district = :district and a.street = :street and a.house = :house and  a.apartment = :apartment")
-    Address findByAddress(@Param("userId") Long userId, @Param("country") String country, @Param("city") String city, @Param("district") String district, @Param("street") String street, @Param("house") String house, @Param("apartment") String apartment);
+    @Query("select a from  Address  a where a.userAddress.id = :userId and a.country = :country and a.city = :city and a.district = :district and a.street = :street and a.house = :house and  a.apartment = :apartment")
+    Address findByUserIdAndAddress(@Param("userId") Long userId, @Param("country") String country, @Param("city") String city, @Param("district") String district, @Param("street") String street, @Param("house") String house, @Param("apartment") String apartment);
 
     @Modifying
     @Transactional
@@ -30,5 +30,5 @@ public interface AddressRepository  extends CrudRepository<Address,Long> {
     @Modifying
     @Transactional
     @Query(value = "delete from Address where ID_HUMAN = :id", nativeQuery = true)
-    void deleteAllByUser_address(Long id);
+    void deleteAllByUserId(Long id);
 }

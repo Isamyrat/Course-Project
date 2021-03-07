@@ -18,10 +18,8 @@ public class PersonalController {
     @Autowired
     private PersonalInformationService personalInformationService;
 
-
     @Autowired
     private UserService userService;
-
 
     @GetMapping("/personalInformationUsers{personId}")
     public String personalInformationUsers(@PathVariable("personId") Long personId,
@@ -38,24 +36,22 @@ public class PersonalController {
 
         model.addAttribute("personAdd", new PersonalInformation());
 
-        return "user/addpersonalInformationUser";
+        return "user/addPersonalInformationUser";
     }
 
     @PostMapping("/savePersonalInfos")
     public String savePersonalInfos(@ModelAttribute("personAdd")
                                     PersonalInformation personalInformation,
                                     Model model) {
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         User user = userService.getUser(userDetails.getUsername());
 
-        personalInformation.setUser_information(user);
-
+        personalInformation.setUserInformation(user);
         if (!personalInformationService.savePersonInfo(personalInformation)) {
             model.addAttribute("personError", "Пользователь с личными данными уже существует, вы можете изменить их");
-            return "user/addpersonalInformationUser";
+            return "user/addPersonalInformationUser";
         }
 
         return "redirect:/personalInformationUser";
@@ -69,7 +65,7 @@ public class PersonalController {
             .addAttribute("personId", personId);
 
 
-        return "user/editpersonalInformationUser";
+        return "user/editPersonalInformationUser";
     }
 
     @PostMapping("/savePersonalInfo")

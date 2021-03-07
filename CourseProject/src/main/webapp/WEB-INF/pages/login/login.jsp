@@ -1,7 +1,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,11 +13,8 @@
 </sec:authorize>
 
 <div class="limiter">
-
     <div class="container-login100">
-
         <div class="wrap-login100">
-
             <div class="login100-form-title">
 					<span class="login100-form-title-1">
                         Log in</span>
@@ -47,22 +43,11 @@
                         Registration
                     </a>
                 </div>
-                <div class="container-login100-form-btn">
-                    <sec:authorize access="isAuthenticated()">
-                        <h4><a href="/logout">Выйти</a></h4>
-                    </sec:authorize>
-                </div>
-
             </form>
         </div>
-
     </div>
 </div>
-
-
 </body>
-
-
 <style>
     <%@include file ="../css/main.css"%>
 </style>

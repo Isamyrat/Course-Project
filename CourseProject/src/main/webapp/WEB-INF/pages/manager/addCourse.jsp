@@ -74,7 +74,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label><spring:message code="dOC"/></label>
-                            <form:input type="text" path="start_date" />
+                            <form:input type="text" path="startDate"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -103,8 +103,10 @@
                                     <option value=""></option>
                                     <option value="Start">Start</option>
                                     <option value="Elementary">Elementary</option>
+                                    <option value="Pre-Intermediate">Pre-Intermediate</option>
+                                    <option value="Intermediate">Intermediate</option>
+                                    <option value="Upper-Intermediate">Upper-Intermediate</option>
                                     <option value="Advanced">Advanced</option>
-                                    <option value="Interdemiade">Interdemiade</option>
                                 </form:select>
                                 <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                             </div>
@@ -123,7 +125,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 </body>

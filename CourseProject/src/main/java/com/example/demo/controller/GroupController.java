@@ -50,15 +50,6 @@ public class GroupController {
 
         return "manager/watchGroupArchive";
     }
-    @GetMapping("/watchGroupUsers{idGroup}")
-    public String watchGroupUsers(@PathVariable("idGroup") Long idGroup,
-                                  Model model) {
-
-        model.addAttribute("watchUsers", groupService.findById(idGroup))
-                .addAttribute("idGroup", idGroup);
-
-        return "manager/watchGroupUsers";
-    }
 
     @GetMapping("/watchGroupUser/{pageNumber}/{pageSize}")
     public String watchGroupUser(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
@@ -84,6 +75,16 @@ public class GroupController {
         return "manager/watchGroup";
     }
 
+    @GetMapping("/watchGroupUsers{idGroup}")
+    public String watchGroupUsers(@PathVariable("idGroup") Long idGroup,
+                                  Model model) {
+
+        model.addAttribute("watchUsers", groupService.findById(idGroup))
+                .addAttribute("idGroup", idGroup);
+
+        return "manager/watchGroupUsers";
+    }
+
     @GetMapping("/addGroup")
     public String addGroup(Model model) {
 
@@ -102,7 +103,7 @@ public class GroupController {
             return "manager/errors";
         }
 
-        return "redirect:/watchGroup/${0}/${3}";
+        return "redirect:/menuManager";
     }
 
     @GetMapping("/editGroupManager{groupId}")
@@ -135,12 +136,12 @@ public class GroupController {
     @PostMapping("/saveGroupMan")
     public String saveGroupMan(@ModelAttribute("groupEdit") Group group) {
         groupService.editStatus(group);
-        return "redirect:/watchGroup/${0}/${3}";
+        return "redirect:/menuManager";
     }
     @PostMapping("/saveManagerGroup")
     public String saveManagerGroup(@ModelAttribute("groupEdit") Group group) {
         groupService.editGroup(group);
-        return "redirect:/watchGroup/${0}/${3}";
+        return "redirect:/menuManager";
     }
 
     @PostMapping("/deleteStud")
@@ -152,6 +153,6 @@ public class GroupController {
         if (action.equals("delete")) {
             groupService.deleteUser(userId,groupNumber);
         }
-        return "redirect:/watchGroup/${0}/${3}";
+        return "redirect:/menuManager";
     }
 }

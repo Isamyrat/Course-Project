@@ -1,19 +1,17 @@
 package com.example.demo.model;
 
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Address")
 public class Address {
-
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_human", referencedColumnName = "id", nullable = false)
-    private User user_address;
+    private User userAddress;
 
     private String country;
     private String city;
@@ -30,12 +28,12 @@ public class Address {
         this.id = id;
     }
 
-    public User getUser_address() {
-        return user_address;
+    public User getUserAddress() {
+        return userAddress;
     }
 
-    public void setUser_address(User user_address) {
-        this.user_address = user_address;
+    public void setUserAddress(User userAddress) {
+        this.userAddress = userAddress;
     }
 
     public String getCountry() {

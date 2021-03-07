@@ -8,7 +8,6 @@ import com.example.demo.model.Course;
 import com.example.demo.model.User;
 import com.example.demo.model.enumModel.Status;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -32,38 +31,32 @@ public class CallBackService {
         return callBack.orElse(new CallBack());
     }
 
-    public List<CallBack> findByStatus() {
-
-        return callBackRepository.findByStatus(Status.Wait);
-    }
-
-    public List<CallBack> callBackList(int pageNumber, int pageSize){
-        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+    public List<CallBack> callBackList(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
         return callBackRepository.findAllByStatus(Status.Wait, pageable);
     }
-    public List<CallBack> callBackListUser(int pageNumber, int pageSize,Long userId){
-        Pageable pageable = PageRequest.of(pageNumber,pageSize);
-        return callBackRepository.findAllByUserCallBack(userId, pageable);
-    }
-    public List<CallBack> callBackListArchive(int pageNumber, int pageSize){
-        Pageable pageable = PageRequest.of(pageNumber,pageSize);
-        return callBackRepository.findAllByStatusOrStatus(Status.Approved,Status.Denied, pageable);
+
+    public List<CallBack> callBackListUser(int pageNumber, int pageSize, Long userId) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+        return callBackRepository.findAllByUserId(userId, pageable);
     }
 
+    public List<CallBack> callBackListArchive(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+        return callBackRepository.findAllByStatusOrStatus(Status.Approved, Status.Denied, pageable);
+    }
 
     public Boolean saveCallBack(User userRequestCall, Course courseRequestCall) {
-
         User user = userRepository.findByUser(userRequestCall.getId());
-
         Course course = courseRepository.findByCourseId(courseRequestCall.getId());
 
         CallBack callBack = new CallBack();
 
         callBack.setStatus(Status.Wait);
 
-        CallBack callBack1 = callBackRepository.findByUserSingle(user.getId(), course.getId(), callBack.getStatus());
+        CallBack callBack1 = callBackRepository.findByUserIdAndCallBakIdAndStatus(user.getId(), course.getId(), callBack.getStatus());
 
-        if(callBack1 != null){
+        if (callBack1 != null) {
             return false;
         }
 
@@ -77,22 +70,17 @@ public class CallBackService {
         return true;
     }
 
-    public List<CallBack> callBackFind(Long userID) {
-        return callBackRepository.findByUser(userID);
-    }
-
 
     public Course findCourse(Long course) {
         return courseRepository.findByCourseId(course);
     }
 
     public void editCallBack(CallBack callBack) {
-         callBackRepository.save(callBack);
+        callBackRepository.save(callBack);
     }
 
-
     public void deleteCallBack(Long callBackId) {
-        callBackRepository.deleteCallBackId(callBackId);
+        callBackRepository.deleteCallBackById(callBackId);
     }
 
 }

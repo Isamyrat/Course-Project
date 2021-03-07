@@ -53,30 +53,29 @@ public class GroupService {
     }
 
     public Group findByNumberOfGroup(Long number) {
-        return groupRepository.findByNumber(number);
+        return groupRepository.findByNumberGroup(number);
     }
 
     public Boolean saveGroup(Group group) {
         Journal journal = new Journal();
-        Group group1 = groupRepository.findByNumber(group.getNumber_group());
+        Group group1 = groupRepository.findByNumberGroup(group.getNumberGroup());
 
         if(group1 != null){
             return false;
         }
 
-        User user = userRepository.findByUser(group.getUser_teacher().getId());
+        User user = userRepository.findByUser(group.getUserTeacher().getId());
 
-        Course course = courseRepository.findByCourseId(group.getCourse_group().getId());
+        Course course = courseRepository.findByCourseId(group.getCourseGroup().getId());
 
         group.setStatus(Status.Wait);
-        group.setCourse_group(course);
-        group.setUser_teacher(user);
-
+        group.setCourseGroup(course);
+        group.setUserTeacher(user);
 
         groupRepository.save(group);
 
         journal.setStatus(group.getStatus());
-        journal.setGroup_number(group);
+        journal.setGroupNumber(group);
         journalService.saveJournal(journal);
         return true;
     }
@@ -85,9 +84,9 @@ public class GroupService {
     }
 
     public void editStatus(Group group) {
-        Journal journal = journalService.findByGroup(group.getNumber_group());
+        Journal journal = journalService.findByGroup(group.getNumberGroup());
         journal.setStatus(group.getStatus());
-        journal.setGroup_number(group);
+        journal.setGroupNumber(group);
         journalService.editJournal(journal);
         groupRepository.save(group);
     }
@@ -99,7 +98,7 @@ public class GroupService {
 
         Course course = callBackService.findCourse(callBack.getCourseCallBack().getId());
 
-        List<Group> groupList = groupRepository.findForAdd(course.getId(),Status.Wait);
+        List<Group> groupList = groupRepository.findGroupsForAddStudents(course.getId(),Status.Wait);
 
         if(groupList.size() == 0){
             return false;
@@ -112,7 +111,7 @@ public class GroupService {
 
         Set<User> users = group.getUserGroup();
 
-        if(users.size()==12){
+        if(users.size()==7){
 
             if(groupList.size() < 2){
                 return false;
@@ -128,7 +127,7 @@ public class GroupService {
             userSet.add(user);
 
             group.setUserGroup(userSet);
-            group.setCourse_group(course);
+            group.setCourseGroup(course);
 
             groupRepository.save(group);
             return true;
@@ -137,7 +136,7 @@ public class GroupService {
             users.add(user);
 
             group.setUserGroup(users);
-            group.setCourse_group(course);
+            group.setCourseGroup(course);
 
             groupRepository.save(group);
             return true;
@@ -172,7 +171,7 @@ public class GroupService {
     }
 
     public void deleteUser(Long userId, Long groupNumber){
-        Group groupUser = groupRepository.findByNumber(groupNumber);
+        Group groupUser = groupRepository.findByNumberGroup(groupNumber);
         Set<User> userSet = groupUser.getUserGroup();
 
         userSet.removeIf(s -> s.getId().equals(userId));
@@ -184,7 +183,7 @@ public class GroupService {
 
     public List<Group> findByTeacher(int pageNumber, int pageSize,Long userId){
         Pageable pageable = PageRequest.of(pageNumber,pageSize);
-        return groupRepository.findAllByUser_teacher(userId, pageable);
+        return groupRepository.findAllByTeacherId(userId, pageable);
     }
 
 

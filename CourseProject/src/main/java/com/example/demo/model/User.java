@@ -25,22 +25,22 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user_address", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "userAddress", cascade = CascadeType.ALL)
     private Set<Address> address;
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "userCallBack", cascade = CascadeType.ALL)
     private Set<CallBack> callBack;
 
-    @OneToOne(fetch = FetchType.EAGER,mappedBy = "user_teacher",cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER,mappedBy = "userTeacher",cascade = CascadeType.ALL)
     private Group group;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "userGroup",cascade = CascadeType.ALL)
     private Set<Group> groups;
 
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "user_information", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "userInformation", cascade = CascadeType.ALL)
     private PersonalInformation personalInformation;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "journal_user", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "journalUser", cascade = CascadeType.ALL)
     private Set<JournalGroup> journalGroups;
 
     public User() {

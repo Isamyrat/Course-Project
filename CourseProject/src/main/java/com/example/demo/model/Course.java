@@ -18,7 +18,7 @@ public class Course {
     private String language;
 
     @JoinColumn(name = "START_DATE")
-    private String start_date;
+    private String startDate;
 
     @JoinColumn(name = "PRICE")
     private Long price;
@@ -37,20 +37,16 @@ public class Course {
     @JoinColumn(name = "STATUS")
     private Status status;
 
-
     @JoinColumn(name = "DURATION")
     private String duration;
 
-    @OneToOne(fetch = FetchType.EAGER,mappedBy = "course_topic", cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER,mappedBy = "courseTopic", cascade = CascadeType.ALL)
     private Topic topic;
-
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "courseCallBack", cascade = CascadeType.ALL)
     private Set<CallBack> callBack;
 
-
-
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "course_group",cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "courseGroup",cascade = CascadeType.ALL)
     private Set<Group> group;
 
     public Course() {
@@ -104,12 +100,12 @@ public class Course {
         this.language = language;
     }
 
-    public String getStart_date() {
-        return start_date;
+    public String getStartDate() {
+        return startDate;
     }
 
-    public void setStart_date(String start_date) {
-        this.start_date = start_date;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
 
     public Long getPrice() {

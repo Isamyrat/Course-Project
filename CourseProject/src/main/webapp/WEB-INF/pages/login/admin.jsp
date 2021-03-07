@@ -7,7 +7,6 @@
 <head>
     <meta charset="utf-8">
     <title><spring:message code="aU"/></title>
-    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/style.css">
 </head>
 
 <header>

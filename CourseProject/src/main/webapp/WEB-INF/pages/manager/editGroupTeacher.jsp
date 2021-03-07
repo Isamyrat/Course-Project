@@ -25,7 +25,7 @@
         <form:hidden path="id"/>
 
         <label class="label-color"><spring:message code="select"/></label>
-        <form:select path="user_teacher">
+        <form:select path="userTeacher">
             <option value=""></option>
             <c:forEach items="${teacher}" var="teacher">
                 <c:forEach items="${teacher.roles}" var="role">
@@ -36,10 +36,10 @@
             </c:forEach>
         </form:select>
 
-        <form:hidden path="number_group"/>
+        <form:hidden path="numberGroup"/>
         <form:hidden path="status"/>
         <form:hidden path="userGroup"/>
-        <form:hidden path="course_group"/>
+        <form:hidden path="courseGroup"/>
 
         <button style="background-color: #141e30">
             <span></span>

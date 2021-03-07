@@ -41,8 +41,8 @@
             <form:input type="text" path="absent"/>
         </div>
 
-        <form:hidden path="journal_user"/>
-        <form:hidden path="group_journals"/>
+        <form:hidden path="journalUser"/>
+        <form:hidden path="groupJournals"/>
 
         <button style="background-color: #141e30">
             <span></span>

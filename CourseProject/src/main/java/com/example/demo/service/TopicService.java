@@ -21,34 +21,28 @@ public class TopicService {
     @Autowired
     CourseService courseService;
 
-
     public Topic topicById(Long id){
         Optional<Topic> topic = topicRepository.findById(id);
         return topic.orElse(new Topic());
     }
 
-    public List<Topic> allTopics(){
-        return (List<Topic>) topicRepository.findAll();
-    }
 
     public Boolean saveTopic(Topic topic){
-        Course course1 = courseService.courseById(topic.getCourse_topic().getId());
+        Course course = courseService.courseById(topic.getCourseTopic().getId());
 
-
-        Topic topic1 = topicRepository.findByCourse_topicId(course1.getId());
+        Topic topic1 = topicRepository.findByCourseId(course.getId());
 
         if(topic1 != null){
             return false;
         }
 
-
-        topic.setCourse_topic(course1);
+        topic.setCourseTopic(course);
         topicRepository.save(topic);
         return true;
     }
 
     public  Topic topicFind(Long course){
-        return topicRepository.findByCourse_topicId(course);
+        return topicRepository.findByCourseId(course);
     }
 
     public void editTopic(Topic topic){

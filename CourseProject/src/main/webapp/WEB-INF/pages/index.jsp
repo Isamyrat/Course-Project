@@ -145,14 +145,6 @@
         <p><spring:message code="cf"/></p><br>
 
 
-        <div class="subscribe-box">
-            <h2><spring:message code="findS"/></h2>
-            <form class="subscribe" action="/watchAllCourcesUser">
-                <input type="text" placeholder="${lName}" />
-                <button type="submit"> <span><spring:message code="f"/></span></button>
-            </form>
-        </div>
-
     </div>
 
     <!-- Contact Section -->

@@ -39,18 +39,18 @@
         </tr>
         </thead>
         <c:if test="${watchRequestCallArchive.size()>0}">
-            <c:forEach items="${watchRequestCallArchive}" var="arhiv">
+            <c:forEach items="${watchRequestCallArchive}" var="archive">
                         <tr>
-                            <td>${arhiv.id}</td>
-                            <td>${arhiv.status}</td>
-                            <td>${arhiv.callBackDate}</td>
-                            <td>${arhiv.userCallBack.name}</td>
-                            <td>${arhiv.userCallBack.surname}</td>
-                            <td>${arhiv.courseCallBack.level}</td>
-                            <td>${arhiv.courseCallBack.language}</td>
+                            <td>${archive.id}</td>
+                            <td>${archive.status}</td>
+                            <td>${archive.callBackDate}</td>
+                            <td>${archive.userCallBack.name}</td>
+                            <td>${archive.userCallBack.surname}</td>
+                            <td>${archive.courseCallBack.level}</td>
+                            <td>${archive.courseCallBack.language}</td>
                             <td>
                                 <form action="${pageContext.request.contextPath}/deleteCallBack" method="post">
-                                    <input type="hidden" name="callBackId" value="${arhiv.id}"/>
+                                    <input type="hidden" name="callBackId" value="${archive.id}"/>
                                     <input type="hidden" name="action" value="delete"/>
                                     <button type="submit" onclick="if(!(confirm('${askRC}'))) return false"
                                             style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">

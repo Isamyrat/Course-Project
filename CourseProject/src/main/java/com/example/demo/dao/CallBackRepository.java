@@ -19,31 +19,26 @@ public interface CallBackRepository extends PagingAndSortingRepository<CallBack,
     Optional<CallBack> findById(Long aLong);
 
     @Query("select c from  CallBack  c where c.userCallBack.id = :userId")
-    List<CallBack> findByUser(@Param("userId")Long userId);
+    List<CallBack> findByUserId(@Param("userId")Long userId);
 
     @Query("select c from  CallBack  c where c.userCallBack.id = :userId")
-    List<CallBack> findAllByUserCallBack(@Param("userId")Long userId, Pageable pageable);
-
-    List<CallBack> findByStatus(Status status);
+    List<CallBack> findAllByUserId(@Param("userId")Long userId, Pageable pageable);
 
     List<CallBack> findAllByStatus(Status status, Pageable pageable);
-
 
     List<CallBack> findAllByStatusOrStatus(Status status1, Status status2,Pageable pageable);
 
     @Query("select c from  CallBack  c where c.userCallBack.id = :userId and  c.courseCallBack.id = :courseId and c.status = :status")
-    CallBack findByUserSingle(@Param("userId")Long userId, @Param("courseId")Long courseId, @Param("status")Status status );
-
+    CallBack findByUserIdAndCallBakIdAndStatus(@Param("userId")Long userId, @Param("courseId")Long courseId, @Param("status")Status status );
 
     @Modifying
     @Transactional
     @Query(value = "DELETE from CALL_BACK  where id = :callBackId", nativeQuery = true)
-    void deleteCallBackId(@Param("callBackId")Long callBackId);
-
+    void deleteCallBackById(@Param("callBackId")Long callBackId);
 
     @Modifying
     @Transactional
     @Query(value = "delete from CALL_BACK where USER_ID = :id", nativeQuery = true)
-    void deleteAllByUserCallBack(Long id);
+    void deleteAllByUserId(Long id);
 
 }
