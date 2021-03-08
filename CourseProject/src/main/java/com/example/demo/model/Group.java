@@ -18,6 +18,7 @@ public class Group {
     @JoinColumn(name = "id_course", nullable = false)
     Course courseGroup;
 
+
     private Long numberGroup;
 
     @NotNull

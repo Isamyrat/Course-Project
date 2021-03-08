@@ -13,8 +13,8 @@
 <header>
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
-        <h4><a href="/watchJournalGroup/${userId}/${groupNumber}?lang=en" class="big-button"><spring:message code="app.en"/></a></h4>
-        <h4><a href="/watchJournalGroup/${userId}/${groupNumber}?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
+        <h4><a href="/watchJournalGroup/${userId}/${groupNumber}/${pageNumber}/${pageSize}?lang=en" class="big-button"><spring:message code="app.en"/></a></h4>
+        <h4><a href="/watchJournalGroup/${userId}/${groupNumber}/${pageNumber}/${pageSize}?lang=ru" class="big-button"><spring:message code="app.ru"/></a></h4>
     </div>
 </header>
 <body>

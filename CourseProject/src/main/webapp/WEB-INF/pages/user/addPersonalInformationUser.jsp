@@ -35,14 +35,13 @@
             <option value="Male"><spring:message code="male"/></option>
             <option value="Female"><spring:message code="female"/></option>
         </form:select>>
-
-
-
+        <p>
         <label class="label-color"><spring:message code="etNum"/></label>
         <div class="user-box" style="color: white">
             <form:input path="number"/>
                 ${personError}
         </div>
+        <p>
 
         <form:hidden path="userInformation"/>
         <button style="background-color: #141e30">

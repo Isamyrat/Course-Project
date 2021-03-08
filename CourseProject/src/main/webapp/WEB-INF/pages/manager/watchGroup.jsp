@@ -54,7 +54,7 @@
                                 <td>${groups.courseGroup.language}</td>
                                 <td>
                                     <form>
-                                        <a href="/watchGroupUsers/${groups.id}" type="submit"
+                                        <a href="/watchGroupUsers${groups.id}" type="submit"
                                            style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
                                             <spring:message code="titleStud"/></a>
                                     </form>
@@ -100,7 +100,7 @@
                    style="float: left; padding-left: 160px; font-size: 60px"> > </a>
             </c:if>
         </form>
-        <a href="/watchGroupArchive/${0}/${7}" class="big-button"><spring:message code="wAG"/></a>
+        <a href="/watchGroupArchive/${0}/${6}" class="big-button"><spring:message code="wAG"/></a>
         <a href="/watchGroupWaiting/${0}/${3}" class="big-button"><spring:message code="wAW"/></a>
         <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
     </div>

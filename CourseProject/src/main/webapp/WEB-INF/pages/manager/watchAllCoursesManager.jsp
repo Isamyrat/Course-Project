@@ -82,11 +82,11 @@
         </table>
         <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
             <c:if test="${pageNumber>0}">
-                <a href="/watchAllCoursesManager/${pageNumber-1}/${4}" class="arrow left"
+                <a href="/watchAllCoursesManager/${pageNumber-1}/${3}" class="arrow left"
                    style="float: left; padding-left: 100px;  font-size: 60px"><</a>
             </c:if>
             <c:if test="${allCourses.size()>pageNumber}">
-                <a href="/watchAllCoursesManager/${pageNumber+1}/${4}" class="arrow right"
+                <a href="/watchAllCoursesManager/${pageNumber+1}/${3}" class="arrow right"
                    style="float: left; padding-left: 160px; font-size: 60px"> > </a>
             </c:if>
         </form>
@@ -165,11 +165,11 @@
         </table>
         <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
             <c:if test="${pageNumber>0}">
-                <a href="/watchAllCoursesManager/${pageNumber-1}/${4}" class="arrow left"
+                <a href="/watchAllCoursesManager/${pageNumber-1}/${3}" class="arrow left"
                    style="float: left; padding-left: 100px;  font-size: 60px"><</a>
             </c:if>
             <c:if test="${allCourses.size()>pageNumber}">
-                <a href="/watchAllCoursesManager/${pageNumber+1}/${4}" class="arrow right"
+                <a href="/watchAllCoursesManager/${pageNumber+1}/${3}" class="arrow right"
                    style="float: left; padding-left: 160px; font-size: 60px"> > </a>
             </c:if>
         </form>

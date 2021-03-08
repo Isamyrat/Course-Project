@@ -73,7 +73,7 @@
                    style="float: left; padding-left: 160px; font-size: 60px"> > </a>
             </c:if>
         </form>
-        <a href="/watchRequestCallArchive/${0}/${10}" class="big-button"><spring:message code="wCallArhiv"/></a>
+        <a href="/watchRequestCallArchive/${0}/${7}" class="big-button"><spring:message code="wCallArhiv"/></a>
 
         <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
     </div>
@@ -113,11 +113,11 @@
         </table>
         <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
             <c:if test="${pageNumber>0}">
-                <a href="/watchRequestCallUser/${pageNumber-1}/${9}" class="arrow left"
+                <a href="/watchRequestCallUser/${pageNumber-1}/${7}" class="arrow left"
                    style="float: left; padding-left: 100px;  font-size: 60px"><</a>
             </c:if>
             <c:if test="${callBackManager.size()>pageNumber}">
-                <a href="/watchRequestCallUser/${pageNumber+1}/${9}" class="arrow right"
+                <a href="/watchRequestCallUser/${pageNumber+1}/${7}" class="arrow right"
                    style="float: left; padding-left: 160px; font-size: 60px"> > </a>
             </c:if>
         </form>

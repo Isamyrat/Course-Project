@@ -79,8 +79,15 @@ public class GroupService {
         journalService.saveJournal(journal);
         return true;
     }
-    public void editGroup(Group group) {
+    public boolean editGroup(Group group) {
+        Group group1 = groupRepository.findByNumberGroup(group.getNumberGroup());
+
+        if(group1 != null){
+            return false;
+        }
+
         groupRepository.save(group);
+        return true;
     }
 
     public void editStatus(Group group) {

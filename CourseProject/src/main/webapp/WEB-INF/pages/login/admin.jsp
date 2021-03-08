@@ -29,7 +29,6 @@
         </thead>
         <thead>
         <tr>
-            <th><spring:message code="idT"/></th>
             <th><spring:message code="nMU"/></th>
             <th><spring:message code="sNUS"/></th>
             <th><spring:message code="aG"/></th>
@@ -38,7 +37,6 @@
         <c:if test="${allUsers.size()>0}">
             <c:forEach items="${allUsers}" var="user">
                         <tr>
-                            <td>${user.id}</td>
                             <td>${user.name}</td>
                             <td>${user.surname}</td>
                             <td>
@@ -62,9 +60,7 @@
     <c:if test="${pageNumber>0}">
         <a href="/admin/${pageNumber-1}/${8}" class="arrow left" style="float: left; padding-left: 100px;  font-size: 60px"><</a>
     </c:if>
-    <c:if test="${allUsers.size()>pageNumber}">
         <a href="/admin/${pageNumber+1}/${8}" class="arrow right" style="float: left; padding-left: 160px; font-size: 60px"> > </a>
-    </c:if>
     </form>
     <a href="/menuAdmin" class="big-button"><spring:message code="mA"/></a>
 </div>

@@ -30,7 +30,8 @@ public class JournalGroupController {
         model.addAttribute("watchGroups", journalGroupService.findAllDataForStudent(pageNumber,pageSize,userId,groupNumber))
                 .addAttribute("userId",userId)
                 .addAttribute("groupNumber", groupNumber)
-                .addAttribute("pageNumber", pageNumber);
+                .addAttribute("pageNumber", pageNumber)
+                .addAttribute("pageSize", pageSize);
 
         return "manager/watchJournalGroup";
     }
@@ -46,7 +47,8 @@ public class JournalGroupController {
 
         model.addAttribute("watchGroups", journalGroupService.findAllDataForStudent(pageNumber,pageSize,user.getId(),groupNumber))
                 .addAttribute("groupNumber", groupNumber)
-                .addAttribute("pageNumber", pageNumber);
+                .addAttribute("pageNumber", pageNumber)
+                .addAttribute("pageSize", pageSize);
 
         return "user/watchJournalGroupUser";
     }

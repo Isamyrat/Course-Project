@@ -139,8 +139,12 @@ public class GroupController {
         return "redirect:/menuManager";
     }
     @PostMapping("/saveManagerGroup")
-    public String saveManagerGroup(@ModelAttribute("groupEdit") Group group) {
-        groupService.editGroup(group);
+    public String saveManagerGroup(@ModelAttribute("groupEdit") Group group, Model model) {
+        if (!groupService.editGroup(group)) {
+            model.addAttribute("groupError", "Такой номер группы уже существует измените его пожалуйста!!!");
+            return "manager/errors";
+        }
+
         return "redirect:/menuManager";
     }
 

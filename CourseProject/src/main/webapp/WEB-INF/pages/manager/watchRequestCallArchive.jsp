@@ -63,11 +63,11 @@
     </table>
     <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
         <c:if test="${pageNumber>0}">
-            <a href="/watchRequestCallArchive/${pageNumber-1}/${9}" class="arrow left"
+            <a href="/watchRequestCallArchive/${pageNumber-1}/${7}" class="arrow left"
                style="float: left; padding-left: 100px;  font-size: 60px"><</a>
         </c:if>
         <c:if test="${watchRequestCallArchive.size()>pageNumber}">
-            <a href="/watchRequestCallArchive/${pageNumber+1}/${9}" class="arrow right"
+            <a href="/watchRequestCallArchive/${pageNumber+1}/${7}" class="arrow right"
                style="float: left; padding-left: 160px; font-size: 60px"> > </a>
         </c:if>
     </form>
