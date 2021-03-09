@@ -15,7 +15,7 @@
 <div class="container">
     <div class="localize" style="width: 500px; height: 300px; font-size: 35px; color: black;" >
         ${groupError}
-        ${topicLL} ${errorTeacher}${errorStudent}${addToError}${addToErrors}
+        ${topicLL} ${errorTeacher}${errorStudent}${addToError}${addToErrors}${addressError}
         <p>
             <sec:authorize access="hasRole('ROLE_ADMIN')">
                 <a href="/menuAdmin" class="big-button"><spring:message code="bK"/></a>

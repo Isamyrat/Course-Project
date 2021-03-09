@@ -68,10 +68,13 @@ public class AddressController {
     }
 
     @PostMapping("/saveAddressEdit")
-    public String saveAddressEdit(@ModelAttribute("addressEdit") Address address) {
+    public String saveAddressEdit(@ModelAttribute("addressEdit") Address address,Model model) {
 
-        addressService.editAddress(address);
 
+        if (!addressService.editAddress(address)) {
+            model.addAttribute("addressError", "Такой адрес уже существует!!!");
+            return "manager/errors";
+        }
         return "redirect:/personalInformationUser";
     }
 

@@ -41,8 +41,16 @@ public class AddressService {
         return addressRepository.findByUserId(userId);
     }
 
-    public Address editAddress(Address address) {
-        return addressRepository.save(address);
+    public Boolean editAddress(Address address) {
+
+        Address address1 = addressRepository.findByUserIdAndAddress(address.getUserAddress().getId(), address.getCountry(), address.getCity(), address.getDistrict(), address.getStreet(), address.getHouse(), address.getApartment());
+
+        if (address1 != null) {
+            return false;
+        }
+
+        addressRepository.save(address);
+        return true;
     }
 
     public void deleteAddress(Long addressId) {
