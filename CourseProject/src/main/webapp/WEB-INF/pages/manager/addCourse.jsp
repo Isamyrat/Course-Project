@@ -93,7 +93,6 @@
                                     <option value="Russian"> <spring:message code="ruC"/></option>
                                 </form:select>
                             ${courseLanguageError}
-                                <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -108,7 +107,6 @@
                                     <option value="Upper-Intermediate">Upper-Intermediate</option>
                                     <option value="Advanced">Advanced</option>
                                 </form:select>
-                                <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                             </div>
                         </div>
                     </div>

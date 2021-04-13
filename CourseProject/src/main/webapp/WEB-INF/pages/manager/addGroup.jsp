@@ -51,7 +51,6 @@
                                         </c:forEach>
                                     </c:forEach>
                                 </form:select>
-                                <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                             </div>
                         </div>
                     </div>
@@ -66,7 +65,6 @@
                                         <option value="${course.id}">${course.level} - ${course.language}</option>
                                     </c:forEach>
                                 </form:select>
-                                <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                             </div>
                         </div>
                     </div>
