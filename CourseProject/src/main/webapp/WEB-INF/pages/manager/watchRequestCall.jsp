@@ -42,7 +42,9 @@
                 <c:forEach items="${callBackManager}" var="manager">
                     <tr>
                         <td>${manager.id}</td>
-                        <td>${manager.status}</td>
+                        <c:if test="${manager.status == 'Wait'}">
+                            <td>${wait}</td>
+                        </c:if>
                         <td>${manager.callBackDate}</td>
                         <td>${manager.userCallBack.name}</td>
                         <td>${manager.userCallBack.surname}</td>
@@ -98,7 +100,15 @@
                 <c:forEach items="${callBackManager}" var="user">
                         <tbody>
                         <tr>
-                            <td>${user.status}</td>
+                            <c:if test="${user.status == 'Wait'}">
+                                <td>${wait}</td>
+                            </c:if>
+                            <c:if test="${user.status == 'Approved'}">
+                                <td>${approved}</td>
+                            </c:if>
+                            <c:if test="${user.status == 'Denied'}">
+                                <td>${denied}</td>
+                            </c:if>
                             <td>${user.callBackDate}</td>
                             <td>${user.courseCallBack.language}</td>
                             <td>${user.courseCallBack.level}</td>

@@ -2,15 +2,20 @@ package com.example.demo.controller;
 
 import com.example.demo.model.PersonalInformation;
 import com.example.demo.model.User;
+import com.example.demo.model.enumModel.Gender;
 import com.example.demo.service.PersonalInformationService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Objects;
+import java.util.ResourceBundle;
 
 @Controller
 public class PersonalController {
@@ -20,6 +25,9 @@ public class PersonalController {
 
     @Autowired
     private UserService userService;
+
+
+
 
     @GetMapping("/personalInformationUsers{personId}")
     public String personalInformationUsers(@PathVariable("personId") Long personId,

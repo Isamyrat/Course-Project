@@ -42,7 +42,15 @@
             <c:forEach items="${watchRequestCallArchive}" var="archive">
                         <tr>
                             <td>${archive.id}</td>
-                            <td>${archive.status}</td>
+                            <c:if test="${archive.status == 'Wait'}">
+                                <td>${wait}</td>
+                            </c:if>
+                            <c:if test="${archive.status == 'Approved'}">
+                                <td>${approved}</td>
+                            </c:if>
+                            <c:if test="${archive.status == 'Denied'}">
+                                <td>${denied}</td>
+                            </c:if>
                             <td>${archive.callBackDate}</td>
                             <td>${archive.userCallBack.name}</td>
                             <td>${archive.userCallBack.surname}</td>

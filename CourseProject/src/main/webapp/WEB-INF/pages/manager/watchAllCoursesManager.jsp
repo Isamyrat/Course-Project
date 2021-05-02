@@ -131,12 +131,12 @@
                                 <td>${courses.duration}</td>
                                 <td>${courses.days}</td>
                                 <td>${courses.price}</td>
-                                <td>
-                                    <form>
-                                        <a href="/editCourseManager${courses.id}" type="submit"
-                                           style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
-                                            <spring:message code="eCM"/></a>
-                                    </form>
+                                <td> <form>
+                                    <a href="/editCourseManager${courses.id}" type="submit"
+                                       style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid;font-size: 20px ">
+                                        <spring:message code="eCM"/></a>
+                                </form>
+
                                 </td>
                                 <td>
                                     <form>

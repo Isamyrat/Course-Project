@@ -1,8 +1,11 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.User;
+import com.example.demo.service.SendEmailService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,6 +22,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
     @GetMapping("/personalInformationUser")
     public String personalInformationUser(Model model) {
 
@@ -28,7 +32,6 @@ public class UserController {
         User user = userService.getUser(userDetails.getUsername());
 
         model.addAttribute("userId", userService.findUserById(user.getId()));
-
         return "user/personalInformation";
     }
 

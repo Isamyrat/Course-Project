@@ -24,12 +24,12 @@ public interface CallBackRepository extends PagingAndSortingRepository<CallBack,
     @Query("select c from  CallBack  c where c.userCallBack.id = :userId")
     List<CallBack> findAllByUserId(@Param("userId")Long userId, Pageable pageable);
 
-    List<CallBack> findAllByStatus(Status status, Pageable pageable);
+    List<CallBack> findAllByStatus(String status, Pageable pageable);
 
-    List<CallBack> findAllByStatusOrStatus(Status status1, Status status2,Pageable pageable);
+    List<CallBack> findAllByStatusOrStatus(String status1, String status2,Pageable pageable);
 
     @Query("select c from  CallBack  c where c.userCallBack.id = :userId and  c.courseCallBack.id = :courseId and c.status = :status")
-    CallBack findByUserIdAndCallBakIdAndStatus(@Param("userId")Long userId, @Param("courseId")Long courseId, @Param("status")Status status );
+    CallBack findByUserIdAndCallBakIdAndStatus(@Param("userId")Long userId, @Param("courseId")Long courseId, @Param("status")String status );
 
     @Modifying
     @Transactional

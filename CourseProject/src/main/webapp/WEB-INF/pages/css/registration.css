@@ -6,10 +6,7 @@
 	padding: 0;
 }
 body{
-	background: url('https://www.hopehighonline.org/wp-content/uploads/2019/06/AdobeStock_117061444.jpeg') center no-repeat;
-	/*
-	background: url('https://pbs.twimg.com/media/EDE8yZ3XsAMb8sX.jpg:large') center no-repeat;
-	*/
+	background: url('../css/images/Registration.jpeg') center no-repeat;
 	background-size: cover;
 	color: #333;
 	font-size: 18px;
@@ -32,7 +29,6 @@ body{
 	width: 98%;
 }
 .container:before{
-	background: url('https://i.pinimg.com/736x/71/7a/55/717a55e5b44f6ad3a59a6f0541ca8fac.jpg') center no-repeat;
 	background-size: cover;
 	content: '';
 	-webkit-filter: blur(10px);

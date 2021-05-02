@@ -20,9 +20,8 @@ public class PersonalInformation {
     private String age;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
     @JoinColumn(name = "GENDER")
-    private Gender gender;
+    private String gender;
 
 
     public PersonalInformation() {
@@ -60,11 +59,11 @@ public class PersonalInformation {
         this.age = age;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 }

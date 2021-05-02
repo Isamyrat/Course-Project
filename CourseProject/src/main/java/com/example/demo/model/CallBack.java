@@ -25,9 +25,8 @@ public class CallBack {
     private String callBackDate;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
     @JoinColumn(name = "STATUS")
-    private Status status;
+    private String status;
 
     public CallBack() {
     }
@@ -64,11 +63,11 @@ public class CallBack {
         this.callBackDate = callBackDate;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

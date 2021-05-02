@@ -28,7 +28,7 @@
         <h1>
             <a href="/">
 
-                <img src="https://eoistver.ru/pluginfile.php/39557/course/overviewfiles/English-resources.png"
+                <img src="../css/images/Registration.jpeg"
                      alt="Authentic Collection">
             </a>
         </h1>

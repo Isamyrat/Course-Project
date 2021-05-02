@@ -33,7 +33,7 @@ public class CallBackService {
 
     public List<CallBack> callBackList(int pageNumber, int pageSize) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        return callBackRepository.findAllByStatus(Status.Wait, pageable);
+        return callBackRepository.findAllByStatus(Status.Wait.toString(), pageable);
     }
 
     public List<CallBack> callBackListUser(int pageNumber, int pageSize, Long userId) {
@@ -43,7 +43,7 @@ public class CallBackService {
 
     public List<CallBack> callBackListArchive(int pageNumber, int pageSize) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        return callBackRepository.findAllByStatusOrStatus(Status.Approved, Status.Denied, pageable);
+        return callBackRepository.findAllByStatusOrStatus(Status.Approved.toString(), Status.Denied.toString(), pageable);
     }
 
     public Boolean saveCallBack(User userRequestCall, Course courseRequestCall) {
@@ -52,7 +52,7 @@ public class CallBackService {
 
         CallBack callBack = new CallBack();
 
-        callBack.setStatus(Status.Wait);
+        callBack.setStatus(Status.Wait.toString());
 
         CallBack callBack1 = callBackRepository.findByUserIdAndCallBakIdAndStatus(user.getId(), course.getId(), callBack.getStatus());
 
@@ -60,7 +60,7 @@ public class CallBackService {
             return false;
         }
 
-        callBack.setStatus(Status.Wait);
+        callBack.setStatus(Status.Wait.toString());
         callBack.setCallBackDate(String.valueOf(LocalDate.now()));
         callBack.setUserCallBack(user);
         callBack.setCourseCallBack(course);

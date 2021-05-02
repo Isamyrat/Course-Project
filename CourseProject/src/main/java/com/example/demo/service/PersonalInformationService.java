@@ -4,11 +4,15 @@ import com.example.demo.dao.PersonalInfoRepository;
 import com.example.demo.dao.UserRepository;
 import com.example.demo.model.PersonalInformation;
 import com.example.demo.model.User;
+import com.example.demo.model.enumModel.Gender;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 @Service
 public class PersonalInformationService {
@@ -32,6 +36,11 @@ public class PersonalInformationService {
         if (personalInformation1 != null) {
             return false;
         }
+
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages", Objects.requireNonNull(
+                Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
+
+        personalInformation.setGender(resourceBundle.getString(personalInformation.getGender()));
         personalInformation.setUserInformation(user);
         personalInfoRepository.save(personalInformation);
         return true;
@@ -43,6 +52,11 @@ public class PersonalInformationService {
 
     @Transactional
     public void editPerson(PersonalInformation personalInformation) {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages", Objects.requireNonNull(
+                Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
+
+        personalInformation.setGender(resourceBundle.getString(personalInformation.getGender()));
+
         personalInfoRepository.save(personalInformation);
     }
 
