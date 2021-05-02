@@ -141,7 +141,7 @@ public class CallBackController {
     public String saveApprove(@ModelAttribute("editCallBack") CallBack editCallBack,
                                 Model model) {
 
-        if (editCallBack.getStatus().equals(Status.Approved)) {
+        if (editCallBack.getStatus().equals(Status.Approved.toString())) {
             if (!groupService.saveUser(editCallBack)) {
                 model.addAttribute("addToErrors", "Данной группы не существует добавьте его сначала/Группа заполнена создайте новую группу.");
                 return "manager/errors";

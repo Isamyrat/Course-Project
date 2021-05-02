@@ -95,11 +95,22 @@ public class GroupController {
     public String watchGroupUser(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages", Objects.requireNonNull(
+                Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
         User user = userService.getUser(userDetails.getUsername());
 
         model.addAttribute("userGroup", groupService.findByUserList(pageNumber,pageSize,user.getId()))
-                .addAttribute("pageNumber", pageNumber);
+                .addAttribute("pageNumber", pageNumber)
+                .addAttribute("start", resourceBundle.getString("Start"))
+                .addAttribute("elementary", resourceBundle.getString("Elementary"))
+                .addAttribute("pre_Intermediate", resourceBundle.getString("Pre_Intermediate"))
+                .addAttribute("intermediate", resourceBundle.getString("Intermediate"))
+                .addAttribute("upper_Intermediate", resourceBundle.getString("Upper_Intermediate"))
+                .addAttribute("advanced", resourceBundle.getString("Advanced"))
+                .addAttribute("english", resourceBundle.getString("English"))
+                .addAttribute("french", resourceBundle.getString("French"))
+                .addAttribute("russian", resourceBundle.getString("Russian"))
+                .addAttribute("turkish", resourceBundle.getString("Turkish"));
         return "manager/watchGroup";
     }
 
@@ -107,11 +118,22 @@ public class GroupController {
     public String watchGroupTeacher(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages", Objects.requireNonNull(
+                Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
         User user = userService.getUser(userDetails.getUsername());
 
         model.addAttribute("userGroup", groupService.findByTeacher(pageNumber,pageSize, user.getId()))
-                .addAttribute("pageNumber", pageNumber);
+                .addAttribute("pageNumber", pageNumber)
+                .addAttribute("start", resourceBundle.getString("Start"))
+                .addAttribute("elementary", resourceBundle.getString("Elementary"))
+                .addAttribute("pre_Intermediate", resourceBundle.getString("Pre_Intermediate"))
+                .addAttribute("intermediate", resourceBundle.getString("Intermediate"))
+                .addAttribute("upper_Intermediate", resourceBundle.getString("Upper_Intermediate"))
+                .addAttribute("advanced", resourceBundle.getString("Advanced"))
+                .addAttribute("english", resourceBundle.getString("English"))
+                .addAttribute("french", resourceBundle.getString("French"))
+                .addAttribute("russian", resourceBundle.getString("Russian"))
+                .addAttribute("turkish", resourceBundle.getString("Turkish"));
         return "manager/watchGroup";
     }
 

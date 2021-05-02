@@ -44,9 +44,10 @@ public class SendEmailService {
 
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
 
-            helper.setText( resourceBundle.getString("emailHi") + user.getName() + "!" +
-                    resourceBundle.getString("emailRegThs"));
-
+            helper.setText("<html><body><img src='cid:logo'>" +
+                    "<h1>" + resourceBundle.getString("emailHi") + " " + user.getName() + "!</h1>" +
+                    "<p>" + resourceBundle.getString("emailRegThs") + "</p>" +
+                    "</body></html>", true);
         };
 
         try {
@@ -70,6 +71,11 @@ public class SendEmailService {
                     resourceBundle.getString("emailRequest") + callBack.getCourseCallBack().getLanguage() + " - " + callBack.getCourseCallBack().getLevel() + " " +
                     resourceBundle.getString("emailResponse") + resourceBundle.getString(callBack.getStatus().toString()));
 
+            helper.setText("<html><body><img src='cid:logo'>" +
+                    "<h1>" + resourceBundle.getString("emailHi") + user.getName() + "!</h1>" +
+                    "<p>" +  resourceBundle.getString("emailRequest") + callBack.getCourseCallBack().getLanguage() + " - " + callBack.getCourseCallBack().getLevel() + " " +"<p>"+
+                    "<p>" +   resourceBundle.getString("emailResponse") + resourceBundle.getString(callBack.getStatus().toString()) +  "<p>" +
+                    "</body></html>", true);
         };
 
         try {
