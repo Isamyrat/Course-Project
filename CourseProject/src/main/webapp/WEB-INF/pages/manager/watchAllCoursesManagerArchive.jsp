@@ -47,8 +47,36 @@
                 <c:forEach items="${allCoursesArchive}" var="courses">
                     <tr>
                         <td>${courses.time}</td>
-                        <td>${courses.language}</td>
-                        <td>${courses.level}</td>
+                        <c:if test="${courses.language == 'English'}">
+                            <td>${english}</td>
+                        </c:if>
+                        <c:if test="${courses.language == 'French'}">
+                            <td>${french}</td>
+                        </c:if>
+                        <c:if test="${courses.language == 'Russian'}">
+                            <td>${russian}</td>
+                        </c:if>
+                        <c:if test="${courses.language == 'Turkish'}">
+                            <td>${turkish}</td>
+                        </c:if>
+                        <c:if test="${courses.level == 'Start'}">
+                            <td>${start}</td>
+                        </c:if>
+                        <c:if test="${courses.level == 'Elementary'}">
+                            <td>${elementary}</td>
+                        </c:if>
+                        <c:if test="${courses.level == 'Pre-Intermediate'}">
+                            <td>${pre_Intermediate}</td>
+                        </c:if>
+                        <c:if test="${courses.level == 'Intermediate'}">
+                            <td>${intermediate}</td>
+                        </c:if>
+                        <c:if test="${courses.level == 'Upper_Intermediate'}">
+                            <td>${upper_Intermediate}</td>
+                        </c:if>
+                        <c:if test="${courses.level == 'Advanced'}">
+                            <td>${advanced}</td>
+                        </c:if>
                         <td>${courses.startDate}</td>
                         <td>${courses.duration}</td>
                         <td>${courses.days}</td>

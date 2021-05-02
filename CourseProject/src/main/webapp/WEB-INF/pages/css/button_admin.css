@@ -4,7 +4,7 @@ html,body{
 body{
     text-align:center;
     margin-top:10vw;
-    background:#222 url(//images.weserv.nl/?url=i.imgur.com/NrIDycX.jpg) no-repeat;
+    background:#222 url(/resources/images/image.jpg) no-repeat;
     background-size:cover;
     overflow:hidden
 }

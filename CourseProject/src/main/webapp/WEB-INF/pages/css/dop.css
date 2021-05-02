@@ -5,7 +5,7 @@ body {
 
 body {
     margin: 0;
-    background: url("https://media4.s-nbcnews.com/i/newscms/2018_29/2504731/180720-read-book-good-health-ac-417p_d45a94886721a00630767948819fb120.jpg");
+    background: url("/resources/images/main.jpg");
     font-family: sans-serif;
     font-weight: 100;
 }

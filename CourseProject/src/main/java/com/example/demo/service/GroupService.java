@@ -41,7 +41,7 @@ public class GroupService {
 
     public List<Group> findByStatus(int pageNumber, int pageSize){
         Pageable pageable = PageRequest.of(pageNumber,pageSize);
-        return groupRepository.findAllByStatus(Status.Start, pageable);
+        return groupRepository.findAllByStatus(Status.Started, pageable);
     }
     public List<Group> findByStatusWaiting(int pageNumber, int pageSize){
         Pageable pageable = PageRequest.of(pageNumber,pageSize);

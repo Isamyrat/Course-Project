@@ -3,9 +3,13 @@ package com.example.demo.controller;
 import com.example.demo.model.Course;
 import com.example.demo.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Objects;
+import java.util.ResourceBundle;
 
 @Controller
 public class CourseController {
@@ -15,18 +19,42 @@ public class CourseController {
 
     @GetMapping("/watchAllCoursesManager/{pageNumber}/{pageSize}")
     public String watchAllCoursesManager(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages", Objects.requireNonNull(
+                Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
 
         model.addAttribute("allCourses", courseService.findCourse(pageNumber,pageSize))
-                .addAttribute("pageNumber", pageNumber);
+                .addAttribute("pageNumber", pageNumber)
+                .addAttribute("start", resourceBundle.getString("Start"))
+                .addAttribute("elementary", resourceBundle.getString("Elementary"))
+                .addAttribute("pre_Intermediate", resourceBundle.getString("Pre_Intermediate"))
+                .addAttribute("intermediate", resourceBundle.getString("Intermediate"))
+                .addAttribute("upper_Intermediate", resourceBundle.getString("Upper_Intermediate"))
+                .addAttribute("advanced", resourceBundle.getString("Advanced"))
+                .addAttribute("english", resourceBundle.getString("English"))
+                .addAttribute("french", resourceBundle.getString("French"))
+                .addAttribute("russian", resourceBundle.getString("Russian"))
+                .addAttribute("turkish", resourceBundle.getString("Turkish"));
 
         return "manager/watchAllCoursesManager";
     }
 
     @GetMapping("/watchAllCoursesManagerArchive/{pageNumber}/{pageSize}")
     public String watchAllCoursesManagerArchive(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages", Objects.requireNonNull(
+                Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
 
         model.addAttribute("allCoursesArchive", courseService.findByStatusList(pageNumber,pageSize))
-                .addAttribute("pageNumber", pageNumber);
+                .addAttribute("pageNumber", pageNumber)
+                .addAttribute("start", resourceBundle.getString("Start"))
+                .addAttribute("elementary", resourceBundle.getString("Elementary"))
+                .addAttribute("pre_Intermediate", resourceBundle.getString("Pre_Intermediate"))
+                .addAttribute("intermediate", resourceBundle.getString("Intermediate"))
+                .addAttribute("upper_Intermediate", resourceBundle.getString("Upper_Intermediate"))
+                .addAttribute("advanced", resourceBundle.getString("Advanced"))
+                .addAttribute("english", resourceBundle.getString("English"))
+                .addAttribute("french", resourceBundle.getString("French"))
+                .addAttribute("russian", resourceBundle.getString("Russian"))
+                .addAttribute("turkish", resourceBundle.getString("Turkish"));
 
         return "manager/watchAllCoursesManagerArchive";
     }

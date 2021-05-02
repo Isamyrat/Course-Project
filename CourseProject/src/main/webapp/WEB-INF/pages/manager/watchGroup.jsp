@@ -50,8 +50,36 @@
                             <tr>
                                 <td>${groups.numberGroup}</td>
                                 <td>${groups.userTeacher.surname}</td>
-                                <td>${groups.courseGroup.level}</td>
-                                <td>${groups.courseGroup.language}</td>
+                                <c:if test="${groups.courseGroup.language == 'English'}">
+                                    <td>${english}</td>
+                                </c:if>
+                                <c:if test="${groups.courseGroup.language == 'French'}">
+                                    <td>${french}</td>
+                                </c:if>
+                                <c:if test="${groups.courseGroup.language == 'Russian'}">
+                                    <td>${russian}</td>
+                                </c:if>
+                                <c:if test="${groups.courseGroup.language == 'Turkish'}">
+                                    <td>${turkish}</td>
+                                </c:if>
+                                <c:if test="${groups.courseGroup.level == 'Start'}">
+                                    <td>${start}</td>
+                                </c:if>
+                                <c:if test="${groups.courseGroup.level == 'Elementary'}">
+                                    <td>${elementary}</td>
+                                </c:if>
+                                <c:if test="${groups.courseGroup.level == 'Pre-Intermediate'}">
+                                    <td>${pre_Intermediate}</td>
+                                </c:if>
+                                <c:if test="${groups.courseGroup.level == 'Intermediate'}">
+                                    <td>${intermediate}</td>
+                                </c:if>
+                                <c:if test="${groups.courseGroup.level == 'Upper_Intermediate'}">
+                                    <td>${upper_Intermediate}</td>
+                                </c:if>
+                                <c:if test="${groups.courseGroup.level == 'Advanced'}">
+                                    <td>${advanced}</td>
+                                </c:if>
                                 <td>
                                     <form>
                                         <a href="/watchGroupUsers${groups.id}" type="submit"
@@ -131,8 +159,36 @@
                         <tr>
                             <td>${groups.numberGroup}</td>
                             <td>${groups.userTeacher.surname}</td>
-                            <td>${groups.courseGroup.level}</td>
-                            <td>${groups.courseGroup.language}</td>
+                            <c:if test="${groups.courseGroup.language == 'English'}">
+                                <td>${english}</td>
+                            </c:if>
+                            <c:if test="${groups.courseGroup.language == 'French'}">
+                                <td>${french}</td>
+                            </c:if>
+                            <c:if test="${groups.courseGroup.language == 'Russian'}">
+                                <td>${russian}</td>
+                            </c:if>
+                            <c:if test="${groups.courseGroup.language == 'Turkish'}">
+                                <td>${turkish}</td>
+                            </c:if>
+                            <c:if test="${groups.courseGroup.level == 'Start'}">
+                                <td>${start}</td>
+                            </c:if>
+                            <c:if test="${groups.courseGroup.level == 'Elementary'}">
+                                <td>${elementary}</td>
+                            </c:if>
+                            <c:if test="${groups.courseGroup.level == 'Pre-Intermediate'}">
+                                <td>${pre_Intermediate}</td>
+                            </c:if>
+                            <c:if test="${groups.courseGroup.level == 'Intermediate'}">
+                                <td>${intermediate}</td>
+                            </c:if>
+                            <c:if test="${groups.courseGroup.level == 'Upper_Intermediate'}">
+                                <td>${upper_Intermediate}</td>
+                            </c:if>
+                            <c:if test="${groups.courseGroup.level == 'Advanced'}">
+                                <td>${advanced}</td>
+                            </c:if>
                             <td>
                                 <form>
                                     <a href="/watchJournalGroupUser${groups.numberGroup}/${0}/${7}" type="submit"
@@ -191,8 +247,36 @@
                 <c:forEach items="${userGroup}" var="teacher">
                     <tr>
                         <td>${teacher.numberGroup}</td>
-                        <td>${teacher.courseGroup.level}</td>
-                        <td>${teacher.courseGroup.language}</td>
+                        <c:if test="${teacher.courseGroup.language == 'English'}">
+                            <td>${english}</td>
+                        </c:if>
+                        <c:if test="${teacher.courseGroup.language == 'French'}">
+                            <td>${french}</td>
+                        </c:if>
+                        <c:if test="${teacher.courseGroup.language == 'Russian'}">
+                            <td>${russian}</td>
+                        </c:if>
+                        <c:if test="${teacher.courseGroup.language == 'Turkish'}">
+                            <td>${turkish}</td>
+                        </c:if>
+                        <c:if test="${teacher.courseGroup.level == 'Start'}">
+                            <td>${start}</td>
+                        </c:if>
+                        <c:if test="${teacher.courseGroup.level == 'Elementary'}">
+                            <td>${elementary}</td>
+                        </c:if>
+                        <c:if test="${teacher.courseGroup.level == 'Pre-Intermediate'}">
+                            <td>${pre_Intermediate}</td>
+                        </c:if>
+                        <c:if test="${teacher.courseGroup.level == 'Intermediate'}">
+                            <td>${intermediate}</td>
+                        </c:if>
+                        <c:if test="${teacher.courseGroup.level == 'Upper_Intermediate'}">
+                            <td>${upper_Intermediate}</td>
+                        </c:if>
+                        <c:if test="${teacher.courseGroup.level == 'Advanced'}">
+                            <td>${advanced}</td>
+                        </c:if>
                         <td>
                             <form>
                                 <a href="/watchGroupUsers${teacher.id}" type="submit"

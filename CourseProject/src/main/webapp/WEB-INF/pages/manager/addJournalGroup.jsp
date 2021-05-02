@@ -96,7 +96,6 @@
     <%@include file ="../css/button.css"%>
     <%@include file ="../css/internationalize.css"%>
     <%@include file ="../css/owl.carousel.css"%>
-    <%@include file ="../css/material-design-iconic-font.min.css"%>
     <%@include file ="../css/js/jquery-3.3.1.min.js"%>
     <%@include file ="../css/js/custom.js"%>
 

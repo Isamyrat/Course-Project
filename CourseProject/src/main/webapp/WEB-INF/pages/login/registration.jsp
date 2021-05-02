@@ -26,11 +26,10 @@
 <div class="container">
     <header>
         <h1>
-            <a href="/">
 
-                <img src="../css/images/Registration.jpeg"
-                     alt="Authentic Collection">
-            </a>
+            <img src='${pageContext.request.contextPath}/resources/images/English-resources.png'
+                 alt="Authentic Collection">
+
         </h1>
     </header>
     <h2 class="text-center"><spring:message code="registrationT"/></h2>
@@ -40,7 +39,7 @@
             <form:input type="text" path="username" placeholder="${eLl}" cssStyle="font-size: 15px"
                         autofocus="true"/>
             <form:errors path="username"/>
-           ${usernameError}
+                ${usernameError}
         </label>
         <label class="col-one-half">
             <form:input type="password" path="password" placeholder="${ePp}" cssStyle="font-size: 15px"/>

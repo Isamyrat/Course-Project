@@ -100,12 +100,12 @@
                             <div class="form-select">
                                 <form:select path="level">
                                     <option value=""></option>
-                                    <option value="Start">Start</option>
-                                    <option value="Elementary">Elementary</option>
-                                    <option value="Pre-Intermediate">Pre-Intermediate</option>
-                                    <option value="Intermediate">Intermediate</option>
-                                    <option value="Upper-Intermediate">Upper-Intermediate</option>
-                                    <option value="Advanced">Advanced</option>
+                                    <option value="Start"><spring:message code="Start"/></option>
+                                    <option value="Elementary"><spring:message code="Elementary"/></option>
+                                    <option value="Pre-Intermediate"><spring:message code="Pre_Intermediate"/></option>
+                                    <option value="Intermediate"><spring:message code="Intermediate"/></option>
+                                    <option value="Upper-Intermediate"><spring:message code="Upper_Intermediate"/></option>
+                                    <option value="Advanced"><spring:message code="Advanced"/></option>
                                 </form:select>
                             </div>
                         </div>
@@ -131,7 +131,6 @@
     <%@include file ="../css/internationalize.css"%>
     <%@include file ="../css/button.css"%>
     <%@include file ="../css/owl.carousel.css"%>
-    <%@include file ="../css/material-design-iconic-font.min.css"%>
     <%@include file ="../css/js/jquery-3.3.1.min.js"%>
     <%@include file ="../css/js/custom.js"%>
 </style>

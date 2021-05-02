@@ -44,8 +44,36 @@
                     <tr>
                         <td>${groups.numberGroup}</td>
                         <td>${groups.userTeacher.surname}</td>
-                        <td>${groups.courseGroup.level}</td>
-                        <td>${groups.courseGroup.language}</td>
+                        <c:if test="${groups.courseGroup.language == 'English'}">
+                            <td>${english}</td>
+                        </c:if>
+                        <c:if test="${groups.courseGroup.language == 'French'}">
+                            <td>${french}</td>
+                        </c:if>
+                        <c:if test="${groups.courseGroup.language == 'Russian'}">
+                            <td>${russian}</td>
+                        </c:if>
+                        <c:if test="${groups.courseGroup.language == 'Turkish'}">
+                            <td>${turkish}</td>
+                        </c:if>
+                        <c:if test="${groups.courseGroup.level == 'Start'}">
+                            <td>${start}</td>
+                        </c:if>
+                        <c:if test="${groups.courseGroup.level == 'Elementary'}">
+                            <td>${elementary}</td>
+                        </c:if>
+                        <c:if test="${groups.courseGroup.level == 'Pre-Intermediate'}">
+                            <td>${pre_Intermediate}</td>
+                        </c:if>
+                        <c:if test="${groups.courseGroup.level == 'Intermediate'}">
+                            <td>${intermediate}</td>
+                        </c:if>
+                        <c:if test="${groups.courseGroup.level == 'Upper_Intermediate'}">
+                            <td>${upper_Intermediate}</td>
+                        </c:if>
+                        <c:if test="${groups.courseGroup.level == 'Advanced'}">
+                            <td>${advanced}</td>
+                        </c:if>
                         <td>${groups.status}</td>
                         <td>
                             <form>

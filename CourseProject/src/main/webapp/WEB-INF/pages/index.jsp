@@ -24,7 +24,7 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        background-image: url('https://townsquare.media/site/98/files/2020/06/RS27922_GettyImages-1011793090-1.jpg?w=1200&h=0&zc=1&s=0&a=t&q=89');
+        background-image: url('/resources/images/girl.jpg');
         min-height: 100%;
     }
 </style>
@@ -79,17 +79,17 @@
         <!-- Grid for photos -->
         <div class="w3-row-padding" style="margin:0 -16px">
             <div class="w3-half">
-                <img src="https://www.policechiefmagazine.org/wp-content/uploads/College-Students-2-1024x683.jpg" style="width:100%">
-                <img src="https://debatechamber.com/wp-content/uploads/2017/02/bigstock-A-portrait-of-an-Asian-college-23656664.jpg" style="width:100%">
-                <img src="https://kids2uk.ru/img/16463643.jpg" style="width:100%">
-                <img src="https://msk.englishchoice.ru/wp-content/uploads/sites/2/2016/03/franshiza-divelang-9.jpg" style="width: 100%">
+                <img src="/resources/images/16463643.jpg" style="width:100%">
+                <img src="/resources/images/bigstock-A-portrait-of-an-Asian-college-23656664.jpg" style="width:100%">
+                <img src="/resources/images/College-Students-2-1024x683.jpg" style="width:100%">
+                <img src="/resources/images/franshiza-divelang-9.jpg" style="width: 100%">
             </div>
 
             <div class="w3-half">
-                <img src="https://static.tildacdn.com/tild3737-3466-4936-a336-626432333130/5c83ecfb4b2b3.jpg" style="width:100%">
-                <img src="https://mulino58.ru/wp-content/uploads/6/c/b/6cb6b11e9d377fff2ad400dc07e91c83.jpg" style="width:100%">
-                <img src="https://excelente.travel/upload/iblock/254/2542a31ba2dc9695a82ba7ed96cab7e1.gif" style="width:100%">
-                <img src="https://odin.mgimo.ru/images/news3141/IMG_4102.jpg" style="width:100%">
+                <img src="/resources/images/5c83ecfb4b2b3.jpg" style="width:100%">
+                <img src="/resources/images/6cb6b11e9d377fff2ad400dc07e91c83.jpg" style="width:100%">
+                <img src="/resources/images/2542a31ba2dc9695a82ba7ed96cab7e1.jpg" style="width:100%">
+                <img src="/resources/images/GettyImages-612249076.jpg" style="width:100%">
             </div>
             <!-- End photo grid -->
         </div>

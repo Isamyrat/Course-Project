@@ -54,8 +54,36 @@
                             <td>${archive.callBackDate}</td>
                             <td>${archive.userCallBack.name}</td>
                             <td>${archive.userCallBack.surname}</td>
-                            <td>${archive.courseCallBack.level}</td>
-                            <td>${archive.courseCallBack.language}</td>
+                            <c:if test="${archive.courseCallBack.language == 'English'}">
+                                <td>${english}</td>
+                            </c:if>
+                            <c:if test="${archive.courseCallBack.language == 'French'}">
+                                <td>${french}</td>
+                            </c:if>
+                            <c:if test="${archive.courseCallBack.language == 'Russian'}">
+                                <td>${russian}</td>
+                            </c:if>
+                            <c:if test="${archive.courseCallBack.language == 'Turkish'}">
+                                <td>${turkish}</td>
+                            </c:if>
+                            <c:if test="${archive.courseCallBack.level == 'Start'}">
+                                <td>${start}</td>
+                            </c:if>
+                            <c:if test="${archive.courseCallBack.level == 'Elementary'}">
+                                <td>${elementary}</td>
+                            </c:if>
+                            <c:if test="${archive.courseCallBack.level == 'Pre-Intermediate'}">
+                                <td>${pre_Intermediate}</td>
+                            </c:if>
+                            <c:if test="${archive.courseCallBack.level == 'Intermediate'}">
+                                <td>${intermediate}</td>
+                            </c:if>
+                            <c:if test="${archive.courseCallBack.level == 'Upper_Intermediate'}">
+                                <td>${upper_Intermediate}</td>
+                            </c:if>
+                            <c:if test="${archive.courseCallBack.level == 'Advanced'}">
+                                <td>${advanced}</td>
+                            </c:if>
                             <td>
                                 <form action="${pageContext.request.contextPath}/deleteCallBack" method="post">
                                     <input type="hidden" name="callBackId" value="${archive.id}"/>

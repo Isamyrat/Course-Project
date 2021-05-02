@@ -4,7 +4,7 @@ public enum Status {
     Use("Used"),
     NotUse("NotUse"),
     Wait("Wait"),
-    Start("Start"),
+    Started("Started"),
     Finish("Finish"),
     Approved("Approved"),
     Denied("Denied");

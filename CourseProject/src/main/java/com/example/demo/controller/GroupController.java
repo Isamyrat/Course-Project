@@ -6,12 +6,16 @@ import com.example.demo.service.CourseService;
 import com.example.demo.service.GroupService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Objects;
+import java.util.ResourceBundle;
 
 @Controller
 public class GroupController {
@@ -27,26 +31,62 @@ public class GroupController {
 
     @GetMapping("/watchGroup/{pageNumber}/{pageSize}")
     public String watchGroup(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages", Objects.requireNonNull(
+                Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
 
         model.addAttribute("watchGroups", groupService.findByStatus(pageNumber,pageSize))
-                .addAttribute("pageNumber", pageNumber);
+                .addAttribute("pageNumber", pageNumber)
+                .addAttribute("start", resourceBundle.getString("Start"))
+                .addAttribute("elementary", resourceBundle.getString("Elementary"))
+                .addAttribute("pre_Intermediate", resourceBundle.getString("Pre_Intermediate"))
+                .addAttribute("intermediate", resourceBundle.getString("Intermediate"))
+                .addAttribute("upper_Intermediate", resourceBundle.getString("Upper_Intermediate"))
+                .addAttribute("advanced", resourceBundle.getString("Advanced"))
+                .addAttribute("english", resourceBundle.getString("English"))
+                .addAttribute("french", resourceBundle.getString("French"))
+                .addAttribute("russian", resourceBundle.getString("Russian"))
+                .addAttribute("turkish", resourceBundle.getString("Turkish"));
 
         return "manager/watchGroup";
     }
 
     @GetMapping("/watchGroupWaiting/{pageNumber}/{pageSize}")
     public String watchGroupWaiting(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages", Objects.requireNonNull(
+                Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
 
         model.addAttribute("watchGroupWaiting", groupService.findByStatusWaiting(pageNumber,pageSize))
-                .addAttribute("pageNumber", pageNumber);
+                .addAttribute("pageNumber", pageNumber)
+                .addAttribute("start", resourceBundle.getString("Start"))
+                .addAttribute("elementary", resourceBundle.getString("Elementary"))
+                .addAttribute("pre_Intermediate", resourceBundle.getString("Pre_Intermediate"))
+                .addAttribute("intermediate", resourceBundle.getString("Intermediate"))
+                .addAttribute("upper_Intermediate", resourceBundle.getString("Upper_Intermediate"))
+                .addAttribute("advanced", resourceBundle.getString("Advanced"))
+                .addAttribute("english", resourceBundle.getString("English"))
+                .addAttribute("french", resourceBundle.getString("French"))
+                .addAttribute("russian", resourceBundle.getString("Russian"))
+                .addAttribute("turkish", resourceBundle.getString("Turkish"));
 
         return "manager/watchGroupWaiting";
     }
     @GetMapping("/watchGroupArchive/{pageNumber}/{pageSize}")
     public String watchGroupArchive(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages", Objects.requireNonNull(
+                Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
 
         model.addAttribute("watchGroupArchive", groupService.findByStatusArchive(pageNumber,pageSize))
-                .addAttribute("pageNumber", pageNumber);
+                .addAttribute("pageNumber", pageNumber)
+                .addAttribute("start", resourceBundle.getString("Start"))
+                .addAttribute("elementary", resourceBundle.getString("Elementary"))
+                .addAttribute("pre_Intermediate", resourceBundle.getString("Pre_Intermediate"))
+                .addAttribute("intermediate", resourceBundle.getString("Intermediate"))
+                .addAttribute("upper_Intermediate", resourceBundle.getString("Upper_Intermediate"))
+                .addAttribute("advanced", resourceBundle.getString("Advanced"))
+                .addAttribute("english", resourceBundle.getString("English"))
+                .addAttribute("french", resourceBundle.getString("French"))
+                .addAttribute("russian", resourceBundle.getString("Russian"))
+                .addAttribute("turkish", resourceBundle.getString("Turkish"));
 
         return "manager/watchGroupArchive";
     }

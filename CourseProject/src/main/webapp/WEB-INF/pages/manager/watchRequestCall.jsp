@@ -48,8 +48,36 @@
                         <td>${manager.callBackDate}</td>
                         <td>${manager.userCallBack.name}</td>
                         <td>${manager.userCallBack.surname}</td>
-                        <td>${manager.courseCallBack.level}</td>
-                        <td>${manager.courseCallBack.language}</td>
+                        <c:if test="${manager.courseCallBack.language == 'English'}">
+                            <td>${english}</td>
+                        </c:if>
+                        <c:if test="${manager.courseCallBack.language == 'French'}">
+                            <td>${french}</td>
+                        </c:if>
+                        <c:if test="${manager.courseCallBack.language == 'Russian'}">
+                            <td>${russian}</td>
+                        </c:if>
+                        <c:if test="${manager.courseCallBack.language == 'Turkish'}">
+                            <td>${turkish}</td>
+                        </c:if>
+                        <c:if test="${manager.courseCallBack.level == 'Start'}">
+                            <td>${start}</td>
+                        </c:if>
+                        <c:if test="${manager.courseCallBack.level == 'Elementary'}">
+                            <td>${elementary}</td>
+                        </c:if>
+                        <c:if test="${manager.courseCallBack.level == 'Pre-Intermediate'}">
+                            <td>${pre_Intermediate}</td>
+                        </c:if>
+                        <c:if test="${manager.courseCallBack.level == 'Intermediate'}">
+                            <td>${intermediate}</td>
+                        </c:if>
+                        <c:if test="${manager.courseCallBack.level == 'Upper_Intermediate'}">
+                            <td>${upper_Intermediate}</td>
+                        </c:if>
+                        <c:if test="${manager.courseCallBack.level == 'Advanced'}">
+                            <td>${advanced}</td>
+                        </c:if>
                         <td>
                             <form>
                                 <a href="/editCallBack${manager.id}" type="submit"
@@ -110,8 +138,38 @@
                                 <td>${denied}</td>
                             </c:if>
                             <td>${user.callBackDate}</td>
-                            <td>${user.courseCallBack.language}</td>
-                            <td>${user.courseCallBack.level}</td>
+                            <c:if test="${user.courseCallBack.language == 'English'}">
+                                <td>${english}</td>
+                            </c:if>
+                            <c:if test="${user.courseCallBack.language == 'French'}">
+                                <td>${french}</td>
+                            </c:if>
+                            <c:if test="${user.courseCallBack.language == 'Russian'}">
+                                <td>${russian}</td>
+                            </c:if>
+                            <c:if test="${user.courseCallBack.language == 'Turkish'}">
+                                <td>${turkish}</td>
+                            </c:if>
+                            <c:if test="${user.courseCallBack.level == 'Start'}">
+                                <td>${start}</td>
+                            </c:if>
+                            <c:if test="${user.courseCallBack.level == 'Elementary'}">
+                                <td>${elementary}</td>
+                            </c:if>
+                            <c:if test="${user.courseCallBack.level == 'Pre-Intermediate'}">
+                                <td>${pre_Intermediate}</td>
+                            </c:if>
+                            <c:if test="${user.courseCallBack.level == 'Intermediate'}">
+                                <td>${intermediate}</td>
+                            </c:if>
+                            <c:if test="${user.courseCallBack.level == 'Upper_Intermediate'}">
+                                <td>${upper_Intermediate}</td>
+                            </c:if>
+                            <c:if test="${user.courseCallBack.level == 'Advanced'}">
+                                <td>${advanced}</td>
+                            </c:if>
+
+
 
                         </tr>
                         </tbody>

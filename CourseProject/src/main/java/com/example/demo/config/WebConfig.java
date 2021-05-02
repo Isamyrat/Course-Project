@@ -33,6 +33,12 @@ public class WebConfig  implements WebMvcConfigurer {
         return new StringHttpMessageConverter(StandardCharsets.UTF_8);
     }
     @Override
+    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**")
+                .addResourceLocations("/resources/")
+                .setCachePeriod(31556926);
+    }
+    @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
     }
@@ -42,8 +48,6 @@ public class WebConfig  implements WebMvcConfigurer {
         changeInterceptor.setParamName("lang");
         return changeInterceptor;
     }
-
-
 
     @Bean
     public LocaleResolver localeResolver(){
@@ -60,6 +64,5 @@ public class WebConfig  implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login/login");
     }
-
 
 }

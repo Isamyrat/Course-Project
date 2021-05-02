@@ -49,7 +49,17 @@ public class CallBackController {
                 .addAttribute("pageNumber", pageNumber)
                 .addAttribute("wait", resourceBundle.getString("Wait"))
                 .addAttribute("approved", resourceBundle.getString("Approved"))
-                .addAttribute("denied", resourceBundle.getString("Denied"));
+                .addAttribute("denied", resourceBundle.getString("Denied"))
+                .addAttribute("start", resourceBundle.getString("Start"))
+                .addAttribute("elementary", resourceBundle.getString("Elementary"))
+                .addAttribute("pre_Intermediate", resourceBundle.getString("Pre_Intermediate"))
+                .addAttribute("intermediate", resourceBundle.getString("Intermediate"))
+                .addAttribute("upper_Intermediate", resourceBundle.getString("Upper_Intermediate"))
+                .addAttribute("advanced", resourceBundle.getString("Advanced"))
+                .addAttribute("english", resourceBundle.getString("English"))
+                .addAttribute("french", resourceBundle.getString("French"))
+                .addAttribute("russian", resourceBundle.getString("Russian"))
+                .addAttribute("turkish", resourceBundle.getString("Turkish"));
 
         return "manager/watchRequestCall";
     }
@@ -61,7 +71,17 @@ public class CallBackController {
                 Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
         model.addAttribute("callBackManager", callBackService.callBackList(pageNumber,pageSize))
                 .addAttribute("pageNumber", pageNumber)
-                .addAttribute("wait", resourceBundle.getString("Wait"));
+                .addAttribute("wait", resourceBundle.getString("Wait"))
+                .addAttribute("start", resourceBundle.getString("Start"))
+                .addAttribute("elementary", resourceBundle.getString("Elementary"))
+                .addAttribute("pre_Intermediate", resourceBundle.getString("Pre_Intermediate"))
+                .addAttribute("intermediate", resourceBundle.getString("Intermediate"))
+                .addAttribute("upper_Intermediate", resourceBundle.getString("Upper_Intermediate"))
+                .addAttribute("advanced", resourceBundle.getString("Advanced"))
+                .addAttribute("english", resourceBundle.getString("English"))
+                .addAttribute("french", resourceBundle.getString("French"))
+                .addAttribute("russian", resourceBundle.getString("Russian"))
+                .addAttribute("turkish", resourceBundle.getString("Turkish"));
 
         return "manager/watchRequestCall";
     }
@@ -75,7 +95,17 @@ public class CallBackController {
                 .addAttribute("pageNumber", pageNumber)
                 .addAttribute("wait", resourceBundle.getString("Wait"))
                 .addAttribute("approved", resourceBundle.getString("ApprovedManager"))
-                .addAttribute("denied", resourceBundle.getString("DeniedManager"));;
+                .addAttribute("denied", resourceBundle.getString("DeniedManager"))
+                .addAttribute("start", resourceBundle.getString("Start"))
+                .addAttribute("elementary", resourceBundle.getString("Elementary"))
+                .addAttribute("pre_Intermediate", resourceBundle.getString("Pre_Intermediate"))
+                .addAttribute("intermediate", resourceBundle.getString("Intermediate"))
+                .addAttribute("upper_Intermediate", resourceBundle.getString("Upper_Intermediate"))
+                .addAttribute("advanced", resourceBundle.getString("Advanced"))
+                .addAttribute("english", resourceBundle.getString("English"))
+                .addAttribute("french", resourceBundle.getString("French"))
+                .addAttribute("russian", resourceBundle.getString("Russian"))
+                .addAttribute("turkish", resourceBundle.getString("Turkish"));
 
         return "manager/watchRequestCallArchive";
     }
