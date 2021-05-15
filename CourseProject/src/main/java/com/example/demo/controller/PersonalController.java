@@ -26,9 +26,6 @@ public class PersonalController {
     @Autowired
     private UserService userService;
 
-
-
-
     @GetMapping("/personalInformationUsers{personId}")
     public String personalInformationUsers(@PathVariable("personId") Long personId,
                                            Model model) {

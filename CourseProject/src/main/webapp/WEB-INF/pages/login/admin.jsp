@@ -36,6 +36,8 @@
         </thead>
         <c:if test="${allUsers.size()>0}">
             <c:forEach items="${allUsers}" var="user">
+                <c:forEach items="${user.roles}" var="role">
+                    <c:if test="${role.name == 'ROLE_USER'}">
                         <tr>
                             <td>${user.name}</td>
                             <td>${user.surname}</td>
@@ -50,17 +52,26 @@
                                 </form>
                             </td>
                         </tr>
+                    </c:if>
+                </c:forEach>
             </c:forEach>
         </c:if>
         <c:if test="${allUsers.size()<1}">
             <td><spring:message code="eC"/></td>
         </c:if>
     </table>
-    <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
-    <c:if test="${pageNumber>0}">
-        <a href="/admin/${pageNumber-1}/${8}" class="arrow left" style="float: left; padding-left: 100px;  font-size: 60px"><</a>
-    </c:if>
-        <a href="/admin/${pageNumber+1}/${8}" class="arrow right" style="float: left; padding-left: 160px; font-size: 60px"> > </a>
+    <form style="float: left">
+        <c:if test="${allUsers.size() > 0}">
+            <div>
+                <ul class="hr">
+                    <c:forEach begin="0" end="${totalPages-1}" var="page">
+                        <li>
+                            <a href="/admin?page=${page}&size=${5}">${page+1}</a>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </c:if>
     </form>
     <a href="/menuAdmin" class="big-button"><spring:message code="mA"/></a>
 </div>

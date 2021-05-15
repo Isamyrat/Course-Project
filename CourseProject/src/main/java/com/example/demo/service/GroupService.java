@@ -56,6 +56,14 @@ public class GroupService {
         return groupRepository.findByNumberGroup(number);
     }
 
+    public void editStatus(Group group) {
+        Journal journal = journalService.findByGroup(group.getNumberGroup());
+        journal.setStatus(group.getStatus());
+        journal.setGroupNumber(group);
+        journalService.editJournal(journal);
+        groupRepository.save(group);
+    }
+
     public Boolean saveGroup(Group group) {
         Journal journal = new Journal();
         Group group1 = groupRepository.findByNumberGroup(group.getNumberGroup());
@@ -90,13 +98,7 @@ public class GroupService {
         return true;
     }
 
-    public void editStatus(Group group) {
-        Journal journal = journalService.findByGroup(group.getNumberGroup());
-        journal.setStatus(group.getStatus());
-        journal.setGroupNumber(group);
-        journalService.editJournal(journal);
-        groupRepository.save(group);
-    }
+
 
     public Boolean saveUser(CallBack callBack) {
         Group group = new Group();

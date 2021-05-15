@@ -34,32 +34,43 @@
         </tr>
         </thead>
         <c:if test="${allUsers.size()>0}">
-        <c:forEach items="${allUsers}" var="user">
-                    <tr>
-                        <td>${user.name}</td>
-                        <td>${user.surname}</td>
-                        <td>
-                            <form action="${pageContext.request.contextPath}/deleteManager" method="post">
-                                <input type="hidden" name="userId" value="${user.id}"/>
-                                <input type="hidden" name="action" value="delete"/>
-                                <button type="submit"  onclick="if(!(confirm('${askMan}'))) return false"
-                                        style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
-                                    <spring:message code="dM"/></button>
-                            </form>
-                        </td>
-                    </tr>
-        </c:forEach>
+
+            <c:forEach items="${allUsers}" var="user">
+                <c:forEach items="${user.roles}" var="role">
+                    <c:if test="${role.name == 'ROLE_MANAGER'}">
+                        <tr>
+                            <td>${user.name}</td>
+                            <td>${user.surname}</td>
+                            <td>
+                                <form action="${pageContext.request.contextPath}/deleteManager" method="post">
+                                    <input type="hidden" name="userId" value="${user.id}"/>
+                                    <input type="hidden" name="action" value="delete"/>
+                                    <button type="submit" onclick="if(!(confirm('${askMan}'))) return false"
+                                            style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
+                                        <spring:message code="dM"/></button>
+                                </form>
+                            </td>
+                        </tr>
+                    </c:if>
+                </c:forEach>
+            </c:forEach>
         </c:if>
         <c:if test="${allUsers.size()<1}">
             <td><spring:message code="eC"/></td>
         </c:if>
     </table>
-    <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
-        <c:if test="${pageNumber>0}">
-            <a href="/watchManagersAdmin/${pageNumber-1}/${8}" class="arrow left" style="float: left; padding-left: 100px;  font-size: 60px"><</a>
-        </c:if>
-            <a href="/watchManagersAdmin/${pageNumber+1}/${8}" class="arrow right" style="float: left; padding-left: 160px; font-size: 60px"> > </a>
-    </form>
+
+    <c:if test="${allUsers.size() > 0}">
+        <div>
+            <ul class="hr">
+                <c:forEach begin="0" end="${totalPages-1}" var="page">
+                    <li>
+                        <a href="/watchManagersAdmin?page=${page}&size=${5}">${page+1}</a>
+                    </li>
+                </c:forEach>
+            </ul>
+        </div>
+    </c:if>
     <a href="/menuAdmin" class="big-button"><spring:message code="mA"/></a>
 </div>
 </body>

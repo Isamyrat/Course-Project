@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,25 +18,33 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/admin/{pageNumber}/{pageSize}")
-    public String userList(@PathVariable int pageNumber,@PathVariable int pageSize, Model model) {
+    @GetMapping("/admin")
+    public String userList(Pageable pageable, Model model) {
+        Page<User> pages = userService.findAll(pageable);
 
-        model.addAttribute("allUsers", userService.allUser(pageNumber,pageSize))
-                        .addAttribute("pageNumber", pageNumber);
+        model.addAttribute("allUsers", pages.getContent())
+                .addAttribute("totalPages", pages.getTotalPages())
+                .addAttribute("totalElements", pages.getTotalElements())
+                .addAttribute("number", pages.getNumber())
+                .addAttribute("size", pages.getSize());
 
         return "login/admin";
     }
 
-    @GetMapping("/watchManagersAdmin/{pageNumber}/{pageSize}")
-    public String managerList(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
 
+    @GetMapping("/watchManagersAdmin")
+    public String managerList(Pageable pageable,Model model) {
+        Page<User> pages = userService.findAll(pageable);
 
-        model.addAttribute("allUsers", userService.allManagers(pageNumber,pageSize))
-                .addAttribute("pageNumber", pageNumber);
-
+        model.addAttribute("allUsers", pages.getContent())
+                .addAttribute("totalPages", pages.getTotalPages())
+                .addAttribute("totalElements", pages.getTotalElements())
+                .addAttribute("number", pages.getNumber())
+                .addAttribute("size", pages.getSize());
 
         return "admin/watchAllManagers";
     }
+
     @PostMapping("/deleteManager")
     public String  deleteManager(@RequestParam(required = true, defaultValue = "" ) Long userId,
                               @RequestParam(required = true, defaultValue = "" ) String action,Model model) {

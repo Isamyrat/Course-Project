@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,16 +18,20 @@ public class ManagerController {
     @Autowired
     private UserService userService;
 
-
     @GetMapping("/menuManager")
     public String menuManager() {
         return "manager/menu";
     }
 
-    @GetMapping("/watchTeacher/{pageNumber}/{pageSize}")
-    public String watchTeacher(@PathVariable int pageNumber,@PathVariable int pageSize, Model model) {
-        model.addAttribute("allTeachers", userService.allTeachers(pageNumber,pageSize))
-                .addAttribute("pageNumber", pageNumber);
+    @GetMapping("/watchTeacher")
+    public String watchTeacher(Pageable pageable, Model model) {
+        Page<User> pages = userService.findAll(pageable);
+
+        model.addAttribute("allUsers", pages.getContent())
+                .addAttribute("totalPages", pages.getTotalPages())
+                .addAttribute("totalElements", pages.getTotalElements())
+                .addAttribute("number", pages.getNumber())
+                .addAttribute("size", pages.getSize());
 
         return "manager/watchTeacher";
     }
@@ -54,15 +60,16 @@ public class ManagerController {
 
     @GetMapping("/editTeacher{userId}")
     public String editTeacher(@PathVariable(value = "userId") Long userId,
-                              Model model){
+                              Model model) {
 
         model.addAttribute("userTeacher", userService.findUserById(userId))
-            .addAttribute("userId", userId);
+                .addAttribute("userId", userId);
 
         return "manager/editTeacher";
     }
+
     @PostMapping("/saveTeachers")
-    public String saveCustomers(@ModelAttribute("userTeacher")  User userTeacher) {
+    public String saveCustomers(@ModelAttribute("userTeacher") User userTeacher) {
 
         userService.editTeacher(userTeacher);
 
@@ -70,11 +77,11 @@ public class ManagerController {
     }
 
     @PostMapping("/deleteTeacher")
-    public String  deleteUser(@RequestParam(required = true, defaultValue = "" ) Long userId,
-                              @RequestParam(required = true, defaultValue = "" ) String action, Model model) {
+    public String deleteUser(@RequestParam(required = true, defaultValue = "") Long userId,
+                             @RequestParam(required = true, defaultValue = "") String action, Model model) {
 
-        if (action.equals("delete")){
-            if(!userService.deleteTeacher(userId)){
+        if (action.equals("delete")) {
+            if (!userService.deleteTeacher(userId)) {
                 model.addAttribute("errorTeacher", "Данный преподаватель преподает в группе. Смените преподавателя на другой, а затем можете удалять!!!!");
                 return "manager/errors";
             }

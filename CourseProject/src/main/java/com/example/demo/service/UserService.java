@@ -4,7 +4,6 @@ import com.example.demo.dao.*;
 import com.example.demo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -59,46 +58,7 @@ public class UserService implements UserDetailsService {
     }
 
     public List<User> allUsers() {
-        return userRepository.findAll();
-    }
-
-    public List<User> allUser(int pageNumber, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        Page<User> page = userRepository.findAll(pageable);
-        List<User> userList = new ArrayList<>();
-        for (User user : page) {
-            for (Role role : user.getRoles()) {
-                if (role.getName().equals("ROLE_USER"))
-                    userList.add(user);
-            }
-        }
-        return userList;
-    }
-
-    public List<User> allManagers(int pageNumber, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        Page<User> page = userRepository.findAll(pageable);
-        List<User> userList = new ArrayList<>();
-        for (User user : page) {
-            for (Role role : user.getRoles()) {
-                if (role.getName().equals("ROLE_MANAGER"))
-                    userList.add(user);
-            }
-        }
-        return userList;
-    }
-
-    public List<User> allTeachers(int pageNumber, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        Page<User> page = userRepository.findAll(pageable);
-        List<User> userList = new ArrayList<>();
-        for (User user : page) {
-            for (Role role : user.getRoles()) {
-                if (role.getName().equals("ROLE_TEACHER"))
-                    userList.add(user);
-            }
-        }
-        return userList;
+        return userRepository.getAll();
     }
 
     public boolean saveUser(User user) {
@@ -207,4 +167,7 @@ public class UserService implements UserDetailsService {
     }
 
 
+    public Page<User> findAll(Pageable pageable) {
+        return userRepository.findAll(pageable);
+    }
 }
