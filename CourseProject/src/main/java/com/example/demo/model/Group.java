@@ -22,9 +22,9 @@ public class Group {
     private Long numberGroup;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
     @JoinColumn(name = "STATUS")
-    private Status status;
+    private String status;
+
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_teacher", referencedColumnName = "id")
@@ -56,11 +56,11 @@ public class Group {
         this.userGroup = userGroup;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

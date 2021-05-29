@@ -1,11 +1,14 @@
 package com.example.demo.model;
 
+import com.example.demo.model.enumModel.Roles;
+import com.sun.istack.NotNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -22,8 +25,9 @@ public class User implements UserDetails {
     private String name;
     private String surname;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
+    @NotNull
+    @JoinColumn(name = "ROLE")
+    private String role;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "userAddress", cascade = CascadeType.ALL)
     private Set<Address> address;
@@ -42,6 +46,8 @@ public class User implements UserDetails {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "journalUser", cascade = CascadeType.ALL)
     private Set<JournalGroup> journalGroups;
+
+
 
     public User() {
     }
@@ -114,6 +120,15 @@ public class User implements UserDetails {
         return id;
     }
 
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -149,7 +164,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
+        return  null;
     }
 
     @Override
@@ -161,11 +176,4 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
 }

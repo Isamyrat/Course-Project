@@ -27,12 +27,10 @@
         <label class="label-color"><spring:message code="select"/></label>
         <form:select path="userTeacher">
             <option value=""></option>
-            <c:forEach items="${teacher}" var="teacher">
-                <c:forEach items="${teacher.roles}" var="role">
-                    <c:if test="${role.name=='ROLE_TEACHER'}">
-                        <option value="${teacher.id}">${teacher.surname}</option>
+            <c:forEach items="${teacher}" var="teachers">
+                    <c:if test="${teachers.role=='ROLE_TEACHER'}">
+                        <option value="${teachers.id}">${teachers.surname}</option>
                     </c:if>
-                </c:forEach>
             </c:forEach>
         </form:select>
 

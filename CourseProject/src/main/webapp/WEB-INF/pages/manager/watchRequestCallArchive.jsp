@@ -34,8 +34,9 @@
             <th><spring:message code="nMU"/></th>
             <th><spring:message code="sNUS"/></th>
             <th><spring:message code="laOG"/></th>
-            <th><spring:message code="lOG"/></th
+            <th><spring:message code="lOG"/></th>
             <th><spring:message code="aG"/></th>
+
         </tr>
         </thead>
         <c:if test="${watchRequestCallArchive.size()>0}">

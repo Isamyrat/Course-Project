@@ -28,7 +28,7 @@
         <form:select path="status">
             <option value=""></option>
             <option value="Wait"><spring:message code="sGroup"/></option>
-            <option value="Start"><spring:message code="sGrup"/></option>
+            <option value="Started"><spring:message code="sGrup"/></option>
             <option value="Finish"><spring:message code="sGrp"/></option>
         </form:select>
 

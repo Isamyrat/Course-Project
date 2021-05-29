@@ -1,9 +1,14 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Topic;
+import com.example.demo.model.User;
 import com.example.demo.service.CourseService;
 import com.example.demo.service.TopicService;
+import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +22,19 @@ public class TopicController {
     @Autowired
     private CourseService courseService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/watchTopics{topicId}")
     public String watchTopics(@PathVariable("topicId") Long topicId,
                               Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        User user = userService.getUser(userDetails.getUsername());
 
         model.addAttribute("allTopics", topicService.topicFind(topicId))
-                .addAttribute("topicId", topicId);
+                .addAttribute("topicId", topicId)
+                .addAttribute("person", user);
 
         return "manager/watchTopics";
     }

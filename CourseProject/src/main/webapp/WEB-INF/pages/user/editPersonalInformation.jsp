@@ -19,163 +19,46 @@
 </header>
 <body>
 
-<sec:authorize access="hasRole('ROLE_ADMIN')">
-    <div class="login-box">
-        <h2><spring:message code="ePA"/></h2>
-        <form:form  method="POST" action="/saveAdmins" modelAttribute="userEdit">
+<div class="login-box">
+    <h2><spring:message code="ePA"/></h2>
 
-            <form:hidden path="id"/>
+    <form:form method="POST" action="/savePerson" modelAttribute="userEdit">
 
-            <label class="label-color"><spring:message code="nM"/></label>
-            <div class="user-box">
-                <form:input path="name"/>
-            </div>
+        <form:hidden path="id"/>
 
-            <label class="label-color"><spring:message code="sN"/></label>
-            <div class=" user-box">
-                <form:input path="surname"/>
-            </div>
+        <label class="label-color"><spring:message code="nM"/></label>
+        <div class="user-box">
+            <form:input path="name"/>
+        </div>
 
-            <form:hidden path="username"/>
-            <form:hidden path="password"/>
-            <p>
-            <button  style="background-color: #141e30">
+        <label class="label-color"><spring:message code="sN"/></label>
+        <div class=" user-box">
+            <form:input path="surname"/>
+        </div>
+
+        <form:hidden path="username"/>
+        <form:hidden path="password"/>
+        <form:hidden path="role"/>
+
+        <p>
+            <button style="background-color: #141e30">
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
                 <spring:message code="save"/>
             </button>
-            </p>
-            <p>
+        </p>
+        <p>
             <a href="/personalInformationUser">
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
                 <spring:message code="bK"/>
-            </a>  </p>
-        </form:form>
-    </div>
-</sec:authorize>
-
-<sec:authorize access="hasRole('ROLE_USER')">
-    <div class="login-box">
-        <h2><spring:message code="ePA"/> </h2>
-        <form:form  method="POST" action="/saveUsers" modelAttribute="userEdit">
-
-            <form:hidden path="id"/>
-            <label class="label-color"><spring:message code="nM"/></label>
-            <div class="user-box">
-                <form:input path="name"/>
-            </div>
-
-            <label class="label-color"><spring:message code="sN"/></label>
-            <div class=" user-box">
-                <form:input path="surname"/>
-            </div>
-
-            <form:hidden path="username"/>
-            <form:hidden path="password"/>
-            <p>
-            <button  style="background-color: #141e30">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <spring:message code="save"/>
-            </button>
-            </p>
-            <p>
-            <a href="/personalInformationUser">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <spring:message code="bK"/>
-            </a>  </p>
-        </form:form>
-    </div>
-</sec:authorize>
-
-<sec:authorize access="hasRole('ROLE_MANAGER')">
-    <div class="login-box">
-        <h2><spring:message code="ePA"/></h2>
-        <form:form  method="POST" action="/saveManagers" modelAttribute="userEdit">
-
-            <form:hidden path="id"/>
-
-            <label class="label-color"><spring:message code="nM"/></label>
-            <div class="user-box">
-                <form:input path="name"/>
-            </div>
-
-            <label class="label-color"><spring:message code="sN"/></label>
-            <div class=" user-box">
-                <form:input path="surname"/>
-            </div>
-            <form:hidden path="username"/>
-            <form:hidden path="password"/>
-            <p>
-            <button  style="background-color: #141e30">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <spring:message code="save"/>
-            </button>
-            </p>
-            <p>
-            <a href="/personalInformationUser">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <spring:message code="bK"/>
-            </a>  </p>
-        </form:form>
-    </div>
-</sec:authorize>
-
-<sec:authorize access="hasRole('ROLE_TEACHER')">
-    <div class="login-box">
-        <h2><spring:message code="ePA"/></h2>
-        <form:form  method="POST" action="/saveTeacherInfo" modelAttribute="userEdit">
-
-            <form:hidden path="id"/>
-            <label class="label-color"><spring:message code="nM"/></label>
-            <div class="user-box">
-                <form:input path="name"/>
-            </div>
-
-            <label class="label-color"><spring:message code="sN"/></label>
-            <div class=" user-box">
-                <form:input path="surname"/>
-            </div>
-
-            <form:hidden path="username"/>
-            <form:hidden path="password"/>
-            <p>
-            <button  style="background-color: #141e30">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <spring:message code="save"/>
-            </button>
-            </p>
-            <p>
-            <a href="/personalInformationUser">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <spring:message code="bK"/>
-            </a>  </p>
-        </form:form>
-    </div>
-</sec:authorize>
-
+            </a></p>
+    </form:form>
+</div>
 
 </body>
 <style>

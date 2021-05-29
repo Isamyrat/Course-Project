@@ -35,6 +35,7 @@
 
         <form:hidden path="username"/>
         <form:hidden path="password"/>
+        <form:hidden path="role"/>
 
         <button  style="background-color: #141e30">
             <span></span>

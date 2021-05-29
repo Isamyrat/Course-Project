@@ -34,10 +34,8 @@
         </tr>
         </thead>
         <c:if test="${allUsers.size()>0}">
-
             <c:forEach items="${allUsers}" var="user">
-                <c:forEach items="${user.roles}" var="role">
-                    <c:if test="${role.name == 'ROLE_MANAGER'}">
+
                         <tr>
                             <td>${user.name}</td>
                             <td>${user.surname}</td>
@@ -51,8 +49,6 @@
                                 </form>
                             </td>
                         </tr>
-                    </c:if>
-                </c:forEach>
             </c:forEach>
         </c:if>
         <c:if test="${allUsers.size()<1}">

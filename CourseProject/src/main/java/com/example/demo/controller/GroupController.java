@@ -2,11 +2,15 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Group;
 import com.example.demo.model.User;
+import com.example.demo.model.enumModel.Roles;
+import com.example.demo.model.enumModel.Status;
 import com.example.demo.service.CourseService;
 import com.example.demo.service.GroupService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,13 +33,16 @@ public class GroupController {
     @Autowired
     private CourseService courseService;
 
-    @GetMapping("/watchGroup/{pageNumber}/{pageSize}")
-    public String watchGroup(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
+    @GetMapping("/watchGroup")
+    public String watchGroup( Pageable pageable, Model model) {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages", Objects.requireNonNull(
                 Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
+        Page<Group> pages = groupService.findByStatus(pageable, Status.Started.toString());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        User user = userService.getUser(userDetails.getUsername());
 
-        model.addAttribute("watchGroups", groupService.findByStatus(pageNumber,pageSize))
-                .addAttribute("pageNumber", pageNumber)
+        model.addAttribute("watchGroups", pages.getContent())
                 .addAttribute("start", resourceBundle.getString("Start"))
                 .addAttribute("elementary", resourceBundle.getString("Elementary"))
                 .addAttribute("pre_Intermediate", resourceBundle.getString("Pre_Intermediate"))
@@ -45,18 +52,23 @@ public class GroupController {
                 .addAttribute("english", resourceBundle.getString("English"))
                 .addAttribute("french", resourceBundle.getString("French"))
                 .addAttribute("russian", resourceBundle.getString("Russian"))
-                .addAttribute("turkish", resourceBundle.getString("Turkish"));
+                .addAttribute("turkish", resourceBundle.getString("Turkish"))
+                .addAttribute("totalPages", pages.getTotalPages())
+                .addAttribute("totalElements", pages.getTotalElements())
+                .addAttribute("number", pages.getNumber())
+                .addAttribute("size", pages.getSize())
+                .addAttribute("person", user);
 
         return "manager/watchGroup";
     }
 
-    @GetMapping("/watchGroupWaiting/{pageNumber}/{pageSize}")
-    public String watchGroupWaiting(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
+    @GetMapping("/watchGroupWaiting")
+    public String watchGroupWaiting(Pageable pageable,Model model) {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages", Objects.requireNonNull(
                 Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
+        Page<Group> pages = groupService.findByStatus( pageable, Status.Wait.toString());
 
-        model.addAttribute("watchGroupWaiting", groupService.findByStatusWaiting(pageNumber,pageSize))
-                .addAttribute("pageNumber", pageNumber)
+        model.addAttribute("watchGroupWaiting", pages.getContent())
                 .addAttribute("start", resourceBundle.getString("Start"))
                 .addAttribute("elementary", resourceBundle.getString("Elementary"))
                 .addAttribute("pre_Intermediate", resourceBundle.getString("Pre_Intermediate"))
@@ -66,17 +78,21 @@ public class GroupController {
                 .addAttribute("english", resourceBundle.getString("English"))
                 .addAttribute("french", resourceBundle.getString("French"))
                 .addAttribute("russian", resourceBundle.getString("Russian"))
-                .addAttribute("turkish", resourceBundle.getString("Turkish"));
+                .addAttribute("turkish", resourceBundle.getString("Turkish"))
+                .addAttribute("totalPages", pages.getTotalPages())
+                .addAttribute("totalElements", pages.getTotalElements())
+                .addAttribute("number", pages.getNumber())
+                .addAttribute("size", pages.getSize());
 
         return "manager/watchGroupWaiting";
     }
-    @GetMapping("/watchGroupArchive/{pageNumber}/{pageSize}")
-    public String watchGroupArchive(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
+    @GetMapping("/watchGroupArchive")
+    public String watchGroupArchive(Pageable pageable,Model model) {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages", Objects.requireNonNull(
                 Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
+        Page<Group> pages = groupService.findByStatus(pageable,Status.Finish.toString());
 
-        model.addAttribute("watchGroupArchive", groupService.findByStatusArchive(pageNumber,pageSize))
-                .addAttribute("pageNumber", pageNumber)
+        model.addAttribute("watchGroupArchive", pages.getContent())
                 .addAttribute("start", resourceBundle.getString("Start"))
                 .addAttribute("elementary", resourceBundle.getString("Elementary"))
                 .addAttribute("pre_Intermediate", resourceBundle.getString("Pre_Intermediate"))
@@ -86,7 +102,11 @@ public class GroupController {
                 .addAttribute("english", resourceBundle.getString("English"))
                 .addAttribute("french", resourceBundle.getString("French"))
                 .addAttribute("russian", resourceBundle.getString("Russian"))
-                .addAttribute("turkish", resourceBundle.getString("Turkish"));
+                .addAttribute("turkish", resourceBundle.getString("Turkish"))
+                .addAttribute("totalPages", pages.getTotalPages())
+                .addAttribute("totalElements", pages.getTotalElements())
+                .addAttribute("number", pages.getNumber())
+                .addAttribute("size", pages.getSize());
 
         return "manager/watchGroupArchive";
     }
@@ -99,7 +119,7 @@ public class GroupController {
                 Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
         User user = userService.getUser(userDetails.getUsername());
 
-        model.addAttribute("userGroup", groupService.findByUserList(pageNumber,pageSize,user.getId()))
+        model.addAttribute("watchGroups", groupService.findByUserList(pageNumber,pageSize,user.getId()))
                 .addAttribute("pageNumber", pageNumber)
                 .addAttribute("start", resourceBundle.getString("Start"))
                 .addAttribute("elementary", resourceBundle.getString("Elementary"))
@@ -110,7 +130,9 @@ public class GroupController {
                 .addAttribute("english", resourceBundle.getString("English"))
                 .addAttribute("french", resourceBundle.getString("French"))
                 .addAttribute("russian", resourceBundle.getString("Russian"))
-                .addAttribute("turkish", resourceBundle.getString("Turkish"));
+                .addAttribute("turkish", resourceBundle.getString("Turkish"))
+                .addAttribute("person", user);
+
         return "manager/watchGroup";
     }
 
@@ -122,7 +144,7 @@ public class GroupController {
                 Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
         User user = userService.getUser(userDetails.getUsername());
 
-        model.addAttribute("userGroup", groupService.findByTeacher(pageNumber,pageSize, user.getId()))
+        model.addAttribute("watchGroups", groupService.findByTeacher(pageNumber,pageSize, user.getId()))
                 .addAttribute("pageNumber", pageNumber)
                 .addAttribute("start", resourceBundle.getString("Start"))
                 .addAttribute("elementary", resourceBundle.getString("Elementary"))
@@ -133,7 +155,8 @@ public class GroupController {
                 .addAttribute("english", resourceBundle.getString("English"))
                 .addAttribute("french", resourceBundle.getString("French"))
                 .addAttribute("russian", resourceBundle.getString("Russian"))
-                .addAttribute("turkish", resourceBundle.getString("Turkish"));
+                .addAttribute("turkish", resourceBundle.getString("Turkish"))
+                .addAttribute("person", user);
         return "manager/watchGroup";
     }
 

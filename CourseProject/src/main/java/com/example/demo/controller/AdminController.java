@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.User;
+import com.example.demo.model.enumModel.Roles;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,9 +19,9 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/admin")
-    public String userList(Pageable pageable, Model model) {
-        Page<User> pages = userService.findAll(pageable);
+    @GetMapping("/watchUsers")
+    public String watchUsers(Pageable pageable,Model model) {
+        Page<User> pages = userService.findByRole(pageable, Roles.ROLE_USER.toString());
 
         model.addAttribute("allUsers", pages.getContent())
                 .addAttribute("totalPages", pages.getTotalPages())
@@ -28,13 +29,13 @@ public class AdminController {
                 .addAttribute("number", pages.getNumber())
                 .addAttribute("size", pages.getSize());
 
-        return "login/admin";
+        return "admin/watchUsers";
     }
 
 
     @GetMapping("/watchManagersAdmin")
     public String managerList(Pageable pageable,Model model) {
-        Page<User> pages = userService.findAll(pageable);
+        Page<User> pages = userService.findByRole(pageable, Roles.ROLE_MANAGER.toString());
 
         model.addAttribute("allUsers", pages.getContent())
                 .addAttribute("totalPages", pages.getTotalPages())

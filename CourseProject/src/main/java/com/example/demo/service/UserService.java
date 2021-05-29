@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.dao.*;
 import com.example.demo.model.*;
+import com.example.demo.model.enumModel.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,9 +19,6 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     UserRepository userRepository;
-
-    @Autowired
-    RoleRepository roleRepository;
 
     @Autowired
     GroupService groupService;
@@ -68,7 +66,7 @@ public class UserService implements UserDetailsService {
             return false;
         }
 
-        user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+        user.setRole(Roles.ROLE_USER.toString());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return true;
@@ -80,8 +78,7 @@ public class UserService implements UserDetailsService {
         if (userFromDB != null) {
             return false;
         }
-
-        user.setRoles(Collections.singleton(new Role(3L, "ROLE_MANAGER")));
+        user.setRole(Roles.ROLE_MANAGER.toString());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return true;
@@ -93,30 +90,13 @@ public class UserService implements UserDetailsService {
         if (userFromDB != null) {
             return false;
         }
-
-        user.setRoles(Collections.singleton(new Role(4L, "ROLE_Teacher")));
+        user.setRole(Roles.ROLE_TEACHER.toString());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return true;
     }
 
-    public void editTeacher(User user) {
-        user.setRoles(Collections.singleton(new Role(4L, "ROLE_Teacher")));
-        userRepository.save(user);
-    }
-
-    public void editAdmin(User user) {
-        user.setRoles(Collections.singleton(new Role(2L, "ROLE_ADMIN")));
-        userRepository.save(user);
-    }
-
-    public void editManager(User user) {
-        user.setRoles(Collections.singleton(new Role(3L, "ROLE_MANAGER")));
-        userRepository.save(user);
-    }
-
-    public void editUser(User user) {
-        user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+    public void editPerson(User user) {
         userRepository.save(user);
     }
 
@@ -166,8 +146,8 @@ public class UserService implements UserDetailsService {
         return userRepository.findByUsername(username);
     }
 
-
-    public Page<User> findAll(Pageable pageable) {
-        return userRepository.findAll(pageable);
+    public Page<User> findByRole(Pageable pageable, String role) {
+        return userRepository.findByRole(role, pageable);
     }
+
 }

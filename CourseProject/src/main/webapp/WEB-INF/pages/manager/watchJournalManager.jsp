@@ -18,25 +18,23 @@
     </div>
 </header>
 <body>
-<sec:authorize access="hasRole('ROLE_MANAGER')">
+<div class="container">
+    <table>
+        <form:form modelAttribute="journals">
+            <thead>
+            <tr>
+                <th><spring:message code="jJJ"/></th>
+            </tr>
+            </thead>
+            <thead>
+            <tr>
+                <th><spring:message code="nOG"/></th>
+                <th><spring:message code="aG"/></th>
+            </tr>
+            </thead>
 
-    <div class="container">
-        <table>
-            <form:form modelAttribute="journals">
-                <thead>
-                <tr>
-                    <th><spring:message code="jJJ"/></th>
-                </tr>
-                </thead>
-                <thead>
-                <tr>
-                    <th><spring:message code="nOG"/></th>
-                    <th><spring:message code="aG"/></th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <c:if test="${journals.size()>0}">
+            <tbody>
+            <c:if test="${journals.size()>0}">
 
                 <c:forEach items="${journals}" var="journal">
                     <tr>
@@ -51,30 +49,28 @@
                         </td>
                     </tr>
                 </c:forEach>
-                </c:if>
-                <c:if test="${journals.size()<1}">
-                    <td><spring:message code="eC"/></td>
-                </c:if>
-                </tbody>
-
-            </form:form>
-        </table>
-        <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
-            <c:if test="${pageNumber>0}">
-                <a href="/watchJournalManager/${pageNumber-1}/${7}" class="arrow left"
-                   style="float: left; padding-left: 100px;  font-size: 60px"><</a>
             </c:if>
-            <c:if test="${journals.size()>pageNumber}">
-                <a href="/watchJournalManager/${pageNumber+1}/${7}" class="arrow right"
-                   style="float: left; padding-left: 160px; font-size: 60px"> > </a>
+            <c:if test="${journals.size()<1}">
+                <td><spring:message code="eC"/></td>
             </c:if>
-        </form>
-        <a href="/watchJournal/${0}/${7}" class="big-button"><spring:message code="wJMA"/></a>
-        <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
+            </tbody>
 
-    </div>
-</sec:authorize>
+        </form:form>
+    </table>
+    <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
+        <c:if test="${pageNumber>0}">
+            <a href="/watchJournalManager/${pageNumber-1}/${7}" class="arrow left"
+               style="float: left; padding-left: 100px;  font-size: 60px"><</a>
+        </c:if>
+        <c:if test="${journals.size()>pageNumber}">
+            <a href="/watchJournalManager/${pageNumber+1}/${7}" class="arrow right"
+               style="float: left; padding-left: 160px; font-size: 60px"> > </a>
+        </c:if>
+    </form>
+    <a href="/watchJournal/${0}/${7}" class="big-button"><spring:message code="wJMA"/></a>
+    <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
 
+</div>
 </body>
 
 <style>

@@ -16,8 +16,7 @@
     </div>
 </header>
 <body>
-
-<a href="/admin?page=${0}&size=${5}" class="fancy-btn"><spring:message code="wUser"/></a>
+<a href="/watchUsers?page=${0}&size=${5}" class="fancy-btn"><spring:message code="wUser"/></a>
 
 <br>
 <a href="/addManager" class="fancy-btn"><spring:message code="aManager"/></a>

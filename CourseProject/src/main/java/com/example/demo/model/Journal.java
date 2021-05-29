@@ -18,9 +18,8 @@ public class Journal {
     private Group groupNumber;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
     @JoinColumn(name = "STATUS")
-    private Status status;
+    private String status;
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "groupJournals", cascade = CascadeType.ALL)
     private Set<JournalGroup> journalGroupSet;
@@ -52,11 +51,11 @@ public class Journal {
         this.groupNumber = groupNumber;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

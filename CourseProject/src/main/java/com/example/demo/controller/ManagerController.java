@@ -1,10 +1,14 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.User;
+import com.example.demo.model.enumModel.Roles;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,13 +29,20 @@ public class ManagerController {
 
     @GetMapping("/watchTeacher")
     public String watchTeacher(Pageable pageable, Model model) {
-        Page<User> pages = userService.findAll(pageable);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        User user = userService.getUser(userDetails.getUsername());
+
+
+        Page<User> pages = userService.findByRole(pageable,Roles.ROLE_TEACHER.toString());
 
         model.addAttribute("allUsers", pages.getContent())
                 .addAttribute("totalPages", pages.getTotalPages())
                 .addAttribute("totalElements", pages.getTotalElements())
                 .addAttribute("number", pages.getNumber())
-                .addAttribute("size", pages.getSize());
+                .addAttribute("size", pages.getSize())
+                .addAttribute("person", user);
 
         return "manager/watchTeacher";
     }
@@ -69,9 +80,9 @@ public class ManagerController {
     }
 
     @PostMapping("/saveTeachers")
-    public String saveCustomers(@ModelAttribute("userTeacher") User userTeacher) {
+    public String saveCustomers(@ModelAttribute("userTeacher") User user) {
 
-        userService.editTeacher(userTeacher);
+        userService.editPerson(user);
 
         return "redirect:/menuManager";
     }

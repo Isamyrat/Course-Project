@@ -15,9 +15,9 @@ public interface JournalRepository extends CrudRepository<Journal,Long> {
 
     Optional<Journal> findById(Long id);
 
-    List<Journal> findAllByStatus(Status status, Pageable pageable);
+    List<Journal> findAllByStatus(String status, Pageable pageable);
 
-    List<Journal> findAllByStatusOrStatus(Status status, Status status1, Pageable pageable);
+    List<Journal> findAllByStatusOrStatus(String status, String status1, Pageable pageable);
 
     @Query("select j from  Journal  j where j.groupNumber.numberGroup = :groupNumber")
     Journal findByGroup(@Param("groupNumber") Long groupNumber);

@@ -99,16 +99,18 @@
             </tbody>
         </form:form>
     </table>
-    <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
-        <c:if test="${pageNumber>0}">
-            <a href="/watchGroupArchive/${pageNumber-1}/${7}" class="arrow left"
-               style="float: left; padding-left: 100px;  font-size: 60px"><</a>
-        </c:if>
-        <c:if test="${watchGroupArchive.size()>pageNumber}">
-            <a href="/watchGroupArchive/${pageNumber+1}/${7}" class="arrow right"
-               style="float: left; padding-left: 160px; font-size: 60px"> > </a>
-        </c:if>
-    </form>
+    <c:if test="${watchGroupArchive.size() > 0}">
+        <div>
+            <ul class="hr">
+                <c:forEach begin="0" end="${totalPages-1}" var="page">
+                    <li>
+                        <a href="/watchGroupArchive?page=${page}&size=${3}">${page+1}</a>
+                    </li>
+                </c:forEach>
+            </ul>
+        </div>
+    </c:if>
+
     <a href="/menuManager" class="big-button"><spring:message code="bK"/></a>
 </div>
 

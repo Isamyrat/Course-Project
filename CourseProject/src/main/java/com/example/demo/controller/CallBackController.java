@@ -59,7 +59,8 @@ public class CallBackController {
                 .addAttribute("english", resourceBundle.getString("English"))
                 .addAttribute("french", resourceBundle.getString("French"))
                 .addAttribute("russian", resourceBundle.getString("Russian"))
-                .addAttribute("turkish", resourceBundle.getString("Turkish"));
+                .addAttribute("turkish", resourceBundle.getString("Turkish"))
+                .addAttribute("person", user);
 
         return "manager/watchRequestCall";
     }
@@ -69,6 +70,10 @@ public class CallBackController {
     public String watchRequestCall(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages", Objects.requireNonNull(
                 Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        User user = userService.getUser(userDetails.getUsername());
         model.addAttribute("callBackManager", callBackService.callBackList(pageNumber,pageSize))
                 .addAttribute("pageNumber", pageNumber)
                 .addAttribute("wait", resourceBundle.getString("Wait"))
@@ -81,7 +86,8 @@ public class CallBackController {
                 .addAttribute("english", resourceBundle.getString("English"))
                 .addAttribute("french", resourceBundle.getString("French"))
                 .addAttribute("russian", resourceBundle.getString("Russian"))
-                .addAttribute("turkish", resourceBundle.getString("Turkish"));
+                .addAttribute("turkish", resourceBundle.getString("Turkish"))
+                .addAttribute("person", user);
 
         return "manager/watchRequestCall";
     }

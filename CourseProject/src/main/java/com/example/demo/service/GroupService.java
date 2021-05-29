@@ -38,20 +38,12 @@ public class GroupService {
         Optional<Group> group = groupRepository.findById(groupId);
         return group.orElse(new Group());
     }
-
-    public List<Group> findByStatus(int pageNumber, int pageSize){
-        Pageable pageable = PageRequest.of(pageNumber,pageSize);
-        return groupRepository.findAllByStatus(Status.Started, pageable);
+    public List<Group> findAll() {
+        return groupRepository.getAll();
     }
-    public List<Group> findByStatusWaiting(int pageNumber, int pageSize){
-        Pageable pageable = PageRequest.of(pageNumber,pageSize);
-        return groupRepository.findAllByStatus(Status.Wait, pageable);
+    public Page<Group> findByStatus(Pageable pageable, String status){
+        return groupRepository.findAllByStatus(status, pageable);
     }
-    public List<Group> findByStatusArchive(int pageNumber, int pageSize){
-        Pageable pageable = PageRequest.of(pageNumber,pageSize);
-        return groupRepository.findAllByStatus(Status.Finish, pageable);
-    }
-
     public Group findByNumberOfGroup(Long number) {
         return groupRepository.findByNumberGroup(number);
     }
@@ -76,7 +68,7 @@ public class GroupService {
 
         Course course = courseRepository.findByCourseId(group.getCourseGroup().getId());
 
-        group.setStatus(Status.Wait);
+        group.setStatus(Status.Wait.toString());
         group.setCourseGroup(course);
         group.setUserTeacher(user);
 
@@ -107,7 +99,7 @@ public class GroupService {
 
         Course course = callBackService.findCourse(callBack.getCourseCallBack().getId());
 
-        List<Group> groupList = groupRepository.findGroupsForAddStudents(course.getId(),Status.Wait);
+        List<Group> groupList = groupRepository.findGroupsForAddStudents(course.getId(),Status.Wait.toString());
 
         if(groupList.size() == 0){
             return false;
@@ -154,7 +146,7 @@ public class GroupService {
 
 
     public List<Group> findByUser(Long id) {
-        List<Group> groups = groupRepository.findAll();
+        List<Group> groups = findAll();
         List<Group> groupList = new ArrayList<>();
         for (Group group : groups) {
             for (User user1 : group.getUserGroup()) {

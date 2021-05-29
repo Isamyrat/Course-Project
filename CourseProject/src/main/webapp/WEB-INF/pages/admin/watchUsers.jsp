@@ -1,12 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title><spring:message code="aU"/></title>
+    <title><spring:message code="aM"/></title>
 </head>
 
 <header>
@@ -18,13 +17,13 @@
 </header>
 
 <body>
-<spring:message code="askAU" var="askAU"/>
+<spring:message code="askMan" var="askMan"/>
 
 <div class="container">
     <table>
         <thead>
         <tr>
-            <th><spring:message code="aUT"/></th>
+            <th><spring:message code="aUM"/></th>
         </tr>
         </thead>
         <thead>
@@ -36,8 +35,7 @@
         </thead>
         <c:if test="${allUsers.size()>0}">
             <c:forEach items="${allUsers}" var="user">
-                <c:forEach items="${user.roles}" var="role">
-                    <c:if test="${role.name == 'ROLE_USER'}">
+
                         <tr>
                             <td>${user.name}</td>
                             <td>${user.surname}</td>
@@ -45,34 +43,30 @@
                                 <form action="${pageContext.request.contextPath}/deleteUsers" method="post">
                                     <input type="hidden" name="userId" value="${user.id}"/>
                                     <input type="hidden" name="action" value="delete"/>
-                                    <button type="submit"
-                                            onclick="if(!(confirm('${askAU}'))) return false"
+                                    <button type="submit" onclick="if(!(confirm('${askMan}'))) return false"
                                             style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
-                                        <spring:message code="dU"/></button>
+                                        <spring:message code="dM"/></button>
                                 </form>
                             </td>
                         </tr>
-                    </c:if>
-                </c:forEach>
             </c:forEach>
         </c:if>
         <c:if test="${allUsers.size()<1}">
             <td><spring:message code="eC"/></td>
         </c:if>
     </table>
-    <form style="float: left">
-        <c:if test="${allUsers.size() > 0}">
-            <div>
-                <ul class="hr">
-                    <c:forEach begin="0" end="${totalPages-1}" var="page">
-                        <li>
-                            <a href="/admin?page=${page}&size=${5}">${page+1}</a>
-                        </li>
-                    </c:forEach>
-                </ul>
-            </div>
-        </c:if>
-    </form>
+
+    <c:if test="${allUsers.size() > 0}">
+        <div>
+            <ul class="hr">
+                <c:forEach begin="0" end="${totalPages-1}" var="page">
+                    <li>
+                        <a href="/watchUsers?page=${page}&size=${5}">${page+1}</a>
+                    </li>
+                </c:forEach>
+            </ul>
+        </div>
+    </c:if>
     <a href="/menuAdmin" class="big-button"><spring:message code="mA"/></a>
 </div>
 </body>

@@ -32,12 +32,12 @@ public class JournalService {
 
     public List<Journal> findByStatus(int pageNumber, int pageSize) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        return journalRepository.findAllByStatusOrStatus(Status.Wait, Status.Started, pageable);
+        return journalRepository.findAllByStatusOrStatus(Status.Wait.toString(), Status.Started.toString(), pageable);
     }
 
     public List<Journal> findByStatusArchive(int pageNumber, int pageSize) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        return journalRepository.findAllByStatus(Status.Finish, pageable);
+        return journalRepository.findAllByStatus(Status.Finish.toString(), pageable);
     }
 
     public void saveJournal(Journal journal) {

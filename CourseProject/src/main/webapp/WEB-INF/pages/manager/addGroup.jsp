@@ -44,11 +44,9 @@
                                 <form:select path="userTeacher">
                                     <option value=""></option>
                                     <c:forEach items="${users}" var="user">
-                                        <c:forEach items="${user.roles}" var="role">
-                                            <c:if test="${role.name=='ROLE_TEACHER'}">
+                                            <c:if test="${user.role=='ROLE_TEACHER'}">
                                                 <option value="${user.id}">${user.surname}</option>
                                             </c:if>
-                                        </c:forEach>
                                     </c:forEach>
                                 </form:select>
                             </div>
