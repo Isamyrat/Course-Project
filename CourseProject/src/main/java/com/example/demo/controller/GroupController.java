@@ -163,9 +163,14 @@ public class GroupController {
     @GetMapping("/watchGroupUsers{idGroup}")
     public String watchGroupUsers(@PathVariable("idGroup") Long idGroup,
                                   Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        User user = userService.getUser(userDetails.getUsername());
 
         model.addAttribute("watchUsers", groupService.findById(idGroup))
-                .addAttribute("idGroup", idGroup);
+                .addAttribute("idGroup", idGroup)
+                .addAttribute("person", user);
+
 
         return "manager/watchGroupUsers";
     }

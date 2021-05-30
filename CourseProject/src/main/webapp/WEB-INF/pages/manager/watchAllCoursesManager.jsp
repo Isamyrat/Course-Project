@@ -140,22 +140,23 @@
             </c:if>
         </form:form>
     </table>
-    <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
-        <c:if test="${pageNumber>0}">
-            <a href="/watchAllCoursesManager/${pageNumber-1}/${3}" class="arrow left"
-               style="float: left; padding-left: 100px;  font-size: 60px"><</a>
-        </c:if>
-        <c:if test="${allCourses.size()>pageNumber}">
-            <a href="/watchAllCoursesManager/${pageNumber+1}/${3}" class="arrow right"
-               style="float: left; padding-left: 160px; font-size: 60px"> > </a>
-        </c:if>
-    </form>
+    <c:if test="${allCourses.size() > 0}">
+        <div>
+            <ul class="hr">
+                <c:forEach begin="0" end="${totalPages-1}" var="page">
+                    <li>
+                        <a href="/watchAllCoursesManager?page=${page}&size=${3}">${page+1}</a>
+                    </li>
+                </c:forEach>
+            </ul>
+        </div>
+    </c:if>
     <c:if test="${person.role == 'ROLE_MANAGER'}">
-        <a href="/watchAllCoursesManagerArchive/${0}/${3}" class="big-button"><spring:message code="wACM"/></a>
+        <a href="/watchAllCoursesManagerArchive?page=${0}&size=${3}" class="big-button"><spring:message code="wACM"/></a>
         <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
     </c:if>
     <c:if test="${person.role == 'ROLE_USER'}">
-        <a href="/watchRequestCallUser/${0}/${10}" class="big-button"><spring:message code="wWGR"/></a>
+        <a href="/watchRequestCallUser?page=${0}&size=${7}" class="big-button"><spring:message code="wWGR"/></a>
         <a href="/personalInformationUser" class="big-button"><spring:message code="bK"/></a>
     </c:if>
 

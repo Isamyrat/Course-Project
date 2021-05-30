@@ -1,7 +1,7 @@
 package com.example.demo.model.enumModel;
 
 public enum Status {
-    Use("Used"),
+    Use("Use"),
     NotUse("NotUse"),
     Wait("Wait"),
     Started("Started"),

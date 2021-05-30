@@ -26,12 +26,16 @@ public class JournalGroupController {
                                     @PathVariable("groupNumber") Long groupNumber,
                                     @PathVariable int pageNumber,@PathVariable int pageSize,
                                     Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        User user = userService.getUser(userDetails.getUsername());
 
         model.addAttribute("watchGroups", journalGroupService.findAllDataForStudent(pageNumber,pageSize,userId,groupNumber))
                 .addAttribute("userId",userId)
                 .addAttribute("groupNumber", groupNumber)
                 .addAttribute("pageNumber", pageNumber)
-                .addAttribute("pageSize", pageSize);
+                .addAttribute("pageSize", pageSize)
+                .addAttribute("person", user);
 
         return "manager/watchJournalGroup";
     }

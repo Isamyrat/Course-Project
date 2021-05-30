@@ -8,7 +8,7 @@ import com.example.demo.model.Course;
 import com.example.demo.model.User;
 import com.example.demo.model.enumModel.Status;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -31,19 +31,16 @@ public class CallBackService {
         return callBack.orElse(new CallBack());
     }
 
-    public List<CallBack> callBackList(int pageNumber, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        return callBackRepository.findAllByStatus(Status.Wait.toString(), pageable);
+    public Page<CallBack> callBackList(Pageable pageable, String status) {
+        return callBackRepository.findByStatus(status, pageable);
     }
 
-    public List<CallBack> callBackListUser(int pageNumber, int pageSize, Long userId) {
-        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+    public Page<CallBack> callBackListUser(Pageable pageable, Long userId) {
         return callBackRepository.findAllByUserId(userId, pageable);
     }
 
-    public List<CallBack> callBackListArchive(int pageNumber, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        return callBackRepository.findAllByStatusOrStatus(Status.Approved.toString(), Status.Denied.toString(), pageable);
+    public Page<CallBack> callBackListArchive(Pageable pageable, String status, String status1) {
+        return callBackRepository.findAllByStatusOrStatus(status,status1, pageable);
     }
 
     public Boolean saveCallBack(User userRequestCall, Course courseRequestCall) {

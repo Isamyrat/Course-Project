@@ -2,10 +2,13 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Course;
 import com.example.demo.model.User;
+import com.example.demo.model.enumModel.Status;
 import com.example.demo.service.CourseService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,17 +28,17 @@ public class CourseController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/watchAllCoursesManager/{pageNumber}/{pageSize}")
-    public String watchAllCoursesManager(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
+    @GetMapping("/watchAllCoursesManager")
+    public String watchAllCoursesManager(Pageable pageable, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         User user = userService.getUser(userDetails.getUsername());
 
         ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages", Objects.requireNonNull(
                 Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
+        Page<Course> pages = courseService.findByCourse(pageable, Status.Use.toString());
 
-        model.addAttribute("allCourses", courseService.findCourse(pageNumber,pageSize))
-                .addAttribute("pageNumber", pageNumber)
+        model.addAttribute("allCourses", pages.getContent())
                 .addAttribute("start", resourceBundle.getString("Start"))
                 .addAttribute("elementary", resourceBundle.getString("Elementary"))
                 .addAttribute("pre_Intermediate", resourceBundle.getString("Pre_Intermediate"))
@@ -46,18 +49,22 @@ public class CourseController {
                 .addAttribute("french", resourceBundle.getString("French"))
                 .addAttribute("russian", resourceBundle.getString("Russian"))
                 .addAttribute("turkish", resourceBundle.getString("Turkish"))
-                .addAttribute("person", user);
+                .addAttribute("person", user)
+                .addAttribute("totalPages", pages.getTotalPages())
+                .addAttribute("totalElements", pages.getTotalElements())
+                .addAttribute("number", pages.getNumber())
+                .addAttribute("size", pages.getSize());
 
         return "manager/watchAllCoursesManager";
     }
 
-    @GetMapping("/watchAllCoursesManagerArchive/{pageNumber}/{pageSize}")
-    public String watchAllCoursesManagerArchive(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
+    @GetMapping("/watchAllCoursesManagerArchive")
+    public String watchAllCoursesManagerArchive(Pageable pageable, Model model) {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages", Objects.requireNonNull(
                 Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
+        Page<Course> pages = courseService.findByCourse(pageable, Status.NotUse.toString());
 
-        model.addAttribute("allCoursesArchive", courseService.findByStatusList(pageNumber,pageSize))
-                .addAttribute("pageNumber", pageNumber)
+        model.addAttribute("allCoursesArchive", pages.getContent())
                 .addAttribute("start", resourceBundle.getString("Start"))
                 .addAttribute("elementary", resourceBundle.getString("Elementary"))
                 .addAttribute("pre_Intermediate", resourceBundle.getString("Pre_Intermediate"))
@@ -67,7 +74,11 @@ public class CourseController {
                 .addAttribute("english", resourceBundle.getString("English"))
                 .addAttribute("french", resourceBundle.getString("French"))
                 .addAttribute("russian", resourceBundle.getString("Russian"))
-                .addAttribute("turkish", resourceBundle.getString("Turkish"));
+                .addAttribute("turkish", resourceBundle.getString("Turkish"))
+                .addAttribute("totalPages", pages.getTotalPages())
+                .addAttribute("totalElements", pages.getTotalElements())
+                .addAttribute("number", pages.getNumber())
+                .addAttribute("size", pages.getSize());
 
         return "manager/watchAllCoursesManagerArchive";
     }

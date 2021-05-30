@@ -104,32 +104,33 @@
             </c:if>
         </table>
         <c:if test="${person.role == 'ROLE_MANAGER'}">
-            <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
-                <c:if test="${pageNumber>0}">
-                    <a href="/watchRequestCall/${pageNumber-1}/${7}" class="arrow left"
-                       style="float: left; padding-left: 100px;  font-size: 60px"><</a>
-                </c:if>
-                <c:if test="${callBackManager.size()>pageNumber}">
-                    <a href="/watchRequestCall/${pageNumber+1}/${7}" class="arrow right"
-                       style="float: left; padding-left: 160px; font-size: 60px"> > </a>
-                </c:if>
-            </form>
-            <a href="/watchRequestCallArchive/${0}/${7}" class="big-button"><spring:message code="wCallArhiv"/></a>
-
+            <c:if test="${callBackManager.size() > 0}">
+                <div>
+                    <ul class="hr">
+                        <c:forEach begin="0" end="${totalPages-1}" var="page">
+                            <li>
+                                <a href="/watchRequestCall?page=${page}&size=${7}">${page+1}</a>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </div>
+            </c:if>
+            <a href="/watchRequestCallArchive?page=${page}&size=${7}" class="big-button"><spring:message code="wCallArhiv"/></a>
             <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
         </c:if>
         <c:if test="${person.role == 'ROLE_USER'}">
-            <form style="margin: 0; padding: 0;height: 100px; font-size: 50px">
-                <c:if test="${pageNumber>0}">
-                    <a href="/watchRequestCallUser/${pageNumber-1}/${7}" class="arrow left"
-                       style="float: left; padding-left: 100px;  font-size: 60px"><</a>
-                </c:if>
-                <c:if test="${callBackManager.size()>pageNumber}">
-                    <a href="/watchRequestCallUser/${pageNumber+1}/${7}" class="arrow right"
-                       style="float: left; padding-left: 160px; font-size: 60px"> > </a>
-                </c:if>
-            </form>
-            <a href="/watchAllCoursesManager/${0}/${3}" class="big-button"><spring:message code="bK"/></a>
+            <c:if test="${callBackManager.size() > 0}">
+                <div>
+                    <ul class="hr">
+                        <c:forEach begin="0" end="${totalPages-1}" var="page">
+                            <li>
+                                <a href="/watchRequestCallUser?page=${page}&size=${7}">${page+1}</a>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </div>
+            </c:if>
+            <a href="/watchAllCoursesManager?page=${page}&size=${3}" class="big-button"><spring:message code="bK"/></a>
         </c:if>
 
     </div>

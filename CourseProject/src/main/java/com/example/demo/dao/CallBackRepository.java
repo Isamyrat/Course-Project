@@ -1,7 +1,9 @@
 package com.example.demo.dao;
 
 import com.example.demo.model.CallBack;
+import com.example.demo.model.User;
 import com.example.demo.model.enumModel.Status;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -22,11 +24,7 @@ public interface CallBackRepository extends PagingAndSortingRepository<CallBack,
     List<CallBack> findByUserId(@Param("userId")Long userId);
 
     @Query("select c from  CallBack  c where c.userCallBack.id = :userId")
-    List<CallBack> findAllByUserId(@Param("userId")Long userId, Pageable pageable);
-
-    List<CallBack> findAllByStatus(String status, Pageable pageable);
-
-    List<CallBack> findAllByStatusOrStatus(String status1, String status2,Pageable pageable);
+    Page<CallBack> findAllByUserId(@Param("userId")Long userId, Pageable pageable);
 
     @Query("select c from  CallBack  c where c.userCallBack.id = :userId and  c.courseCallBack.id = :courseId and c.status = :status")
     CallBack findByUserIdAndCallBakIdAndStatus(@Param("userId")Long userId, @Param("courseId")Long courseId, @Param("status")String status );
@@ -40,5 +38,11 @@ public interface CallBackRepository extends PagingAndSortingRepository<CallBack,
     @Transactional
     @Query(value = "delete from CALL_BACK where USER_ID = :id", nativeQuery = true)
     void deleteAllByUserId(Long id);
+
+    @Query("select c from CallBack  c where c.status = :status")
+    Page<CallBack> findByStatus(String status, Pageable pageable);
+
+    @Query("select c from CallBack  c where c.status = :status or c.status = :status1")
+    Page<CallBack> findAllByStatusOrStatus(String status, String status1, Pageable pageable);
 
 }

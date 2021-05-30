@@ -20,7 +20,7 @@
 <body>
 <spring:message code="askGS" var="askGS"/>
 
-<sec:authorize access="hasRole('ROLE_MANAGER')">
+
 <div class="container">
     <table>
         <form:form modelAttribute="watchUsers">
@@ -36,7 +36,9 @@
                 <th><spring:message code="aOs"/></th>
                 <th><spring:message code="nOs"/></th>
                 <th><spring:message code="aG"/></th>
+                <c:if test="${person.role == 'ROLE_MANAGER'}">
                 <th><spring:message code="aCJ"/></th>
+                </c:if>
             </tr>
             </thead>
             <tbody>
@@ -47,87 +49,62 @@
                     <td>${users.surname}</td>
                     <td>${users.personalInformation.age}</td>
                     <td>${users.personalInformation.number}</td>
-                    <td>
-                        <form action="${pageContext.request.contextPath}/deleteStud" method="post">
-                            <input type="hidden" name="userId" value="${users.id}"/>
-                            <input type="hidden" name="groupNumber" value="${watchUsers.numberGroup}"/>
-                            <input type="hidden" name="action" value="delete"/>
-                        </form>
-                        <form action="${pageContext.request.contextPath}/deleteStud" method="post">
-                            <input type="hidden" name="userId" value="${users.id}"/>
-                            <input type="hidden" name="groupNumber" value="${watchUsers.numberGroup}"/>
-                            <input type="hidden" name="action" value="delete"/>
-                            <button type="submit"  onclick="if(!(confirm('${askGS}'))) return false"
-                                    style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
-                                <spring:message code="dU"/></button>
-                        </form>
-                    </td>
+                    <c:if test="${person.role == 'ROLE_MANAGER'}">
+                        <td>
+
+                            <form action="${pageContext.request.contextPath}/deleteStud" method="post">
+                                <input type="hidden" name="userId" value="${users.id}"/>
+                                <input type="hidden" name="groupNumber" value="${watchUsers.numberGroup}"/>
+                                <input type="hidden" name="action" value="delete"/>
+                            </form>
+                            <form action="${pageContext.request.contextPath}/deleteStud" method="post">
+                                <input type="hidden" name="userId" value="${users.id}"/>
+                                <input type="hidden" name="groupNumber" value="${watchUsers.numberGroup}"/>
+                                <input type="hidden" name="action" value="delete"/>
+                                <button type="submit" onclick="if(!(confirm('${askGS}'))) return false"
+                                        style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
+                                    <spring:message code="dU"/></button>
+                            </form>
+                        </td>
+                    </c:if>
+
+                    <c:if test="${person.role == 'ROLE_TEACHER'}">
                     <td>
                         <form>
                             <a href="/watchJournalGroup/${users.id}/${watchUsers.numberGroup}/${0}/${7}" type="submit"
                                style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;font-size: 20px"><spring:message
                                     code="aCJW"/></a>
                         </form>
+                        <form>
+                            <a href="/addJournalGroup/${users.id}/${watchUsers.numberGroup}" type="submit"
+                               style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;font-size: 20px"><spring:message
+                                    code="aJG"/></a>
+                        </form>
+                        </c:if>
                     </td>
+                    <c:if test="${person.role == 'ROLE_MANAGER'}">
+                        <td>
+                            <form>
+                                <a href="/watchJournalGroup/${users.id}/${watchUsers.numberGroup}/${0}/${7}"
+                                   type="submit"
+                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;font-size: 20px"><spring:message
+                                        code="aCJW"/></a>
+                            </form>
+                        </td>
+                    </c:if>
+
                 </tr>
             </c:forEach>
             </tbody>
         </form:form>
     </table>
-    <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
-</div>
-</sec:authorize>
-
-<sec:authorize access="hasRole('ROLE_TEACHER')">
-    <div class="container">
-        <table>
-            <form:form modelAttribute="watchUsers">
-                <thead>
-                <tr>
-                    <th><spring:message code="titleT"/></th>
-                </tr>
-                </thead>
-                <thead>
-                <tr>
-                    <th><spring:message code="nOS"/></th>
-                    <th><spring:message code="sOS"/></th>
-                    <th><spring:message code="aOs"/></th>
-                    <th><spring:message code="nOs"/></th>
-                    <th><spring:message code="aCJ"/></th>
-
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${watchUsers.userGroup}" var="users">
-
-                    <tr>
-                        <td>${users.name}</td>
-                        <td>${users.surname}</td>
-                        <td>${users.personalInformation.age}</td>
-                        <td>${users.personalInformation.number}</td>
-
-                        <td>
-                            <form>
-                                <a href="/watchJournalGroup/${users.id}/${watchUsers.numberGroup}/${0}/${7}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;font-size: 20px"><spring:message
-                                        code="aCJW"/></a>
-                            </form>
-                            <form>
-                                <a href="/addJournalGroup/${users.id}/${watchUsers.numberGroup}" type="submit"
-                                   style="background-color: rgba(255, 255, 255, 0.2); color: #000000; border: 1px #f5f4f4 solid;font-size: 20px"><spring:message
-                                        code="aJG"/></a>
-                            </form>
-                        </td>
-                    </tr>
-
-                </c:forEach>
-                </tbody>
-            </form:form>
-        </table>
+    <c:if test="${person.role == 'ROLE_MANAGER'}">
+        <a href="/menuManager" class="big-button"><spring:message code="mAM"/></a>
+    </c:if>
+    <c:if test="${person.role == 'ROLE_TEACHER'}">
         <a href="/personalInformationUser" class="big-button"><spring:message code="bK"/></a>
-    </div>
-</sec:authorize>
-
+    </c:if>
+</div>
 </body>
 
 <style>

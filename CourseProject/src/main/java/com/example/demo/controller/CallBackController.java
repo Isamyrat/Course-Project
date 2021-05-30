@@ -9,6 +9,8 @@ import com.example.demo.service.SendEmailService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -36,17 +38,17 @@ public class CallBackController {
     @Autowired
     private SendEmailService sendEmailService;
 
-    @GetMapping("/watchRequestCallUser/{pageNumber}/{pageSize}")
-    public String watchRequestCallUser(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
+    @GetMapping("/watchRequestCallUser")
+    public String watchRequestCallUser(Pageable pageable, Model model) {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages", Objects.requireNonNull(
                 Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         User user = userService.getUser(userDetails.getUsername());
+        Page<CallBack> pages = callBackService.callBackListUser(pageable,user.getId());
 
-        model.addAttribute("callBackManager", callBackService.callBackListUser(pageNumber,pageSize,user.getId()))
-                .addAttribute("pageNumber", pageNumber)
+        model.addAttribute("callBackManager", pages.getContent())
                 .addAttribute("wait", resourceBundle.getString("Wait"))
                 .addAttribute("approved", resourceBundle.getString("Approved"))
                 .addAttribute("denied", resourceBundle.getString("Denied"))
@@ -60,22 +62,27 @@ public class CallBackController {
                 .addAttribute("french", resourceBundle.getString("French"))
                 .addAttribute("russian", resourceBundle.getString("Russian"))
                 .addAttribute("turkish", resourceBundle.getString("Turkish"))
-                .addAttribute("person", user);
+                .addAttribute("person", user)
+                .addAttribute("totalPages", pages.getTotalPages())
+                .addAttribute("totalElements", pages.getTotalElements())
+                .addAttribute("number", pages.getNumber())
+                .addAttribute("size", pages.getSize());
 
         return "manager/watchRequestCall";
     }
 
 
-    @GetMapping("/watchRequestCall/{pageNumber}/{pageSize}")
-    public String watchRequestCall(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
+    @GetMapping("/watchRequestCall")
+    public String watchRequestCall(Pageable pageable, Model model) {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages", Objects.requireNonNull(
                 Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
+        Page<CallBack> pages = callBackService.callBackList(pageable, Status.Wait.toString());
+
         User user = userService.getUser(userDetails.getUsername());
-        model.addAttribute("callBackManager", callBackService.callBackList(pageNumber,pageSize))
-                .addAttribute("pageNumber", pageNumber)
+        model.addAttribute("callBackManager", pages.getContent())
                 .addAttribute("wait", resourceBundle.getString("Wait"))
                 .addAttribute("start", resourceBundle.getString("Start"))
                 .addAttribute("elementary", resourceBundle.getString("Elementary"))
@@ -87,18 +94,23 @@ public class CallBackController {
                 .addAttribute("french", resourceBundle.getString("French"))
                 .addAttribute("russian", resourceBundle.getString("Russian"))
                 .addAttribute("turkish", resourceBundle.getString("Turkish"))
-                .addAttribute("person", user);
+                .addAttribute("person", user)
+                .addAttribute("totalPages", pages.getTotalPages())
+                .addAttribute("totalElements", pages.getTotalElements())
+                .addAttribute("number", pages.getNumber())
+                .addAttribute("size", pages.getSize());
 
         return "manager/watchRequestCall";
     }
 
-    @GetMapping("/watchRequestCallArchive/{pageNumber}/{pageSize}")
-    public String watchRequestCallArchive(@PathVariable int pageNumber,@PathVariable int pageSize,Model model) {
+    @GetMapping("/watchRequestCallArchive")
+    public String watchRequestCallArchive(Pageable pageable,Model model) {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages", Objects.requireNonNull(
                 Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
 
-        model.addAttribute("watchRequestCallArchive", callBackService.callBackListArchive(pageNumber,pageSize))
-                .addAttribute("pageNumber", pageNumber)
+        Page<CallBack> pages = callBackService.callBackListArchive(pageable, Status.Approved.toString(),Status.Denied.toString());
+
+        model.addAttribute("watchRequestCallArchive", pages.getContent())
                 .addAttribute("wait", resourceBundle.getString("Wait"))
                 .addAttribute("approved", resourceBundle.getString("ApprovedManager"))
                 .addAttribute("denied", resourceBundle.getString("DeniedManager"))
@@ -111,7 +123,11 @@ public class CallBackController {
                 .addAttribute("english", resourceBundle.getString("English"))
                 .addAttribute("french", resourceBundle.getString("French"))
                 .addAttribute("russian", resourceBundle.getString("Russian"))
-                .addAttribute("turkish", resourceBundle.getString("Turkish"));
+                .addAttribute("turkish", resourceBundle.getString("Turkish"))
+                .addAttribute("totalPages", pages.getTotalPages())
+                .addAttribute("totalElements", pages.getTotalElements())
+                .addAttribute("number", pages.getNumber())
+                .addAttribute("size", pages.getSize());
 
         return "manager/watchRequestCallArchive";
     }

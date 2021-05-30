@@ -33,9 +33,8 @@ public class Course {
     private String time;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
     @JoinColumn(name = "STATUS")
-    private Status status;
+    private String status;
 
     @JoinColumn(name = "DURATION")
     private String duration;
@@ -52,11 +51,11 @@ public class Course {
     public Course() {
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

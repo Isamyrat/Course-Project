@@ -74,7 +74,6 @@
                         <c:if test="${groups.courseGroup.level == 'Advanced'}">
                             <td>${advanced}</td>
                         </c:if>
-                        <td>${groups.status}</td>
                         <td>
                             <form>
                                 <a href="/watchGroupUsers${groups.id}" type="submit"

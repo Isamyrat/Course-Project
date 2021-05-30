@@ -2,8 +2,10 @@ package com.example.demo.service;
 
 import com.example.demo.dao.CourseRepository;
 import com.example.demo.model.Course;
+import com.example.demo.model.User;
 import com.example.demo.model.enumModel.Status;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -29,39 +31,36 @@ public class CourseService {
             return false;
         }
 
-        course.setStatus(Status.Use);
+        course.setStatus(Status.Use.toString());
         courseRepository.save(course);
         return true;
     }
-
-    public List<Course> findCourse(int pageNumber, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        return courseRepository.findAllByStatus(Status.Use, pageable);
+    public List<Course> allCourses() {
+        return courseRepository.getAll();
     }
 
-    public List<Course> findByStatusList(int pageNumber, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        return courseRepository.findAllByStatus(Status.NotUse, pageable);
+    public Page<Course> findByCourse(Pageable pageable, String status) {
+        return courseRepository.findByStatusCourse(status, pageable);
     }
 
     public List<Course> courseList() {
-        return courseRepository.findByStatus(Status.Use);
+        return courseRepository.findByStatus(Status.Use.toString());
     }
 
     public void editCourse(Course course) {
-        course.setStatus(Status.Use);
+        course.setStatus(Status.Use.toString());
         courseRepository.save(course);
     }
 
     public void editCourseStatus(Long courseId) {
         Course course = courseById(courseId);
-        course.setStatus(Status.NotUse);
+        course.setStatus(Status.NotUse.toString());
         courseRepository.save(course);
     }
 
     public void editStatusCourse(Long courseId) {
         Course course = courseById(courseId);
-        course.setStatus(Status.Use);
+        course.setStatus(Status.Use.toString());
         courseRepository.save(course);
     }
 }

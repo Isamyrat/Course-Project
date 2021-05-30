@@ -86,7 +86,7 @@
         <a href="/watchGroupTeacher/${0}/${7}" class="big-button"><spring:message code="wG"/></a>
     </c:if>
     <c:if test="${userId.role == 'ROLE_USER'}">
-        <a href="/watchAllCoursesManager/${0}/${3}" class="big-button"><spring:message code="wAC"/></a>
+        <a href="/watchAllCoursesManager?page=${0}&size=${3}" class="big-button"><spring:message code="wAC"/></a>
         <a href="/editUser" class="big-button"><spring:message code="cPI"/></a>
         <a href="/watchGroupUser/${0}/${7}" class="big-button"><spring:message code="wWG"/></a>
     </c:if>
