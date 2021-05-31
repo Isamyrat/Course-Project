@@ -38,12 +38,15 @@ public class GroupService {
         Optional<Group> group = groupRepository.findById(groupId);
         return group.orElse(new Group());
     }
+
     public List<Group> findAll() {
         return groupRepository.getAll();
     }
-    public Page<Group> findByStatus(Pageable pageable, String status){
+
+    public Page<Group> findByStatus(Pageable pageable, String status) {
         return groupRepository.findAllByStatus(status, pageable);
     }
+
     public Group findByNumberOfGroup(Long number) {
         return groupRepository.findByNumberGroup(number);
     }
@@ -60,7 +63,7 @@ public class GroupService {
         Journal journal = new Journal();
         Group group1 = groupRepository.findByNumberGroup(group.getNumberGroup());
 
-        if(group1 != null){
+        if (group1 != null) {
             return false;
         }
 
@@ -79,17 +82,17 @@ public class GroupService {
         journalService.saveJournal(journal);
         return true;
     }
+
     public boolean editGroup(Group group) {
         Group group1 = groupRepository.findByNumberGroup(group.getNumberGroup());
 
-        if(group1 != null){
+        if (group1 != null) {
             return false;
         }
 
         groupRepository.save(group);
         return true;
     }
-
 
 
     public Boolean saveUser(CallBack callBack) {
@@ -99,40 +102,41 @@ public class GroupService {
 
         Course course = callBackService.findCourse(callBack.getCourseCallBack().getId());
 
-        List<Group> groupList = groupRepository.findGroupsForAddStudents(course.getId(),Status.Wait.toString());
+        List<Group> groupList = groupRepository.findGroupsForAddStudents(course.getId(), Status.Wait.toString());
 
-        if(groupList.size() == 0){
+        if (groupList.size() == 0) {
             return false;
         }
 
-        for (Group group1: groupList) {
+        for (Group group1 : groupList) {
             group = group1;
             break;
         }
 
         Set<User> users = group.getUserGroup();
 
-        if(users.size()==7){
+        if (users.size() == 7) {
 
-            if(groupList.size() < 2){
+            if (groupList.size() < 2) {
                 return false;
+            } else {
+
+                for (Group group1 : groupList.subList(1, groupList.size())) {
+                    group = group1;
+                    break;
+                }
+
+                Set<User> userSet = group.getUserGroup();
+
+                userSet.add(user);
+
+                group.setUserGroup(userSet);
+                group.setCourseGroup(course);
+
+                groupRepository.save(group);
+                return true;
             }
-
-            for(Group group1 : groupList.subList(1,groupList.size())){
-                group = group1;
-                break;
-            }
-
-            Set<User> userSet = group.getUserGroup();
-
-            userSet.add(user);
-
-            group.setUserGroup(userSet);
-            group.setCourseGroup(course);
-
-            groupRepository.save(group);
-            return true;
-        }else {
+        } else {
 
             users.add(user);
 
@@ -150,20 +154,7 @@ public class GroupService {
         List<Group> groupList = new ArrayList<>();
         for (Group group : groups) {
             for (User user1 : group.getUserGroup()) {
-                if(user1.getId().equals(id)) {
-                    groupList.add(group);
-                }
-            }
-        }
-        return groupList;
-    }
-    public List<Group> findByUserList(int pageNumber, int pageSize,Long id) {
-        Pageable pageable = PageRequest.of(pageNumber,pageSize);
-        Page<Group> groups = groupRepository.findAll(pageable);
-        List<Group> groupList = new ArrayList<>();
-        for (Group group : groups) {
-            for (User user1 : group.getUserGroup()) {
-                if(user1.getId().equals(id)) {
+                if (user1.getId().equals(id)) {
                     groupList.add(group);
                 }
             }
@@ -171,7 +162,21 @@ public class GroupService {
         return groupList;
     }
 
-    public void deleteUser(Long userId, Long groupNumber){
+    public List<Group> findByUserList(int pageNumber, int pageSize, Long id) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+        Page<Group> groups = groupRepository.findAll(pageable);
+        List<Group> groupList = new ArrayList<>();
+        for (Group group : groups) {
+            for (User user1 : group.getUserGroup()) {
+                if (user1.getId().equals(id)) {
+                    groupList.add(group);
+                }
+            }
+        }
+        return groupList;
+    }
+
+    public void deleteUser(Long userId, Long groupNumber) {
         Group groupUser = groupRepository.findByNumberGroup(groupNumber);
         Set<User> userSet = groupUser.getUserGroup();
 
@@ -182,8 +187,8 @@ public class GroupService {
     }
 
 
-    public List<Group> findByTeacher(int pageNumber, int pageSize,Long userId){
-        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+    public List<Group> findByTeacher(int pageNumber, int pageSize, Long userId) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
         return groupRepository.findAllByTeacherId(userId, pageable);
     }
 
@@ -191,6 +196,7 @@ public class GroupService {
     public List<Group> findByTeacherId(Long id) {
         return groupRepository.findByTeacherId(id);
     }
+
     public List<Group> findByUserId(Long id) {
         return findByUser(id);
     }

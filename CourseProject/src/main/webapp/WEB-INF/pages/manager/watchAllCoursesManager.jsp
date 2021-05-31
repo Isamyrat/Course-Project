@@ -44,7 +44,7 @@
                     </c:if>
                     <c:if test="${person.role == 'ROLE_MANAGER'}">
                         <th><spring:message code="topCours"/></th>
-                        <th><spring:message code="delCourse"/></th>
+                        <th><spring:message code="archiveCourse"/></th>
                     </c:if>
                 </tr>
                 </thead>

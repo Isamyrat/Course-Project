@@ -72,19 +72,26 @@ public class ManagerController {
     @GetMapping("/editTeacher{userId}")
     public String editTeacher(@PathVariable(value = "userId") Long userId,
                               Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        User user = userService.getUser(userDetails.getUsername());
 
         model.addAttribute("userTeacher", userService.findUserById(userId))
-                .addAttribute("userId", userId);
+                .addAttribute("userId", userId)
+                .addAttribute("person", user);
 
         return "manager/editTeacher";
     }
 
     @PostMapping("/saveTeachers")
     public String saveCustomers(@ModelAttribute("userTeacher") User user) {
-
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        User user1 = userService.getUser(userDetails.getUsername());
         userService.editPerson(user);
-
-        return "redirect:/menuManager";
+        if(user1.getRole().equals("ROLE_MANAGER")) {
+            return "redirect:/menuManager";
+        }else return "redirect:/menuAdmin";
     }
 
     @PostMapping("/deleteTeacher")

@@ -33,7 +33,7 @@
     <a href="/watchJournalManager/${0}/${7}" class="btn btn-4"><spring:message code="wJournals"/></a>
     <a href="/watchRequestCall?page=${0}&size=${7}" class="btn btn-5"><spring:message code="wCall"/></a>
     <a href="/watchGroup?page=${0}&size=${3}" class="btn btn-5"><spring:message code="wGroups"/></a>
-    <a href="/watchAllCoursesManager?page=${0}&size=${4}" class="btn btn-6"><spring:message code="wCourse"/></a>
+    <a href="/watchAllCoursesManager?page=${0}&size=${3}" class="btn btn-6"><spring:message code="wCourse"/></a>
     <a href="/personalInformationUser" class="btn btn-6"><spring:message code="bK"/></a>
 </div>
 <div class="footer-wrapper">

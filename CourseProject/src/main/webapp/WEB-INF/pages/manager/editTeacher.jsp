@@ -19,8 +19,8 @@
 <body>
 
 <div class="login-box">
-    <h2> <spring:message code="enterData"/></h2>
-    <form:form  method="POST" action="/saveTeachers" modelAttribute="userTeacher">
+    <h2><spring:message code="enterData"/></h2>
+    <form:form method="POST" action="/saveTeachers" modelAttribute="userTeacher">
 
         <form:hidden path="id"/>
         <label class="label-color"><spring:message code="nM"/></label>
@@ -37,7 +37,7 @@
         <form:hidden path="password"/>
         <form:hidden path="role"/>
 
-        <button  style="background-color: #141e30">
+        <button style="background-color: #141e30">
             <span></span>
             <span></span>
             <span></span>
@@ -45,13 +45,25 @@
             <spring:message code="save"/>
         </button>
         <p>
-        <a href="/menuManager">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <spring:message code="bK"/>
-        </a>
+            <c:if test="${person.role == 'ROLE_MANAGER'}">
+                <a href="/menuManager">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <spring:message code="bK"/>
+                </a>
+            </c:if>
+            <c:if test="${person.role == 'ROLE_ADMIN'}">
+                <a href="/menuAdmin">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <spring:message code="bK"/>
+                </a>
+            </c:if>
+
         </p>
     </form:form>
 </div>
