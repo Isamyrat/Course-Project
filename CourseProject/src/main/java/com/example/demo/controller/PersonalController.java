@@ -52,10 +52,11 @@ public class PersonalController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         User user = userService.getUser(userDetails.getUsername());
-
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages",Objects.requireNonNull(
+                Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
         personalInformation.setUserInformation(user);
         if (!personalInformationService.savePersonInfo(personalInformation)) {
-            model.addAttribute("personError", "Пользователь с личными данными уже существует, вы можете изменить их");
+            model.addAttribute("personError", resourceBundle.getString("error11"));
             return "user/addPersonalInformationUser";
         }
 

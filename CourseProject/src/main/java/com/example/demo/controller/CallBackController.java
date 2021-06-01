@@ -141,9 +141,10 @@ public class CallBackController {
         User user = userService.getUser(userDetails.getUsername());
 
         Course course1 = callBackService.findCourse(courseId);
-
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages",Objects.requireNonNull(
+                Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
         if (!callBackService.saveCallBack(user, course1)) {
-            model.addAttribute("addToError", "Вы уже отправляли запрос на данный курс. Ожидайте ответа!!");
+            model.addAttribute("addToError", resourceBundle.getString("error5"));
             return "manager/errors";
         }
 
@@ -162,10 +163,11 @@ public class CallBackController {
     @PostMapping("/saveApprove")
     public String saveApprove(@ModelAttribute("editCallBack") CallBack editCallBack,
                                 Model model) {
-
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages",Objects.requireNonNull(
+                Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
         if (editCallBack.getStatus().equals(Status.Approved.toString())) {
             if (!groupService.saveUser(editCallBack)) {
-                model.addAttribute("addToErrors", "Данной группы не существует добавьте его сначала/Группа заполнена создайте новую группу.");
+                model.addAttribute("addToErrors", resourceBundle.getString("error6"));
                 return "manager/errors";
             }
         }

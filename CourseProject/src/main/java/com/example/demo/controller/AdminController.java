@@ -4,6 +4,7 @@ import com.example.demo.model.User;
 import com.example.demo.model.enumModel.Roles;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
 @Controller
 public class AdminController {
@@ -60,10 +63,11 @@ public class AdminController {
     public String  deleteUsers(@RequestParam(required = true, defaultValue = "" ) Long userId,
                               @RequestParam(required = true, defaultValue = "" ) String action,Model model) {
 
-
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages", Objects.requireNonNull(
+                Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
         if (action.equals("delete")){
             if(!userService.deleteStudents(userId)){
-                model.addAttribute("errorStudent", "Данный студент учится/учился в группе, вам необходитмо его удалить из группы, а затем вы можете его удалить польностью!!!!");
+                model.addAttribute("errorStudent", resourceBundle.getString("error4"));
                 return "manager/errors";
             }
         }
@@ -79,13 +83,14 @@ public class AdminController {
     @PostMapping("/saveManager")
     public String saveCustomer(@ModelAttribute("userManager") @Valid User userManager,
                                BindingResult bindingResult, Model model) {
-
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages",Objects.requireNonNull(
+                Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
         if (bindingResult.hasErrors()) {
             return "admin/addManager";
         }
 
         if (!userService.saveManager(userManager)){
-            model.addAttribute("usernameError", "Пользователь с таким именем уже существует. Пожалйста напишите другой логин!!");
+            model.addAttribute("usernameError", resourceBundle.getString("error9"));
             return "admin/addManager";
         }
 

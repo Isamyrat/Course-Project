@@ -6,12 +6,16 @@ import com.example.demo.service.CourseService;
 import com.example.demo.service.TopicService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Objects;
+import java.util.ResourceBundle;
 
 @Controller
 public class TopicController {
@@ -50,9 +54,11 @@ public class TopicController {
     public String saveTopicManager(@ModelAttribute("topicAdd")
                                            Topic topicForm,
                                    Model model) {
-
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages", Objects.requireNonNull(
+                Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
         if (!topicService.saveTopic(topicForm)) {
-            model.addAttribute("topicLL", "Данный топик уже существует можете его изменить!!");
+
+            model.addAttribute("topicLL",  resourceBundle.getString("error2"));
             return "manager/errors";
         }
         return "redirect:/menuManager";

@@ -95,9 +95,10 @@ public class CourseController {
     public String saveCourseManager(@ModelAttribute("courseAdd")
                                     Course courseForm,
                                     Model model) {
-
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages",Objects.requireNonNull(
+                Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
         if(!courseService.saveCourse(courseForm)){
-            model.addAttribute("courseLanguageError", "Курсы с таким уровенем и языком уже создан!");
+            model.addAttribute("courseLanguageError", resourceBundle.getString("error12"));
             return "manager/addCourse";
         }
 

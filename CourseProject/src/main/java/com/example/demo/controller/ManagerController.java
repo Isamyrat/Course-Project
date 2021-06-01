@@ -4,6 +4,7 @@ import com.example.demo.model.User;
 import com.example.demo.model.enumModel.Roles;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
@@ -15,6 +16,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
 @Controller
 public class ManagerController {
@@ -58,11 +61,13 @@ public class ManagerController {
     @PostMapping("/saveTeacher")
     public String saveCustomer(@ModelAttribute("userTeacher") @Valid User userTeacher,
                                BindingResult bindingResult, Model model) {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages",Objects.requireNonNull(
+                Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
         if (bindingResult.hasErrors()) {
             return "manager/addTeacher";
         }
         if (!userService.saveTeacher(userTeacher)) {
-            model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
+            model.addAttribute("usernameError", resourceBundle.getString("error10"));
             return "manager/addTeacher";
         }
         return "redirect:/menuManager";
@@ -97,10 +102,11 @@ public class ManagerController {
     @PostMapping("/deleteTeacher")
     public String deleteUser(@RequestParam(required = true, defaultValue = "") Long userId,
                              @RequestParam(required = true, defaultValue = "") String action, Model model) {
-
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages", Objects.requireNonNull(
+                Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
         if (action.equals("delete")) {
             if (!userService.deleteTeacher(userId)) {
-                model.addAttribute("errorTeacher", "Данный преподаватель преподает в группе. Смените преподавателя на другой, а затем можете удалять!!!!");
+                model.addAttribute("errorTeacher", resourceBundle.getString("error3"));
                 return "manager/errors";
             }
         }

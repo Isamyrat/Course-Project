@@ -5,12 +5,16 @@ import com.example.demo.model.User;
 import com.example.demo.service.AddressService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Objects;
+import java.util.ResourceBundle;
 
 @Controller
 public class AddressController {
@@ -44,13 +48,14 @@ public class AddressController {
                                       Address address, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages", Objects.requireNonNull(
+                Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
         User user = userService.getUser(userDetails.getUsername());
 
         address.setUserAddress(user);
 
         if (!addressService.saveAddress(address)) {
-            model.addAttribute("addressError", "Такой адрес уже существует!!!");
+            model.addAttribute("addressError", resourceBundle.getString("error7"));
             return "user/addAddressUser";
         }
 
@@ -69,10 +74,11 @@ public class AddressController {
 
     @PostMapping("/saveAddressEdit")
     public String saveAddressEdit(@ModelAttribute("addressEdit") Address address,Model model) {
-
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages",Objects.requireNonNull(
+                Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
 
         if (!addressService.editAddress(address)) {
-            model.addAttribute("addressError", "Такой адрес уже существует!!!");
+            model.addAttribute("addressError", resourceBundle.getString("error7"));
             return "manager/errors";
         }
         return "redirect:/personalInformationUser";

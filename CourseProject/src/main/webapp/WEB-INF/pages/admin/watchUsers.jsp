@@ -23,7 +23,7 @@
     <table>
         <thead>
         <tr>
-            <th><spring:message code="aUM"/></th>
+            <th><spring:message code="aUT"/></th>
         </tr>
         </thead>
         <thead>
@@ -45,7 +45,7 @@
                                     <input type="hidden" name="action" value="delete"/>
                                     <button type="submit" onclick="if(!(confirm('${askMan}'))) return false"
                                             style="background-color: rgba(255, 255, 255, 0.2); color: #000000;  border: 1px #f5f4f4 solid; font-size: 25px">
-                                        <spring:message code="dM"/></button>
+                                        <spring:message code="dU"/></button>
                                 </form>
                             </td>
                         </tr>

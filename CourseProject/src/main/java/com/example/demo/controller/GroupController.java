@@ -187,9 +187,10 @@ public class GroupController {
 
     @PostMapping("/saveGroupManager")
     public String saveGroupManager(@ModelAttribute("group") Group group, Model model) {
-
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages",Objects.requireNonNull(
+                Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
         if (!groupService.saveGroup(group)) {
-            model.addAttribute("groupError", "Такой номер группы уже существует измените его пожалуйста!!!");
+            model.addAttribute("groupError", resourceBundle.getString("error1"));
             return "manager/errors";
         }
 
@@ -230,8 +231,10 @@ public class GroupController {
     }
     @PostMapping("/saveManagerGroup")
     public String saveManagerGroup(@ModelAttribute("groupEdit") Group group, Model model) {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("locale/messages",Objects.requireNonNull(
+                Objects.requireNonNull(LocaleContextHolder.getLocaleContext()).getLocale()));
         if (!groupService.editGroup(group)) {
-            model.addAttribute("groupError", "Такой номер группы уже существует измените его пожалуйста!!!");
+            model.addAttribute("groupError", resourceBundle.getString("error1"));
             return "manager/errors";
         }
 

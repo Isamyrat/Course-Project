@@ -23,9 +23,6 @@
 <div class="main">
     <div class="container">
         <div class="signup-content">
-            <div>
-                <img src="../css/images/signup-img.jpg" alt="">
-            </div>
             <div class="signup-form">
                 <form:form method="POST" class="register-form" id="register-form" action="/saveCourseAddManager" modelAttribute="courseAdd">
                     <h2><spring:message code="enterDatas"/></h2>

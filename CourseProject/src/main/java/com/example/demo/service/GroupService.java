@@ -115,37 +115,36 @@ public class GroupService {
 
         Set<User> users = group.getUserGroup();
 
+
+
         if (users.size() == 7) {
-
-            if (groupList.size() < 2) {
+            if (groupList.size() <2) {
                 return false;
-            } else {
-
-                for (Group group1 : groupList.subList(1, groupList.size())) {
-                    group = group1;
-                    break;
-                }
-
-                Set<User> userSet = group.getUserGroup();
-
-                userSet.add(user);
-
-                group.setUserGroup(userSet);
-                group.setCourseGroup(course);
-
-                groupRepository.save(group);
-                return true;
             }
-        } else {
+            for (Group group1 : groupList.subList(1, groupList.size())) {
+                group = group1;
+                break;
+            }
 
+
+            Set<User> userSet = group.getUserGroup();
+
+            if (userSet.size() == 7) {
+                return false;
+            }
+
+            userSet.add(user);
+
+            group.setUserGroup(userSet);
+
+        } else{
             users.add(user);
-
             group.setUserGroup(users);
-            group.setCourseGroup(course);
 
-            groupRepository.save(group);
-            return true;
         }
+        group.setCourseGroup(course);
+        groupRepository.save(group);
+        return true;
     }
 
 
