@@ -31,7 +31,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label><spring:message code="nOG"/></label>
-                            <form:input type="text" path="numberGroup"/>
+                            <form:input type="number" path="numberGroup"/>
                         </div>
                     </div>
                     <form:hidden path="userGroup"/>

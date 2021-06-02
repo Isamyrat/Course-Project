@@ -14,7 +14,7 @@
     <div class="localize">
         <span style="color:#f5f4f4;"><spring:message code="app.title"/>:</span>
         <a href="/userAddressWatch${addressId}?lang=en" class="big-button"><spring:message code="app.en"/></a>
-        <a href="/userAddressWatch${addressId}?lang=ru" class="big-button"><spring:message code="app.ru"/></a>
+        <p><a href="/userAddressWatch${addressId}?lang=ru" class="big-button"><spring:message code="app.ru"/></a></p>
     </div>
 </header>
 

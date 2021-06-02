@@ -71,12 +71,12 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label><spring:message code="dOC"/></label>
-                            <form:input type="text" path="startDate"/>
+                            <form:input type="date" path="startDate"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label><spring:message code="p"/></label>
-                        <form:input path="price"/>
+                        <form:input type="number" path="price"/>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
